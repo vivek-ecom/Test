@@ -1,0 +1,454 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+ =================================================================
+  Licensed Materials - Property of IBM
+
+  WebSphere Commerce
+
+  (C) Copyright IBM Corp. 2012 All Rights Reserved.
+
+  US Government Users Restricted Rights - Use, duplication or
+  disclosure restricted by GSA ADP Schedule Contract with
+  IBM Corp.
+ =================================================================
+-->
+<html  xmlns:wairole='http://www.w3.org/2005/01/wai-rdf/GUIRoleTaxonomy#' xmlns:waistate='http://www.w3.org/2005/07/aaa' lang='en' xml:lang='en' onkeydown='javascript:activateHighlight(event);'>
+<head>
+<title>Static HTML Starter Store</title>
+<script type="text/javascript">
+  var twistUp = true;
+	/**
+	 * This function is used to modify the twistie image as the section
+	 * is opened and closed.
+	 * @param {string} theImgID The id of the twistie image element.
+	 */
+	function changeTwist(theImgID){
+		var theImg = document.getElementById(theImgID);
+		if(twistUp){
+			theImg.src= "Docs/images/arrow_points_down.png";
+			document.getElementById('show_hide_detail').innerHTML = 'hide details';
+			twistUp = false;
+		}else{
+			theImg.src= "Docs/images/arrow_points_right.png";
+			document.getElementById('show_hide_detail').innerHTML = 'Aurora starter store feature options (open section to see details)';
+			twistUp = true;
+		}
+	}
+
+  /**
+  * This function is used to hide an element with the specified id.
+  * @param {string} elementId The id of the element to be hidden.
+  */
+  function showHideElementById(elementId){
+		var div = document.getElementById(elementId);
+		if (div.style.display == "block") {
+			div.style.display = "none";
+		} else {
+			div.style.display = "block";
+		}
+ }
+</script>
+
+<link href="Docs/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div id = "container">
+
+	<div class = "top_wrapper">
+	<div class = "top_container">
+		<div class="top_text">
+			<h1>STATIC HTML STARTER STORE</h1>
+			<div id = "top_description">WEBSPHERE COMMERCE VERSION 7.0.0.6</div>
+		</div>
+		<div id ="logo">
+			<img src="Docs/images/logo.png" alt="logo"/>
+		</div>
+	</div>
+	</div>
+	
+	<div class = "content">
+		<div class = "wrapper">
+			<div class = "inner-wrapper">
+				<div class = "introduction" id ="staticAssetsOverview" >
+					<h2>Introduction</h2>
+					<p>
+					WebSphere Commerce provides a set of static, navigable HTML pages for the Aurora starter store. 
+					These pages showcase all the store pages and their different supported flows. 
+					For example, there are different pages to demonstrate an empty shopping cart, 
+					a shopping cart with more than 20 items with pagination invoked, and so on. 
+					The asset is viewable by opening the HTML files in a browser without the need of a development 
+					environment running on a WebSphere Commerce server.
+					<p>
+					<i>Note:</i> The materials provided in this package are samples only.
+					</p>
+					</p>
+				</div>
+	
+	
+				<div id = "aurora" class = "no_border">
+					<div class = "titles"><h2>Aurora</h2></div>
+						
+				  <div class="hidden_button"><h4><a class = "no_text_decoration" href="javascript: showHideElementById('AuroraGuestPackageFlexFlows'); changeTwist('img1');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img id="img1" src="Docs/images/arrow_points_right.png" alt="arrow down image"/>&nbsp;<span id = "show_hide_detail">Aurora starter store feature options (open section to see details)</span></a></h4>
+						<div class="section" id="AuroraGuestPackageFlexFlows" style="display:none;"><div class="tablenoborder"><table border="1" cellpadding="4" cellspacing="0" frame="border" rules="all" summary=""><div>
+						</div><thead align="left"><tr class="table_header" valign="bottom"><th colspan="1" id="d13808e73" class="first_col_width" rowspan="1" valign="bottom">&nbsp;</th>
+						<th colspan="1" id="d13808e74" class = "second_col_width" rowspan="1" valign="bottom">Feature</th>
+						<th colspan="1" id="d13808e76" class = "third_col_width" rowspan="1" valign="bottom">Description</th>
+						<th colspan="1" id="d13808e78" class = "forth_col_width" rowspan="1" valign="bottom">Enabled</th>
+						</tr>
+						</thead>
+						<tbody><tr class="table_lighter_background" ><td  colspan="1" headers="d13808e73" class="first_col_width" rowspan="2" valign="top"><strong id="rsmmadisonchangeflowoptions__CustomerInteractions"><a name="rsmmadisonchangeflowoptions__CustomerInteractions" shape="rect"><!-- -->
+</a>Customer interactions</strong><p>Select the Web
+						2.0 features that customers can use in your store.</p>
+						</td>
+						<td colspan="1" headers="d13808e74" class = "second_col_width" rowspan="1" valign="top">Facebook Integration</td>
+						<td colspan="1" headers="d13808e76" class="third_col_width" rowspan="1" valign="top">Enable Facebook intergation features for your store</td>
+						<td colspan="1" headers="d13808e78" class="enabled_col_spacing" rowspan="1" valign="top">No</td>
+						</tr>
+						<tr class="table_lighter_background"><td colspan="1" headers="d13808e74" class = "second_col_width" rowspan="1" valign="top">Bazaarvoice ratings and reviews integration</td>
+						<td colspan="1" headers="d13808e76" class = "third_col_width" rowspan="1" valign="top">Enable product ratings and reviews for your store</td>
+						<td colspan="1" headers="d13808e78" class = "enabled_col_spacing" rowspan="1" valign="top">No</td>
+						</tr>
+						<tr><td colspan="1" headers="d13808e73" class = "first_col_width" rowspan="6" valign="top"><strong id="rsmmadisonchangeflowoptions__Registration"><a name="rsmmadisonchangeflowoptions__Registration" shape="rect"><!-- -->
+</a>Registration</strong><p>Select
+						optional fields to display on the Registration and Change Personal
+						Information pages.</p>
+						</td>
+						<td colspan="1" headers="d13808e74" class = "second_col_width" rowspan="1" valign="top">Preferred currency</td>
+						<td colspan="1" headers="d13808e76" class = "third_col_width" rowspan="1" valign="top">Registered customers can select the price's
+						displayed currency.</td>
+						<td colspan="1" headers="d13808e78" class = "enabled_col_spacing" rowspan="1" valign="top">Yes</td>
+						</tr>
+						<tr><td colspan="1" headers="d13808e74" class = "second_col_width" rowspan="1" valign="top">Preferred language</td>
+						<td colspan="1" headers="d13808e76" class = "third_col_width" rowspan="1" valign="top">Registered customers can select the store's
+						displayed language.</td>
+						<td colspan="1" headers="d13808e78" class = "enabled_col_spacing" rowspan="1" valign="top">Yes</td>
+						</tr>
+						<tr><td colspan="1" headers="d13808e74" class = "second_col_width" rowspan="1" valign="top">Gender</td>
+						<td colspan="1" headers="d13808e76" class = "third_col_width" rowspan="1" valign="top">Registered customers can submit their gender
+						in the Registration and Change Personal Information pages.</td>
+						<td colspan="1" headers="d13808e78" class = "enabled_col_spacing" rowspan="1" valign="top">Yes</td>
+						</tr>
+						<tr><td colspan="1" headers="d13808e74" class = "second_col_width" rowspan="1" valign="top">Send me information about store specials</td>
+						<td colspan="1" headers="d13808e76" class = "third_col_width" rowspan="1" valign="top">Send promotional e-mail to customers. You must
+						configure your e-mail accounts and activities using  WebSphere Commerce
+						Accelerator to send promotional e-mail to customers.</td>
+						<td colspan="1" headers="d13808e78" class = "enabled_col_spacing" rowspan="1" valign="top">Yes</td>
+						</tr>
+						<tr><td colspan="1" headers="d13808e74" class = "second_col_width" rowspan="1" valign="top"><span>Mobile phone number
+						and SMS notifications opt-in</span></td>
+						<td colspan="1" headers="d13808e76" class = "third_col_width" rowspan="1" valign="top"><span>Registered customers
+						can submit their mobile phone number and opt-in for SMS notifications
+						about order status and promotions in the store.</span></td>
+						<td colspan="1" headers="d13808e78" class = "enabled_col_spacing" rowspan="1" valign="top"><span>Yes</span></td>
+						</tr>
+						<tr><td colspan="1" headers="d13808e74" class = "second_col_width" rowspan="1" valign="top">Require new shoppers to provide age information.</td>
+						<td colspan="1" headers="d13808e76" class = "third_col_width" rowspan="1" valign="top">Registered customers can submit their age information
+						when they submit their personal information.<div class="p">The form options are:<ul><li>Date of Birth (default)</li>
+						<li>Age</li>
+						</ul>
+						</div>
+						</td>
+						<td colspan="1" headers="d13808e78" class = "enabled_col_spacing"rowspan="1" valign="top">Yes</td>
+						</tr>
+						<tr class="table_lighter_background"><td colspan="1" headers="d13808e73" class = "first_col_width" rowspan="6" valign="top"><strong id="rsmmadisonchangeflowoptions__Catalog"><a name="rsmmadisonchangeflowoptions__Catalog" shape="rect"><!-- -->
+</a>Catalog</strong><p>Select
+						whether customers can search the catalog and compare products.</p>
+						</td>
+						<td colspan="1" headers="d13808e74" class = "second_col_width" rowspan="1" valign="top">Search store catalog</td>
+						<td colspan="1" headers="d13808e76" class = "third_col_width"rowspan="1" valign="top">Customers can search the store's catalog.</td>
+						<td colspan="1" headers="d13808e78" class = "enabled_col_spacing" rowspan="1" valign="top">Yes</td>
+						</tr>
+						<tr class="table_lighter_background"><td colspan="1" headers="d13808e74" class = "second_col_width" rowspan="1" valign="top">Expanded category navigation</td>
+						<td colspan="1" headers="d13808e76" class = "third_col_width"rowspan="1" valign="top">Enables the display of facet filters when viewing a product category</td>
+						<td colspan="1" headers="d13808e78" class = "enabled_col_spacing" rowspan="1" valign="top">No</td>
+						</tr>
+						<tr class="table_lighter_background"><td colspan="1" headers="d13808e74" class = "second_col_width" rowspan="1" valign="top">Display inventory availability</td>
+						<td colspan="1" headers="d13808e76" class = "third_col_width"rowspan="1" valign="top">The product display pages can show the inventory
+						availability next to the product.</td>
+						<td colspan="1" headers="d13808e78" class = "enabled_col_spacing" rowspan="1" valign="top">Yes</td>
+						</tr>
+						<tr class="table_lighter_background"><td colspan="1" headers="d13808e74" class = "second_col_width" rowspan="1" valign="top">Product rankings</td>
+						<td colspan="1" headers="d13808e76" class = "third_col_width"rowspan="1" valign="top">ESpots throughout the store showing product rankings</td>
+						<td colspan="1" headers="d13808e78" class = "enabled_col_spacing" rowspan="1" valign="top">No</td>
+						</tr>
+						<tr class="table_lighter_background"><td colspan="1" headers="d13808e74" class = "second_col_width" rowspan="1" valign="top">Browsing history</td>
+						<td colspan="1" headers="d13808e76" class = "third_col_width"rowspan="1" valign="top">ESpots throughout the store showing the shoppers browsing history</td>
+						<td colspan="1" headers="d13808e78" class = "enabled_col_spacing" rowspan="1" valign="top">No</td>
+						</tr>
+						<tr class="table_lighter_background"><td colspan="1" headers="d13808e74" class = "second_col_width" rowspan="1" valign="top">Enable wish lists</td>
+						<td colspan="1" headers="d13808e76" class = "third_col_width"rowspan="1" valign="top">Enables the ability for shoppers to create and use wish lists. 
+						Customers can create multiple wish lists with different names</td>
+						<td colspan="1" headers="d13808e78" class = "enabled_col_spacing" rowspan="1" valign="top">Yes</td>
+						</tr>
+						<tr><td colspan="1" headers="d13808e73" class = "first_col_width" rowspan="2" valign="top"><strong id="rsmmadisonchangeflowoptions__Orders"><a name="rsmmadisonchangeflowoptions__Orders" shape="rect"><!-- -->
+</a>Orders</strong><p>Select
+						order-related features available to customers in your store.</p>
+						</td>
+						<td colspan="1" headers="d13808e74" class = "second_col_width" rowspan="1" valign="top">Quick order</td>
+						<td colspan="1" headers="d13808e76" class = "third_col_width"rowspan="1" valign="top">Enter SKUs to add items to the shopping cart.</td>
+						<td colspan="1" headers="d13808e78" class = "enabled_col_spacing" rowspan="1" valign="top">No</td>
+						</tr>
+						<tr><td colspan="1" headers="d13808e74" class = "second_col_width" rowspan="1" valign="top">Order status tracking</td>
+						<td colspan="1" headers="d13808e76" class = "third_col_width" rowspan="1" valign="top">Customers can track the status of their orders.
+						For example, a customer can see when an order is awaiting approval,
+						processed, or scheduled to be processed.</td>
+						<td colspan="1" headers="d13808e78" class = "enabled_col_spacing" rowspan="1" valign="top">Yes</td>
+						</tr>
+						<tr class="table_lighter_background"><td colspan="1" headers="d13808e73" class = "first_col_width" rowspan="6" valign="top"><strong id="rsmmadisonchangeflowoptions__Checkout"><a name="rsmmadisonchangeflowoptions__Checkout" shape="rect"><!-- -->
+</a>Checkout</strong><p>Select
+						checkout features available to customers in your store.</p>
+						</td>
+						<td colspan="1" headers="d13808e74" class = "second_col_width" rowspan="1" valign="top">Quick checkout</td>
+						<td colspan="1" headers="d13808e76" class = "third_col_width" rowspan="1" valign="top">Registered customers can complete an order by
+						using information predefined in a quick checkout profile.</td>
+						<td colspan="1" headers="d13808e78" class = "enabled_col_spacing" rowspan="1" valign="top">Yes</td>
+						</tr>
+						<tr class="table_lighter_background"><td colspan="1" headers="d13808e74" class = "second_col_width" rowspan="1" valign="top">Multiple shipments</td>
+						<td colspan="1" headers="d13808e76" class = "third_col_width" rowspan="1" valign="top">Customers can choose multiple shipments for
+						an order.</td>
+						<td colspan="1" headers="d13808e78" class = "enabled_col_spacing" rowspan="1" valign="top">Yes</td>
+						</tr>
+						<tr class="table_lighter_background"><td colspan="1" headers="d13808e74" class = "second_col_width" rowspan="1" valign="top">Future shipping date</td>
+						<td colspan="1" headers="d13808e76" class = "third_col_width" rowspan="1" valign="top">Customers can specify a future shipping date
+						for items in an order.</td>
+						<td colspan="1" headers="d13808e78" class = "enabled_col_spacing" rowspan="1" valign="top">Yes</td>
+						</tr>
+						<tr  class="table_lighter_background"><td colspan="1" headers="d13808e74" class = "second_col_width" rowspan="1" valign="top">Shipping instructions </td>
+						<td colspan="1" headers="d13808e76" class = "third_col_width" rowspan="1" valign="top">Customers can provide special shipping instructions
+						for items in an order.</td>
+						<td colspan="1" headers="d13808e78" class = "enabled_col_spacing" rowspan="1" valign="top">Yes</td>
+						</tr>
+						<tr  class="table_lighter_background"><td colspan="1" headers="d13808e74" class = "second_col_width" rowspan="1" valign="top">Promotion code entry field</td>
+						<td colspan="1" headers="d13808e76" class = "third_col_width" rowspan="1" valign="top">Customers can enter a promotion code on the
+						checkout pages.</td>
+						<td colspan="1" headers="d13808e78" class = "enabled_col_spacing" rowspan="1" valign="top">Yes</td>
+						</tr>
+						<tr class="table_lighter_background"><td colspan="1" headers="d13808e74" class = "second_col_width" rowspan="1" valign="top"><span id="rsmmadisonchangeflowoptions__ChoiceOfFreeGift"><a name="rsmmadisonchangeflowoptions__ChoiceOfFreeGift" shape="rect"><!-- -->
+</a>Promotion
+						choice of free <br/>gift field</span></td>
+						<td colspan="1" headers="d13808e76"  class = "third_col_width" rowspan="1" valign="top"><span>Enables a pop-up window
+						that enables customers to choose from a list of free gift options.</span></td>
+						<td colspan="1" headers="d13808e78" class = "enabled_col_spacing" rowspan="1" valign="top"><span>Yes</span></td>
+						</tr>
+						<tr><td colspan="1" headers="d13808e73" class = "first_col_width" rowspan="1" valign="top"><strong id="rsmmadisonchangeflowoptions__Analytics"><a name="rsmmadisonchangeflowoptions__Analytics" shape="rect"><!-- -->
+</a>Analytics</strong><p>Select Analytics functionality available in your
+						store.</p>
+						</td>
+						<td colspan="1" headers="d13808e74" class = "second_col_width" rowspan="1" valign="top"><span>Enable Coremetrics Intelligent Offer Integration
+						in the store</span></td>
+						<td colspan="1" headers="d13808e76" class = "third_col_width" rowspan="1" valign="top"><span>Enables Recommended Products ESpot to show products recommended based on Analytics data</span></td>
+						<td colspan="1" headers="d13808e78" class = "enabled_col_spacing" rowspan="1" valign="top"><span>No</span></td>
+						</tr>
+						<tr class="table_lighter_background"><td colspan="1" headers="d13808e73" class = "first_col_width" rowspan="1" valign="top"><strong id="rsmmadisonchangeflowoptions__StoreLocator"><a name="rsmmadisonchangeflowoptions__StoreLocator" shape="rect"><!-- -->
+</a>Store
+						Locator</strong><p>Select cross-channel functionality
+						available to customers in your store.</p>
+						</td>
+						<td colspan="1" headers="d13808e74" class = "second_col_width" rowspan="1" valign="top"><span id="rsmmadisonchangeflowoptions__BuyOnlinePickupIn-store"><a name="rsmmadisonchangeflowoptions__BuyOnlinePickupIn-store" shape="rect"><!-- -->
+</a>Store Locator</span></td>
+						<td colspan="1" headers="d13808e76" class = "third_col_width" rowspan="1" valign="top"><span>Enables the following
+						cross-channel shopping flows:</span><ul><li>Store locator</li>
+						<li>Stock locator</li>
+						<li>Buy online, pickup in-store</li>
+						<li>Buy online, ship to store</li>
+						<li>Reserve online, pay in-store</li>
+						</ul>
+						</td>
+						<td colspan="1" headers="d13808e78" class = "enabled_col_spacing" rowspan="1" valign="top"><span>Yes</span></td>
+						</tr>
+						</tbody>
+						</table>
+						</div>
+						</div>
+	</div>
+	</div>
+	<div class = "list_content">
+	<p><a href='GuestUserPackage\WelcometoAuroraESite.html' target="_guestPackage">Guest shopper package</a></p>
+	The Guest shopper package consists of a set of typical shopping scenarios that a shopper who has not registered with the store will complete using the store. The following scenarios are illustrated in this package:
+	<ol>
+		<li>guest shopper browses the catalog through home, department, category and product pages</li>
+		<li>guest shopper browses the Dresses category which shows Dresses Category page</li>
+		<li>guest shopper applies facet filters for price, color and brand</li>
+		<li>guest shopper browses a Dress Product page, changes the color of the product shown via the color swatches</li>
+		<li>guest shopper browses views the Ratings and Reviews of a product</li>
+		<li>guest shopper adds an item to the shopping cart</li>
+		<li>guest shopper checks out using online shipping method</li>
+		<li>guest shopper browses pages such as help, privacy policy, contact us, return policy, site map, and sign in</li>
+		
+		<li>guest shopper adds two products to compare directly from search result page</li>
+
+		<li>guest shopper browses store under search-based navigation by clicking on Dresses</li>
+		<li>guest shopper uses search field in header to search for "coffee"</li>
+		<li>guest shopper uses Advanced search to search for "coffee"</li>
+		<li>guest shopper types word in store home page to see the suggested keyword pop up window</li>
+		<li>guest shopper navigates the search result page by selecting the suggested keyword.</li>
+		<li>guest shopper navigates the articles page through search result page</li>
+		<li>guest shopper navigates the videos page through search result page</li>
+		<li>guest shopper navigates through search result page</li>
+		<li>guest shopper adds a product to shopping cart directly from search result page</li>
+		
+		<li>guest shopper views the store sign in page</li>
+		<li>guest shopper views the account registration page</li>
+		
+	</ol>
+	</div>
+	<div class = "list_content">
+	<p><a href='RegisteredUserPackage\WelcometoAuroraESite.html' target="_registerPackage">Registered shopper package</a></p>
+	
+	The Registered shopper package consists of a set of typical shopping scenarios that a shopper who has registered with the store will complete using the store. The following scenarios are illustrated in this package:
+	<ol>
+		<li>guest shopper signs in into the store</li>
+		<li>guest shopper registers in the store</li>
+		<li>registered shopper signs out from the store</li>
+		
+		
+		<li>registered shopper views Personal Information page</li>
+		<li>registered shopper views My Address Book page</li>
+		<li>registered shopper views Quick Checkout Profile page</li>
+		<li>registered shopper views order history and previous order details</li>
+		<li>registered shopper views shopping cart</li>
+		<li>registered shopper views wish list</li>
+		<li>registered shopper views my coupons</li>
+		
+		
+        <li>registered shopper browses the catalog through home, department, category and product pages</li>
+		<li>registered shopper browses the apparel Department, Womens and Dresses category pages</li>
+		<li>registered shopper applies facet filters for price, color and brand</li>
+		<li>registered shopper browses a Dress Product page, changes the color of the product shown via the color swatches</li>
+		<li>registered shopper browses views the Ratings and Reviews of a product</li>
+		<li>registered shopper browses pages such as help, privacy policy, contact us, return policy, site map, and sign in</li>
+		
+		<li>registered shopper adds two products to compare directly from search result page</li>
+		<li>registered shopper adds items to the shopping cart</li>
+		<li>registered shopper selects a free gift of choice</li>
+		<li>registered shopper checks out using online shipping method</li>
+		
+		<li>registered shopper creates a subscription order by navigating to a product in department Grocery and category Vegetables</li>
+		<li>registered shopper views a subscription order in Subscription page</li>
+		<li>registered shopper views child orders</li>
+		<li>registered shopper cancels a subscription order</li>
+		<li>registered shopper renews a subscription order</li>
+		<li>registered shopper creates a recurring order  by navigating to a product in department Newsletters and Magazines and category Magazines</li>
+		<li>registered shopper views a recurring order in Recurring Orders page</li>
+		<li>registered shopper views child orders</li>
+		<li>registered shopper cancels recurring order</li>
+		<li>registered shopper schedule recurring from already submitted order</li>
+		
+		<li>registered shopper uses search-based navigation by clicking on Dresses</li>
+		<li>registered shopper navigates search result page by selecting a suggested keyword</li>
+		<li>registered shopper clicks a recipe link in search result page</li>
+		<li>registered shopper clicks an article link in search result page</li>
+		<li>registered shopper clicks a video link in search result page</li>
+		<li>registered shopper types word in store home page to see the suggested keyword pop up window</li>
+		<li>registered shopper uses Advanced search to search for "coffee"</li>
+		
+		<li>registered shopper visits personal wishlist</li>
+		<li>registered shopper creates a wishlist</li>
+		<li>registered shopper edits a wishlist</li>
+		<li>registered shopper deletes a wishlist</li>
+		<li>registered shopper adds a product to shopping cart from wishlist</li>
+		<li>registered shopper adds a product to wishlist from quick info popup</li>
+		<li>registered shopper shares a wishlist</li>
+		
+		<li>registered shopper views a dynamic kit 'AXABC-E3062 Desktop' in Electronics category</li>
+		<li>registered shopper configures a dynamic kit AXABC-E3062 Desktop' in  Electronics category</li>
+		
+	</ol>
+	</div><div class = "list_content">
+	<p><a href='LargeObjectsPackage\WelcometoAuroraESite.html' target="_registerLargeObjectsPackage">Registered shopper with large objects package</a></p>
+	
+	The Registered shopper with large objects package consists of a set of shopping scenarios where the store displays a large number of products or items. The following scenarios are illustrated in this package:
+	<ol>
+		<li>guest shopper signs in into the store</li>
+		<li>guest shopper registers in the store</li>
+		<li>registered shopper signs out from the store</li>
+		
+		<li>registered shopper adds items to the shopping cart</li>
+		<li>shopping cart pagination</li>
+		<li>registered shopper checkouts using multiple shipments, requested shipping dates, shipping instructions</li>
+		<li>registered shopper checks out using multiple payment options</li>
+		<li>registered shopper views personal wish list over 20 items</li>
+		<li>registered shopper views order history with over 20 orders</li>
+		<li>registered shopper views recurring and subscription order history with over 20 orders</li>
+		<li>registered shopper views search results with pagination</li>
+	
+	</ol>
+	</div>
+	<div class = "list_content">
+	<p><a href='InitialStatePackage\WelcometoAuroraESite.html' target="_registerInitialStatePackage">Shopper initial state package</a></p>
+	
+	The Shopper initial state package consists of a set of shopping scenarios where the shopper registers with the store and then browses their account settings for the first time. The following scenarios are illustrated in this package::
+	<ol>
+		<li>guest shopper signs in into the store</li>
+		<li>guest shopper registers in the store</li>
+		<li>registered shopper signs out from the store</li>
+		
+		<li>registered shopper views My Address Book</li>
+		<li>registered shopper views Quick Checkout profile</li>
+		<li>registered shopper views empty Order Hstory</li>
+		<li>registered shopper views empty Wish List</li>
+		<li>registered shopper views empty My Coupons</li>
+		<li>registered shopper views empty shopping cart</li>
+		
+	</ol>
+	</div>
+	
+	<div class = "list_content">
+	<p><a href='FacebookIntegration\WelcometoAuroraESite.html' target="_registerInitialStatePackage">Facebook Integration package</a></p>
+	
+	The Facebook Integration package consists of scenarios where a shopper posts links to store content on their Facebook page. The following scenarios are illustrated in this package: 
+	<ol>
+		<li>shopper connects to Facebook</li>
+		<li>shopper disconnects from Facebook</li>
+		<li>shopper selects Love button on home page to show they they like the store on their Facebook page</li>
+		<li>shopper selects Love button on a product page to show they they like the product on their Facebook page</li>
+		
+		
+	</ol>
+	</div>
+
+	<div class = "list_content">
+	<p>Email package</p>
+	The E-mail package consists of e-mail pages that are generated by the store. The following scenarios are illustrated in this package: 
+    <ol>
+		<li><a href='EmailPackage\OrderReceived.html' target="_emailPackage">Order received e-mail</a></li>
+		<li><a href='EmailPackage\OrderCancelled.html' target="_emailPackage">Order cancelled e-mail</a></li>
+		<li><a href='EmailPackage\OrderShipped.html' target="_emailPackage">Order shipped e-mail</a></li>
+		<li><a href='EmailPackage\PasswordReset.html' target="_emailPackage">Password reset e-mail</a></li>
+		<li><a href='EmailPackage\UserActivation.html' target="_emailPackage">User account activation</a></li>
+		<li><a href='EmailPackage\WishList.html' target="_emailPackage">Shared wish list e-mail</a></li>
+	</ol>
+	</div>
+	
+	<div class = "list_content">
+	<p>Error pages package</p>
+	The Error pages package consists of error pages that are generated by the store. The following scenarios are illustrated in this package: 
+    <ol>
+		<li><a href='ErrorPagesPackage\AccessControlError.html' target="_errorPackage">Access Constroll Error page</a></li>
+		<li><a href='ErrorPagesPackage\CrossSiteRequestForgeryError.html' target="_errorPackage">Cross Site Request Forgery Error page</a></li>
+		<li><a href='ErrorPagesPackage\ProhibitedCharactersError.html' target="_errorPackage">Prohibited Characters Error page</a></li>
+		<li><a href='ErrorPagesPackage\SessionTimeOut.html' target="_errorPackage">Session timeout page</a></li>
+	</ol>
+	</div>
+	
+	<div class = "list_content">
+	<p>Custom Search Landing pages package</p>
+	The Search Landing pages package consists of pages which are displayed when the shopper searches for a specific predefined keyword. The following scenarios are illustrated in this package: 
+    <ol>
+		<li><a href='GuestUserPackage\SearchLandingPage1.html' target="_errorPackage">Search Langing page for the keyword 'coffeemaker'</a></li>
+		<li><a href='GuestUserPackage\SearchLandingPage2.html' target="_errorPackage">Search Langing page for the keyword 'women dresses'</a></li>
+	</ol>
+	</div>
+	
+	</div>
+	</div>
+</div>
+
+
+
+
+<script type="text/javascript"> function displayHighlightFeatureInHTML(){var all = document.getElementsByTagName('*'); for (var i = 0; i < all.length; i++) { if (all[i].className == 'jspcaption') {all[i].style.display='block';} if (all[i].className == 'highlight') {all[i].style.border='2px dashed red';all[i].style.display='block';} } } function activateHighlight (event){ if(event.ctrlKey){ if(event.altKey){ if(event.keyCode == '72'){ displayHighlightFeatureInHTML(); } } } } </script>
+</body>
+
+</html>

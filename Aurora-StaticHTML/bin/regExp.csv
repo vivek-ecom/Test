@@ -1,0 +1,217 @@
+# logo link
+"ContentAreaESpotInfoImgLink_10073_1\""[^\>]*[ \t\r\n]*href=\""[^\""]*\""REPLACEWITHContentAreaESpotInfoImgLink_10073_1\"" href=\""WelcometoAuroraESite.html\"""
+# header wishlist link for none login view
+javascript:redirectToSignOn\('[^']*WishListDisplayView[^']*'\);REPLACEWITHSignIn.html
+# header wishlist link for logged in view
+"ShoppingListDisplayLink\""[^\<\>]*href=\""[^\""]*https[^\""]*\""REPLACEWITHShoppingListDisplayLink\"" href=\""Wishlist.html\"""
+# header login link
+"SignInLink\""[^<>]*href=\""[^\""]*\""REPLACEWITHSignInLink\"" href=\""SignIn.html\"""
+# header logout link
+"SignOutLink\""[^<>]*href=\""[^\""]*\""REPLACEWITHSignInLink\"" href=\""SignIn.html\"""
+# store loacator link
+"href=\""[^\""]*AjaxStoreLocatorDisplayView[^\""]*REPLACEWITHhref=\""StoreLocator.html"
+# footer quick order
+"\""FooterQuickOrder\""[^<>]*href=\""[^\""]*REPLACEWITH\""FooterQuickOrder\"" href=\""QuickOrderView.html"
+#
+"href=\""[^\""]*auroraesite\/help\""REPLACEWITHhref=\""HelpandContactUsatAuroraESite.html\"""
+"href=\""[^\""]*auroraesite\/contact-us\""REPLACEWITHhref=\""HelpandContactUsatAuroraESite_6.html\"""
+"href=\""[^\""]*auroraesite\/return-policy\""REPLACEWITHhref=\""ReturnPolicyforAuroraESite.html\"""
+"href=\""[^\""]*auroraesite\/privacy-policy\""REPLACEWITHhref=\""WebsitePrivacyPolicyforAuroraESite.html\"""
+"href=\""[^\""]*auroraesite\/corporate-info\""REPLACEWITHhref=\""AboutUsforAuroraESite.html\"""
+"href=\""[^\""]*auroraesite\/corporate-contact-us\""REPLACEWITHhref=\""ContactUsforAuroraESite.html\"""
+"href=\""[^\""]*auroraesite\/sitemap\""REPLACEWITHhref=\""SiteMapforAuroraESite.html\"""
+"FacebookLink[^\<\>]*href=\""[^\""]*\""REPLACEWITHFacebookLink\"""
+#  
+AuroraStorefrontAssetStoreREPLACEWITHStoreAssets
+ExtendedSitesCatalogAssetStoreREPLACEWITHStoreAssets
+
+storetext:[ \t\r\n]?'\.\.\/StoreAssets\/\'REPLACEWITHstoretext: '\.\.\/\.\.\/StoreAssets'
+storetext:[ \t\r\n]?'\/\w*\/\w*\/'REPLACEWITHstoretext: '\.\.\/\.\.\/StoreAssets'
+
+"\""widget_language_and_currency_popup\""REPLACEWITH\""widget_language_and_currency_popup\"" dojoType=\""wc.widget.WCDialog\"""
+"\""DepartmentDropdownView[^\""]*\""REPLACEWITH\""DepartmentDropdownView.html\"""
+"var absoluteURL = \""http[s]?:\/\/wcpgc[0-9][0-9]\.torolab\.ibm\.com\/webapp\/wcs\/stores\/servlet\/\"";REPLACEWITHvar absoluteURL = document\.location\.href\.split(\""\/\"");absoluteURL\.pop();absoluteURL = absoluteURL\.join(\""\/\"") + \""\/\"";"
+\.\.\/images\/pencil_blue.pngREPLACEWITH\.\.\/StoreAssets\/images\/pencil_blue.png
+\.\.\/images\/pencil_orange.pngREPLACEWITH\.\.\/StoreAssets\/images\/pencil_orange.png
+\/webapp\/wcs\/stores\/servlet\/StoreAssets\/javascript\/Properties.jsREPLACEWITH\.\.\/StoreAssets\/javascript\/Properties.js
+# popup shopping cart button
+"GotoCartButton1\""[^>]*href=\""[^\""]*\""REPLACEWITHGotoCartButton1\"" href=\""ShoppingCart.html\"""
+"CatalogSearchForm\""[^>]*action=\""[^\""]*\""REPLACEWITHCatalogSearchForm\"" action=\""SearchResults.html\"""
+# items comparing check box 
+"compare_button_enabled\""[^>]*href=\""[^\""]*\""REPLACEWITHcompare_button_enabled\"" href=\""CompareProducts.html\"""
+#            ?????  compared page
+"WC_BreadCrumb_Link_1\""[^>]*href=\""[^\""]*\""REPLACEWITHWC_BreadCrumb_Link_1\"" href=\""WelcometoAuroraESite.html\"""
+"WC_BreadCrumb_Link_2\""[^>]*href=\""[^\""]*\""REPLACEWITHWC_BreadCrumb_Link_2\"" href=\""ApparelAuroraESite.html\"""
+"WC_BreadCrumb_Link_3\""[^>]*href=\""[^\""]*\""REPLACEWITHWC_BreadCrumb_Link_3\"" href=\""WomenAuroraESite.html\"""
+"WC_BreadCrumb_Link_4\""[^>]*href=\""[^\""]*\""REPLACEWITHWC_BreadCrumb_Link_4\"" href=\""DressesAuroraESite.html\"""
+
+"prodUrl_1\""[^>]*href=\""[^\""]*\""REPLACEWITHprodUrl_1\"" href=\""HermitageRuchedBodiceCocktailDressAuroraESite.html\"""
+"prodUrl_2\""[^>]*href=\""[^\""]*\""REPLACEWITHprodUrl_2\"" href=\""HermitageRuchedBodiceCocktailDressAuroraESite.html\"""
+"href=\""[^\""]*\""[^<>]*\""catalogEntry_img_?[0-9]*\""REPLACEWITHhref=\""HermitageRuchedBodiceCocktailDressAuroraESite.html\"""
+"\""catalogEntry_name_?[0-9]*\""[^<>]*href=\""[^\""]*\""REPLACEWITH\""\"" href=\""HermitageRuchedBodiceCocktailDressAuroraESite.html\"""
+"\""WC_CatalogEntryDBThumbnailDisplayJSPF_[0-9]*_link_9b\""[^<>]*href=\""[^\""]*\""REPLACEWITH\""\"" href=\""HermitageRuchedBodiceCocktailDressAuroraESite.html\"""
+"\""WC_CatalogEntryDBThumbnailDisplayJSPF_[0-9]*\""[^<>]*href=\""[^\""]*\""REPLACEWITH\""\"" href=\""HermitageRuchedBodiceCocktailDressAuroraESite.html\"""
+"id=\""orderBy\""[^<>]*onchange=\""[^\""]*\""REPLACEWITHid=\""orderBy\"""
+"id=\""orderByContent\""[^<>]*\(onchange=\""[^\""]*\""REPLACEWITHid=\""orderByContent\"""
+#          ???  find out the pages  need to recheck
+"href=\""[^\""]*\""[^<>]*\""WC_CheckoutPayInStore_links_1\""REPLACEWITHhref=\""ShoppingCart.html\"""
+"href=\""[^\""]*\""[^<>]*\""WC_CheckoutPayInStore_links_2\""REPLACEWITHhref=\""StoreSelection_7.html\"""
+"WC_CheckoutPayInStore_links_3\""[^<>]*href=\""[^\""]*\""REPLACEWITHWC_CheckoutPayInStore_links_3\"" href=\""StoreSelection_7.html\"""
+"WC_CheckoutPayInStore_links_4\""[^<>]*href=\""[^\""]*\""REPLACEWITHWC_CheckoutPayInStore_links_4\"" href=\""SingleShipmentDisplay.html\"""
+"href=\""[^\""]*\""[^<>]*WC_SingleShipmentDisplay_links_1REPLACEWITHhref=\""ShoppingCart.html\"""
+"href=\""[^\""]*\""[^<>]*WC_SingleShipmentDisplay_links_2REPLACEWITHhref=\""StoreSelection_7.html\"""
+"href=\""[^\""]*\""[^<>]*WC_SingleShipmentDisplay_links_3REPLACEWITHhref=\""CheckoutAddressSelection.html\"""
+"WC_SingleShipmentDisplay_links_4\""[^<>]*href=\""[^\""]*\""REPLACEWITHWC_SingleShipmentDisplay_links_4\"" href=\""CheckoutAddressSelection.html\"""
+"href=\""[^\""]*\""[^<>]*WC_OrderItemDetails_links_2_1REPLACEWITHhref=\""ShippingandBillingDisplay_2.html\"""
+"WC_SingleShipmentDisplay_links_7\""[^<>]*href=\""[^\""]*\""REPLACEWITHWC_SingleShipmentDisplay_links_7\"" href=\""CheckoutAddressSelection.html\"""
+
+
+"MyAccountLink\""[^<>]*href=\""[^\""]*\""REPLACEWITHMyAccountLink\"" href=\""MyAccount.html\"""
+
+#  ?>>>
+"MiniShopCartProdImg_[0-9]*\""[^<>]*href=\""[^\""]*\""REPLACEWITH\"" href=\""HermitageRuchedBodiceCocktailDressAuroraESite.html\"""
+"MiniShopCartProdName_[0-9]*\""[^<>]*href=\""[^\""]*\""REPLACEWITH\"" href=\""1HermitageRuchedBodiceCocktailDressAuroraESite.html\"""
+
+"href=\""[^\""]*\""[^<>]*WC_ShipmentDisplay_links_2REPLACEWITHhref=\""ShoppingCart.html\"""
+"href=\""[^\""]*\""[^<>]*WC_SingleShipmentSummary_links_2REPLACEWITHhref=\""ShoppingCart.html\"""
+"href=\""[^\""]*\""[^<>]*WC_SingleShipmentSummary_links_3REPLACEWITHhref=\""ShippingandBillingDisplay.html\"""
+"WC_SingleShipmentSummary_links_4\""[^<>]*href=\""[^\""]*\""REPLACEWITHWC_SingleShipmentSummary_links_4\"" href=\""ShippingandBillingDisplay.html\"""
+"singleOrderSummary\""[^<>]*href=\""[^\""]*\""REPLACEWITHsingleOrderSummary\"" href=\""OrderConfirmation.html\"""
+"WC_ShipmentDisplay_links_5\""[^<>]*href=\""[^\""]*\""REPLACEWITHWC_ShipmentDisplay_links_5\"" href=\""ShoppingCart.html\"""
+"shippingBillingPageNext\""[^<>]*href=\""[^\""]*\""REPLACEWITHshippingBillingPageNext\"" href=\""OrderSummary.html\"""
+#   >>>
+"href=\""[^\""]*\""[^<>]*WC_BreadCrumbTrailDisplay_links_2a[^<>]*onclick=\""[^\""]*\""REPLACEWITHhref=\""WelcometoAuroraESite.html\"""
+"href=\""[^\""]*\""\)\([^<>]*WC_BreadCrumbTrailDisplay_links_2a[^<>]*\)\(onclick=\""[^\""]*\""REPLACEWITHhref=\""WelcometoAuroraESite.html\"""
+"WC_QuickInfo_Link_viewdetails[^<>]*href=\""[^\""]*\""REPLACEWITHWC_QuickInfo_Link_viewdetails\"" href=\""HermitageRuchedBodiceCocktailDressAuroraESite.html\"""
+
+#>>>>?
+"WC_QuickInfo_Link_addtocart\""[^<>]*href=\""[^\""]*\""REPLACEWITHWC_QuickInfo_Link_addtocart\"" onclick=\""javascript: document.getElementById('quickInfoPopup').style.display='none';\"""
+
+# my account page links
+"href=\""[^\""]*\""[^<>]*WC_MyAccountSidebarDisplayf_links_1REPLACEWITHhref=\""PersonalInformation.html\"" id=\""WC_MyAccountSidebarDisplayf_links_1"
+"href=\""[^\""]*\""[^<>]*WC_MyAccountSidebarDisplayf_links_2REPLACEWITHhref=\""AddressBook.html\"" id=\""WC_MyAccountSidebarDisplayf_links_2"
+"href=\""[^\""]*\""[^<>]*WC_MyAccountSidebarDisplayf_links_3REPLACEWITHhref=\""QuickCheckoutProfile.html\"" id=\""WC_MyAccountSidebarDisplayf_links_3"
+"href=\""[^\""]*\""[^<>]*WC_MyAccountSidebarDisplayf_links_4REPLACEWITHhref=\""Wishlist.html\"" id=\""WC_MyAccountSidebarDisplayf_links_4"
+"href=\""[^\""]*\""[^<>]*WC_MyAccountSidebarDisplayf_links_5REPLACEWITHhref=\""OrderHistory.html\"" id=\""WC_MyAccountSidebarDisplayf_links_5"
+"href=\""[^\""]*\""[^<>]*WC_MyAccountSidebarDisplayf_links_5aREPLACEWITHhref=\""RecurringOrders.html\"" id=\""WC_MyAccountSidebarDisplayf_links_5a"
+"href=\""[^\""]*\""[^<>]*WC_MyAccountSidebarDisplayf_links_5bREPLACEWITHhref=\""Subscriptions.html\"" id=\""WC_MyAccountSidebarDisplayf_links_5b"
+"href=\""[^\""]*\""[^<>]*WC_MyAccountSidebarDisplayf_links_10REPLACEWITHhref=\""MyCoupons.html\"" id=\""WC_MyAccountSidebarDisplayf_links_10"
+"href=\""[^\""]*\""[^<>]*WC_MyAccountCenterLinkDisplay_inputs_1REPLACEWITHhref=\""PersonalInformation.html\"" id=\""WC_MyAccountCenterLinkDisplay_inputs_1"
+"href=\""[^\""]*\""[^<>]*WC_OrderStatusDisplay_Link_2b_[0-9]*REPLACEWITHhref=\""OrderDetails.html\"" class=""myaccount_link"""
+"href=\""[^\""]*\""[^<>]*WC_MyAccountCenterLinkDisplay_inputs_2REPLACEWITHhref=\""OrderHistory.html\"" id=\""WC_MyAccountCenterLinkDisplay_inputs_2\"""
+"href=\""[^\""]*\""[^<>]*WC_MyAccountCenterLinkDisplay_inputs_4REPLACEWITHhref=\""RecurringOrders.html\"" id=\""WC_MyAccountCenterLinkDisplay_inputs_4\"""
+"href=\""[^\""]*\""[^<>]*WC_MyAccountCenterLinkDisplay_inputs_5REPLACEWITHhref=\""Subscriptions.html\"" id=\""WC_MyAccountCenterLinkDisplay_inputs_5\"""
+
+
+"href=\""[^\""]*\""[^<>]*WC_ShippingAddressSelectSingle_link_1REPLACEWITHhref=\""ShippingandBillingDisplay_9.html?source=0\"" id=\""WC_ShippingAddressSelectSingle_link_1"
+"href=\""[^\""]*\""[^<>]*WC_ShippingAddressSelectSingle_link_2REPLACEWITHhref=\""ShippingandBillingDisplay_10.html?source=0\"" id=\""WC_ShippingAddressSelectSingle_link_2"
+"href=\""[^\""]*\""[^<>]*editBillingAddressLink_a_edit_1REPLACEWITHhref=\""ShippingandBillingDisplay_9.html?source=1\"" id=\""editBillingAddressLink_a_edit_1"
+"href=\""[^\""]*\""[^<>]*editBillingAddressLink_a_create_1REPLACEWITHhref=\""ShippingandBillingDisplay_10.html?source=1\"" id=\""editBillingAddressLink_a_create_1"
+"WC_SingleShipmentDisplay_links_6[^<>]*href=\""[^\""]*\""REPLACEWITHWC_SingleShipmentDisplay_links_6\"" href=\""CheckoutAddressSelection.html\"""
+"href=\""[^\""]*\""\)\([^<>]*editBillingAddressLink_a_edit_2REPLACEWITHhref=\""ShippingandBillingDisplay_9.html?source=1\"" id=\""editBillingAddressLink_a_edit_2"
+"href=\""[^\""]*\""\)\([^<>]*editBillingAddressLink_a_create_2REPLACEWITHhref=\""ShippingandBillingDisplay_10.html?source=1\"" id=\""editBillingAddressLink_a_create_2"
+"href=\""[^\""]*\""\)\([^<>]*editBillingAddressLink_a_edit_3REPLACEWITHhref=\""ShippingandBillingDisplay_9.html?source=1\"" id=\""editBillingAddressLink_a_edit_3"
+"href=\""[^\""]*\""\)\([^<>]*editBillingAddressLink_a_create_3REPLACEWITHhref=\""ShippingandBillingDisplay_10.html?source=1\"" id=\""editBillingAddressLink_a_create_3"
+
+
+
+"SiteMap_[0-9]*_[0-9]*\"".*<a href=\""[^\""]*\""REPLACEWITHSiteMap_\"" class=\""h2\""\>\<a href=\""ApparelAuroraESite.html\"""
+"SiteMap_[0-9]*_[0-9]*_[0-9]*\"".*<a href=\""[^\""]*\""REPLACEWITHSiteMap_\"" class=\""h2\""\>\<a href=\""WomenAuroraESite.html\"""
+"SiteMap_[0-9]*_[0-9]*_[0-9]*_[0-9]*\"".*<a href=\""[^\""]*\""REPLACEWITHSiteMap_\"" class=\""h3\""\>\<a href=\""DressesAuroraESite.html\"""
+"SiteMap_[0-9]*_[0-9]*\""[^<>]*href=\""[^\""]*\""REPLACEWITHSiteMap_\"" href=\""ApparelAuroraESite.html\"""
+"SiteMap_[0-9]*_[0-9]*_[0-9]*\""[^<>]*href=\""[^\""]*\""REPLACEWITHSiteMap_\"" href=\""WomenAuroraESite.html\"""
+"SiteMapQuickOrderLink[^<>]*href=\""[^\""]*\""REPLACEWITHSiteMapQuickOrderLink\"" href=\""QuickOrderView.html\"""
+"id=\""MiniGridQuickView_[0-9]*[^<>]*href=\""[^\""]*\""REPLACEWITHonclick=\""javascript:document.getElementById('quickInfoPopup').style.display='block';\"""
+"href=\""[^\""]*\""[^<>]*WC_CheckoutStoreSelection_links_1\""REPLACEWITHhref=\""ShoppingCart.html\"""
+"id=\""selectCountry\""[^<>]*onchange=\""[^\""]*\""REPLACEWITHid=\""selectCountry\"""
+"id=\""selectState\""[^<>]*onchange=\""[^\""]*\""REPLACEWITHid=\""selectState\"""
+"id=\""selectCity\""[^<>]*onchange=\""[^\""]*\""REPLACEWITHid=\""selectCity\"""
+"href=\""#\""[^<>]*addPhysicalStoreToCookieButton[0-9]*[^<>]*onclick=\""[^\""]*\""REPLACEWITHhref=\""StoreSelection_7.html\""",,,,,,,,,
+"QuickViewLink_[0-9]*[^<>]*href=\""[^\""]*\""REPLACEWITH\"" onclick=\""javascript:document.getElementById('quickInfoPopup').style.display='block';\""",,,,,,,,,
+
+"CatalogEntryViewDetailsLink_[0-9]*[^<>]*href=\""[^\""]*\""REPLACEWITH\"" href=\""HermitageRuchedBodiceCocktailDressAuroraESite.html\""",,,,,,,,,
+"CatalogEntryDisplayLink_[0-9]*[^<>]*href=\""[^\""]*\""REPLACEWITH\"" href=\""HermitageRuchedBodiceCocktailDressAuroraESite.html\""",,,,,,,,,
+"swatch_entitledItem_[0-9]*_[^<>]*src=\""http:\/\/wcpgc[0-9][0-9]\.torolab\.ibm\.comREPLACEWITH\"" src=\""",,,,,,,,,
+"listViewAdd2Cart_[0-9]*[^<>]*href=\""[^\""]*\""REPLACEWITH\"" onclick=\""showMiniShopCartDropDown('widget_minishopcart'",'quick_cart_container',"'orderItemAdded');\""",,,,,,,
+"GotoCartButton2[^<>]*href=\""[^\""]*\""REPLACEWITHGotoCartButton2\"" href=\""ShoppingCart.html\""",,,,,,,,,
+"createShoppingListPopup_close[^<>]*onclick=\""[^\""]*\""REPLACEWITHcreateShoppingListPopup_close\"" onclick=\""javascript: document\.getElementById('createShoppingListPopup')\.style\.display='none'; document\.getElementById('quickInfoPopup')\.style\.display='block';\""",,,,,,,,,
+
+
+"href=\""[^\""]*\""[^<>]*onclick=\""[^<>]*\""[^<>]*id=\""headerFBlogin\""REPLACEWITHhref=\""fblogin\.htm\"" onclick=\""window\.open(this\.href",null,'left=50,top=50,width=500,height=500,toolbar=1,location=0,resizable=1,"scrollbars=1'); return false;\"" id=\""headerFBlogin\"""
+#>>>>???,,,,,,,,,
+"#MiniGridQuickView_[0-9]*[^<>]*onclick=\""[^\""]*('[^']+')[^\""]*REPLACEWITHonclick=\""javascript:document.getElementById('quickInfoPopup').style.display='block';\""",,,,,,,,,
+"#QuickViewLink_[0-9]*[^<>]*onclick=\""[^\""]*('[^']+')[^\""]*REPLACEWITHonclick=\""javascript:document.getElementById\3.style.display='block';",,,,,,,,,
+"#SideBarQuickViewLink_[0-9]*[^<>]*onclick=\""[^\""]*('[^']+')[^\""]*REPLACEWITHonclick=\""\1javascript:document.getElementById\3 style.display='block';",,,,,,,,,
+
+"quickInfoPopup[^<>]*style=\""[^\""]*REPLACEWITHquickInfoPopup\"" style=\""position: fixed; opacity: 1; left: 454px; top: 100px; z-index: 951; display: none;"
+
+#  ?>>>  multi
+"\""QuickInfoaddToShoppingList\""[^<>]*href=\""[^\""]*\""REPLACEWITH\""QuickInfoaddToShoppingList\"" href=\""#\"" onclick=\""dojo.byId('shoppingListItemAddedPopup').style.display='block'; dojo.byId('quickInfoPopup').style.display='none';\"""
+
+"\""QuickInfoShoppingListLink_[0-9][0-9][0-9]*\""[^<>]*href=\""[^\""]*\""REPLACEWITH\""\"" onclick=\""dojo\.byId('quickInfoPopup')\.style\.display='none'; dojo\.byId('shoppingListItemAddedPopup')\.style\.display='block';\"""
+
+"\""QuickInfoShoppingList_[0-9][0-9][0-9]*\""[^<>]*onclick=\""[^\""]*\""REPLACEWITH\""\"" onclick=\""\"""
+#     >>> keep id pro
+"\""OI[0-9]*addToShoppingList\""[^<>]href=\""[^\""]*\""REPLACEWITH\""\"" onclick=\""dojo\.byId('quickInfoPopup_2')\.style\.display='none'; dojo\.byId('shoppingListItemAddedPopup')\.style\.display='block';\"""
+"\""OI[0-9]*ShoppingListLink_[0-9][0-9][0-9]*\""[^<>]*href=\""[^\""]*\""REPLACEWITH\""\"" onclick=\""dojo\.byId('quickInfoPopup_2')\.style\.display='none'; dojo\.byId('shoppingListItemAddedPopup')\.style\.display='block';\"""
+"\""OI[0-9]*ShoppingList_[0-9][0-9][0-9]*\""[^<>]*onclick=\""[^\""]*\""REPLACEWITH\""\"" onclick=\""\"""
+"\""addToShoppingList\""[^<>]*href=\""[^\""]*\""REPLACEWITH\""addToShoppingList\"" href=\""#\"" onclick=\""dojo.byId('shoppingListItemAddedPopup').style.display='block'; dojo.byId('quickInfoPopup').style.display='none';\"""
+"\""ShoppingListLink_[0-9][0-9][0-9]*\""[^<>]*href=\""[^\""]*\""REPLACEWITH\""\"" onclick=\""dojo\.byId('quickInfoPopup')\.style\.display='none'; dojo\.byId('shoppingListItemAddedPopup')\.style\.display='block';\"""
+"\""ShoppingList_[0-9][0-9][0-9]*\""[^<>]*onclick=\""[^\""]*\""REPLACEWITH\""\"" onclick=\""\"""
+"\""SideBarQuickViewLink_[0-9]+\""[^<>]+href=\""[^\""]+\""REPLACEWITH\""\"" onclick=\""javascript:document.getElementById('quickInfoPopup').style.display='block';\""",,
+"href=\""[^\""]*\""[^<>]*\""OrderStatusDetailsDisplayExt_option_button_link_1_[0-9]\""REPLACEWITHhref=\""ShoppingCart\.html\""",,
+"\""ShoppingListLink_0\""[^<>]*onclick=\""[^\""]*'shoppingListItemAddedPopup'[^\""]*\""REPLACEWITH\""ShoppingListLink_0\"" href=\""#\""",,
+"\""QuickInfoShoppingListLink_0\""[^<>]*onclick=\""[^\""]*'shoppingListItemAddedPopup'[^\""]*\""REPLACEWITH\""QuickInfoShoppingListLink_0\"" href=\""#\""",,
+"\""OI[0-9]*ShoppingListLink_0\""[^<>]*onclick=\""[^\""]*'shoppingListItemAddedPopup'[^\""]*\""REPLACEWITH\""\"" href=\""#\""",,
+
+"\""WC_CatalogEntryDBThumbnailDisplayJSPF_[0-9]+_links_11?\""[^<>]*onclick=\""[^\""]*REPLACEWITH\""\"" onclick=\""javascript: showMiniShopCartDropDown('widget_minishopcart'",'quick_cart_container','orderItemAdded');
+"href=\""[^\""]*\""[^<>]*\""WC_CatalogEntryDBThumbnailDisplayJSPF_[0-9]+_links_1?4\""REPLACEWITHhref=\""#\""",,
+"\""WC_CatalogEntryDBThumbnailDisplayJSPF_[0-9]+_link_9b\""[^<>]+href=\""[^\""]*REPLACEWITH\""\"" href=\""HermitageRuchedBodiceCocktailDressAuroraESite.html",,
+"\""WC_CatalogEntryDBThumbnailDisplayJSPF_[0-9]+_detailed_link\""[^<>]*href=\""[^\""]*REPLACEWITH\""\"" href=\""HermitageRuchedBodiceCocktailDressAuroraESite.html",,
+"\""OI[0-9]{5}ShoppingListLink_0\""[^<>]*href=\""[^\""]*\""REPLACEWITH\""\"" onclick=\""javascript: dojo.byId('createShoppingListPopup').style.display='block'; dojo.byId('quickInfoPopup_2').style.display='none';\""",,
+"\""OI[0-9]{5}ShoppingList_0\""[^<>]*onclick=\""[^\""]*\""REPLACEWITH\""\""",,
+
+# multi line match >>>>> ?????,,
+"<li[^<>]*\""OI[0-9]{5}ShoppingList_\(11003\|11004\|11005\|11501\|11502\|11503\|11504\|11505\|11516\|11507\)\""[^<>]*>[^<>]*<a[^<>]*>[^<>]*<\/a>[^<>]*<\/li>  ",,
+
+"\""PickYourFreeGift\""[^<>]*onclick=\""[^\""]*REPLACEWITH\""PickYourFreeGift\"" onclick=\""javascript:document.getElementById('free_gifts_popup').style.display='block';"
+"href=\""[^\""]*[^<>]*\""WC_MultipleShipmentSummary_link_2\""REPLACEWITHhref=\""ShoppingCart.html\"""
+"href=\""[^\""]*[^<>]*\""WC_MultipleShipmentSummary_link_3\""REPLACEWITHhref=\""ShippingandBillingDisplay.html\"""
+"\""WC_MultipleShipmentSummary_link_4\""[^<>]*href=\""[^\""]*REPLACEWITH\""WC_MultipleShipmentSummary_link_4\"" href=\""ShippingandBillingDisplay.html"
+"\""WC_MultipleShipmentSummary_link_5\""[^<>]*href=\""[^\""]*REPLACEWITH\""WC_MultipleShipmentSummary_link_5\"" href=\""OrderConfirmation.html"
+"\""MSOrderItemDetailSummaryPagination1_1\""[^<>]*href=\""[^\""]*REPLACEWITH\""MSOrderItemDetailSummaryPagination1_1\"" href=\""OrderSummary.html"
+"\""MSOrderItemDetailSummaryPagination2_1\""[^<>]*href=\""[^\""]*REPLACEWITH\""MSOrderItemDetailSummaryPagination2_1\"" href=\""OrderSummary.html"
+"\""MSOrderItemDetailSummaryPagination1_2\""[^<>]*href=\""[^\""]*REPLACEWITH\""MSOrderItemDetailSummaryPagination1_2\"" href=\""OrderSummary_2.html"
+"\""MSOrderItemDetailSummaryPagination2_2\""[^<>]*href=\""[^\""]*REPLACEWITH\""MSOrderItemDetailSummaryPagination2_2\"" href=\""OrderSummary_2.html"
+"href=\""[^\""]*[^<>]*\""WC_OrderShippingBillingConfirmationPage_links_1\""REPLACEWITHhref=\""WelcometoAuroraESite.html\"""
+"\""MyAccountBreadcrumbLink\""[^<>]*href=\""[^\""]*REPLACEWITH\""MyAccountBreadcrumbLink\"" href=\""MyAccount.html"
+"\""OrderHistoryMyAccountBreadcrumbLink1\""[^<>]*href=\""[^\""]*REPLACEWITH\""OrderHistoryMyAccountBreadcrumbLink1\"" href=\""MyAccount.html"
+"\""OrderHistoryMyAccountBreadcrumbLink\""[^<>]*href=\""[^\""]*REPLACEWITH\""OrderHistoryMyAccountBreadcrumbLink\"" href=\""MyAccount.html"
+"\""OrderHistoryBreadcrumbLink\""[^<>]*href=\""[^\""]*REPLACEWITH\""OrderHistoryBreadcrumbLink\"" href=\""OrderHistory.html"
+"\""RecurringOrderMyAccountBreadcrumbLink1\""[^<>]*href=\""[^\""]*REPLACEWITH\""RecurringOrderMyAccountBreadcrumbLink1\"" href=\""MyAccount.html"
+"\""RecurringOrderMyAccountBreadcrumbLink\""[^<>]*href=\""[^\""]*REPLACEWITH\""RecurringOrderMyAccountBreadcrumbLink\"" href=\""MyAccount.html"
+"\""RecurringOrderBreadcrumbLink\""[^<>]*href=\""[^\""]*REPLACEWITH\""RecurringOrderBreadcrumbLink\"" href=\""RecurringOrders.html"
+"\""SubscriptionMyAccountBreadcrumbLink1\""[^<>]*href=\""[^\""]*REPLACEWITH\""SubscriptionMyAccountBreadcrumbLink1\"" href=\""MyAccount.html"
+"\""SubscriptionMyAccountBreadcrumbLink\""[^<>]*href=\""[^\""]*REPLACEWITH\""SubscriptionMyAccountBreadcrumbLink\"" href=\""MyAccount.html"
+"\""SubscriptionBreadcrumbLink\""[^<>]*href=\""[^\""]*REPLACEWITH\""SubscriptionBreadcrumbLink\"" href=\""Subscriptions.html"
+
+"\""OrderStatusDetailPagination_link_2\""[^<>]*href=\""[^\""]*REPLACEWITH\""OrderStatusDetailPagination_link_2\"" href=\""OrderHistory_2.html"
+"\""OrderStatusDetailPagination_link_1\""[^<>]*href=\""[^\""]*REPLACEWITH\""OrderStatusDetailPagination_link_1\"" href=\""OrderHistory.html"
+"\""QuickInfoShoppingListLink_0\""[^<>]*href=\""[^\""]*\""REPLACEWITH\""QuickInfoShoppingListLink_0\"""
+"\""createShoppingListPopup\""[^<>]*style=\""[^\""]*REPLACEWITH\""createShoppingListPopup\"" style=\""position: fixed; opacity: 1; left: 590px; top: 359px; z-index: 951; display: none;"
+"\""shoppingListCreateSuccessPopup\""[^<>]*style=\""[^\""]*REPLACEWITH\""shoppingListCreateSuccessPopup\"" style=\""position: fixed; opacity: 1; left: 590px; top: 359px; z-index: 951; display: none;"
+"href=\""[^\""]*\""[^<>]*\""WC_ShippingAddressSelectMultiple_link_2_[0-9]{5}\""REPLACEWITHhref=\""ShippingandBillingDisplay_9\.html?source=1\"""
+"href=\""[^\""]*\""[^<>]*\""WC_ShippingAddressSelectMultiple_link_3_[0-9]{5}\""REPLACEWITHhref=\""ShippingandBillingDisplay_10\.html?source=1\"""
+"\""MiniShopCartMoreLink\""[^<>]*href=\""[^\""]*REPLACEWITH\""MiniShopCartMoreLink\"" href=\""ShoppingCart.html"
+"a class=\""hover_underline\""REPLACEWITHa class=\""hover_underline\"" href=\""DiscountDetails.html\"""
+"<img[^<>]*src=\""\.\.\/StoreAssets\/images\/colors\/color1\/widget_quick_info_popup\/dropdown_arrow\.png\""REPLACEWITH<img style=\""margin-top: 10px;\"" src=\""\.\.\/StoreAssets\/images\/colors\/color1\/widget_quick_info_popup\/dropdown_arrow\.png\"""
+"style=\""[^\""]*\""src=\""\.\.\/StoreAssets\/images\/colors\/color1\/widget_quick_info_popup\/dropdown_arrow\.png\""REPLACEWITHsrc=\""\.\.\/StoreAssets\/images\/colors\/color1\/widget_quick_info_popup\/dropdown_arrow\.png\"""
+"href=\""[^\""]*[^<>]*\""RecurringOrderDetailsDisplayExt_option_button_link_3_[0-9]+\""REPLACEWITHhref=\""ShoppingCart.html\""",,,,,,,,
+"href=\""[^\""]*[^<>]*\""OrderDetailLink_NonAjax_[0-9]+\""REPLACEWITHhref=\""RecurringOrders_3.html\""",,,,,,,,
+"href=\""[^\""]*[^<>]*\""SubscriptionLink_NonAjax_[0-9]+\""REPLACEWITHhref=\""OrderDetail.html\""",,,,,,,,
+"\""WC_SearchBasedNavigationResults_pagination_link_list_categoryResults\""[^<>]*href='[^']*'REPLACEWITH\""WC_SearchBasedNavigationResults_pagination_link_list_categoryResults\"" href=\""DressesAuroraESite_3.html\""",,,,,,,,
+# for manually captured pages,,,,,,,,
+/wcsstore/StoreAssets/REPLACEWITH\../StoreAssets/,,,,,,,,
+'/wcsstore/StoreAssets/REPLACEWITH'../StoreAssets/,,,,,,,,
+"/wcsstore/dojo15/dojo/dojo.js\REPLACEWITH\""../dojo15/dojo/dojo.js\""",,,,,,,,
+#cmRecRequest ('A222','','10006','','');REPLACEWITH\/\/cmRecRequest ('A222','','10006','','');

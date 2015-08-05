@@ -1,0 +1,231 @@
+@charset "utf-8";
+
+/*$SkipWCCopr$*/
+/*
+ *-----------------------------------------------------------------
+ * Licensed Materials - Property of IBM
+ *
+ * WebSphere Commerce
+ *
+ * (C) Copyright IBM Corp. 2010 All Rights Reserved.
+ *
+ * US Government Users Restricted Rights - Use, duplication or
+ * disclosure restricted by GSA ADP Schedule Contract with
+ * IBM Corp.
+ *-----------------------------------------------------------------
+ */
+ 
+body{
+	background-color:#FFFFFF;
+	padding: 0;
+	margin: 0;
+	font-family: Arial, Georgia, "Times New Roman", serif;
+	font-size:12px;
+	color:#000000;
+	line-height: 1.5;
+	text-align: center;
+}
+
+#container .top_container {
+	background-color:#000000;
+	height: 188px;
+	margin: 0 auto;
+	width: 1280px;
+	text-align: left;
+}
+
+#container .top_container h1 {
+	color:#FFFFFF;
+	padding: 0;
+	margin: 0;
+	font-size:34px;
+	font-weight: normal;
+}
+
+
+#container .top_container #top_description {
+font-size: 14px;
+color: #aaaaaa;
+}
+#container .top_container .top_text {
+	float:left;
+	padding-left: 173px;
+	padding-top: 68px;
+	line-height: 1.1;
+	font-family: Georgia, "Times New Roman", Arial, serif;
+	letter-spacing: 0.05em;
+}
+
+#container .top_container img {
+/*	padding-top: 28px;*/
+	margin-top:28px;
+	margin-left: 140px;
+}
+
+#container .content {
+/*	background-color: #ffffff;
+	width:1280px;*/
+}
+
+#container .content #madisons {
+	border-top: 1px solid #cccccc;
+	border-bottom: 1px dashed #999997;
+	width: 943px;
+	margin-left: 40px;
+	/*padding-bottom: 10px;*/
+}
+
+#container .content .introduction {
+	height: 190px;
+}
+
+.no_border{
+	border: none !important;
+}
+
+#container .content #introduction h2 {
+	margin: 0;
+	padding: 0;
+	margin-top: 20px;
+	margin-bottom: -7px;
+	font-size: 34px;
+	font-weight:normal;
+}
+/*
+
+#container .content #introduction p {
+	padding-top: 5px;
+	line-height: 1.6;
+}
+*/
+#container .content .wrapper {
+	background: #ffffff;
+	margin: 0 auto;
+	width: 1280px;
+}
+#container .top_wrapper {
+	background-color:#000000;
+}
+
+#container .content .wrapper h2 {
+	font-size: 22px;
+	font-weight: normal;
+	font-family: Georgia, "Times New Roman", Arial, serif;
+	letter-spacing: 0.05em;
+	margin-top: 18px;
+	margin-bottom: 18px;
+}
+
+#container .content .wrapper a {
+	font-size: 12px;
+}
+
+#container .content .wrapper .inner-wrapper {
+	width: 1024px;
+	background-color: #f2f2f2;
+	margin: 0 auto;
+	padding-top: 20px;
+	text-align: left;
+}
+#container .content .wrapper .inner-wrapper .titles h2 {
+	margin-bottom: -5px;
+	margin-top: 18px;
+}
+#container .content .wrapper .inner-wrapper #madisons .hidden_button {
+	background-color: #eeeeee;
+	border-top: solid #cccccc 1px;
+	border-bottom: solid #cccccc 1px;
+	padding-bottom: 2px;
+	padding-top:2px;
+	margin-top: -3px;
+}
+
+.no_text_decoration{
+	text-decoration: none;	
+	color:#000000;
+}
+#madisons .hidden_button .no_text_decoration #img1 {
+	border: none;
+	margin-right: 2px;
+}
+#madisons .hidden_button #MadisonsGuestPackageFlexFlows .tablenoborder table {
+	border-color: #999997;
+	width: 923px;
+	margin-left: 10px;
+	margin-top: 13px;
+	margin-bottom:20px;
+	
+	font-family: Arial, Georgia, "Times New Roman", serif;
+	font-size:12px;
+	color:#000000;
+	line-height: 1.5;
+}
+#madisons .hidden_button #show_hide_detail {
+	text-decoration: underline;	
+	color: #0000FF;
+}
+
+#MadisonsGuestPackageFlexFlows .tablenoborder .table_header {
+	background-color: #dbc5d9;
+	font-weight:bold;
+}
+
+#MadisonsGuestPackageFlexFlows .tablenoborder .first_col_width{
+	width: 232px;
+	padding-top:4px;
+	padding-left:12px;
+	padding-bottom:4px;
+}
+#MadisonsGuestPackageFlexFlows .tablenoborder .second_col_width{
+	width: 165px;
+	padding-top:4px;
+	padding-left:12px;
+	padding-bottom:4px;
+}
+#MadisonsGuestPackageFlexFlows .tablenoborder .third_col_width{
+	width: 460px;
+	padding-top:4px;
+	padding-left:12px;
+	padding-bottom:4px;
+}
+#MadisonsGuestPackageFlexFlows .tablenoborder .forth_col_width{
+	padding-top:4px;
+	padding-left:12px;
+	padding-bottom:4px;
+	width: 50px;
+}
+
+#MadisonsGuestPackageFlexFlows .tablenoborder .enabled_col_spacing{
+	text-align: center;
+}
+#MadisonsGuestPackageFlexFlows .tablenoborder .table_lighter_background{
+	background-color: #f2f2f2;
+}
+
+#container .content .wrapper .inner-wrapper .list_content {
+	margin-top: 10px;
+	margin-bottom:20px;
+	padding-bottom: 10px;
+	border-bottom: 1px dashed #999997;
+}
+
+#container .content .wrapper .inner-wrapper .links_content {
+	margin-top: -7px;
+	padding-bottom: 0px;
+	margin-bottom:0px;
+	border-bottom: 1px dashed #999997;
+}
+
+.solid_bottom_bolder{
+	border-bottom: 1px solid #cccccc !important;
+}
+
+.last_content{
+	margin-bottom: 0px !important;
+	padding-bottom: 30px !important;
+	border-bottom: none !important;
+}
+	margin-left: 40px;
+	margin-bottom: -7px;
+}
+

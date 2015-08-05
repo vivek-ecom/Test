@@ -1,0 +1,18 @@
+<div class="rangeSelectorMain" id="WC_RangeSliderHtml_div_1">
+	<img src="${emptyImagePath}" alt="${rangeSliderTitle}"/>
+	<div id="firstHandleContent" dojoAttachPoint="firstHandleContent" tabindex="0" dojoAttachEvent="onkeypress: onKeyPress">	
+		<div id="${id}_firstHandle" class="rangeSelectorHandle" dojoAttachPoint="firstHandle" dojoAttachEvent="onmouseover: onFirstMouseOver, onmouseout: onFirstMouseOut"></div>
+		<div dojoAttachPoint="firstHandleTooltip" tabindex="-1" class="empty_image">	
+			<div id="${id}_firstHandle_tooltip" class="rangeSelectorTooltip" dojoAttachPoint="firstTooltip"></div>
+			<img src="${emptyImagePath}" alt="${firstHandleTitle}"/>
+		</div>
+	</div>
+    <div class="rangeSelectorBar" dojoAttachPoint="rangeSelectorBar" id="WC_RangeSliderHtml_div_2"></div>
+	<div id="secondHandleContent" dojoAttachPoint="secondHandleContent" tabindex="0" dojoAttachEvent="onkeypress: onKeyPress">
+		<div id="${id}_secondHandle" class="rangeSelectorHandle" dojoAttachPoint="secondHandle" dojoAttachEvent="onmouseover: onSecondMouseOver, onmouseout: onSecondMouseOut"></div>
+		<div dojoAttachPoint="secondHandleTooltip" tabindex="-1" class="empty_image">
+			<div id="${id}_secondHandle_tooltip" class="rangeSelectorTooltip" dojoAttachPoint="secondTooltip"></div>
+			<img src="${emptyImagePath}" alt="${secondHandleTitle}"/>
+		</div>
+	</div>	
+</div>

@@ -1,0 +1,98 @@
+<div  class="collaborationDialogWidget" id="collaborationDialogWidget" tabindex="-1" dojoAttachPoint="collaborationDialogWidget" waiRole="dialog" waiState="labelledby-${id}_title">
+	
+	<!--  chat -->
+	<div id="chatDialog" style="display:none" class="chatDialog">
+		<div class="chatDialogConnector" dojoAttachPoint="chatDialogConnector"></div>				
+		<div class="chatDialogContainer">
+			<div class="chatLeft"></div>
+			<div class="chatBackground">
+				<div class="chatHeader">
+					<label for="chatArea"  class="chatDialogTitle left"> ${chatButtonString} </label>
+					<div class="right chatDialogTitleContainer"> 
+					   <span class="chatDialogClose">
+				   			 <a id="closeChat" class="closeLink" href="#"  title="${closeChatButtonString}">${closeChatButtonString}</a>
+				    	</span>
+				     </div>
+				</div>
+
+				<textarea id="chatArea" dojoAttachPoint="chatArea" class="collaborationDialogWidgetChatTextBox" readonly="readonly" cols="2" rows="2"></textarea>
+				<div class="chatInputArea">
+					<span dojoType="dijit.form.TextBox" dojoAttachPoint="chatInput" baseClass="collaborationDialogWidgetChatTextField"></span>
+					<span class="primary_button right" id="sendChatButtonContainer" dojoAttachPoint="sendChatButtonContainer">
+						<span class="button_container">
+							<span class="button_bg">
+								<span class="button_top">
+									<span class="button_bottom">
+										<a href="#" dojoAttachEvent="onclick:sendChat"	dojoAttachPoint="sendChatButton"> ${sendChatString}	</a>
+									</span>
+								</span>
+							</span>
+						</span>
+					</span>
+				</div>
+			</div>
+			<div class="chatRight"></div>
+		</div>
+	</div>
+	<!--  chat ends -->
+	
+	<!--  permission dialog -->	
+	<div id="permissionDialog"  style="display:none">
+
+	</div>		
+	<!--  permission dialog ends -->
+	
+	<div dojoType="dijit.layout.BorderContainer" design="headline" gutters="false" liveSplitters="false" dojoAttachPoint="collaborationDialogBorderContainer" class="borderContainer">
+		<!-- action buttons & message bar -->
+		<div dojoType="dijit.layout.ContentPane" splitter="false" region="top" dojoAttachPoint="collaborationDialogBorderContainerTop">
+			<div style="visibility:hidden" dojoAttachPoint="collaborationDialogCloseBar" class="dijitDialogTitleBar collaborationDialogWidgetCloseBar">
+				<span dojoAttachPoint="collaborationDialogTitleNode" class="dijitDialogTitle collaborationDialogWidgetTitle" id="${id}_title">${collabDialogTitleString}</span>
+				<span dojoAttachPoint="closeButtonNode" class="dijitDialogCloseIcon collaborationDialogWidgetCloseDialogIcon" dojoAttachEvent="onclick: onCancel">
+					<span dojoAttachPoint="collaborationDialogCloseText" class="closeText">Close</span>
+				</span>
+			</div>
+			
+			<div dojoAttachPoint="collaborationDialogTitleBar" class="dijitDialogTitleBar collaborationDialogWidgetTitleBar">
+				<div  dojoAttachPoint="collaborationDialogButtons" class="collaborationDialogButtons">
+				</div>
+
+			</div>
+		</div>
+		<!-- collaboration dialog -->
+		<div dojoType="dijit.layout.ContentPane" splitter="false" region="center" dojoAttachPoint="collaborationDialogBorderContainerCenter">	
+			<div dojoAttachPoint="containerNode" class="collaborationDialogPaneContent">
+				<iframe id="collaborationDialogIframe" title="collaborationDialogIframe" dojoAttachPoint="collaborationDialogContentPane" onload="if (ceadojo.isIE){this.click();}" dojoAttachEvent="onclick:_iFrameOnloadHandler, onload:_iFrameOnloadHandler" class="collaborationDialogWidgetIFrame" tabindex="9" ></iframe>
+			</div>
+		</div>
+
+		<!-- footer --> 
+    	<div dojoType="dijit.layout.ContentPane" class="collaborationDialogWidgetFooterBar" splitter="false" region="bottom" dojoAttachPoint="collaborationDialogBorderContainerBottom">
+			<div dojoAttachPoint="collaborationDialogFooterBar" class="statusContainer">
+				<div  class="collaborationDialogWidgetStatus">
+					<span id="collaborationDialogConnectionStatus" class="icons connected"><span class="statusPadding" dojoAttachPoint="collaborationDialogConnectionStatus">${connectedString}</span></span>
+				</div>
+				<div  class="collaborationDialogWidgetStatus">
+					<span id="collaborationDialogPeerWindowStatus" class="icons window_open"><span class="statusPadding" dojoAttachPoint="collaborationDialogPeerWindowStatus">${peerWindowClosedString}</span></span>
+				</div>
+				<div  class="collaborationDialogWidgetStatus">
+					<span id="collaborationDialogActionStatusStatus" class="icons leading"><span class="statusPadding" dojoAttachPoint="collaborationDialogActionStatusStatus">${cobrowsingWebString}</span></span>
+				</div>
+			</div>
+		</div>		
+	</div>
+			
+	<!--  this block is not used. It's inherited from CEA.  -->
+	<div dojoAttachPoint="collaborationDialogMessageArea" class="collaborationDialogWidgetMessages" style="display:none;visibility:hidden" >
+		<table width="100%">
+			<tr>
+				<td width="5%" align="middle" dojoAttachPoint="collaborationDialogMessageAreaIcon" class="collaborationDialogWidgetMessages"></td>
+				<td width="90%" align="right" dojoAttachPoint="collaborationDialogMessageAreaMessage" class="collaborationDialogWidgetMessages"></td>
+				<td width="5%" align="right" dojoAttachPoint="collaborationDialogMessageAreaAction" class="collaborationDialogWidgetMessages">
+					<span dojoAttachPoint="collaborationDialogMessageOKButtonNode" class="collaborationDialogCloseMessageIcon collaborationDialogWidgetIcon collaborationDialogWidgetAcceptIcon" dojoAttachEvent="onclick: hideMessageArea" style="display:none"></span>
+					<span dojoAttachPoint="collaborationDialogMessageCloseButtonNode" class="collaborationDialogCloseMessageIcon collaborationDialogWidgetIcon collaborationDialogWidgetCloseIcon" dojoAttachEvent="onclick: hideMessageArea" style="display:none"></span>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+

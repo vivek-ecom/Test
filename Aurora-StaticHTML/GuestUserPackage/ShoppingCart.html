@@ -1,0 +1,3501 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<!--
+Licensed Materials - Property of IBMWebSphere Commerce(c) Copyright International Business Machines Corporation 1996,2010.All rights reservedUS Government Users Restricted Rights - Use, duplication ordisclosure restricted by GSA ADP Schedule Contract with IBM Corp.-->
+<html  xmlns:wairole='http://www.w3.org/2005/01/wai-rdf/GUIRoleTaxonomy#' xmlns:waistate='http://www.w3.org/2005/07/aaa' lang='en' xml:lang='en' onkeydown='javascript:activateHighlight(event);'>
+ <head>
+ <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+
+		<script type="text/javascript" src="../dojo18/dojo/dojo.js" djconfig="parseOnLoad: false, isDebug: false,  modulePaths: {storetext: '../../StoreAssets'}, useCommentedJson: true,locale: 'en-us' "></script>
+		
+<!-- BEGIN CommonJSToInclude.jspf -->
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0;">
+<meta name="CommerceSearch" content="storeId_10152">
+
+<link rel="shortcut icon" href="../StoreAssets/images/favicon.ico" mce_href="../StoreAssets/images/favicon.ico">
+
+<script type="text/javascript">
+	// Convert the WCParam object which contains request properties into javascript object
+	var WCParamJS = {
+		"storeId":'10152',
+		"catalogId":'10001',
+		"langId":'-1',
+		"pageView":'',
+		"orderBy":'',
+		"orderByContent":'',
+		"searchTerm":''
+	};
+	var absoluteURL = document.location.href.split("/");
+	absoluteURL.pop();
+	absoluteURL = absoluteURL.join("/") + "/";
+	var imageDirectoryPath = "../StoreAssets/";
+	var styleDirectoryPath = "images/colors/color1/";
+	var supportPaymentTypePromotions = false;
+	
+	var subsFulfillmentFrequencyAttrName = "fulfillmentFrequency";
+	var subsPaymentFrequencyAttrName = "paymentFrequency";
+	var subsTimePeriodAttrName = "timePeriod";
+	
+	var storeNLS = null;
+	
+	//Summary: Returns the absolute URL to use for prefixing any Ajax URL call.
+	//Description: Dojo does not handle the case where the parameters in the URL are delimeted by the "/" forward slash. Therefore, in order to
+	//             workaround the issue, all AJAX requests must be done using absolute URLs rather than relative.
+	//Returns: The absolute URL to use for prefixing any Ajax URL call.
+	function getAbsoluteURL() {
+		if (absoluteURL != "") {
+			var currentURL = document.URL;
+			var currentProtocol = "";
+		
+			if (currentURL.indexOf("://") != -1) {
+				currentProtocol = currentURL.substring(0, currentURL.indexOf("://"));
+			}
+			
+			var savedProtocol = "";
+			if (absoluteURL.indexOf("://") != -1) {
+				savedProtocol = absoluteURL.substring(0, absoluteURL.indexOf("://"));
+			}
+			
+			if (currentProtocol != savedProtocol) {
+				absoluteURL = currentProtocol + absoluteURL.substring(absoluteURL.indexOf("://"));
+			}
+		}
+		
+		return absoluteURL;
+	}
+	//Summary: Returns the path pointing to the shared image directory.
+	//Description: In order to get the image directory path in any javascript file, this function can be used.
+	//Returns: The path to reference images.
+	function getImageDirectoryPath() {
+		return imageDirectoryPath;
+	}
+	//Summary: Returns the path pointing to the directory containing color-dependant image files.
+	//Description: In order to get the directory containing color-dependant image files in any javascript file, this function can be used.
+	//Returns: The path to reference color-dependant image files.
+	function getStyleDirectoryPath() {
+		return styleDirectoryPath;
+	}
+</script>
+
+<script type="text/javascript" src="../StoreAssets/javascript/MessageHelper.js"></script>
+<script type="text/javascript" src="../StoreAssets/javascript/StoreCommonUtilities.js"></script>
+<script>
+	dojo.require("wc.service.common");
+	dojo.require("dojo.number");
+</script>
+
+<script type="text/javascript">
+ //Set the default NLS to use in the store.
+ if(storeNLS == null) {
+	 dojo.requireLocalization("storetext", "StoreText");
+	 storeNLS = dojo.i18n.getLocalization("storetext","StoreText");
+ }
+</script>
+
+<!-- END CommonJSToInclude.jspf -->
+
+		   
+		<link rel="stylesheet" href="../StoreAssets/css/common1_1.css" type="text/css">
+		<script type="text/javascript" src="../StoreAssets/javascript/Widgets/Search.js"></script>
+		<script type="text/javascript" src="../StoreAssets/javascript/Widgets/MiniShopCartDisplay/MiniShopCartDisplay.js"></script>
+		<script type="text/javascript" src="../StoreAssets/javascript/Widgets/Department/Department.js"></script>
+		<script type="text/javascript" src="../StoreAssets/javascript/Widgets/ESpot/ProductRecommendation.js"></script>
+		<script type="text/javascript" src="../StoreAssets/javascript/Widgets/QuickInfo/QuickInfo.js"></script>
+		<script type="text/javascript" src="../StoreAssets/javascript/Widgets/ShoppingList/ShoppingList.js"></script>
+		<script type="text/javascript" src="../StoreAssets/javascript/Widgets/ShoppingList/ShoppingListServicesDeclaration.js"></script>
+		
+		<script type="text/javascript" src="../StoreAssets/javascript/Common/ShoppingActionsServicesDeclaration.js"></script>
+		<script type="text/javascript" src="../StoreAssets/javascript/Common/ShoppingActions.js"></script>
+		<script type="text/javascript" src="../StoreAssets/javascript/StoreCommonUtilities.js"></script>
+
+		<script type="text/javascript" src="../StoreAssets/javascript/CommonContextsDeclarations.js"></script>
+		<script type="text/javascript" src="../StoreAssets/javascript/CommonControllersDeclaration.js"></script>
+
+		<script type="text/javascript" src="../StoreAssets/javascript/CatalogArea/CategoryDisplay.js"></script>
+		<script type="text/javascript" src="../StoreAssets/javascript/CheckoutArea/CheckoutHelper.js"></script>
+		<script type="text/javascript" src="../StoreAssets/javascript/UserArea/LogonForm.js"></script>
+		<script type="text/javascript" src="../StoreAssets/javascript/ServicesDeclaration.js"></script>
+		
+		<script type="text/javascript" src="../StoreAssets/javascript/CheckoutArea/ShipmodeSelectionExt.js"></script>
+		<script type="text/javascript" src="../StoreAssets/javascript/StoreLocatorArea/PhysicalStoreCookie.js"></script>
+
+<script src="" type="text/javascript" language="javascript"></script><link href="../StoreAssets/css/SocialIntegration.css" type="text/css" rel="stylesheet"><script src="" charset="UTF-8" type="text/javascript" language="javascript"></script></head><body>
+
+<script type="text/javascript">
+	dojo.addOnLoad(function() { 
+		CommonControllersDeclarationJS.setControllerURL('QuickInfoDetailsController', '');
+	});        
+</script>
+
+		<title>Shopping Cart - [SHOPPINGCART_TITLE]</title>
+		
+		<script type="text/javascript">
+			dojo.addOnLoad(function() { 
+
+				MessageHelper.setMessage("ERROR_GUEST_USER_SUBMIT_RECURRING_ORDER", "[PROPERTIES;ERROR_GUEST_USER_SUBMIT_RECURRING_ORDER;Please register or login to place a recurring order.]");
+				MessageHelper.setMessage("RECURRINGORDER_ERROR", "[PROPERTIES;SHOPCART_HAS_NON_RECURRING_PRODUCTS;One or more items in your shopping cart can't be included in a recurring order. To continue, either remove any such items or check out normally without selecting the recurring order option.]");
+				MessageHelper.setMessage("ERROR_RETRIEVE_PRICE_QTY_UPDATE", "[PROPERTIES;INVENTORY_ERROR;Your request cannot be completed, as the product you wish to purchase are not available.]");
+				MessageHelper.setMessage("ERROR_RETRIEVE_PRICE", "[PROPERTIES;GENERICERR_MAINTEXT;The store has encountered a problem processing the last request. Please try again. If the problem persists, [PROPERTIES;GENERICERR_CONTACT_US;contact us] for assistance.]");
+				MessageHelper.setMessage("ERR_RESOLVING_SKU", "[PROPERTIES;ERR_RESOLVING_SKU;Your selection is either incomplete or not in stock. Please be sure to supply a value for each attribute or consider a different combination of values.]");
+				MessageHelper.setMessage("QUANTITY_INPUT_ERROR", "[PROPERTIES;QUANTITY_INPUT_ERROR;The value in the Quantity field is invalid. Ensure the value is a positive integer and try again.]");
+				MessageHelper.setMessage("REQUIRED_FIELD_ENTER", "[PROPERTIES;REQUIRED_FIELD_ENTER;This is required field. Please enter the value.]");
+				MessageHelper.setMessage("LOGON_REQUIRED_FIELD_ENTER", "[PROPERTIES;REQUIRED_SPECIFIC_FIELD_ENTER;[PROPERTIES;SHOPCART_USERNAME;Username:] is a required field. Please enter the value.]");
+				MessageHelper.setMessage("PASSWORD_REQUIRED_FIELD_ENTER", "[PROPERTIES;REQUIRED_SPECIFIC_FIELD_ENTER;[PROPERTIES;SHOPCART_PASSWORD;Password:] is a required field. Please enter the value.]");
+				MessageHelper.setMessage("WISHLIST_ADDED", "[PROPERTIES;WISHLIST_ADDED;The item has been successfully added to your WishList]");
+				MessageHelper.setMessage("SHOPCART_ADDED", "[PROPERTIES;SHOPCART_ADDED;The item has been successfully added to your shopping cart]");
+				MessageHelper.setMessage("SHOPCART_REMOVEITEM", "[PROPERTIES;SHOPCART_REMOVEITEM;The item was removed from the Shopping Cart.]");
+				MessageHelper.setMessage("ERROR_MESSAGE_TYPE", "[PROPERTIES;ERROR_MESSAGE_TYPE;Error:]");
+				categoryDisplayJS.setCommonParameters('-1','10152','10001','G');
+				CheckoutHelperJS.setCommonParameters('-1','10152','10001');
+				ServicesDeclarationJS.setCommonParameters('-1','10152','10001');
+				MessageHelper.setMessage("ERROR_UPDATE_FIRST_SHOPPING_CART", "[PROPERTIES;ERROR_UPDATE_FIRST_SHOPPING_CART;The quantity has been modified. Please click Update before continuing.]");
+				MessageHelper.setMessage("PROMOTION_CODE_EMPTY", "[PROPERTIES;PROMOTION_CODE_EMPTY;Please enter the promotional code]");                            
+				MessageHelper.setMessage("ERROR_CONTRACT_EXPIRED_GOTO_ORDER", "???ERROR_CONTRACT_EXPIRED_GOTO_ORDER???");                            
+				MessageHelper.setMessage("message_NO_STORE", "[PROPERTIES;ERR_NO_PHY_STORE;Please select at least one store location to continue.]");
+				MessageHelper.setMessage("message_QUICK_CHKOUT_ERR", "[PROPERTIES;BOPIS_QUICKCHECKOUT_ERROR;Quick checkout is not available when Pick Up at Store is selected. Select a store address as the shipping location during the checkout process.]");
+				ShipmodeSelectionExtJS.setCommonParameters('-1','10152','10001');
+				ShipmodeSelectionExtJS.setStoreLocatorEnabled(true);
+
+			});
+		</script>
+
+		<script type="text/javascript">
+			dojo.addOnLoad(shopCartPageLoaded);
+			
+			function shopCartPageLoaded() {
+				categoryDisplayJS.setAjaxShopCart(true);
+				CheckoutHelperJS.setAjaxCheckOut(true);
+				CheckoutHelperJS.shoppingCartPage="true";
+			}
+		</script>
+              
+		<script type="text/javascript">
+              
+			dojo.addOnLoad(initGetTimeZone);
+              
+			function initGetTimeZone() {
+				// get the browser's current date and time
+				var d = new Date();
+				
+				// find the timeoffset between browser time and GMT
+				var timeOffset = -d.getTimezoneOffset()/60;
+              
+				// store the time offset in cookie
+				var gmtTimeZone;
+				if (timeOffset < 0)
+					gmtTimeZone = "GMT" + timeOffset;
+				else if (timeOffset == 0)
+					gmtTimeZone = "GMT";
+				else
+					gmtTimeZone = "GMT+" + timeOffset;                    
+				dojo.cookie("WC_timeoffset", gmtTimeZone);
+			}
+		</script>
+
+		<div id="page">
+
+<!-- BEGIN CommonJSPFToInclude.jspf -->
+
+
+<!-- BEGIN ProgressBar.jspf -->
+
+
+<!-- END ProgressBar.jspf -->
+
+
+<!-- BEGIN MessageDisplay.jspf -->
+
+
+<span class="spanacce" id="MessageArea_ACCE_Title"><span>Message Dialog<span title="DIALOG_TITLE_MESSAGE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIALOG_TITLE_MESSAGE"></span></span></span>
+<div id="MessageArea" class="store_message" role="alert" aria-labelledby="MessageArea_ACCE_Title">
+	<div id="msgpopup_content_wrapper" class="content">
+		<a id="clickableErrorMessageImg" role="button" class="close right" href="JavaScript:MessageHelper.hideMessageArea();" title="Close">
+			<div class="close_text left"><span>Close<span title="CLOSE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="CLOSE"></span></span></div>
+			<div class="close_icon left"></div>
+			<div class="clear_float"></div>
+		</a>
+		
+		<div class="clear_float"></div>
+		
+		<div class="message">
+			<div class="message_icon left">
+				<img id="error_icon" style="display:none;" class="error_icon" src="../StoreAssets/images/colors/color1/error_icon.png" alt="">
+				<img id="success_icon" style="display:none;" class="error_icon" src="../StoreAssets/images/colors/color1/success_icon.png" alt="">
+			</div>
+			<div class="message_text left" role="region" aria-required="true" aria-labelledby="MessageArea">
+				<span id="ErrorMessageText">
+					
+				</span>
+			</div>
+			<div class="clear_float"></div>
+		</div>		
+	<span class="elementKeyIcon" title="CLOSE=Close"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+</div>
+<span class="spanacce" id="ariaMessage_ACCE_Label"><span>Display Update Message<span title="ACCE_Display_Update_Message" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="ACCE_Display_Update_Message"></span></span></span>
+<span class="spanacce" role="region" aria-labelledby="ariaMessage_ACCE_Label" id="ariaMessage" aria-live="assertive" aria-atomic="true" aria-relevant="additions">[PROPERTIES;ACCE_Status_Quick_View_Content_updated;Quick Info Content Display Updated]</span>
+<!-- END MessageDisplay.jspf -->
+
+
+<span id="widget_product_comparison_ACCE_Label" class="spanacce"><span>Product Compare Dialog<span title="DIALOG_TITLE_PRODUCT_COMPARE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIALOG_TITLE_PRODUCT_COMPARE"></span></span></span>
+<div id="widget_product_comparison" style="display:none;" role="dialog" aria-labelledby="widget_product_comparison_ACCE_Label" title="Product Compare Dialog">
+	
+</div>
+	
+<!-- END CommonJSPFToInclude.jspf -->
+
+			<!-- Header Widget -->
+
+			<div class="header_wrapper_position" id="headerWidget">
+
+<!-- BEGIN Header.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">Header.jsp</div>
+<div id="text_highlight"><div class="details" id="detailsSection"><div class="details_container"><div class="content"><span class="bold">Click the button below to highlight text strings on the current page that you can customize in properties files during onboarding.</span><br></div><div class="marketing_btn"><div id="showProperties" style="display:block"><a class="light_button" onclick="showProperties()"><div id="showSpots" class="button_text">Show Properties</div><div class="button_right"></div></a></div><div id="hideProperties" style="display:none"><a class="light_button" onclick="hideProperties()"><div id="showSpots" class="button_text">Hide Properties</div><div class="button_right"></div></a></div></div><div class="content"><div id="messages" style="display:none"></div></div></div></div></div>
+<script type="text/javascript" src="../StoreAssets/javascript/Properties.js"></script>
+
+	<script type="text/javascript" src="../StoreAssets/javascript/Analytics.js"></script>
+	<script type="text/javascript">
+	dojo.addOnLoad(function() {
+		analyticsJS.storeId=10152;
+		analyticsJS.catalogId=10001;
+		analyticsJS.loadShopCartHandler();
+		analyticsJS.loadPagingHandler();
+		analyticsJS.loadProductQuickInfoHandler('productIdQuickInfo');
+		analyticsJS.loadStoreLocatorPageViews();
+		analyticsJS.loadWishlistHandler();
+		dojo.require("wc.analytics.CoremetricsEventListener");		
+			(new wc.analytics.CoremetricsEventListener()).load(true);
+			});
+	</script>
+
+<script>
+	var isGuest = true;
+</script>
+<div class="header_wrapper" role="banner">
+	<!--For border customization -->
+
+	<div class="header_top">
+		<div class="left_border"></div>
+		<div class="middle"></div>
+		<div class="right_border"></div>
+	</div>
+	<!-- Main Header Area -->
+
+	<div class="header_left_shadow">
+		<div class="header_right_shadow">				
+			<div class="header">
+				<!-- Start Header Content -->
+
+				
+				<!-- Start Masthead -->
+
+				<div id="masthead">
+					<div class="top"></div>
+					<div class="content">
+						<!-- Masthead Logo Widget -->
+
+						<div class="widget_masthead_logo_position">
+							<div id="widget_masthead_logo1">
+
+<!-- BEGIN ContentRecommendation.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">ContentRecommendation.jsp</div>
+	<div class="widget_height" tabindex="0">
+
+							<div class="left_espot">
+								
+									<a id="ContentAreaESpotInfoImgLink_10073_1" href="WelcometoAuroraESite.html" title="StoreAssets">
+								
+										<img id="ContentAreaESpotImg_HeaderStoreLogo_Content_1" src="../StoreAssets/images/logo.png" alt="StoreAssets">
+								
+									</a>
+								
+							</div>
+
+	</div>
+
+</span>
+<!-- END ContentRecommendation.jsp -->
+
+								
+							</div>
+						</div>
+						<!-- End Masthead Logo Widget -->
+
+						
+						<!-- Masthead Links Widget -->
+
+						<div class="widget_masthead_links_position" role="navigation">
+							<div id="widget_masthead_links">
+								<div class="left">
+									<div id="masthead_espot">
+
+<!-- BEGIN ContentRecommendation.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">ContentRecommendation.jsp</div>
+</span>
+<!-- END ContentRecommendation.jsp -->
+																			
+									</div>																		
+									<div class="masthead_links">
+										<div class="content">
+											<span class="masthead_links_container">
+
+													<span class="masthead_links_item"><a id="ShoppingListDisplayLink" href="SignIn.html"><span>Wish List<span title="HEADER_SHOPPING_LIST" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="HEADER_SHOPPING_LIST"></span></span></a></span><span> |<span title="DIVIDING_BAR" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIVIDING_BAR"></span>
+
+</span><!-- BEGIN LanguageCurrency.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">LanguageCurrency.jsp</div>
+<div id="widget_language_and_currency" style="display:none;">
+	
+</div>
+
+<span class="masthead_links_item"><a id="LanguageCurrencyChangeLink" href="javaScript: shoppingActionsJS.showWCDialogPopup('widget_language_and_currency_popup');"><span>Language/Currency<span title="LC_LANGUAGE_CURRENCY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="LC_LANGUAGE_CURRENCY"></span></span></a></span> |
+
+</span>
+<!-- END LanguageCurrency.jsp -->
+
+												
+												<span class="masthead_links_item"><a id="SignInLink" href="SignIn.html"><span>Sign In/Register<span title="HEADER_SIGN_IN_REGISTER" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="HEADER_SIGN_IN_REGISTER"></span></span></a></span>
+											</span>
+										</div>
+									</div>
+									<div class="masthead_social">
+										<div class="content">
+											<span class="masthead_links_container">
+
+													<span class="masthead_links_item">		
+
+<!-- BEGIN FacebookConnect.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">FacebookConnect.jsp</div>
+<!-- BEGIN FacebookConnect_UI.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">FacebookConnect_UI.jsp</div>
+ 
+
+<span id="SocialIntegrationArea">
+	<span style="display: inline;" id="header-fb-login-button-span"> 
+		<a tabindex="0" onclick="" id="headerFBlogin"><span>
+		    Connect to Facebook<span title="HEADER_CONNECT_TO_FACEBOOK" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="HEADER_CONNECT_TO_FACEBOOK"></span>
+			</span><img class="img_align" id="WC_FacebookConnectDisconnectDisplayImg_1" src="../StoreAssets/images/socialIntegration/social_networking.png" alt=""></a>
+	</span> 
+	
+	<span style="display: none;" id="header-fb-logout-button-span" class="nodisplay"> 
+		<span id="header_menu_facebook_loaded" style="display:none;">
+			<span id="menu_DropDown_Facebook" class="headerMenu_DropDown_Facebook" onmouseover="javascript:fbIntegrationJS.openDropDown();" onmouseleave="javascript:fbIntegrationJS.closeDropDown();" dojotype="wc.widget.WCDropDownButton" title="Use shift plus enter key then press the down arrow key to disconnect from Facebook." alt="Use shift plus enter key then press the down arrow key to disconnect from Facebook.">
+			    <span id="WC_CachedHeaderDisplayFacebook_div" class="dropdown" onitemhover="javascript:fbIntegrationJS.menuItemHover();" dojotype="wc.widget.WCMenu" onmouseleave="javascript:fbIntegrationJS.closeDropDown();" maxitemspercolumn="6" forcedisplayshowall="false" showalltext="Show All Facebook options">
+			        <span id="WC_CachedHeaderDisplayFacebook_div_2" dojotype="dijit.MenuItem" onclick="javascript:fbIntegrationJS.onClickFacebookLogout();return false;">
+			            <span>
+			                <a href="javascript:void(0);" tabindex="0" class="h_tnav_but" id="headerFBlogout"><span>
+								Disconnect from Facebook<span title="HEADER_DISCONNECT_FROM_FACEBOOK" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="HEADER_DISCONNECT_FROM_FACEBOOK"></span>
+							</span></a>
+			            </span>
+			        </span>
+			    </span>
+			<span class="elementKeyIcon" title="SHOW_ALL_FACEBOOK_OPTIONS=Show All Facebook options"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></span>
+		<span class="elementKeyIcon" title="FACEBOOK_DROPDOWN_ACTIVATE=Use shift plus enter key then press the down arrow key to disconnect from Facebook."><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></span>		
+	</span>
+	
+</span>	
+
+</span>
+<!-- END FacebookConnect_UI.jsp -->
+
+
+</span>
+<!-- END FacebookConnect.jsp -->
+
+														
+													</span><span>|<span title="DIVIDING_BAR" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIVIDING_BAR"></span>
+	                                	        
+												</span><span class="masthead_links_item">1-800-555-1234</span><span>
+												
+													|<span title="DIVIDING_BAR" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIVIDING_BAR"></span>
+													</span><span class="masthead_links_item"><a id="StoreLocatorLink" href="StoreLocator.html"><span>Store Locator<span title="HEADER_STORE_LOCATOR" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="HEADER_STORE_LOCATOR"></span></span></a></span>
+												
+											</span>
+										</div>
+									</div>												
+								</div>
+								<div class="right" style="display:none;">
+									<div class="social_avatar">
+									</div>
+								</div>
+								<div class="clear_float"></div>
+							</div>
+						</div>
+						<!-- End Masthead Links Widget -->
+
+
+						<!-- MiniShopCart Widget -->
+
+						<div class="widget_minishopcart_position">
+
+<span id="MiniShoppingCart_Label" class="spanacce"><span>Shopping Cart<span title="ACCE_Region_Shopping_Cart_Content" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="ACCE_Region_Shopping_Cart_Content"></span></span></span>
+<div class="dijitContentPane" title="" dojotype="wc.widget.RefreshArea" id="MiniShoppingCart" widgetid="MiniShoppingCart" controllerid="MiniShoppingCartController" ariamessage="Shopping Cart Display Updated" arialiveid="ariaMessage" role="region" aria-labelledby="MiniShoppingCart_Label">
+
+<script type="text/javascript">
+  dojo.addOnLoad(function() {
+		setMiniShopCartControllerURL(getAbsoluteURL()+'MiniShopCartDisplayView?storeId=10152&catalogId=10001&langId=-1');
+	});
+</script>
+
+<div id="widget_minishopcart" role="button" tabindex="0" onclick="javascript:showMiniShopCartDropDown('widget_minishopcart','quick_cart_container','orderItemsList');" onkeypress="javascript:showMiniShopCartDropDownEvent(event,'widget_minishopcart','quick_cart_container','orderItemsList');" onmouseover="javascript:showMiniShopCartDropDown('widget_minishopcart','quick_cart_container','orderItemsListAutoClose');">
+	<div id="miniShopCartLeftCorner" class="left_border"></div>
+	<div id="miniShopCartBody" class="content">
+		<div class="info">
+			<div class="subtotal"><span>Subtotal:<span title="MSC_SUBTOTAL" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MSC_SUBTOTAL"></span> </span><span id="minishopcart_subtotal">$100.00</span></div>
+			<div class="cart"><span>Cart:<span title="MSC_SHOPPING_CART" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MSC_SHOPPING_CART"></span> 
+				</span><span id="minishopcart_total"><span>
+					1 item(s)<span title="MSC_ITEMS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MSC_ITEMS"></span>
+				</span></span>
+			</div>
+		</div>
+		<div class="cart_icon"></div>
+		<div class="arrow"></div>
+	</div>
+	<div id="miniShopCartRightCorner" class="right_border"></div>
+	<div class="clear_float"></div>												
+</div>
+
+<div id="placeHolder"></div>
+
+<div id="quick_cart_container">
+	<span class="spanacce" id="quick_cart_container_ACCE_Label"><span>Shopping Cart Popup<span title="ACCE_MSC_SHOPPING_CART_POPUP_REGION" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="ACCE_MSC_SHOPPING_CART_POPUP_REGION"></span></span></span>
+	<div id="quick_cart">
+		<div id="MiniShopCartProductsList" style="display:none">
+			<div id="widget_minishopcart_popup">
+				<div class="top">
+					<div class="left_border"></div>
+					<div class="middle_tile"></div>
+					<div class="right_border"></div>
+				</div>
+				<div class="middle">
+					<div class="left_border">
+						<div class="right_border">
+							<div class="content">
+							<a id="MiniShopCartCloseButton_1" href="javascript:dijit.byId('quick_cart_container').hide();" class="close_control">
+								<div class="icon"></div>
+								<span class="close"><span>Close<span title="CLOSE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="CLOSE"></span></span></span>
+							</a>
+								<div class="notification"><span>Items in your cart:<span title="MSC_ITEMS_IN_CART" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MSC_ITEMS_IN_CART"></span></span></div>
+
+											<div class="products">
+												
+													<div class="product">
+														<div class="product_image">
+
+															<a id="MiniShopCartProdImg_90156" href="HermitageRuchedBodiceCocktailDressAuroraESite.html">
+																<img src="../StoreAssets/images/catalog/apparel/women/womens_dresses_70x70/WD_028_a_red.jpg" alt="Hermitage Ruched Bodice Cocktail Dress">
+															</a>
+														</div>
+														<div class="product_name">
+															<a id="MiniShopCartProdName_90156" href="HermitageRuchedBodiceCocktailDressAuroraESite.html">Hermitage Ruched Bodice Cocktail Dress</a>
+														</div>
+														<div class="item_spacer_3px"></div>
+														<span class="product_quantity"><span>QTY:<span title="MSC_QTY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MSC_QTY"></span> 1</span></span>
+														<span class="product_price">$100.00</span>
+													</div>
+												
+											</div>
+
+											<div class="subtotal">
+												<span class="product_price">$100.00</span>
+												<span><span>
+													Subtotal for 1 item(s)<span title="MSC_SUBTOTAL_FOR_ITEMS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MSC_SUBTOTAL_FOR_ITEMS"></span>
+												</span></span>
+											</div>
+
+								<div class="go_to_cart">
+									<a id="GotoCartButton1" href="ShoppingCart.html" class="button_primary" tabindex="0">
+										<div class="left_border"></div>
+										<div class="button_text"><span>Go to Cart<span title="MSC_GO_TO_CART" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MSC_GO_TO_CART"></span></span></div>
+										<div class="right_border"></div>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="bottom">
+					<div class="left_border"></div>
+					<div class="middle_tile"></div>
+					<div class="right_border"></div>
+				</div>
+			</div>
+		</div>
+
+		<div id="MiniShopCartProductAdded" style="display:none">
+			<div id="widget_minishopcart_popup_1">
+				<div class="top">
+					<div class="left_border"></div>
+					<div class="middle_tile"></div>
+					<div class="right_border"></div>
+				</div>
+				<div class="middle">
+					<div class="left_border">
+						<div class="right_border">
+							<div class="content">
+								<a id="MiniShopCartCloseButton_2" href="javascript:dijit.byId('quick_cart_container').hide();" class="close_control">
+									<div class="icon"></div>
+									<span class="close"><span>Close<span title="CLOSE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="CLOSE"></span></span></span>
+								</a>
+								<div class="notification"><span>This item has been successfully added:<span title="MSC_ITEM_ADDED" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MSC_ITEM_ADDED"></span></span></div>
+								<div class="products added">
+									<div class="product">
+											<div class="product_image">
+												<a title="Hermitage Ruched Bodice Cocktail Dress" href="HermitageRuchedBodiceCocktailDressAuroraESite.html" id="MiniShopCartAddedProdImg_Hermitage Ruched Bodice Cocktail Dress">
+
+													<img alt="Hermitage Ruched Bodice Cocktail Dress" src="../StoreAssets/images/catalog/apparel/women/womens_dresses_105x105/WD_028_a_red.jpg">
+												</a>
+											</div>
+											<div class="product_name">
+												<a href="HermitageRuchedBodiceCocktailDressAuroraESite.html" id="MiniShopCartAddedProdName_Hermitage Ruched Bodice Cocktail Dress">Hermitage Ruched Bodice Cocktail Dress</a>
+											</div>
+											<div class="item_spacer_7px"></div>
+											
+												<div class="product_color">
+												[PROPERTIES;ATTRNAMEKEY;Available Sizes:]
+												M</div>
+											
+												<div class="product_color">
+												[PROPERTIES;ATTRNAMEKEY;Color:]
+												Red</div>
+											
+											<div class="item_spacer_3px"></div>
+											<span class="product_quantity">[PROPERTIES;MSC_QTY;QTY:] 1</span>
+											<span class="product_price">$100.00</span>
+									</div>
+								</div>
+								<div class="go_to_cart">
+									<a id="GotoCartButton2" href="ShoppingCart.html" class="button_primary" tabindex="0">
+										<div class="left_border"></div>
+										<div class="button_text"><span>Go to Cart<span title="MSC_GO_TO_CART" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MSC_GO_TO_CART"></span></span></div>
+										<div class="right_border"></div>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="bottom">
+					<div class="left_border"></div>
+					<div class="middle_tile"></div>
+					<div class="right_border"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</div>
+
+						<span class="elementKeyIcon" title="ACCE_Status_Shopping_Cart_Content_Updated=Shopping Cart Display Updated"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+						<!-- End MiniShopCart Widget -->
+
+
+					</div>
+					<div class="navigation">
+						<!-- Department Selection Widget -->
+
+						<div class="widget_departments_position" role="navigation" aria-label="Departments">
+
+<script type="text/javascript">
+	dojo.addOnLoad(function() {
+		if(document.getElementById("widget_departments")){
+			document.getElementById("widget_departments").style.display = "block";
+		}
+		DepartmentJS.init();
+		wc.render.getRefreshControllerById("DepartmentDropdownController").url = getAbsoluteURL()+"DepartmentDropdownView.html";
+	});
+
+	dojo.addOnUnload(function() {
+		if(document.getElementById("drop_down")){
+			document.getElementById("drop_down").style.display = "none";
+		}
+	});
+</script>
+
+<div id="widget_departments" tabindex="0" title="Departments" style="display: block;">
+		<div class="left_border"></div>
+		<div class="content">
+			<span class="label"><span>Departments<span title="DEPARTMENTS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DEPARTMENTS"></span></span></span>
+			<div class="arrow"></div>
+		</div>
+		<div class="right_border"></div>
+		<div class="clear_float"></div>
+
+		<div role="group" title="" class="drop_down dijitContentPane" id="drop_down" dojotype="wc.widget.RefreshArea" widgetid="drop_down" controllerid="DepartmentDropdownController" style="display: none;">
+
+<!-- BEGIN Department.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">Department.jsp</div>
+</span>
+<!-- END Department.jsp -->
+
+		</div>
+</div>
+
+						<span class="elementKeyIcon" title="DEPARTMENT_MENU_ACCE=Departments"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+						<!-- End Department Selection Widget -->
+
+
+						<!-- Search Widget -->
+
+						<div id="searchComponent">
+
+<!-- BEGIN Search.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">Search.jsp</div>
+		<meta name="CommerceSearch" content="storeId_10152">
+
+		<!-- Begin Search Widget -->
+
+		<script type="text/javascript">
+				dojo.addOnLoad(function(){
+					SearchJS.init();
+					SearchJS.setCachedSuggestionsURL('SearchComponentCachedSuggestionsView.html');
+					SearchJS.setAutoSuggestURL('SearchComponentAutoSuggestView.html');
+				});
+
+				// The primary Array to hold all static search suggestions
+				var staticContent = new Array();
+
+				// The titles of each search grouping
+				var staticContentHeaders = new Array();
+		</script>	
+
+<form name="CatalogSearchForm" action="SearchResults.html" method="get" id="CatalogSearchForm">
+	
+	<!-- Search Widget -->
+
+	<div class="widget_search_position" role="search">
+		<div id="widget_search">
+			<div class="left_border"></div>
+			<div class="content">
+	
+				<label for="SimpleSearchForm_SearchTerm" class="nodisplay"><span>Search<span title="SEARCH_CATALOG" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SEARCH_CATALOG"></span></span></label>
+				<input class="search_input gray_color" placeholder="Search" name="searchTerm" id="SimpleSearchForm_SearchTerm" autocomplete="off" maxlength="65" tabindex="0" title="Press the Up or Down Arrow keys to navigate through the search suggestions. Suggested site content and search history, if any, are included after the suggestions.  Press the Enter key for all search results." onkeypress="return SearchJS._onKeyPress(event);" value="Search" type="text">
+
+				<div role="button" aria-labelledby="searchDepartmentList_ACCE_Label" onclick="$('searchDepartmentList').style.display='block'" onfocus="$('searchDepartmentList').style.display='block'; dojo.byId('searchDepartmentList_0').focus();" tabindex="0" class="all_departments">
+					<span id="searchDepartmentLabel"><span>All Departments<span title="SEARCH_ALL_DEPARTMENTS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SEARCH_ALL_DEPARTMENTS"></span></span></span>
+				</div>
+				<input id="search_categoryId" name="categoryId" value="" type="hidden">
+				<span class="spanacce" id="searchDepartmentList_ACCE_Label"><span>Search in<span title="SEARCH_IN" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SEARCH_IN"></span></span></span>
+				<div class="widget_search_departments_dropdown_position" role="menu" aria-labelledby="searchDepartmentList_ACCE_Label" onblur="clearTimeout(SearchJS.searchDepartmentHoverTimeout);SearchJS.searchDepartmentHoverTimeout=setTimeout('SearchJS.hideSearchDepartmentList()',300)" onmouseout="clearTimeout(SearchJS.searchDepartmentHoverTimeout);SearchJS.searchDepartmentHoverTimeout=setTimeout('SearchJS.hideSearchDepartmentList()',300)" onmouseover="clearTimeout(SearchJS.searchDepartmentHoverTimeout);" id="searchDepartmentList">
+					<div class="widget_search_departments_dropdown">
+						<div class="top">
+							<div class="left_border"></div>
+							<div class="middle"></div>
+							<div class="right_border"></div>
+						</div>
+
+						<div class="clear_float"></div>
+						<div class="content_left_border">
+							<div class="content_right_border">
+								<ul id="searchDepartmentList_root">
+									<li><a  id="searchDepartmentList_0" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 0, 6, '', this);" onmousedown="SearchJS.searchDepartmentSelect('', this)" onmouseover="this.className='enabled'" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseout="this.className='disabled'"><span>All Departments<span title="SEARCH_ALL_DEPARTMENTS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SEARCH_ALL_DEPARTMENTS"></span></span></a></li>
+									
+										<li><a  id="searchDepartmentList_1" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 1, 6, '10001', this);" onmousedown="SearchJS.searchDepartmentSelect('10001', this)" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseover="this.className='enabled'" onmouseout="this.className='disabled'">Apparel</a></li>
+									
+										<li><a  id="searchDepartmentList_2" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 2, 6, '10027', this);" onmousedown="SearchJS.searchDepartmentSelect('10027', this)" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseover="this.className='enabled'" onmouseout="this.className='disabled'">Electronics</a></li>
+									
+										<li><a  id="searchDepartmentList_3" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 3, 6, '10033', this);" onmousedown="SearchJS.searchDepartmentSelect('10033', this)" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseover="this.className='enabled'" onmouseout="this.className='disabled'">Grocery</a></li>
+									
+										<li><a  id="searchDepartmentList_4" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 4, 6, '10038', this);" onmousedown="SearchJS.searchDepartmentSelect('10038', this)" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseover="this.className='enabled'" onmouseout="this.className='disabled'">Health</a></li>
+									
+										<li><a  id="searchDepartmentList_5" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 5, 6, '10041', this);" onmousedown="SearchJS.searchDepartmentSelect('10041', this)" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseover="this.className='enabled'" onmouseout="this.className='disabled'">Home &amp; Furnishing</a></li>
+									
+										<li><a  id="searchDepartmentList_6" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 6, 6, '10048', this);" onmousedown="SearchJS.searchDepartmentSelect('10048', this)" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseover="this.className='enabled'" onmouseout="this.className='disabled'">Newsletters &amp; Magazines</a></li>
+									
+								</ul>
+							</div>
+						</div>
+						<div class="clear_float"></div>
+
+						<div class="bottom">																
+							<div class="left_border"></div>
+							<div class="middle"></div>
+							<div class="right_border"></div>
+						</div>
+
+						<div class="clear_float"></div>	
+					</div>
+				</div>
+				
+				<input id="search_submit" class="search_submit" onmouseout="javascript: this.src='../StoreAssets/images/colors/color1/widget_search/search_submit.png'" onmouseover="javascript: this.src='../StoreAssets/images/colors/color1/widget_search/search_submit_hover.png'" onblur="javascript: this.src='../StoreAssets/images/colors/color1/widget_search/search_submit.png'" onfocus="javascript: this.src='../StoreAssets/images/colors/color1/widget_search/search_submit_hover.png'" alt="Search" src="../StoreAssets/images/colors/color1/widget_search/search_submit.png" value="Search" type="image">
+
+			<span class="elementKeyIcon" title="SEARCH_CATALOG=Search, SEARCH_SUGGESTION=Press the Up or Down Arrow keys to navigate through the search suggestions. Suggested site content and search history, if any, are included after the suggestions.  Press the Enter key for all search results."><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div> <!-- content -->
+
+			<div class="right_border"></div>
+			<div class="clear_float"></div>
+		</div> <!-- widget_search -->
+
+	</div> <!-- widget_search_position -->
+
+
+	<!-- Start SearchDropdownWidget -->
+
+	<div id="autoSuggest_Result_div" style="display:none;">
+
+		<div id="widget_search_dropdown" class="widget_search_dropdown_position">
+			<div class="widget_search_dropdown">
+		
+				<!-- Top Border Styling -->
+
+				<div class="top">
+					<div class="left_border"></div>
+					<div class="middle"></div>
+					<div class="right_border"></div>
+				</div>
+				<div class="clear_float"></div>
+				
+				<!-- Main Content Area -->
+
+				<div class="content_left_border">
+					<div class="content_right_border">
+		
+						<div id="AutoSuggestDiv" class="content" role="region" aria-required="true" aria-labelledby="AutoSuggestDiv" onmouseover="SearchJS.autoSuggestHover = true;" onmouseout="SearchJS.autoSuggestHover = false; document.getElementById('SimpleSearchForm_SearchTerm').focus();">
+							
+								<span id="autoSuggestDynamic_Result_div_ACCE_Label" class="spanacce"><span>Suggested keywords menu<span title="SEARCH_AUTO_SUGGEST_ACCE_REGION" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SEARCH_AUTO_SUGGEST_ACCE_REGION"></span></span></span>  
+								<div class="dijitContentPane" title="" dojotype="wc.widget.RefreshArea" widgetid="autoSuggestDynamic_Result_div" controllerid="AutoSuggestDisplayController" id="autoSuggestDynamic_Result_div" role="region" aria-live="polite" aria-atomic="true" aria-relevant="all" aria-labelledby="autoSuggestDynamic_Result_div_ACCE_Label">
+									
+								</div>
+		
+								<div id="autoSuggestStatic_1"></div>
+								<div id="autoSuggestStatic_2"></div>
+								<div id="autoSuggestStatic_3"></div>
+								<div id="autoSuggestHistory"></div>
+								<div class="heading"> <a id="advancedSearch" onclick="" href="AdvancedSearch.html"><div>Advanced Search</div></a> </div>
+		
+						<!-- End content Section -->
+
+						</div>
+		
+					<!-- End content_right_border -->
+
+					</div>
+				<!-- End content_left_border -->
+
+				</div>
+				
+				<!-- Bottom Border Styling -->
+
+				<div class="bottom">
+					<div class="left_border"></div>
+					<div class="middle"></div>
+					<div class="right_border"></div>
+				</div>
+				
+			</div>
+		</div>
+	<!-- End SearchDropdownWidget -->
+
+	</div>
+	
+	<!-- Refresh area to retrieve cached suggestions -->
+
+	<span id="autoSuggestCachedSuggestions_div_ACCE_Label" class="spanacce"><span>Suggested site content and search history menu<span title="SEARCH_AUTO_SUGGEST_CACHED_ACCE_REGION" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SEARCH_AUTO_SUGGEST_CACHED_ACCE_REGION"></span></span></span>
+	<div class="dijitContentPane" title="" dojotype="wc.widget.RefreshArea" widgetid="autoSuggestCachedSuggestions_div" controllerid="AutoSuggestCachedSuggestionsController" id="autoSuggestCachedSuggestions_div" role="region" aria-live="polite" aria-atomic="true" aria-relevant="all" style="display: none;" aria-labelledby="autoSuggestCachedSuggestions_div_ACCE_Label">
+	</div>
+
+	<input name="storeId" value="10152" type="hidden">
+	<input name="catalogId" value="10001" type="hidden">
+	<input name="langId" value="-1" type="hidden">
+	<input name="pageSize" value="12" type="hidden">
+	<input name="beginIndex" value="0" type="hidden">
+	<input name="sType" value="SimpleSearch" type="hidden">
+	<input name="resultCatEntryType" value="2" type="hidden">
+	<input name="showResultsPage" value="true" type="hidden">
+	<input name="searchSource" value="Q" type="hidden">
+	<input name="pageView" value="" type="hidden">
+	<span id="searchTextHolder" class="nodisplay"><span>Search<span title="SEARCH_CATALOG" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SEARCH_CATALOG"></span></span></span>
+
+</form>
+
+	<!-- End Search Widget -->
+
+
+</span>
+<!-- END Search.jsp -->
+
+							
+						</div>
+						<!-- End Search Widget -->
+
+					<span class="elementKeyIcon" title="DEPARTMENTS=Departments"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>			
+					<div class="header_espot_container">		
+
+<!-- BEGIN ContentRecommendation.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">ContentRecommendation.jsp</div>
+</span>
+<!-- END ContentRecommendation.jsp -->
+						
+					</div>					
+				</div>
+				<!-- End Masthead -->
+
+				
+				<!-- End Header Content -->
+
+			</div>
+		</div>				
+	</div>
+	<!--For border customization -->
+
+	<div class="header_bottom">
+		<div class="left_border"></div>
+		<div class="middle"></div>
+		<div class="right_border"></div>
+	</div>
+</div>
+<div id="productIdQuickInfo" style="display:none">10001</div>
+
+</span>
+<!-- END Header.jsp -->
+
+				
+			</div>
+
+			<script type="text/javascript">
+				dojo.addOnLoad(function() {
+					CommonControllersDeclarationJS.setControllerURL('ShopCartDisplayController','');
+				});
+			</script>
+
+			<div class="content_wrapper_position" role="main">
+				<div class="content_wrapper">
+					<div class="content_left_shadow">
+						<div class="content_right_shadow">
+							<div class="main_content">
+
+<!-- BEGIN BreadCrumbTrailDisplay.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">BreadCrumbTrailDisplay.jsp</div>
+	 	<div id="breadcrumb">
+
+					<div id="orderItemDisplay">
+
+								<div class="left"><span aria-level="1" class="on" role="heading"><span>Shopping Cart<span title="SHOPPINGCART_TITLE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SHOPPINGCART_TITLE"></span></span></span></div>
+								<div id="continueShoppingButton" class="breadcrumb_item">
+									<a href="WelcometoAuroraESite.html" class="button_secondary" id="WC_BreadCrumbTrailDisplay_links_2a" tabindex="0" onclick="JavaScript:setPageLocation('http:///webapp/wcs/stores/servlet/en/auroraesite');return false;">
+										<div class="left_border"></div>
+										<div class="button_text"><span>Continue Shopping<span title="CONTINUE_SHOPPING" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="CONTINUE_SHOPPING"></span></span></div>								
+										<div class="right_border"></div>
+									</a>
+								</div>
+
+					</div>
+					<br clear="all">
+
+		 </div>
+
+</span>
+<!-- END BreadCrumbTrailDisplay.jsp -->
+
+
+								<div class="container_content_rightsidebar">
+									<div class="left_column"> 
+
+<!-- BEGIN PromotionChoiceOfFreeGiftsPopup.jspf -->
+
+<script type="text/javascript">
+	dojo.addOnLoad(function() { parseWidget("free_gifts_popup"); parseWidget("PromotionFreeGiftsDisplay");});	
+</script>       
+
+<script type="text/javascript" src="../StoreAssets/javascript/CheckoutArea/PromotionChoiceOfFreeGifts.js"></script>
+
+<div id="free_gifts_popup_main_div">
+	  
+</div>
+<!-- END PromotionChoiceOfFreeGiftsPopup.jspf -->
+
+
+										<span id="ShopCartDisplay_ACCE_Label" class="spanacce"><span>Shopping Cart<span title="ACCE_Region_Shopping_Cart_Content" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="ACCE_Region_Shopping_Cart_Content"></span></span></span>
+										<div class="dijitContentPane" title="" dojotype="wc.widget.RefreshArea" widgetid="ShopCartDisplay" id="ShopCartDisplay" controllerid="ShopCartDisplayController" ariamessage="Shopping Cart Display Updated" arialiveid="ariaMessage" role="region" aria-labelledby="ShopCartDisplay_ACCE_Label">
+
+<!-- BEGIN ShopCartDisplay.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">ShopCartDisplay.jsp</div>
+<!-- Get order Details using the ORDER SOI -->
+
+<script type="text/javascript">
+dojo.addOnLoad(
+	function(){
+		CommonControllersDeclarationJS.setControllerURL('ShopCartPaginationDisplayController','');
+		ShipmodeSelectionExtJS.setOrderItemId('90156');
+	}
+);
+</script>
+
+<div id="box" class="shopping_cart_box">
+	<div class="myaccount_header bottom_line" id="shopping_cart_product_table_tall">
+
+<!-- BEGIN CheckoutTopESpotDisplay.jspf -->
+
+<div class="espot_checkout_top" id="WC_CheckoutTopESpotDisplay_div_1">
+
+<!-- BEGIN ContentRecommendation.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">ContentRecommendation.jsp</div>
+</span>
+<!-- END ContentRecommendation.jsp -->
+			
+</div>
+<!-- END CheckoutTopESpotDisplay.jspf -->
+
+
+<!-- BEGIN ShipmodeSelectionExt.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">ShipmodeSelectionExt.jsp</div>
+		<form id="shipmodeForm">
+
+						<input id="BOPIS_shipmode_id" name="BOPIS_shipmode_id" value="10551" type="hidden">
+
+		</form>
+
+		<div id="purchase_options">
+			<form name="BOPIS_FORM" id="BOPIS_FORM">
+			<fieldset>
+				<legend><span class="spanacce">Two radio buttons for selecting the purchase option, first Shop On-Line option and second Pick up in store option.</span></legend>
+
+					<input name="shipType" id="shipTypeOnline" class="radio" value="shopOnline" checked="checked" onclick="javascript:wc.render.updateContext('ShopCartPaginationDisplay_Context',{'orderId':'17089'}); ShipmodeSelectionExtJS.setShipTypeValueToCookieForOrder('shopOnline',17089)" type="radio">
+
+			<label for="shipTypeOnline"><img src="../StoreAssets/images/shopping-cart-shop-online.png" alt="" border="0">Shop Online</label>	
+
+					<input name="shipType" id="shipTypePickUp" class="radio" value="pickUp" onclick="javascript:wc.render.updateContext('ShopCartPaginationDisplay_Context',{'orderId':'17089'}); ShipmodeSelectionExtJS.setShipTypeValueToCookieForOrder('pickUp',17089)" type="radio">
+
+			<label for="shipTypePickUp"><img src="../StoreAssets/images/shopping-cart-pickup-at-store.png" alt="" border="0">Pick Up at Store</label>
+			</fieldset>
+			</form>
+		</div>
+
+	<script type="text/javascript">
+	dojo.addOnLoad(function() {
+		//select the proper shipmode that is saved in the cookie
+		ShipmodeSelectionExtJS.displaySavedShipmentTypeForOrder('17089');
+	});
+	</script>
+	
+</span>
+<!-- END ShipmodeSelectionExt.jsp -->
+
+
+			</div>
+			
+			<div class="body" id="WC_ShopCartDisplay_div_5">
+				<input id="OrderFirstItemId" value="90156" type="hidden">
+
+					<div id="scheduling_options" style="display: none;">
+						<span id="recurringOrderAcceText" style="display:none"><span>
+							What is a recurring order?<span title="WHAT_IS_REC_ORDER" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="WHAT_IS_REC_ORDER"></span>
+							A recurring order allows you to schedule repeat orders automatically instead of re-ordering the same item over and over again. For example, instead of logging on to re-order milk every time you run out, simply set up a recurring order so that milk is delivered to your home every week, or any time period between orders suits you best.<br>Selecting the check box turns your entire shopping cart into a recurring order. On the next page, you can select when the order starts and how often it repeats.<span title="REC_ORDER_POPUP_DESCRIPTION" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="REC_ORDER_POPUP_DESCRIPTION"></span>
+						</span></span>
+						<form name="RecurringOrderForm">
+							<input name="recurringOrder" id="recurringOrder" class="radio" onclick="javascript:ShipmodeSelectionExtJS.hideShowNonRecurringOrderMsg(17089)" type="checkbox">
+							<label for="recurringOrder"><span>Schedule this order as a recurring order<span title="RECURRING_ORDER_SELECT" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="RECURRING_ORDER_SELECT"></span></span><span id="recurringOrderInfo" tabindex="0" onmouseover="javascript: this.title = '';" onmouseout="javascript: this.title = document.getElementById('recurringOrderAcceText').innerHTML;" title="What is a recurring order?A recurring order allows you to schedule repeat orders automatically instead of re-ordering the same item over and over again. For example, instead of logging on to re-order milk every time you run out, simply set up a recurring order so that milk is delivered to your home every week, or any time period between orders suits you best.&lt;br/&gt;Selecting the check box turns your entire shopping cart into a recurring order. On the next page, you can select when the order starts and how often it repeats.">&nbsp;<img src="../StoreAssets/images/colors/color1/info.png" alt="recurring order information icon" border="0"><span class="elementKeyIcon" title="RECURRING_ORDER_INFO=recurring order information icon"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></span><span class="elementKeyIcon" title="WHAT_IS_REC_ORDER[PROPERTIES;REC_ORDER_POPUP_DESCRIPTION;A recurring order allows you to schedule repeat orders automatically instead of re-ordering the same item over and over again. For example, instead of logging on to re-order milk every time you run out, simply set up a recurring order so that milk is delivered to your home every week, or any time period between orders suits you best.&lt;br/&gt;Selecting the check box turns your entire shopping cart into a recurring order. On the next page, you can select when the order starts and how often it repeats.]=What is a recurring order?[PROPERTIES;REC_ORDER_POPUP_DESCRIPTION;A recurring order allows you to schedule repeat orders automatically instead of re-ordering the same item over and over again. For example, instead of logging on to re-order milk every time you run out, simply set up a recurring order so that milk is delivered to your home every week, or any time period between orders suits you best.&lt;br/&gt;Selecting the check box turns your entire shopping cart into a recurring order. On the next page, you can select when the order starts and how often it repeats.], WHAT_IS_REC_ORDERREC_ORDER_POPUP_DESCRIPTION=What is a recurring order?A recurring order allows you to schedule repeat orders automatically instead of re-ordering the same item over and over again. For example, instead of logging on to re-order milk every time you run out, simply set up a recurring order so that milk is delivered to your home every week, or any time period between orders suits you best.&lt;br/&gt;Selecting the check box turns your entire shopping cart into a recurring order. On the next page, you can select when the order starts and how often it repeats."><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></label>
+						
+							<div widgetid="recurringOrderInfoPopUp" id="recurringOrderInfoPopUp" dojotype="wc.widget.Tooltip" connectid="recurringOrderInfo" class="recurring_orderdesc_popup_main_div dijitTooltipData">
+								<div id="recurringOrderInfoPopUp_div1" class="widget_site_popup">
+									<div class="top">
+										<div class="left_border"></div>
+										<div class="middle"></div>
+										<div class="right_border"></div>
+									</div>
+									<div class="clear_float"></div>
+									<div class="middle">
+										<div class="content_left_border">
+											<div class="content_right_border">
+												<div class="content">
+													<div class="header" id="recurringOrderInfoPopUp_div4">
+														<span id="recurringOrderInfoPopUp_title"><span>What is a recurring order?<span title="WHAT_IS_REC_ORDER" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="WHAT_IS_REC_ORDER"></span></span></span>
+														<div class="clear_float"></div>
+													</div>
+													<div class="body" id="recurringOrderInfoPopUp_div7"><span>
+														A recurring order allows you to schedule repeat orders automatically instead of re-ordering the same item over and over again. For example, instead of logging on to re-order milk every time you run out, simply set up a recurring order so that milk is delivered to your home every week, or any time period between orders suits you best.<br>Selecting the check box turns your entire shopping cart into a recurring order. On the next page, you can select when the order starts and how often it repeats.<span title="REC_ORDER_POPUP_DESCRIPTION" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="REC_ORDER_POPUP_DESCRIPTION"></span>														
+													</span></div>
+													<div class="clear_float" id="recurringOrderInfoPopUp_div8"></div>										
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="clear_float"></div>
+									<div class="bottom">
+										<div class="left_border"></div>
+										<div class="middle"></div>
+										<div class="right_border"></div>
+									</div>
+									<div class="clear_float"></div>								
+								</div>
+							</div>
+
+							<script type="text/javascript">
+								dojo.addOnLoad(function() { 
+									parseWidget("recurringOrderInfoPopUp");
+								});
+							</script>
+						</form>
+					</div>
+				
+				<span id="ShopCartPagingDisplay_ACCE_Label" class="spanacce"><span>Order Item List<span title="ACCE_Region_Order_Item_List" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="ACCE_Region_Order_Item_List"></span></span></span>
+				<div class="dijitContentPane" title="" dojotype="wc.widget.RefreshArea" widgetid="ShopCartPagingDisplay" id="ShopCartPagingDisplay" controllerid="ShopCartPaginationDisplayController" ariamessage="Order Item List Updated" arialiveid="ariaMessage" role="region" aria-labelledby="ShopCartPagingDisplay_ACCE_Label">
+
+<!-- BEGIN OrderItemDetail.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">OrderItemDetail.jsp</div>
+<table id="order_details" summary="[PROPERTIES;SHOPCART_TABLE_SUMMARY;This table contains details about your current order. It contains product details, availability, quantity, unit price and total price of each item in the current order. You can change quantity or remove the item from current order by navigating through this table.]" border="0" cellpadding="0" cellspacing="0" width="100%">
+	  <tbody><tr class="nested">
+		   <th class="align_left" id="shoppingCart_tableCell_productName"><span>Product	<span title="SHOPCART_PRODUCT" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SHOPCART_PRODUCT"></span></span></th>
+		   <th class="align_left" id="shoppingCart_tableCell_availability"><span>Availability	<span title="SHOPCART_AVAILABILITY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SHOPCART_AVAILABILITY"></span></span></th>
+		   <th class="align_center" id="shoppingCart_tableCell_quantity" abbr="Quantity"><span>QTY	<span title="SHOPCART_QTY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SHOPCART_QTY"></span></span></th>
+		   <th class="align_right" id="shoppingCart_tableCell_each" abbr="Unit Price"><span>Each<span title="SHOPCART_EACH" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SHOPCART_EACH"></span></span></th>
+		   <th class="align_right" id="shoppingCart_tableCell_total" abbr="Total Price"><span>Total<span title="SHOPCART_TOTAL" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SHOPCART_TOTAL"></span></span></th>
+	  <span class="elementKeyIcon" title="UNIT_PRICE=Unit Price, QUANTITY1=Quantity"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span><span class="elementKeyIcon" title="TOTAL_PRICE=Total Price, UNIT_PRICE=Unit Price, QUANTITY1=Quantity"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></tr>
+
+		<input value="90156" name="orderItem_1" id="orderItem_1" type="hidden">
+		<input value="10041" name="catalogId_1" id="catalogId_1" type="hidden">
+		<tr>
+
+			<th class="th_align_left_normal " id="shoppingCart_rowHeader_product1" abbr="for Hermitage Ruched Bodice Cocktail Dress">
+				<div class="img" id="WC_OrderItemDetailsf_div_1_1">
+
+					<a href="HermitageRuchedBodiceCocktailDressAuroraESite.html" id="catalogEntry_img_90156" title="Hermitage Ruched Bodice Cocktail Dress">
+						<img alt="Hermitage Ruched Bodice Cocktail Dress" src="../StoreAssets/images/catalog/apparel/women/womens_dresses_70x70/WD_028_a_red.jpg">
+					</a>
+					
+				</div>			
+				<div id="WC_OrderItemDetailsf_div_2_1" class="img">
+					
+						<p><a class="hover_underline" id="catalogEntry_name_90156" href="HermitageRuchedBodiceCocktailDressAuroraESite.html">Hermitage Ruched Bodice Cocktail Dress</a></p>
+					
+					<span><span>SKU:<span title="CurrentOrder_SKU" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="CurrentOrder_SKU"></span> AuroraWMDRS-002</span></span><br>	
+
+									<a class="order_link hover_underline" id="WC_OrderItemDetailsf_links_1_1_"  onclick="javascript: document.getElementById('quickInfoPopup').style.display='block';"><span> 
+										Change Attributes<span title="CHANGE_ATTRIBUTES" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="CHANGE_ATTRIBUTES"></span>
+									</span></a>
+									<br>
+								
+								<input name="selectedAttr" id="selectedAttr_90156" value="Available Sizes|M|Color|Red" type="hidden">
+
+									<div class="no_checkout" id="nonRecurringItem_90156" style="display: none;"><div class="no_checkout_icon"></div><span> &nbsp;Item cannot be included in a recurring order<span title="NON_RECURRING_PRODUCT" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="NON_RECURRING_PRODUCT"></span></span></div>
+
+						<br>
+
+<!-- BEGIN ShoppingList.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">ShoppingList.jsp</div>
+<script>
+	shoppingListJSOI90156 = new ShoppingListJS({storeId: '10152',catalogId: '10001',langId: '-1'}, {id: '10041', name: 'Hermitage Ruched Bodice Cocktail Dress', image: '../StoreAssets/images/catalog/apparel/women/womens_dresses_105x105/WD_028_a_red.jpg', type: 'ItemBean', components: {}, skus: []}, {}, "shoppingListJSOI90156");
+</script>
+
+<div id="shoppingListScript_OI90156" style="display:none;">
+	if(typeof(shoppingListJSOI90156) == "undefined" || shoppingListJSOI90156 == null || !shoppingListJSOI90156) {
+		shoppingListJSOI90156 = new ShoppingListJS({storeId: '10152',catalogId: '10001',langId: '-1'}, {id: '10041', name: 'Hermitage Ruched Bodice Cocktail Dress', image: '../StoreAssets/images/catalog/apparel/women/womens_dresses_105x105/WD_028_a_red.jpg', type: 'ItemBean', components: {}, skus: []}, {}, "shoppingListJSOI90156");
+	}
+</div>
+
+<img style="display:none;" src="../StoreAssets/images/catalog/apparel/women/womens_dresses_105x105/WD_028_a_red.jpg">
+<div style="position:relative;">
+	<div id="OI90156addToShoppingListBtn" class="dropdown_primary">
+	
+		<a id="OI90156addToShoppingList" href="
+
+					javascript:shoppingListJSOI90156.showDropDown();
+
+			" class="button" role="button">
+			<div class="left_border"></div>
+			<div class="content"><span>
+
+						Move to Wish List<span title="MOVE_TO_WISH_LIST" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MOVE_TO_WISH_LIST"></span>
+
+			</span></div>
+			<div class="right_border"></div>
+		</a>
+			<div class="drop">
+			<div class="white_line"></div>
+				<a id="OI90156addToShoppingListDropdown" onmouseover="javascript: shoppingListJSOI90156.mouseOnArrow = true;" onmouseout="javascript: shoppingListJSOI90156.mouseOnArrow = false;" href="javascript:shoppingListJSOI90156.showDropDown();" class="dropdown_arrow" title="Multiple wish list drop down. Press enter and tab to display the drop down" role="button">
+						<img style="margin-top: 10px;"src="../StoreAssets/images/colors/color1/widget_quick_info_popup/dropdown_arrow.png" alt="Multiple wish list drop down. Press enter and tab to display the drop down">
+					<span class="elementKeyIcon" title="SL_MULTIPLE_SHOPPING_LIST_DD=Multiple wish list drop down. Press enter and tab to display the drop down"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></a>
+				<div class="right_border"></div>
+			<span class="elementKeyIcon" title="SL_MULTIPLE_SHOPPING_LIST_DD=Multiple wish list drop down. Press enter and tab to display the drop down"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+	</div>
+	
+			<div id="OI90156shoppingListDropDown" style="display: none" class="dropdown_list" onmousedown="javascript:shoppingListJSOI90156.hasFocus(event);" onkeydown="javascript:shoppingListJSOI90156.navigateDropDown(event);" onblur="javascript: document.getElementById('OI90156addToShoppingListDropdown').focus();" role="menu">
+				<ul class="wish_order_list">
+
+							<li role="menuitem" class="message"><span>Sign In or Register to access your lists.<span title="SL_SIGN_IN_OR_REGISTER_TO_ACCESS_LIST" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SL_SIGN_IN_OR_REGISTER_TO_ACCESS_LIST"></span></span></li>
+							<div class="divider"></div>
+							<li role="menuitem" id="OI90156ShoppingList_0" class="created_list" onfocus="javascript:shoppingListJSOI90156.focusList(0);" onblur="javascript: this.className = 'created_list';">
+									<a id="OI90156ShoppingListLink_0" href="SignIn.html" onfocus="javascript:shoppingListJSOI90156.focusListLink(0);" role="menuitem" title="Sign In or Register to access your lists."><span>Sign In / Register<span title="SL_SIGN_IN_OR_REGISTER" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SL_SIGN_IN_OR_REGISTER"></span></span></a>
+							<span class="elementKeyIcon" title="SL_SIGN_IN_OR_REGISTER_TO_ACCESS_LIST=Sign In or Register to access your lists."><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></li>
+
+				</ul>
+			</div>
+		
+</div>
+<!-- Hidden Fields -->
+
+<input id="OI90156storeParams" value="{storeId: '10152',catalogId: '10001',langId: '-1'}" type="hidden">
+<input id="OI90156catEntryParams" value="{id: '10041', name: 'Hermitage Ruched Bodice Cocktail Dress', image: '../StoreAssets/images/catalog/apparel/women/womens_dresses_105x105/WD_028_a_red.jpg', type: 'ItemBean', components: {}, skus: []}" type="hidden">
+<input id="OI90156shoppingListNames" value="{}" type="hidden">
+
+</span>
+<!-- END ShoppingList.jsp -->
+
+
+							<a class="remove_address_link hover_underline" id="WC_OrderItemDetailsf_links_2_1" href="JavaScript:setCurrentId('WC_OrderItemDetailsf_links_2_1'); CheckoutHelperJS.deleteFromCart('90156');">
+								<img src="../StoreAssets/images/colors/color1/table_x_delete.png" alt=""><span>
+								Remove<span title="SHOPCART_REMOVE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SHOPCART_REMOVE"></span>
+							</span></a>
+
+				</div>
+			</th>
+			<td id="WC_OrderItemDetailsf_td_1_1" class=" avail" headers="shoppingCart_tableCell_availability shoppingCart_rowHeader_product1">
+
+<!-- BEGIN CatalogEntryAvailabilityDisplay.jspf-->
+
+				<p><span>
+
+							In-Stock<span title="SHIP_IN_STOCK" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SHIP_IN_STOCK"></span>
+
+				</span></p>
+
+<!-- END CatalogEntryAvailabilityDisplay.jspf-->
+
+				
+			</td>
+			<td id="WC_OrderItemDetailsf_td_2_1" class=" QTY" headers="shoppingCart_tableCell_quantity shoppingCart_rowHeader_product1">
+				<p class="item-quantity">
+
+								<label for="qty_1" style="display:none"><span>Quantity<span title="QUANTITY1" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="QUANTITY1"></span></span></label>
+								<input id="qty_1" name="qty_1" size="1" style="width:25px;" value="1" onkeydown="JavaScript:setCurrentId('qty_1'); CheckoutHelperJS.updateCartWait(this, '90156',event)" type="text">
+
+				</p>
+			</td>
+			<td id="WC_OrderItemDetailsf_td_3_1" class=" each" headers="shoppingCart_tableCell_each shoppingCart_rowHeader_product1">
+
+				<span class="price">
+					
+					$100.00
+					
+				</span>
+
+			</td>
+			<td id="WC_OrderItemDetailsf_td_4_1" class=" total" headers="shoppingCart_tableCell_total shoppingCart_rowHeader_product1">
+
+						<span class="price">
+							
+							$100.00
+							
+						</span>
+
+			</td>
+		<span class="elementKeyIcon" title="Checkout_ACCE_for Hermitage Ruched Bodice Cocktail Dress=for Hermitage Ruched Bodice Cocktail Dress"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></tr>
+
+	<input id="totalNumberOfItems" name="totalNumberOfItems" value="1" type="hidden">
+
+	<input name="existingPaymentInstructionId" value="" id="existingPaymentInstructionId" type="hidden">
+
+	<input name="currentOrderId" value="17089" id="currentOrderId" type="hidden">
+	<input name="numOrderItemsInOrder" value="1" id="numOrderItemsInOrder" type="hidden">
+	<input name="nonRecurringOrderItems" value="90156" id="nonRecurringOrderItems" type="hidden">
+	<input name="nonRecurringOrderItemsCount" value="1" id="nonRecurringOrderItemsCount" type="hidden">
+ </tbody></table>
+
+		<script type="text/javascript">
+			dojo.addOnLoad(function() {
+				analyticsJS.storeId=10152;
+				analyticsJS.catalogId=10001;
+				analyticsJS.publishCartView();
+			});
+		</script>
+
+</span>
+<!-- END OrderItemDetail.jsp -->
+
+
+				</div>
+				<script type="text/javascript">
+					dojo.addOnLoad(function() { 
+						parseWidget("ShopCartPagingDisplay");							
+					});            
+				</script>
+
+				<div class="free_gifts_block">
+
+<!-- BEGIN PromotionPickYourFreeGift.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">PromotionPickYourFreeGift.jsp</div>
+<script type="text/javascript">
+	dojo.addOnLoad(function(){
+		CommonControllersDeclarationJS.setControllerURL('PromotionFreeGifts_Controller','');		
+	});
+</script>	
+
+		<div class="free_gift_container"> 
+			
+				<p>
+												
+				</p>
+				
+			<div class="button_align">
+				<a  role="button" aria-labelledby="PickYourFreeGift_ACCE_Label" class="button_secondary" id="PickYourFreeGift" onclick="javascript: document.getElementById('free_gifts_popup').style.display='block';">
+					<div class="left_border"></div>
+					<div class="button_text"><span>
+
+								Select your free gift<span title="PROMOTION_PICK_FREE_GIFT" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="PROMOTION_PICK_FREE_GIFT"></span>	
+
+						</span><span id="PickYourFreeGift_ACCE_Label" class="spanacce"><span>select to view the free gift choices<span title="Checkout_ACCE_promo_free_gifts_pick" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="Checkout_ACCE_promo_free_gifts_pick"></span></span></span>
+					</div>
+					<div class="right_border"></div>
+				</a>
+			</div>
+		</div>							
+
+</span>
+<!-- END PromotionPickYourFreeGift.jsp -->
+
+
+				</div>
+				<div id="WC_ShopCartDisplay_div_5a" class="espot_payment left">
+
+<!-- BEGIN ContentRecommendation.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">ContentRecommendation.jsp</div>
+</span>
+<!-- END ContentRecommendation.jsp -->
+											
+				</div>
+
+<!-- BEGIN SingleShipmentOrderTotalsSummary.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">SingleShipmentOrderTotalsSummary.jsp</div>
+<script type="text/javascript">
+	dojo.addOnLoad(initDiscountDetails);
+	
+	function initDiscountDetails(){	
+		
+		if(document.getElementById("discountDetailsSection")!=null )  {
+			document.getElementById("discountDetailsSection").style.display = "block";
+		}
+	}
+</script>
+
+<div id="total_breakdown">
+
+			<div id="promotions">
+
+<!-- BEGIN PromotionCodeDisplay.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">PromotionCodeDisplay.jsp</div>
+<script type="text/javascript">
+	dojo.addOnLoad(function() {
+		
+		MessageHelper.setMessage("PROMOTION_CODE_EMPTY", "Please enter the promotional code");
+	});
+</script>
+
+<script type="text/javascript">
+	dojo.addOnLoad(initPromotionAssets); 
+       
+	function initPromotionAssets(){
+		       
+	}
+</script>
+
+<form name="PromotionCodeForm" id="PromotionCodeForm" method="post" action="https:///webapp/wcs/stores/servlet/PromotionCodeManage?catalogId=10001&amp;langId=-1&amp;storeId=10152" onsubmit="javascript: return false;">
+
+	<input name="orderId" value="17089" id="WC_PromotionCodeDisplay_FormInput_orderId_In_PromotionCodeForm_1" type="hidden">
+	<input name="taskType" value="A" id="WC_PromotionCodeDisplay_FormInput_page_In_PromotionCodeForm_1" type="hidden">
+	<input name="URL" value="" id="WC_PromotionCodeDisplay_FormInput_URL_In_PromotionCodeForm_1" type="hidden">
+	<input name="storeId" value="10152" id="WC_PromotionCodeDisplay_FormInput_storeId_In_PromotionCodeForm_1" type="hidden">
+	<input name="catalogId" value="10001" id="WC_PromotionCodeDisplay_FormInput_catalogId_In_PromotionCodeForm_1" type="hidden">
+	<input name="langId" value="-1" id="WC_PromotionCodeDisplay_FormInput_langId_In_PromotionCodeForm_1" type="hidden">
+	<input name="finalView" value="AjaxOrderItemDisplayView" id="WC_PromotionCodeDisplay_FormInput_finalView_In_PromotionCodeForm_1" type="hidden">
+       
+	<div class="promotion_code" id="WC_PromotionCodeDisplay_div_1">
+		<label for="promoCode">Promotional code:</label>
+	</div>
+         
+	<div class="promotion_input" id="WC_PromotionCodeDisplay_div_2">
+		<input class="input" size="6" name="promoCode" id="promoCode" onkeypress="if(event.keyCode==13) JavaScript:CheckoutHelperJS.applyPromotionCode('PromotionCodeForm','AjaxOrderItemDisplayView')" type="text">
+	</div>
+
+	<div class="promotion_button" id="WC_PromotionCodeDisplay_div_3">
+		<div class="button_align" id="WC_PromotionCodeDisplay_div_4">
+				<a  role="button" class="button_primary" id="WC_PromotionCodeDisplay_links_1" aria-labelledby="WC_PromotionCodeDisplay_links_1_ACCE_Label" tabindex="0" onclick="JavaScript:setCurrentId('WC_PromotionCodeDisplay_links_1'); CheckoutHelperJS.applyPromotionCode('PromotionCodeForm','AjaxOrderItemDisplayView');return false;">
+				<div class="left_border"></div>
+					<div class="button_text">Apply<span id="WC_PromotionCodeDisplay_links_1_ACCE_Label" class="spanacce">apply promotional code</span></div>
+				<div class="right_border"></div>
+			</a>
+		</div>
+		
+		<br clear="all">
+	</div>
+	<div id="appliedPromotionCodes" class="hover_underline">                                   
+		
+		<!--  <input type="hidden" name="newPromoCode" id="newPromoCode" value=""/> -->
+
+	</div>
+	<br clear="left">
+</form>
+</span>
+<!-- END PromotionCodeDisplay.jsp -->
+
+
+			</div>
+
+	<table id="order_total" role="presentation" border="0" cellpadding="0" cellspacing="0">
+
+		<tbody><tr> 
+			<td class="total_details" id="WC_SingleShipmentOrderTotalsSummary_td_1">Order Subtotal:</td>
+			<td class="total_figures" id="WC_SingleShipmentOrderTotalsSummary_td_2">$100.00</td>
+		</tr>
+
+		<tr>
+
+				<td></td>
+			
+		</tr>
+
+		<tr>
+			<td class="total_details" id="WC_SingleShipmentOrderTotalsSummary_td_3">
+
+						Discount: 
+
+			</td>
+			<td class="total_figures" id="WC_SingleShipmentOrderTotalsSummary_td_4">$0.00</td>
+		</tr>
+
+		<tr>
+			<td class="total_details order_total" id="WC_SingleShipmentOrderTotalsSummary_td_9">Order Total:</td>
+
+					<td class="total_figures breadcrumb_current" id="WC_SingleShipmentOrderTotalsSummary_td_13">$100.00</td>
+
+		</tr>
+	
+	</tbody></table>
+
+</div>
+
+<!-- BEGIN CouponWalletTable.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">CouponWalletTable.jsp</div>
+</span>
+<!-- END CouponWalletTable.jsp -->
+
+</span>
+<!-- END SingleShipmentOrderTotalsSummary.jsp -->
+
+
+				<br clear="all">
+
+<!-- BEGIN CheckoutLogon.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">CheckoutLogon.jsp</div>
+<!-- Start - JSP File Name:  CheckoutLogon.jsp -->
+
+	<form method="post" name="AjaxLogon" id="AjaxLogon" action="Logon">
+		<input name="storeId" value="10152" id="WC_RememberMeLogonForm_FormInput_storeId_In_AjaxLogon_1" type="hidden">
+		<input name="catalogId" value="10001" id="WC_RememberMeLogonForm_FormInput_catalogId_In_AjaxLogon_1" type="hidden">
+		<input name="URL" value="" id="WC_AccountDisplay_FormInput_URL_In_Logon_1" type="hidden">
+		<input name="reLogonURL" value="AjaxOrderItemDisplayView" id="WC_RememberMeLogonForm_FormInput_reLogonURL_In_AjaxLogon_1" type="hidden">
+		<input name="errorViewName" value="AjaxOrderItemDisplayView" id="WC_RememberMeLogonForm_FormInput_errorViewName_In_AjaxLogon_1" type="hidden">	
+
+		<div class="top_border" id="WC_CheckoutLogonf_div_0">
+			<div id="customers_new_or_returning">
+				<div class="new" id="WC_CheckoutLogonf_div_1">
+					<h2><span>New customer &amp; guests<span title="SHOPCART_NEW_CUSTOMER" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SHOPCART_NEW_CUSTOMER"></span></span></h2>
+					<p><span>Checkout without signing in<span title="SHOPCART_CHECKOUT_WITHOUT_SIGNING" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SHOPCART_CHECKOUT_WITHOUT_SIGNING"></span></span></p>
+					<br>
+					<p><span>You can make your purchases from Aurora without signing in.<span title="SHOPCART_TEXT1" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SHOPCART_TEXT1"></span></span></p>
+					<br>
+					<p><span>You will be given the option to register during the checkout steps.<span title="SHOPCART_TEXT2" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SHOPCART_TEXT2"></span></span></p>
+					<div class="new_button" id="WC_CheckoutLogonf_div_2">
+						<div class="button_align" id="WC_CheckoutLogonf_div_3">
+							<a  role="button" class="button_primary" id="guestShopperContinue" onclick="javascript: if (document.getElementById('shipTypeOnline').checked) this.href='ShippingandBillingDisplay.html'; else this.href='StoreSelection.html';">
+								<div class="left_border"></div>
+								<div class="button_text"><span>Continue Checkout<span title="SHOPCART_CONTINUE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SHOPCART_CONTINUE"></span></span></div>
+								<div class="right_border"></div>
+							</a>
+						</div>
+					</div>
+				</div>			
+
+				<div class="returning" id="WC_CheckoutLogonf_div_4">
+					<h2><span>Returning customers<span title="SHOPCART_TEXT3" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SHOPCART_TEXT3"></span></span></h2>
+					<p><span>Sign in for quick checkout<span title="SHOPCART_TEXT4" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SHOPCART_TEXT4"></span></span></p>
+					<br>
+					<p><label for="WC_CheckoutLogon_FormInput_logonId"><span>Username:<span title="SHOPCART_USERNAME" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SHOPCART_USERNAME"></span></span></label></p>
+					<p>
+						<input id="WC_CheckoutLogon_FormInput_logonId" name="logonId" size="25" onkeypress="if(event.keyCode==13){javascript:if(CheckoutHelperJS.canCheckoutContinue() &amp;&amp; CheckoutHelperJS.updateShoppingCart(document.ShopCartForm,true)){ShipmodeSelectionExtJS.guestShopperLogon('javascript:LogonForm.SubmitAjaxLogin(document.AjaxLogon)', 'https:///webapp/wcs/stores/servlet/OrderItemMove?updatePrices=0&amp;calculationUsageId=-1&amp;createIfEmpty=1&amp;deleteIfEmpty=*&amp;continue=1&amp;toOrderId=.&amp;fromOrderId=*', 'https:///webapp/wcs/stores/servlet/OrderShippingBillingView?shipmentType=single&amp;catalogId=10001&amp;langId=-1&amp;storeId=10152', 'http:///webapp/wcs/stores/servlet/CheckoutStoreSelectionView?catalogId=10001&amp;fromPage=ShoppingCart&amp;langId=-1&amp;storeId=10152');}}" type="text">
+					</p>
+					<br>
+					<p><label for="WC_CheckoutLogon_FormInput_logonPassword"><span>Password:<span title="SHOPCART_PASSWORD" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SHOPCART_PASSWORD"></span></span></label></p>
+					<p>
+						<input id="WC_CheckoutLogon_FormInput_logonPassword" name="logonPassword" size="25" onkeypress="if(event.keyCode==13){javascript:if(CheckoutHelperJS.canCheckoutContinue() &amp;&amp; CheckoutHelperJS.updateShoppingCart(document.ShopCartForm,true)){ShipmodeSelectionExtJS.guestShopperLogon('javascript:LogonForm.SubmitAjaxLogin(document.AjaxLogon)', 'https:///webapp/wcs/stores/servlet/OrderItemMove?updatePrices=0&amp;calculationUsageId=-1&amp;createIfEmpty=1&amp;deleteIfEmpty=*&amp;continue=1&amp;toOrderId=.&amp;fromOrderId=*', 'https:///webapp/wcs/stores/servlet/OrderShippingBillingView?shipmentType=single&amp;catalogId=10001&amp;langId=-1&amp;storeId=10152', 'http:///webapp/wcs/stores/servlet/CheckoutStoreSelectionView?catalogId=10001&amp;fromPage=ShoppingCart&amp;langId=-1&amp;storeId=10152');}}" type="password">
+					</p>
+					<p><a  class="myaccount_link hover_underline" id="WC_CheckoutLogonf_links_1"><span>Forgot your password?<span title="SHOPCART_FORGOT" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SHOPCART_FORGOT"></span></span></a></p>
+					<div class="returning_button" id="WC_CheckoutLogonf_div_5">
+						<div class="button_align" id="WC_CheckoutLogonf_div_6">
+							<a  role="button" class="button_primary" id="guestShopperLogon" onclick="javascript:if(CheckoutHelperJS.canCheckoutContinue() &amp;&amp; CheckoutHelperJS.updateShoppingCart(document.ShopCartForm,true)){ShipmodeSelectionExtJS.guestShopperLogon('javascript:LogonForm.SubmitAjaxLogin(document.AjaxLogon)', 'https:///webapp/wcs/stores/servlet/OrderItemMove?updatePrices=0&amp;calculationUsageId=-1&amp;createIfEmpty=1&amp;deleteIfEmpty=*&amp;continue=1&amp;toOrderId=.&amp;fromOrderId=*', 'https:///webapp/wcs/stores/servlet/OrderShippingBillingView?shipmentType=single&amp;catalogId=10001&amp;langId=-1&amp;storeId=10152', 'http:///webapp/wcs/stores/servlet/CheckoutStoreSelectionView?catalogId=10001&amp;fromPage=ShoppingCart&amp;langId=-1&amp;storeId=10152');}return false;">
+								<div class="left_border"></div>
+								<div class="button_text"><span>Sign in &amp; Checkout<span title="SHOPCART_SIGNIN" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SHOPCART_SIGNIN"></span></span></div>
+								<div class="right_border"></div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	 	<br clear="all">
+	 	<br>
+	</form>
+
+<div id="WC_CheckoutLogonf_div_9">
+
+</div>
+
+</span>
+<!-- END CheckoutLogon.jsp -->
+
+
+<!-- BEGIN CheckoutBottomESpotDisplay.jspf -->
+
+<br clear="all">
+
+<div id="WC_CheckoutBottomESpotDisplay_div_1" class="left">
+
+<!-- BEGIN ContentRecommendation.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">ContentRecommendation.jsp</div>
+</span>
+<!-- END ContentRecommendation.jsp -->
+										
+</div>
+
+<div id="WC_CheckoutBottomESpotDisplay_div_2" class="espot_checkout_bottom_right">
+
+<!-- BEGIN ContentRecommendation.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">ContentRecommendation.jsp</div>
+</span>
+<!-- END ContentRecommendation.jsp -->
+										
+</div>
+
+<br clear="all">
+<!-- END CheckoutBottomESpotDisplay.jspf -->
+
+
+			<span class="elementKeyIcon" title="ACCE_Status_Order_Item_List_Updated=Order Item List Updated"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>			
+
+	<div class="footer" id="WC_ShopCartDisplay_div_7">
+		<div class="left_corner" id="WC_ShopCartDisplay_div_8"></div>
+		<div class="left" id="WC_ShopCartDisplay_div_9"></div>
+		<div class="right_corner" id="WC_ShopCartDisplay_div_10"></div>
+	</div>
+</div>
+</span>
+<!-- END ShopCartDisplay.jsp -->
+
+
+										</div> 
+										<script type="text/javascript">
+											dojo.addOnLoad(function() { 
+												parseWidget("ShopCartDisplay");
+											});
+										</script>					
+										<br>
+
+											<div class="item_spacer_5px"></div>
+												
+											<div class="widget_product_listing_position">
+
+<!-- BEGIN IntelligentOffer.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">IntelligentOffer.jsp</div>
+			<div role="group" title="" widgetid="WC_IntelligentOfferESpot_container_ID_A222" class="WC_IntelligentOfferESpot_container_class_A222 dijitContentPane" dojotype="wc.widget.RefreshArea" id="WC_IntelligentOfferESpot_container_ID_A222" controllerid="WC_IntelligentOfferESpot_controller_ID_A222">
+
+	<div class="widget_product_listing" id="widget_Offer_1">
+		
+		<div class="top">
+			<div class="left_border"></div>
+			<div class="middle_tile"></div>
+			<div class="right_border"></div>
+		</div>
+		<div class="middle">
+			<div class="left_border">
+				<div class="right_border">
+
+					<div class="content">
+						<div class="header_bar simple_bar">
+							<div class="title"><span>Recommended<span title="ES_RECOMMENDATIONS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="ES_RECOMMENDATIONS"></span></span></div>
+								
+									<div class="paging_controls">
+										
+										<span class="left"><span>
+											1 - 2<span title="CATEGORY_RESULTS_PAGES_DISPLAYING" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="CATEGORY_RESULTS_PAGES_DISPLAYING"></span>	
+										</span></span>
+										
+											<a href="javaScript:setCurrentId('Offer_links_2');IntelligentOfferJS.showNextResults('1');" id="Offer_links_2" class="left" title="Show next set of Intelligent offer recommendations">		
+												<img class="right_arrow_enabled" src="../StoreAssets/images/colors/color1/sidebar_containers/right_arrow_enabled.png" alt="">
+											</a>
+										
+										<div class="clear_float"></div>
+									<span class="elementKeyIcon" title="ES_SHOW_NEXT_OFFER_SET=Show next set of Intelligent offer recommendations"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+
+								<div class="clear_float"></div>
+						</div>					
+						<div class="product_listing_container">
+							<fieldset>
+								<legend><span class="spanacce"><span>Product Listing<span title="ES_PRODUCT_LISTING" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="ES_PRODUCT_LISTING"></span></span></span></legend>
+								<div class="grid_mode">
+									<div class="row first_row">
+
+<!-- BEGIN CatalogEntryDisplay.jsp -->
+
+<div class="jspcaption" style="display:none">CatalogEntryDisplay.jsp</div>
+<div class="product">
+
+<div id="MiniGridViewProdImg_10002" class="product_image" onblur="javascript:hideSection('catalogEntry_img_div10002');">
+	<a href="HermitageRuchedBodiceCocktailDressAuroraESite.html" id="catalogEntry_img_10002" onkeydown="shiftTabHideSection('catalogEntry_img_div10002',event);" onfocus="showSection('catalogEntry_img_div10002');" title="Versatil Empire Waist Sundress">
+		<img alt="Versatil Empire Waist Sundress" src="../StoreAssets/images/catalog/apparel/women/womens_dresses_160x160/WD_015_a_teal.jpg">
+				
+	</a>
+	<div id="catalogEntry_img_div_10002" class="quick_info_toggle">
+		<a id="MiniGridQuickView_10002" title="Press Enter key to view quick information of the product in a popup." role="button" wairole="button" onclick="javascript:document.getElementById('quickInfoPopup_2').style.display='block';" onblur="javascript:hideSection('catalogEntry_img_div10002').style.display='block';"><span>Quick Info<span title="QUICK_VIEW" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="QUICK_VIEW"></span></span></a>
+	<span class="elementKeyIcon" title="QUICK_VIEW_BUTTON_ACCE=Press Enter key to view quick information of the product in a popup."><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+</div>
+<div class="product_info">
+	<div class="product_name">
+		<a id="WC_CatalogEntryDBThumbnailDisplayJSPF_10002_link_9b" href="HermitageRuchedBodiceCocktailDressAuroraESite.html">
+			Versatil Empire Waist Sundress
+		</a>
+	</div>
+	<div class="product_price" id="product_price_10002">
+
+<!-- BEGIN PriceDisplay.jsp -->
+
+<div class="jspcaption" style="display:none">PriceDisplay.jsp</div>
+		<span id="offerPrice_10002" class="price" itemprop="price">
+			$50.00
+		</span>
+
+<!-- END PriceDisplay.jsp -->
+ 
+
+	</div>
+
+</div>		
+</div>
+
+<!-- END CatalogEntryDisplay.jsp -->
+
+
+<!-- BEGIN CatalogEntryDisplay.jsp -->
+
+<div class="jspcaption" style="display:none">CatalogEntryDisplay.jsp</div>
+<div class="product">
+
+<div id="MiniGridViewProdImg_10743" class="product_image" onblur="javascript:hideSection('catalogEntry_img_div10743');">
+	<a href="HermitageRuchedBodiceCocktailDressAuroraESite.html" id="catalogEntry_img_10743" onkeydown="shiftTabHideSection('catalogEntry_img_div10743',event);" onfocus="showSection('catalogEntry_img_div10743');" title="Luigi Valenti Urban Shirt">
+		<img alt="Luigi Valenti Urban Shirt" src="../StoreAssets/images/catalog/apparel/men/mcl011_shirts/160x160/mcl011_1102.jpg">
+				
+	</a>
+	<div id="catalogEntry_img_div_10743" class="quick_info_toggle">
+		<a id="MiniGridQuickView_10743" title="Press Enter key to view quick information of the product in a popup." role="button" wairole="button" onclick="javascript:document.getElementById('quickInfoPopup_2').style.display='block';" onblur="javascript:hideSection('catalogEntry_img_div10743').style.display='block';"><span>Quick Info<span title="QUICK_VIEW" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="QUICK_VIEW"></span></span></a>
+	<span class="elementKeyIcon" title="QUICK_VIEW_BUTTON_ACCE=Press Enter key to view quick information of the product in a popup."><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+</div>
+<div class="product_info">
+	<div class="product_name">
+		<a id="WC_CatalogEntryDBThumbnailDisplayJSPF_10743_link_9b" href="HermitageRuchedBodiceCocktailDressAuroraESite.html">
+			Luigi Valenti Urban Shirt
+		</a>
+	</div>
+	<div class="product_price" id="product_price_10743">
+
+<!-- BEGIN PriceDisplay.jsp -->
+
+<div class="jspcaption" style="display:none">PriceDisplay.jsp</div>
+		<span id="offerPrice_10743" class="price" itemprop="price">
+			$65.00
+		</span>
+
+<!-- END PriceDisplay.jsp -->
+ 
+
+	</div>
+
+</div>		
+</div>
+
+<!-- END CatalogEntryDisplay.jsp -->
+
+
+<!-- BEGIN CatalogEntryDisplay.jsp -->
+
+<div class="jspcaption" style="display:none">CatalogEntryDisplay.jsp</div>
+<div class="product">
+
+<div id="MiniGridViewProdImg_10039" class="product_image" onblur="javascript:hideSection('catalogEntry_img_div10039');">
+	<a href="HermitageRuchedBodiceCocktailDressAuroraESite.html" id="catalogEntry_img_10039" onkeydown="shiftTabHideSection('catalogEntry_img_div10039',event);" onfocus="showSection('catalogEntry_img_div10039');" title="Hermitage Gored Evening Dress">
+		<img alt="Hermitage Gored Evening Dress" src="../StoreAssets/images/catalog/apparel/women/womens_dresses_160x160/WD_034_a_silver.jpg">
+				
+	</a>
+	<div id="catalogEntry_img_div_10039" class="quick_info_toggle">
+		<a id="MiniGridQuickView_10039" title="Press Enter key to view quick information of the product in a popup." role="button" wairole="button" onclick="javascript:document.getElementById('quickInfoPopup_2').style.display='block';" onblur="javascript:hideSection('catalogEntry_img_div10039').style.display='block';"><span>Quick Info<span title="QUICK_VIEW" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="QUICK_VIEW"></span></span></a>
+	<span class="elementKeyIcon" title="QUICK_VIEW_BUTTON_ACCE=Press Enter key to view quick information of the product in a popup."><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+</div>
+<div class="product_info">
+	<div class="product_name">
+		<a id="WC_CatalogEntryDBThumbnailDisplayJSPF_10039_link_9b" href="HermitageRuchedBodiceCocktailDressAuroraESite.html">
+			Hermitage Gored Evening Dress
+		</a>
+	</div>
+	<div class="product_price" id="product_price_10039">
+
+<!-- BEGIN PriceDisplay.jsp -->
+
+<div class="jspcaption" style="display:none">PriceDisplay.jsp</div>
+		<span id="offerPrice_10039" class="price" itemprop="price">
+			$250.00
+		</span>
+
+<!-- END PriceDisplay.jsp -->
+ 
+
+	</div>
+
+</div>		
+</div>
+
+<!-- END CatalogEntryDisplay.jsp -->
+
+
+<!-- BEGIN CatalogEntryDisplay.jsp -->
+
+<div class="jspcaption" style="display:none">CatalogEntryDisplay.jsp</div>
+<div class="product">
+
+<div id="MiniGridViewProdImg_11604" class="product_image" onblur="javascript:hideSection('catalogEntry_img_div11604');">
+	<a href="HermitageRuchedBodiceCocktailDressAuroraESite.html" id="catalogEntry_img_11604" onkeydown="shiftTabHideSection('catalogEntry_img_div11604',event);" onfocus="showSection('catalogEntry_img_div11604');" title="Mayflower Brown Fabric Stiletto Pumps">
+		<img alt="Mayflower Brown Fabric Stiletto Pumps" src="../StoreAssets/images/catalog/apparel/women/wsh005_shoes/160x160/wsh005_0515.jpg">
+				
+	</a>
+	<div id="catalogEntry_img_div_11604" class="quick_info_toggle">
+		<a id="MiniGridQuickView_11604" title="Press Enter key to view quick information of the product in a popup." role="button" wairole="button" onclick="javascript:document.getElementById('quickInfoPopup_2').style.display='block';" onblur="javascript:hideSection('catalogEntry_img_div11604').style.display='block';"><span>Quick Info<span title="QUICK_VIEW" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="QUICK_VIEW"></span></span></a>
+	<span class="elementKeyIcon" title="QUICK_VIEW_BUTTON_ACCE=Press Enter key to view quick information of the product in a popup."><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+</div>
+<div class="product_info">
+	<div class="product_name">
+		<a id="WC_CatalogEntryDBThumbnailDisplayJSPF_11604_link_9b" href="HermitageRuchedBodiceCocktailDressAuroraESite.html">
+			Mayflower Brown Fabric Stiletto Pumps
+		</a>
+	</div>
+	<div class="product_price" id="product_price_11604">
+
+<!-- BEGIN PriceDisplay.jsp -->
+
+<div class="jspcaption" style="display:none">PriceDisplay.jsp</div>
+		<span id="offerPrice_11604" class="price" itemprop="price">
+			$120.00
+		</span>
+
+<!-- END PriceDisplay.jsp -->
+ 
+
+	</div>
+
+</div>		
+</div>
+
+<!-- END CatalogEntryDisplay.jsp -->
+
+
+									</div>
+								</div>
+							</fieldset>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<div class="bottom">
+			<div class="left_border"></div>
+			<div class="middle_tile"></div>
+			<div class="right_border"></div>
+		</div>
+		
+	</div>
+
+	<div class="widget_product_listing" id="widget_Offer_2" style="display:none">
+		
+		<div class="top">
+			<div class="left_border"></div>
+			<div class="middle_tile"></div>
+			<div class="right_border"></div>
+		</div>
+		<div class="middle">
+			<div class="left_border">
+				<div class="right_border">
+
+					<div class="content">
+						<div class="header_bar simple_bar">
+							<div class="title"><span>Recommended<span title="ES_RECOMMENDATIONS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="ES_RECOMMENDATIONS"></span></span></div>
+								
+									<div class="paging_controls">
+										
+											<a href="javaScript:setCurrentId('Offer_links_1');IntelligentOfferJS.showPrevResults('2');" id="Offer_links_1" class="left" title="Show previous set of Intelligent offer recommendations">
+												<img class="left_arrow_enabled" src="../StoreAssets/images/colors/color1/sidebar_containers/left_arrow_enabled.png" alt="">
+											</a>
+										
+										<span class="left"><span>
+											2 - 2<span title="CATEGORY_RESULTS_PAGES_DISPLAYING" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="CATEGORY_RESULTS_PAGES_DISPLAYING"></span>	
+										</span></span>
+										
+										<div class="clear_float"></div>
+									<span class="elementKeyIcon" title="ES_SHOW_PREVIOUS_OFFER_SET=Show previous set of Intelligent offer recommendations"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+
+								<div class="clear_float"></div>
+						</div>					
+						<div class="product_listing_container">
+							<fieldset>
+								<legend><span class="spanacce"><span>Product Listing<span title="ES_PRODUCT_LISTING" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="ES_PRODUCT_LISTING"></span></span></span></legend>
+								<div class="grid_mode">
+									<div class="row first_row">
+
+<!-- BEGIN CatalogEntryDisplay.jsp -->
+
+<div class="jspcaption" style="display:none">CatalogEntryDisplay.jsp</div>
+<div class="product">
+
+<div id="MiniGridViewProdImg_11544" class="product_image" onblur="javascript:hideSection('catalogEntry_img_div11544');">
+	<a href="HermitageRuchedBodiceCocktailDressAuroraESite.html" id="catalogEntry_img_11544" onkeydown="shiftTabHideSection('catalogEntry_img_div11544',event);" onfocus="showSection('catalogEntry_img_div11544');" title="Luigi Valenti Beige Tote Bag">
+		<img alt="Luigi Valenti Beige Tote Bag" src="../StoreAssets/images/catalog/apparel/women/wbg006_handbags/160x160/wbg006_0608.jpg">
+				
+	</a>
+	<div id="catalogEntry_img_div_11544" class="quick_info_toggle">
+		<a id="MiniGridQuickView_11544" title="Press Enter key to view quick information of the product in a popup." role="button" wairole="button" onclick="javascript:document.getElementById('quickInfoPopup_2').style.display='block';" onblur="javascript:hideSection('catalogEntry_img_div11544').style.display='block';"><span>Quick Info<span title="QUICK_VIEW" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="QUICK_VIEW"></span></span></a>
+	<span class="elementKeyIcon" title="QUICK_VIEW_BUTTON_ACCE=Press Enter key to view quick information of the product in a popup."><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+</div>
+<div class="product_info">
+	<div class="product_name">
+		<a id="WC_CatalogEntryDBThumbnailDisplayJSPF_11544_link_9b" href="HermitageRuchedBodiceCocktailDressAuroraESite.html">
+			Luigi Valenti Beige Tote Bag
+		</a>
+	</div>
+	<div class="product_price" id="product_price_11544">
+
+<!-- BEGIN PriceDisplay.jsp -->
+
+<div class="jspcaption" style="display:none">PriceDisplay.jsp</div>
+		<span id="offerPrice_11544" class="price" itemprop="price">
+			$70.00
+		</span>
+
+<!-- END PriceDisplay.jsp -->
+ 
+
+	</div>
+
+</div>		
+</div>
+
+<!-- END CatalogEntryDisplay.jsp -->
+
+
+									</div>
+								</div>
+							</fieldset>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<div class="bottom">
+			<div class="left_border"></div>
+			<div class="middle_tile"></div>
+			<div class="right_border"></div>
+		</div>
+		
+	</div>
+
+</div>
+	
+			<script type="text/javascript">
+				dojo.addOnLoad(function() { 
+					IntelligentOfferJS.declareRefreshController("WC_IntelligentOfferESpot_controller_ID_A222",  "WC_IntelligentOfferESpot_context_ID_A222", "false");
+					wc.render.getRefreshControllerById('WC_IntelligentOfferESpot_controller_ID_A222').url = '';		
+					console.warn('before cmRecRequest');
+					//cmRecRequest ('A222','','','','');
+				});
+			</script>	
+
+			<div role="group" title="" widgetid="WC_IntelligentOfferESpot_container_ID_A123456" class="WC_IntelligentOfferESpot_container_class_A123456 dijitContentPane" dojotype="wc.widget.RefreshArea" id="WC_IntelligentOfferESpot_container_ID_A123456" controllerid="WC_IntelligentOfferESpot_controller_ID_A123456">
+
+</div>
+	
+			<script type="text/javascript">
+				dojo.addOnLoad(function() { 
+					IntelligentOfferJS.declareRefreshController("WC_IntelligentOfferESpot_controller_ID_A123456",  "WC_IntelligentOfferESpot_context_ID_A123456", "false");
+					wc.render.getRefreshControllerById('WC_IntelligentOfferESpot_controller_ID_A123456').url = '';		
+					console.warn('before cmRecRequest');
+					//cmRecRequest ('A123456','','','','');
+				});
+			</script>	
+
+<script type="text/javascript" src="../StoreAssets/javascript/Widgets/ESpot/IntelligentOffer.js"></script>
+
+	<script type="text/javascript">
+		dojo.addOnLoad(function() { 	
+			console.warn('before cmDisplayRecs');
+		  //cmDisplayRecs();
+	  });		  
+	</script>
+
+</span>
+<!-- END IntelligentOffer.jsp -->
+
+																									
+											</div>	
+
+									<span class="elementKeyIcon" title="ACCE_Status_Shopping_Cart_Content_Updated=Shopping Cart Display Updated"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+									<div class="right_column">
+										<!-- Vertical Recommendations Widget -->
+
+										<div class="widget_recommended_position">											
+
+<!-- BEGIN ProductRecommendation.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">ProductRecommendation.jsp</div>
+		<div id="widget_recommended_10879_1" class="widget_sidebar_container">
+			<div class="top">
+				<div class="left_border"></div>
+				<div class="middle"></div>
+				<div class="right_border"></div>
+			</div>
+
+			<div class="left_border">
+				<div class="right_border">
+					<div class="content">
+						
+						<div class="header_content">
+							
+								<div class="right">				
+																	
+									<span class="left"><span>
+										1 - 2<span title="CATEGORY_RESULTS_PAGES_DISPLAYING" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="CATEGORY_RESULTS_PAGES_DISPLAYING"></span>	
+									</span></span>
+									
+											<a href="javaScript:setCurrentId('widget_recommended_10879_1_links_2');RecommendationJS.showNextResults('widget_recommended_10879','1');" id="widget_recommended_10879_1_links_2" onmouseout="dojo.byId('nextImg_widget_recommended_10879_1').src = '../StoreAssets/images/colors/color1/sidebar_containers/right_arrow_disabled.png';dojo.byId('nextImg_widget_recommended_10879_1').className = 'right_arrow_disabled';" onmouseover="dojo.byId('nextImg_widget_recommended_10879_1').src = '../StoreAssets/images/colors/color1/sidebar_containers/right_arrow_enabled.png';dojo.byId('nextImg_widget_recommended_10879_1').className = 'right_arrow_enabled';" class="left" title="Show next set of recommended items">
+													<img class="right_arrow_disabled" id="nextImg_widget_recommended_10879_1" src="../StoreAssets/images/colors/color1//sidebar_containers/right_arrow_disabled.png" alt="Show next set of recommended items">
+											<span class="elementKeyIcon" title="ES_SHOW_NEXT_RECOMMENDATION_SET=Show next set of recommended items"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></a>
+									
+									<div class="clear_float"></div>
+								<span class="elementKeyIcon" title="ES_SHOW_NEXT_RECOMMENDATION_SET=Show next set of recommended items"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+
+							<div class="clear_float"></div>
+							<h1 class="left"><span>Recommended<span title="ES_RECOMMENDATIONS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="ES_RECOMMENDATIONS"></span></span></h1>
+							<div class="clear_float"></div>
+							
+						</div>
+
+<!-- BEGIN SearchESpotSetup.jspf-->
+
+
+<!-- BEGIN CatalogEntryDisplay.jsp -->
+
+<div class="jspcaption" style="display:none">CatalogEntryDisplay.jsp</div>
+<div class="item" id="item_10039" onblur="hideSection('item_quickview_ShoppingCartRight_CatEntries_div10039');">
+	<div class="left_column">
+		<span id="item_10039_acce_label" class="spanacce">Hermitage Gored Evening Dress</span>
+		<a href="HermitageRuchedBodiceCocktailDressAuroraESite.html" id="catalogEntry_img10039" onkeydown="shiftTabHideSection('item_quickview_ShoppingCartRight_CatEntries_div10039',event);" onfocus="showSection('item_quickview_ShoppingCartRight_CatEntries_div10039');" title="Hermitage Gored Evening Dress">
+			<img alt="Hermitage Gored Evening Dress" src="../StoreAssets/images/catalog/apparel/women/womens_dresses_70x70/WD_034_a_silver.jpg">
+		</a> 
+		<div id="item_quickview_ShoppingCartRight_CatEntries_div10039" class="quick_info_toggle">
+			<a id="SideBarQuickViewLink_10039" title="Press Enter key to view quick information of the product in a popup." role="button" wairole="button" onclick="javascript:document.getElementById('quickInfoPopup_2').style.display='block';" onblur="hideSection('item_quickview_ShoppingCartRight_CatEntries_div10039').style.display='block';"><span>Quick Info<span title="QUICK_VIEW" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="QUICK_VIEW"></span></span></a>
+		<span class="elementKeyIcon" title="QUICK_VIEW_BUTTON_ACCE=Press Enter key to view quick information of the product in a popup."><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+	</div>
+
+	<div class="right_column">
+		<div class="item_name">
+			<a id="WC_CatalogEntryDBThumbnailDisplayJSPF_10039" href="HermitageRuchedBodiceCocktailDressAuroraESite.html">
+				Hermitage Gored Evening Dress
+			</a>
+		</div>
+	
+		<div class="item_price" id="item_price_10039">
+
+<!-- BEGIN PriceDisplay.jsp -->
+
+<div class="jspcaption" style="display:none">PriceDisplay.jsp</div>
+		<span id="offerPrice_10039" class="price" itemprop="price">
+			$250.00
+		</span>
+
+<!-- END PriceDisplay.jsp -->
+ 
+
+		</div>
+	</div>
+	<div class="clear_float"></div>
+</div>		
+
+<!-- END CatalogEntryDisplay.jsp -->
+
+
+<!-- END SearchESpotSetup.jspf-->
+
+
+								<div class="clear_float"></div>
+								
+									<div class="divider"></div>
+
+<!-- BEGIN SearchESpotSetup.jspf-->
+
+
+<!-- BEGIN CatalogEntryDisplay.jsp -->
+
+<div class="jspcaption" style="display:none">CatalogEntryDisplay.jsp</div>
+<div class="item" id="item_10736" onblur="hideSection('item_quickview_ShoppingCartRight_CatEntries_div10736');">
+	<div class="left_column">
+		<span id="item_10736_acce_label" class="spanacce">Hermitage Collection Rockport T-shirt</span>
+		<a href="HermitageRuchedBodiceCocktailDressAuroraESite.html" id="catalogEntry_img10736" onkeydown="shiftTabHideSection('item_quickview_ShoppingCartRight_CatEntries_div10736',event);" onfocus="showSection('item_quickview_ShoppingCartRight_CatEntries_div10736');" title="Hermitage Collection Rockport T-shirt">
+			<img alt="Hermitage Collection Rockport T-shirt" src="../StoreAssets/images/catalog/apparel/men/mcl011_shirts/70x70/mcl011_1101.jpg">
+		</a> 
+		<div id="item_quickview_ShoppingCartRight_CatEntries_div10736" class="quick_info_toggle">
+			<a id="SideBarQuickViewLink_10736" title="Press Enter key to view quick information of the product in a popup." role="button" wairole="button" onclick="javascript:document.getElementById('quickInfoPopup_2').style.display='block';" onblur="hideSection('item_quickview_ShoppingCartRight_CatEntries_div10736').style.display='block';"><span>Quick Info<span title="QUICK_VIEW" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="QUICK_VIEW"></span></span></a>
+		<span class="elementKeyIcon" title="QUICK_VIEW_BUTTON_ACCE=Press Enter key to view quick information of the product in a popup."><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+	</div>
+
+	<div class="right_column">
+		<div class="item_name">
+			<a id="WC_CatalogEntryDBThumbnailDisplayJSPF_10736" href="HermitageRuchedBodiceCocktailDressAuroraESite.html">
+				Hermitage Collection Rockport T-shirt
+			</a>
+		</div>
+	
+		<div class="item_price" id="item_price_10736">
+
+<!-- BEGIN PriceDisplay.jsp -->
+
+<div class="jspcaption" style="display:none">PriceDisplay.jsp</div>
+		<span id="offerPrice_10736" class="price" itemprop="price">
+			$39.00
+		</span>
+
+<!-- END PriceDisplay.jsp -->
+ 
+
+		</div>
+	</div>
+	<div class="clear_float"></div>
+</div>		
+
+<!-- END CatalogEntryDisplay.jsp -->
+
+
+<!-- END SearchESpotSetup.jspf-->
+
+
+								<div class="clear_float"></div>
+
+					</div>
+				</div>
+			</div>
+			<div class="clear_float"></div>
+				
+			<div class="bottom">
+				<div class="left_border"></div>
+				<div class="middle"></div>
+				<div class="right_border"></div>
+			</div>
+		</div>
+
+		<div id="widget_recommended_10879_2" class="widget_sidebar_container" style="display:none">
+			<div class="top">
+				<div class="left_border"></div>
+				<div class="middle"></div>
+				<div class="right_border"></div>
+			</div>
+
+			<div class="left_border">
+				<div class="right_border">
+					<div class="content">
+						
+						<div class="header_content">
+							
+								<div class="right">				
+									
+											<a href="javaScript:setCurrentId('widget_recommended_10879_2_links_1');RecommendationJS.showPrevResults('widget_recommended_10879','2');" id="widget_recommended_10879_2_links_1" onmouseout="dojo.byId('prevImg_widget_recommended_10879_2').src = '../StoreAssets/images/colors/color1/sidebar_containers/left_arrow_disabled.png';dojo.byId('prevImg_widget_recommended_10879_2').className = 'left_arrow_disabled';" onmouseover="dojo.byId('prevImg_widget_recommended_10879_2').src = '../StoreAssets/images/colors/color1/sidebar_containers/left_arrow_enabled.png';dojo.byId('prevImg_widget_recommended_10879_2').className = 'left_arrow_enabled';" class="left" title="Show previous set of recommended items">
+													<img class="left_arrow_disabled" id="prevImg_widget_recommended_10879_2" src="../StoreAssets/images/colors/color1//sidebar_containers/left_arrow_disabled.png" alt="Show previous set of recommended items">
+											<span class="elementKeyIcon" title="ES_SHOW_PREVIOUS_RECOMMENDATION_SET=Show previous set of recommended items"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></a>
+																	
+									<span class="left"><span>
+										2 - 2<span title="CATEGORY_RESULTS_PAGES_DISPLAYING" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="CATEGORY_RESULTS_PAGES_DISPLAYING"></span>	
+									</span></span>
+									
+									<div class="clear_float"></div>
+								<span class="elementKeyIcon" title="ES_SHOW_PREVIOUS_RECOMMENDATION_SET=Show previous set of recommended items"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+
+							<div class="clear_float"></div>
+							<h1 class="left"><span>Recommended<span title="ES_RECOMMENDATIONS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="ES_RECOMMENDATIONS"></span></span></h1>
+							<div class="clear_float"></div>
+							
+						</div>
+
+<!-- BEGIN SearchESpotSetup.jspf-->
+
+
+<!-- BEGIN CatalogEntryDisplay.jsp -->
+
+<div class="jspcaption" style="display:none">CatalogEntryDisplay.jsp</div>
+<div class="item" id="item_11534" onblur="hideSection('item_quickview_ShoppingCartRight_CatEntries_div11534');">
+	<div class="left_column">
+		<span id="item_11534_acce_label" class="spanacce">Albini Fashionable Black Leather Bag</span>
+		<a href="HermitageRuchedBodiceCocktailDressAuroraESite.html" id="catalogEntry_img11534" onkeydown="shiftTabHideSection('item_quickview_ShoppingCartRight_CatEntries_div11534',event);" onfocus="showSection('item_quickview_ShoppingCartRight_CatEntries_div11534');" title="Albini Fashionable Black Leather Bag">
+			<img alt="Albini Fashionable Black Leather Bag" src="../StoreAssets/images/catalog/apparel/women/wbg006_handbags/70x70/wbg006_0601.jpg">
+		</a> 
+		<div id="item_quickview_ShoppingCartRight_CatEntries_div11534" class="quick_info_toggle">
+			<a id="SideBarQuickViewLink_11534" title="Press Enter key to view quick information of the product in a popup." role="button" wairole="button" onclick="javascript:document.getElementById('quickInfoPopup_2').style.display='block';" onblur="hideSection('item_quickview_ShoppingCartRight_CatEntries_div11534').style.display='block';"><span>Quick Info<span title="QUICK_VIEW" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="QUICK_VIEW"></span></span></a>
+		<span class="elementKeyIcon" title="QUICK_VIEW_BUTTON_ACCE=Press Enter key to view quick information of the product in a popup."><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+	</div>
+
+	<div class="right_column">
+		<div class="item_name">
+			<a id="WC_CatalogEntryDBThumbnailDisplayJSPF_11534" href="HermitageRuchedBodiceCocktailDressAuroraESite.html">
+				Albini Fashionable Black Leather Bag
+			</a>
+		</div>
+	
+		<div class="item_price" id="item_price_11534">
+
+<!-- BEGIN PriceDisplay.jsp -->
+
+<div class="jspcaption" style="display:none">PriceDisplay.jsp</div>
+		<span id="offerPrice_11534" class="price" itemprop="price">
+			$90.00
+		</span>
+
+<!-- END PriceDisplay.jsp -->
+ 
+
+		</div>
+	</div>
+	<div class="clear_float"></div>
+</div>		
+
+<!-- END CatalogEntryDisplay.jsp -->
+
+
+<!-- END SearchESpotSetup.jspf-->
+
+
+								<div class="clear_float"></div>
+
+					</div>
+				</div>
+			</div>
+			<div class="clear_float"></div>
+				
+			<div class="bottom">
+				<div class="left_border"></div>
+				<div class="middle"></div>
+				<div class="right_border"></div>
+			</div>
+		</div>
+
+</span>
+<!-- END ProductRecommendation.jsp -->
+
+																						
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		<span class="elementKeyIcon" title="DIALOG_TITLE_PRODUCT_COMPARE=Product Compare Dialog"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+	    
+		<!-- Footer Widget -->
+
+		<div class="footer_wrapper_position">
+
+<!-- BEGIN Footer.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">Footer.jsp</div>
+<div class="footer_wrapper" role="contentinfo">
+	<!--For border customization -->
+
+	<div class="footer_top">
+		<div class="left_border"></div>
+		<div class="middle"></div>
+		<div class="right_border"></div>
+	</div>
+	<!--Main footer Area -->
+
+	<div class="footer_left_shadow">
+		<div class="footer_right_shadow">				
+			<div class="footer_content" id="footer_content">
+				
+				<!--Start Footer Content -->
+
+				<div id="footer">
+					<div class="footer_element_container right_border large">
+						<h2><span>Customer Service<span title="FOOTER_CUSTOMER_SERVICE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_CUSTOMER_SERVICE"></span></span></h2>
+						<ul>
+							
+								<li><a id="FooterQuickOrder" href="QuickOrderView.html"><span>Quick Order<span title="FOOTER_QUICK_ORDER" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_QUICK_ORDER"></span></span></a></li>
+							
+							<li><a id="FooterHelpLink" href="HelpandContactUsatAuroraESite.html"><span>Help<span title="FOOTER_HELP" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_HELP"></span></span></a></li>
+							<li><a id="FooterContactUsLink" href="HelpandContactUsatAuroraESite_6.html"><span>Contact Us<span title="FOOTER_CONTACT_US" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_CONTACT_US"></span></span></a></li>
+							<li><a id="FooterReturnPolicyLink" href="ReturnPolicyforAuroraESite.html"><span>Return Policy<span title="FOOTER_RETURN_POLICY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_RETURN_POLICY"></span></span></a></li>
+							<li><a id="FooterPrivacyPolicyLink" href="WebsitePrivacyPolicyforAuroraESite.html"><span>Privacy Policy<span title="FOOTER_PRIVACY_POLICY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_PRIVACY_POLICY"></span></span></a></li>
+						</ul>
+							
+					</div>
+					<div class="footer_element_container right_border large">
+						<h2><span>Corporate Info<span title="FOOTER_CORPORATE_INFO" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_CORPORATE_INFO"></span></span></h2>
+						<ul>
+							<li><a id="FooterAboutUsLink" href="AboutUsforAuroraESite.html"><span>About Us<span title="FOOTER_ABOUT_US" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_ABOUT_US"></span></span></a></li>
+							<li><a id="FooterCorporateContactUsLink" href="ContactUsforAuroraESite.html"><span>Contact Us<span title="FOOTER_CONTACT_US" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_CONTACT_US"></span></span></a></li>
+							
+								<li><a id="FooterStoreLocatorLink" href="StoreLocator.html"><span>Store Locator<span title="FOOTER_STORE_LOCATOR" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_STORE_LOCATOR"></span></span></a></li>
+							
+						</ul>							
+					</div>
+					
+					<div class="footer_element_container right_border large" id="WC_Footer_UI_Links_3">
+						<h2><span>Explore<span title="FOOTER_EXPLORE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_EXPLORE"></span></span></h2>
+						<ul>
+							<li><a id="FooterSiteMapLink" href="SiteMapforAuroraESite.html"><span>Site Map<span title="FOOTER_SITE_MAP" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_SITE_MAP"></span></span></a></li><li><a href="AdvancedSearch.html" id="AdvancedSearchDisplayLink">[PROPERTIES;FOOTER_ADVANCED_SEARCH;Advanced Search]</a></li>
+
+						</ul>
+					</div>
+
+						<div class="footer_element_container large" id="FooterSocialLinks">
+							<h2><span>Follow Us<span title="FOOTER_FOLLOW_US" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_FOLLOW_US"></span></span></h2>
+							<ul>
+								<li><a id="FacebookLink" ><span>Facebook<span title="FOOTER_FACEBOOK" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_FACEBOOK"></span></span></a></li>
+							</ul>
+						</div>
+
+					<div class="footer_element_container large" id="FooterRightContentESpot">					
+
+<!-- BEGIN ContentRecommendation.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">ContentRecommendation.jsp</div>
+</span>
+<!-- END ContentRecommendation.jsp -->
+							
+					</div>					
+												
+				</div>
+				<!--End Footer Content -->
+
+				
+			</div>
+		</div>				
+	</div>
+	<!--For border customization -->
+
+	<div class="footer_bottom">
+		<div class="left_border"></div>
+		<div class="middle">
+		</div>
+		<div class="right_border"></div>
+	</div>
+	<!--
+ =================================================================
+  Licensed Materials - Property of IBM
+
+  WebSphere Commerce
+
+  (C) Copyright IBM Corp. 2011 All Rights Reserved.
+
+  US Government Users Restricted Rights - Use, duplication or
+  disclosure restricted by GSA ADP Schedule Contract with
+  IBM Corp.
+ =================================================================
+-->
+
+<script type="text/javascript">
+	dojo.addOnLoad(function() { 
+		//Make sure page is loaded at this point
+		//Set requestedSubmitted to false
+		requestSubmitted = false;
+
+		// All div's whose id attribute contains dojoWidget subString -- dojo.query('div[id*="dojoWidget"]')
+		// All div's which contains dojoType attribute -- dojo.query(div[dojoType])
+		dojo.query('div[dojoType]').forEach(function(node, index, arr){
+			console.debug("Parse "+node.id);
+			addToWidgetsList(node.id);
+		});
+		parseAllWidgets();
+	}); 	
+</script>
+</div>
+
+
+</span>
+<!-- END Footer.jsp -->
+
+			
+		</div>  
+
+<script type="text/JavaScript">
+<!--
+
+
+//-->
+</script>                                   
+
+<div title="" widgetid="free_gifts_popup" style="position: absolute; opacity: 1; left: 590px; top: 187px; z-index: 953; display: none;" id="free_gifts_popup" aria-labelledby="free_gifts_popup_title" role="dialog" class="dijitDialog dijitDialogFocused dijitFocused" tabindex="-1" wairole="dialog" waistate="labelledby-free_gifts_popup_title">
+	<div title="Message Dialog" dojoattachpoint="titleBar" class="dijitDialogTitleBar">
+	<span dojoattachpoint="titleNode" class="dijitDialogTitle" id="free_gifts_popup_title"><span>Message Dialog<span title="DIALOG_TITLE_MESSAGE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIALOG_TITLE_MESSAGE"></span></span></span>
+	<span style="display: none;" dojoattachpoint="closeButtonNode" class="dijitDialogCloseIcon" dojoattachevent="onclick: onCancel" title="Cancel">
+		<span dojoattachpoint="closeText" class="closeText" title="Cancel">x</span>
+	</span>
+	</div>
+		<div style="width: auto; height: auto;" dojoattachpoint="containerNode" class="dijitDialogPaneContent">
+		<!-- Refresh area -->
+
+			<span id="PromotionFreeGiftsDisplay_ACCE_Label" class="spanacce"><span>Free Gift<span title="ACCE_Region_Free_Gift" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="ACCE_Region_Free_Gift"></span></span></span>
+			<div class="dijitContentPane" role="group" title="" widgetid="PromotionFreeGiftsDisplay" dojotype="wc.widget.RefreshArea" id="PromotionFreeGiftsDisplay" controllerid="PromotionFreeGifts_Controller">
+<!-- BEGIN PromotionChoiceOfFreeGiftsPopupContent.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">PromotionChoiceOfFreeGiftsPopupContent.jsp</div>
+<script type="text/javascript">
+	dojo.addOnLoad(function() {
+
+		MessageHelper.setMessage("PROMOTION_FREE_GIFTS_POPUP_ERROR_EXCEED_GIFT_QUANTITY", "You have selected more free gifts than this promotion allows  ");
+		MessageHelper.setMessage("PROMOTION_FREE_GIFTS_POPUP_NUMBER_OF_SELECTIONS", "You have selected %0 free gifts");
+		MessageHelper.setMessage("PROMOTION_FREE_GIFTS_POPUP_NUMBER_OF_SELECTIONS_ONE", "You have selected 1 free gift ");                            
+	});
+</script>
+
+<div class="widget_site_popup" role="dialog" aria-labelledby="popupHeader">
+	<div class="top">
+		<div class="left_border"></div>
+		<div class="middle"></div>
+		<div class="right_border"></div>
+	</div>
+	<div class="clear_float"></div>
+	<div class="middle">
+		<div class="content_left_border">
+			<div class="content_right_border">
+				<div class="content">
+
+							<div class="header" id="popupHeader">
+								<span>
+
+											[PROPERTIES;PROMOTION_FREE_GIFTS_POPUP_PICK_GIFT;Select your free gift]
+
+								</span>
+								<a role="button" id="promotionChoice_closeLink" class="close" title="[PROPERTIES;PROMOTION_FREE_GIFTS_POPUP_CLOSE;close]"  onclick="javascript: document.getElementById('free_gifts_popup').style.display='none';"></a>
+								<div class="clear_float"></div>
+							</div>
+							<div class="body">              
+								<div id="radio_choices">
+									<div id="WC_PromotionChoiceOfFreeGiftsPopupContent_div_2">
+										<input name="choose_gift_type" id="free_item" checked="checked" onclick="PromotionChoiceOfFreeGiftsJS.rewardChoicesEnabledStatus();" type="radio">              
+
+												<label for="free_item">[PROPERTIES;PROMOTION_FREE_GIFTS_POPUP_PICK_ONE_GIFT;I would like the following free gift]</label>
+
+									</div>
+									<div id="WC_PromotionChoiceOfFreeGiftsPopupContent_div_3">
+										<input name="choose_gift_type" id="no_gifts" onclick="PromotionChoiceOfFreeGiftsJS.rewardChoicesEnabledStatus();" type="radio"> 
+
+												<label for="no_gifts">[PROPERTIES;PROMOTION_FREE_GIFTS_POPUP_PICK_NO_GIFT;I do not want the free gift]</label>
+
+									</div>
+								</div>
+
+								<div id="free_gifts_table">
+									<div class="gifts_wrapper" id="WC_PromotionChoiceOfFreeGiftsPopupContent_div_4">
+
+												<div class="gift_item_container" id="WC_PromotionChoiceOfFreeGiftsPopupContent_div_5_1_1">
+													<input name="catalogEntryID" value="10291" id="CatalogEntryID_1" type="hidden">
+													<input name="giftItemQuantity" value="1" id="GiftItemQuantity_1" type="hidden">
+
+															<div class="selection" id="WC_PromotionChoiceOfFreeGiftsPopupContent_div_6_1_1"><input id="SelectFreeGift_1" name="freeGift" onclick="PromotionChoiceOfFreeGiftsJS.checkNumberOfAllowedItems('1.0');" type="radio"></div>
+
+													<div class="image" id="WC_PromotionChoiceOfFreeGiftsPopupContent_div_7_1_1">
+
+																<img src="../StoreAssets/images/catalog/apparel/women/womens_dresses_160x160/WD_032_a_blue.jpg" name="catEntryImage" alt="Albini Sleeveless Silk Dress [PROPERTIES;Checkout_ACCE_for;for] " escapexml="false" height="70" width="70">
+
+													</div>
+													<div class="product_info" id="WC_PromotionChoiceOfFreeGiftsPopupContent_div_8_1_1">        
+														<h2><label for="SelectFreeGift_1">Albini Sleeveless Silk Dress</label></h2>
+														<p>Silk sheath cocktail dress with straight lines and high neck</p>
+														
+															<p class="online_availability">[PROPERTIES;PRODUCT_INV_ONLINE;Online Availability:]</p>
+
+																	<input name="onlineAvailability" value="Available" id="OnlineAvailability_1" type="hidden">
+
+															<p class="stock_status"><img id="WC_PromotionChoiceOfFreeGiftsPopupContent_div_8b_1_1" src="../StoreAssets/images/Available.gif" alt="[PROPERTIES;INV_STATUS_Available;In-Stock]" border="0">&nbsp;<span>[PROPERTIES;INV_STATUS_Available;In-Stock]</span></p>
+														
+														<div class="price" id="WC_PromotionChoiceOfFreeGiftsPopupContent_div_9_1_1">
+
+<!-- BEGIN CatalogEntryPriceDisplay.jspf-->
+
+
+			<span class="price bold">
+				$100.00
+				
+			</span>
+
+<!-- END CatalogEntryPriceDisplay.jspf-->
+
+
+														</div>                                               	
+													</div>
+													<br>                                                             
+													<div class="clear_float" id="WC_PromotionChoiceOfFreeGiftsPopupContent_div_10_1_1"></div>
+												</div>                                          
+
+												<div class="gift_item_container" id="WC_PromotionChoiceOfFreeGiftsPopupContent_div_5_2_1">
+													<input name="catalogEntryID" value="10280" id="CatalogEntryID_2" type="hidden">
+													<input name="giftItemQuantity" value="1" id="GiftItemQuantity_2" type="hidden">
+
+															<div class="selection" id="WC_PromotionChoiceOfFreeGiftsPopupContent_div_6_2_1"><input id="SelectFreeGift_2" name="freeGift" onclick="PromotionChoiceOfFreeGiftsJS.checkNumberOfAllowedItems('1.0');" type="radio"></div>
+
+													<div class="image" id="WC_PromotionChoiceOfFreeGiftsPopupContent_div_7_2_1">
+
+																<img src="../StoreAssets/images/catalog/apparel/women/womens_dresses_160x160/WD_002_a_green.jpg" name="catEntryImage" alt="Albini Empire Waist Knit Dress [PROPERTIES;Checkout_ACCE_for;for] " escapexml="false" height="70" width="70">
+
+													</div>
+													<div class="product_info" id="WC_PromotionChoiceOfFreeGiftsPopupContent_div_8_2_1">        
+														<h2><label for="SelectFreeGift_2">Albini Empire Waist Knit Dress</label></h2>
+														<p>V-necked sleeveless dress with empire waist and belt tie</p>
+														
+															<p class="online_availability">[PROPERTIES;PRODUCT_INV_ONLINE;Online Availability:]</p>
+
+																	<input name="onlineAvailability" value="Available" id="OnlineAvailability_2" type="hidden">
+
+															<p class="stock_status"><img id="WC_PromotionChoiceOfFreeGiftsPopupContent_div_8b_2_1" src="../StoreAssets/images/Available.gif" alt="[PROPERTIES;INV_STATUS_Available;In-Stock]" border="0">&nbsp;<span>[PROPERTIES;INV_STATUS_Available;In-Stock]</span></p>
+														
+														<div class="price" id="WC_PromotionChoiceOfFreeGiftsPopupContent_div_9_2_1">
+
+<!-- BEGIN CatalogEntryPriceDisplay.jspf-->
+
+
+			<span class="price bold">
+				$100.00
+				
+			</span>
+
+<!-- END CatalogEntryPriceDisplay.jspf-->
+
+
+														</div>                                               	
+													</div>
+													<br>                                                             
+													<div class="clear_float" id="WC_PromotionChoiceOfFreeGiftsPopupContent_div_10_2_1"></div>
+												</div>                                          
+
+									</div>
+								</div>      
+								<div id="FreeGiftsMessageArea">
+									<p id="message">&nbsp;</p>                               
+								</div>
+								<div class="clear_float"></div>
+							</div>
+							<div class="footer">
+								<div class="button_container" id="submit_div_1">
+									<a  role="button" aria-labelledby="WC_PromotionChoiceOfFreeGiftsPopupContent_Cancel_ACCE_Label" class="button_secondary button_left_padding" id="cancel" onclick="javascript: document.getElementById('free_gifts_popup').style.display='none';">
+										<div class="left_border"></div>
+										<div class="button_text">[PROPERTIES;CANCEL;Cancel]<span id="WC_PromotionChoiceOfFreeGiftsPopupContent_Cancel_ACCE_Label" class="spanacce">[PROPERTIES;Checkout_ACCE_promo_free_gifts_cancel;cancel to close the pop-up and not apply any selections to the shopping cart]</span></div>
+										<div class="right_border"></div>
+									</a>
+									<a  role="button" aria-labelledby="WC_PromotionChoiceOfFreeGiftsPopupContent_Apply_ACCE_Label" class="button_primary" id="submitChoices" onclick="javascript: document.getElementById('free_gifts_popup').style.display='none';">
+										<div class="left_border"></div>
+										<div class="button_text">[PROPERTIES;APPLY;Apply]<span id="WC_PromotionChoiceOfFreeGiftsPopupContent_Apply_ACCE_Label" class="spanacce">[PROPERTIES;Checkout_ACCE_promo_free_gifts_apply;apply the free gifts selections to the shopping cart]</span></div>
+										<div class="right_border"></div>
+									</a>
+								</div>
+								<div class="clear_float"></div>
+							</div>					
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="clear_float"></div>
+	<div class="bottom">
+		<div class="left_border"></div>
+		<div class="middle"></div>
+		<div class="right_border"></div>
+	</div>
+	<div class="clear_float"></div>
+</div>
+ 
+</span>
+<!-- END PromotionChoiceOfFreeGiftsPopupContent.jsp -->
+
+</div>		
+	</div>
+<span class="elementKeyIcon" title="DIALOG_TITLE_MESSAGE=Message Dialog"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div><div title="" widgetid="quickInfoPopup" style="position: fixed; opacity: 1; left: 454px; top: 100px; z-index: 951; display: none;" id="quickInfoPopup" aria-labelledby="quickInfoPopup_title" role="dialog" class="dijitDialog" tabindex="-1" wairole="dialog" waistate="labelledby-quickInfoPopup_title">
+	<div title="Quick Info" dojoattachpoint="titleBar" class="dijitDialogTitleBar">
+	<span dojoattachpoint="titleNode" class="dijitDialogTitle" id="quickInfoPopup_title"><span>Quick Info<span title="QUICK_VIEW" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="QUICK_VIEW"></span></span></span>
+	<span style="display: none;" dojoattachpoint="closeButtonNode" class="dijitDialogCloseIcon" dojoattachevent="onclick: onCancel" title="Cancel">
+		<span dojoattachpoint="closeText" class="closeText" title="Cancel">x</span>
+	</span>
+	</div>
+		<div style="width: auto; height: auto;" dojoattachpoint="containerNode" class="dijitDialogPaneContent">
+	<div class="widget_quick_info_popup">
+		
+		<!-- Top Border Styling -->
+
+		<div class="top">
+			<div class="left_border"></div>
+			<div class="middle"></div>
+			<div class="right_border"></div>
+		</div>
+		<div class="clear_float"></div>
+		<!-- Main Content Area -->
+
+		<div class="middle">
+			<div class="content_left_border">
+				<div class="content_right_border">
+				<span id="quickInfoRefreshArea_ACCE_Label" class="spanacce"><span>Quick Info Content<span title="QUICK_VIEW_CONTENT_ACCE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="QUICK_VIEW_CONTENT_ACCE"></span></span></span>
+				<div title="" widgetid="quickInfoRefreshArea" id="quickInfoRefreshArea" class="content dijitContentPane" dojotype="wc.widget.RefreshArea" controllerid="QuickInfoDetailsController" ariamessage="Quick Info Content Display Updated" arialiveid="ariaMessage" role="region" aria-labelledby="quickInfoRefreshArea_ACCE_Label">
+
+<!-- BEGIN QuickInfo.jsp -->
+
+<div class="jspcaption" style="display:none">QuickInfo.jsp</div>
+<div class="left_column">
+	<div class="image_container">
+		<img id="quickInfoMainImage" src="../StoreAssets/images/catalog/apparel/women/womens_dresses_330x330/WD_028_a_red.jpg" alt="Image for Hermitage Ruched Bodice Cocktail Dress from AuroraESite" title="Image for Hermitage Ruched Bodice Cocktail Dress from AuroraESite" height="330" width="330">
+	</div>
+	<div class="other_views">
+		<ul>
+			
+		</ul>
+	</div>
+	
+</div>
+<div class="right_column">
+	<a id="WC_QuickInfo_Link_close"  onclick="javascript: document.getElementById('quickInfoPopup').style.display='none';" class="close_group" title="[PROPERTIES;QI_CLOSE_BUTTON;Close button]">
+		<div class="close"></div>
+		<div class="close_text">[PROPERTIES;CLOSE;Close]</div>
+	</a>
+	
+	<span class="main_header">Hermitage Ruched Bodice Cocktail Dress</span>
+	<div class="clear_float"></div>
+	<span class="sku">SKU: AuroraWMDRS-002</span>
+	<div class="clear_float"></div>
+
+	<div class="item_spacer_5px"></div>
+
+<!-- BEGIN PriceDisplay.jsp -->
+
+<div class="jspcaption" style="display:none">PriceDisplay.jsp</div>
+		<span id="listPrice_10001" class="old_price">$250.00</span>
+		<span id="offerPrice_10001" class="price" itemprop="price">$100.00</span>
+
+<!-- END PriceDisplay.jsp -->
+
+
+<!-- BEGIN Discounts.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">Discounts.jsp</div>
+</span>
+<!-- END Discounts.jsp -->
+
+	<div class="clear_float"></div>
+
+	<div class="divider"></div>
+	<p>This strapless cocktail dress shows off your shoulders and the ruched bodice enhances your gorgeous figure. Bright and elegant, this dress will make you the center of attention in any party.</p>
+	<ul>
+		
+			<li>
+				<span id="descAttributeName_1">
+					[PROPERTIES;ATTRNAMEKEY;Construction:]
+				</span>
+				<span id="descAttributeValue_1">Knit</span>
+			</li>
+		
+			<li>
+				<span id="descAttributeName_2">
+					[PROPERTIES;ATTRNAMEKEY;Length:]
+				</span>
+				<span id="descAttributeValue_2">Short</span>
+			</li>
+		
+			<li>
+				<span id="descAttributeName_3">
+					[PROPERTIES;ATTRNAMEKEY;Occasion:]
+				</span>
+				<span id="descAttributeValue_3">Cocktail &amp; Evening</span>
+			</li>
+		
+			<li>
+				<span id="descAttributeName_4">
+					[PROPERTIES;ATTRNAMEKEY;Material:]
+				</span>
+				<span id="descAttributeValue_4">Synthetic</span>
+			</li>
+		
+	</ul>
+
+	<a id="WC_QuickInfo_Link_viewdetails" href="HermitageRuchedBodiceCocktailDressAuroraESite.html">[PROPERTIES;QI_VIEW_FULL_DETAILS;View full product details]</a>
+	<div class="clear_float"></div>
+
+	<div class="divider"></div>
+
+			<div class="color_and_size">
+
+					<div class="heading">
+						[PROPERTIES;ATTRNAMEKEY;Color:]
+						<span class="selectedAttribute" id="quickinfo_swatch_selection_Color">Red</span>
+					</div>
+					<span class="spanacce" id="swatch_ACCE_description_Color">[PROPERTIES;ACCE_Region_Price_Update;The price of the product might be updated based on your selection]</span>
+					<div class="color_swatch_list" role="radiogroup" aria-label="Color" aria-describedby="swatch_ACCE_description_Color">
+						<ul>
+
+								<li>
+									<a role="radio" aria-setsize="3" aria-posinset="1" aria-checked="true" id="WC_QuickInfo_Swatch_Color_Red" href='javascript:QuickInfoJS.selectSwatch("Color","Red","quickInfoSwatch_Color_Red","quickInfoSwatch_Color_");
+														QuickInfoJS.notifyAttributeChange();
+														QuickInfoJS.selectItem(true,true);' title="Red">
+										<img id="quickInfoSwatch_Color_Red" alt="Red" src="../StoreAssets/images/catalog/apparel/women/Swatches/AuroraWMDRS-1/WD_028_a_red_s.jpg" class="color_swatch_selected">
+									</a>
+								</li>
+
+								<li>
+									<a role="radio" aria-setsize="3" aria-posinset="2" aria-checked="false" id="WC_QuickInfo_Swatch_Color_Teal" href='javascript:QuickInfoJS.selectSwatch("Color","Teal","quickInfoSwatch_Color_Teal","quickInfoSwatch_Color_");
+														QuickInfoJS.notifyAttributeChange();
+														QuickInfoJS.selectItem(true,true);' title="Teal">
+										<img id="quickInfoSwatch_Color_Teal" alt="Teal" src="../StoreAssets/images/catalog/apparel/women/Swatches/AuroraWMDRS-1/WD_028_a_teal_s.jpg" class="color_swatch">
+									</a>
+								</li>
+
+								<li>
+									<a role="radio" aria-setsize="3" aria-posinset="3" aria-checked="false" id="WC_QuickInfo_Swatch_Color_Yellow" href='javascript:QuickInfoJS.selectSwatch("Color","Yellow","quickInfoSwatch_Color_Yellow","quickInfoSwatch_Color_");
+														QuickInfoJS.notifyAttributeChange();
+														QuickInfoJS.selectItem(true,true);' title="Yellow">
+										<img id="quickInfoSwatch_Color_Yellow" alt="Yellow" src="../StoreAssets/images/catalog/apparel/women/Swatches/AuroraWMDRS-1/WD_028_a_yellow_s.jpg" class="color_swatch">
+									</a>
+								</li>
+							
+						</ul>
+					</div>
+					<div class="clear_float"></div>
+					<div class="item_spacer_10px"></div>
+
+					<div class="heading">
+						[PROPERTIES;ATTRNAMEKEY;Available Sizes:]
+						<span class="selectedAttribute" id="quickinfo_swatch_selection_Available Sizes">M</span>
+					</div>
+					<span class="spanacce" id="swatch_ACCE_description_Available-Sizes">[PROPERTIES;ACCE_Region_Price_Update;The price of the product might be updated based on your selection]</span>
+					<div class="color_swatch_list" role="radiogroup" aria-label="Available Sizes" aria-describedby="swatch_ACCE_description_Available-Sizes">
+						<ul>
+
+								<li>
+									<a aria-disabled="false" role="radio" aria-setsize="6" aria-posinset="1" aria-checked="false" id="WC_QuickInfo_Swatch_Available Sizes_XS" href='javascript:QuickInfoJS.selectSwatch("Available Sizes","XS","quickInfoSwatch_Available Sizes_XS","quickInfoSwatch_Available Sizes_");
+														QuickInfoJS.notifyAttributeChange();
+														QuickInfoJS.selectItem(true,true);' title="XS">
+										<img id="quickInfoSwatch_Available Sizes_XS" alt="XS" src="../StoreAssets/images/catalog/apparel/women/Swatches/swatch_size/size_xs_enabled.png" class="color_swatch">
+									</a>
+								</li>
+
+								<li>
+									<a aria-disabled="true" role="radio" aria-setsize="6" aria-posinset="2" aria-checked="false" id="WC_QuickInfo_Swatch_Available Sizes_S" href='javascript:QuickInfoJS.selectSwatch("Available Sizes","S","quickInfoSwatch_Available Sizes_S","quickInfoSwatch_Available Sizes_");
+														QuickInfoJS.notifyAttributeChange();
+														QuickInfoJS.selectItem(true,true);' title="S">
+										<img id="quickInfoSwatch_Available Sizes_S" alt="S" src="../StoreAssets/images/catalog/apparel/women/Swatches/swatch_size/size_s_disabled.png" class="color_swatch_disabled">
+									</a>
+								</li>
+
+								<li>
+									<a role="radio" aria-setsize="6" aria-posinset="3" aria-checked="false" id="WC_QuickInfo_Swatch_Available Sizes_M" href='javascript:QuickInfoJS.selectSwatch("Available Sizes","M","quickInfoSwatch_Available Sizes_M","quickInfoSwatch_Available Sizes_");
+														QuickInfoJS.notifyAttributeChange();
+														QuickInfoJS.selectItem(true,true);' title="M">
+										<img id="quickInfoSwatch_Available Sizes_M" alt="M" src="../StoreAssets/images/catalog/apparel/women/Swatches/swatch_size/size_m_enabled.png" class="color_swatch_selected">
+									</a>
+								</li>
+
+								<li>
+									<a aria-disabled="false" role="radio" aria-setsize="6" aria-posinset="4" aria-checked="false" id="WC_QuickInfo_Swatch_Available Sizes_L" href='javascript:QuickInfoJS.selectSwatch("Available Sizes","L","quickInfoSwatch_Available Sizes_L","quickInfoSwatch_Available Sizes_");
+														QuickInfoJS.notifyAttributeChange();
+														QuickInfoJS.selectItem(true,true);' title="L">
+										<img id="quickInfoSwatch_Available Sizes_L" alt="L" src="../StoreAssets/images/catalog/apparel/women/Swatches/swatch_size/size_l_enabled.png" class="color_swatch">
+									</a>
+								</li>
+
+								<li>
+									<a aria-disabled="false" role="radio" aria-setsize="6" aria-posinset="5" aria-checked="false" id="WC_QuickInfo_Swatch_Available Sizes_XL" href='javascript:QuickInfoJS.selectSwatch("Available Sizes","XL","quickInfoSwatch_Available Sizes_XL","quickInfoSwatch_Available Sizes_");
+														QuickInfoJS.notifyAttributeChange();
+														QuickInfoJS.selectItem(true,true);' title="XL">
+										<img id="quickInfoSwatch_Available Sizes_XL" alt="XL" src="../StoreAssets/images/catalog/apparel/women/Swatches/swatch_size/size_xl_enabled.png" class="color_swatch">
+									</a>
+								</li>
+
+								<li>
+									<a aria-disabled="true" role="radio" aria-setsize="6" aria-posinset="6" aria-checked="false" id="WC_QuickInfo_Swatch_Available Sizes_2XL" href='javascript:QuickInfoJS.selectSwatch("Available Sizes","2XL","quickInfoSwatch_Available Sizes_2XL","quickInfoSwatch_Available Sizes_");
+														QuickInfoJS.notifyAttributeChange();
+														QuickInfoJS.selectItem(true,true);' title="2XL">
+										<img id="quickInfoSwatch_Available Sizes_2XL" alt="2XL" src="../StoreAssets/images/catalog/apparel/women/Swatches/swatch_size/size_xxl_disabled.png" class="color_swatch_disabled">
+									</a>
+								</li>
+							
+						</ul>
+					</div>
+					<div class="clear_float"></div>
+					<div class="item_spacer_10px"></div>
+				
+				<input id="WC_QuickInfo_SwatchNames" value="Color_Available Sizes" type="hidden">
+
+			</div>
+
+		<div class="clear_float"></div>
+		<div class="divider"></div>
+
+	<div class="purchase_section" style="position:relative;">
+
+			<span class="quantity_label left"><label for="WC_QuickInfo_input_quantity">[PROPERTIES;QI_QUANTITY;Quantity]&nbsp;</label></span>
+			<div class="content">
+				<input disabled="disabled" id="WC_QuickInfo_input_quantity" class="quantity_input" value="1" onchange="javascript:QuickInfoJS.setCatEntryQuantity(this.value);" type="text">
+			</div>
+			<div class="clear_float"></div>
+			<div class="item_spacer_7px"></div>
+
+				<a id="WC_QuickInfo_Link_UpdateCartItem" class="button_add_to_cart"  onclick="javascript: document.getElementById('quickInfoPopup').style.display='none';" wairole="button" role="button" title="[PROPERTIES;QI_UPDATE_CART_ITEM;Update Cart Item]">
+					<div class="left_border"></div>
+					<div class="button_text">[PROPERTIES;QI_UPDATE_CART_ITEM;Update Cart Item]</div>
+					<div class="right_border"></div>
+				</a>
+				<div class="clear_float"></div>
+
+		<input id="catEntryParamsForJS" value="{id: '10001', type: 'productbean', skus: [{id: '10046', attributes: {'Available Sizes': 'L','Color': 'Teal'}, 
+			thumbnailAttachments: [], fullImageAttachments: []},{id: '10047', attributes: {'Available Sizes': 'XL','Color': 'Teal'}, 
+			thumbnailAttachments: [], fullImageAttachments: []},{id: '10048', attributes: {'Available Sizes': 'XS','Color': 'Yellow'}, 
+			thumbnailAttachments: [], fullImageAttachments: []},{id: '10049', attributes: {'Available Sizes': 'S','Color': 'Yellow'}, 
+			thumbnailAttachments: [], fullImageAttachments: []},{id: '10050', attributes: {'Available Sizes': 'M','Color': 'Yellow'}, 
+			thumbnailAttachments: [], fullImageAttachments: []},{id: '10051', attributes: {'Available Sizes': 'XL','Color': 'Yellow'}, 
+			thumbnailAttachments: [], fullImageAttachments: []},{id: '10052', attributes: {'Available Sizes': '2XL','Color': 'Yellow'}, 
+			thumbnailAttachments: [], fullImageAttachments: []},{id: '10040', attributes: {'Available Sizes': 'XS','Color': 'Red'}, 
+			thumbnailAttachments: [], fullImageAttachments: []},{id: '10041', attributes: {'Available Sizes': 'M','Color': 'Red'}, 
+			thumbnailAttachments: [], fullImageAttachments: []},{id: '10042', attributes: {'Available Sizes': 'L','Color': 'Red'}, 
+			thumbnailAttachments: [], fullImageAttachments: []},{id: '10043', attributes: {'Available Sizes': 'XL','Color': 'Red'}, 
+			thumbnailAttachments: [], fullImageAttachments: []},{id: '10044', attributes: {'Available Sizes': 'S','Color': 'Teal'}, 
+			thumbnailAttachments: [], fullImageAttachments: []},{id: '10045', attributes: {'Available Sizes': 'M','Color': 'Teal'}, 
+			thumbnailAttachments: [], fullImageAttachments: []}]}" type="hidden">
+	</div>
+
+</div>
+<div class="clear_float"></div>
+
+
+<!-- END QuickInfo.jsp -->
+</div>
+				<!-- End content_right_border -->
+
+				<span class="elementKeyIcon" title="ACCE_Status_Quick_View_Content_updated=Quick Info Content Display Updated"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+			<!-- End content_left_border -->
+
+			</div>
+		</div>
+		<div class="clear_float"></div>
+		<!-- Bottom Border Styling -->
+
+		<div class="bottom">
+			<div class="left_border"></div>
+			<div class="middle"></div>
+			<div class="right_border"></div>
+		</div>
+		<div class="clear_float"></div>
+	</div>
+</div>
+<span class="elementKeyIcon" title="QUICK_VIEW=Quick Info"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div><div class="dijitDialog dijitDialogHover dijitHover dijitDialogFocused dijitDialogHoverFocused dijitHoverFocused dijitFocused" tabindex="-1" wairole="dialog" waistate="labelledby-quickInfoPopup_title" role="dialog" aria-labelledby="quickInfoPopup_title" id="quickInfoPopup_2" style="position: fixed; opacity: 1; left: 454px; top: 100px; z-index: 951; display: none;" widgetid="quickInfoPopup_2" title="">
+	<div dojoattachpoint="titleBar" class="dijitDialogTitleBar" title="Quick Info">
+	<span dojoattachpoint="titleNode" class="dijitDialogTitle" id="quickInfoPopup_title"><span>Quick Info<span title="QUICK_VIEW" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="QUICK_VIEW"></span></span></span>
+	<span dojoattachpoint="closeButtonNode" class="dijitDialogCloseIcon" dojoattachevent="onclick: onCancel" title="Cancel" style="display: none; ">
+		<span dojoattachpoint="closeText" class="closeText" title="Cancel">x</span>
+	</span>
+	</div>
+		<div dojoattachpoint="containerNode" class="dijitDialogPaneContent" style="width: auto; height: auto; ">
+	<div class="widget_quick_info_popup">
+		
+		<!-- Top Border Styling -->
+
+		<div class="top">
+			<div class="left_border"></div>
+			<div class="middle"></div>
+			<div class="right_border"></div>
+		</div>
+		<div class="clear_float"></div>
+		<!-- Main Content Area -->
+
+		<div class="middle">
+			<div class="content_left_border">
+				<div class="content_right_border">
+				<span id="quickInfoRefreshArea_ACCE_Label" class="spanacce"><span>Quick Info Content<span title="QUICK_VIEW_CONTENT_ACCE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="QUICK_VIEW_CONTENT_ACCE"></span></span></span>
+				<div id="quickInfoRefreshArea" class="content dijitContentPane" dojotype="wc.widget.RefreshArea" controllerid="QuickInfoDetailsController" ariamessage="Quick Info Content Display Updated" arialiveid="ariaMessage" role="region" aria-labelledby="quickInfoRefreshArea_ACCE_Label" widgetid="quickInfoRefreshArea" title="">
+
+<!-- BEGIN QuickInfo.jsp -->
+
+<div class="jspcaption" style="display:none">QuickInfo.jsp</div>
+<div class="left_column">
+	<div class="image_container">
+		<img id="quickInfoMainImage" src="../StoreAssets/images/catalog/apparel/women/womens_dresses_330x330/WD_028_a_red.jpg" alt="Image for Hermitage Ruched Bodice Cocktail Dress from AuroraESite" title="Image for Hermitage Ruched Bodice Cocktail Dress from AuroraESite" width="330" height="330">
+	</div>
+	<div class="other_views">
+		<ul>
+			
+		</ul>
+	</div>
+	
+</div>
+<div class="right_column">
+	<a id="WC_QuickInfo_Link_close_2" onclick="javascript:document.getElementById('quickInfoPopup_2').style.display='none';" class="close_group" title="[PROPERTIES;QI_CLOSE_BUTTON;Close button]">
+		<div class="close"></div>
+		<div class="close_text">[PROPERTIES;CLOSE;Close]</div>
+	</a>
+	
+	<span class="main_header">Hermitage Ruched Bodice Cocktail Dress</span>
+	<div class="clear_float"></div>
+	<span class="sku">[PROPERTIES;CurrentOrder_SKU;SKU:] AuroraWMDRS-1</span>
+	<div class="clear_float"></div>
+
+	<div class="item_spacer_5px"></div>
+
+<!-- BEGIN PriceDisplay.jsp -->
+
+<div class="jspcaption" style="display:none">PriceDisplay.jsp</div>
+		<span id="listPrice_10001" class="old_price">
+			$250.00
+		</span>
+		<span id="offerPrice_10001" class="price" itemprop="price">
+			&nbsp;$100.00
+		</span>
+
+<!-- END PriceDisplay.jsp -->
+
+
+<!-- BEGIN Discounts.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">Discounts.jsp</div>
+</span>
+<!-- END Discounts.jsp -->
+
+	<div class="clear_float"></div>
+
+	<div class="divider"></div>
+	<p>This strapless cocktail dress shows off your shoulders and the ruched bodice enhances your gorgeous figure. Bright and elegant, this dress will make you the center of attention in any party.</p>
+	<ul>
+		
+			<li>
+				<span id="descAttributeName_1">
+					[PROPERTIES;ATTRNAMEKEY;Construction:]
+				</span>
+				<span id="descAttributeValue_1">Knit</span>
+			</li>
+		
+			<li>
+				<span id="descAttributeName_2">
+					[PROPERTIES;ATTRNAMEKEY;Length:]
+				</span>
+				<span id="descAttributeValue_2">Short</span>
+			</li>
+		
+			<li>
+				<span id="descAttributeName_3">
+					[PROPERTIES;ATTRNAMEKEY;Occasion:]
+				</span>
+				<span id="descAttributeValue_3">Cocktail &amp; Evening</span>
+			</li>
+		
+			<li>
+				<span id="descAttributeName_4">
+					[PROPERTIES;ATTRNAMEKEY;Material:]
+				</span>
+				<span id="descAttributeValue_4">Synthetic</span>
+			</li>
+		
+	</ul>
+
+	<a id="WC_QuickInfo_Link_viewdetails" href="HermitageRuchedBodiceCocktailDressAuroraESite.html">[PROPERTIES;QI_VIEW_FULL_DETAILS;View full product details]</a>
+	<div class="clear_float"></div>
+
+	<div class="divider"></div>
+
+			<div class="color_and_size">
+
+					<div class="heading">
+						[PROPERTIES;ATTRNAMEKEY;Color:]
+						<span class="selectedAttribute" id="quickinfo_swatch_selection_Color">Red</span>
+					</div>
+					<span class="spanacce" id="swatch_ACCE_description_Color">[PROPERTIES;ACCE_Region_Price_Update;The price of the product might be updated based on your selection]</span>
+					<div class="color_swatch_list" role="radiogroup" aria-label="Color" aria-describedby="swatch_ACCE_description_Color">
+						<ul>
+
+								<li>
+									<a role="radio" aria-setsize="3" aria-posinset="1" aria-checked="true" id="WC_QuickInfo_Swatch_Color_Red" href='javascript:QuickInfoJS.selectSwatch("Color","Red","quickInfoSwatch_Color_Red","quickInfoSwatch_Color_");
+														QuickInfoJS.notifyAttributeChange();
+														QuickInfoJS.selectItem(true,true);' title="Red">
+										<img id="quickInfoSwatch_Color_Red" alt="Red" src="../StoreAssets/images/catalog/apparel/women/Swatches/AuroraWMDRS-1/WD_028_a_red_s.jpg" class="color_swatch_selected">
+									</a>
+								</li>
+
+								<li>
+									<a role="radio" aria-setsize="3" aria-posinset="2" aria-checked="false" id="WC_QuickInfo_Swatch_Color_Teal" href='javascript:QuickInfoJS.selectSwatch("Color","Teal","quickInfoSwatch_Color_Teal","quickInfoSwatch_Color_");
+														QuickInfoJS.notifyAttributeChange();
+														QuickInfoJS.selectItem(true,true);' title="Teal">
+										<img id="quickInfoSwatch_Color_Teal" alt="Teal" src="../StoreAssets/images/catalog/apparel/women/Swatches/AuroraWMDRS-1/WD_028_a_teal_s.jpg" class="color_swatch">
+									</a>
+								</li>
+
+								<li>
+									<a role="radio" aria-setsize="3" aria-posinset="3" aria-checked="false" id="WC_QuickInfo_Swatch_Color_Yellow" href='javascript:QuickInfoJS.selectSwatch("Color","Yellow","quickInfoSwatch_Color_Yellow","quickInfoSwatch_Color_");
+														QuickInfoJS.notifyAttributeChange();
+														QuickInfoJS.selectItem(true,true);' title="Yellow">
+										<img id="quickInfoSwatch_Color_Yellow" alt="Yellow" src="../StoreAssets/images/catalog/apparel/women/Swatches/AuroraWMDRS-1/WD_028_a_yellow_s.jpg" class="color_swatch">
+									</a>
+								</li>
+							
+						</ul>
+					</div>
+					<div class="clear_float"></div>
+					<div class="item_spacer_10px"></div>
+
+					<div class="heading">
+						[PROPERTIES;ATTRNAMEKEY;Available Sizes:]
+						<span class="selectedAttribute" id="quickinfo_swatch_selection_Available Sizes"></span>
+					</div>
+					<span class="spanacce" id="swatch_ACCE_description_Available-Sizes">[PROPERTIES;ACCE_Region_Price_Update;The price of the product might be updated based on your selection]</span>
+					<div class="color_swatch_list" role="radiogroup" aria-label="Available Sizes" aria-describedby="swatch_ACCE_description_Available-Sizes">
+						<ul>
+
+								<li>
+									<a role="radio" aria-setsize="6" aria-posinset="1" aria-checked="false" id="WC_QuickInfo_Swatch_Available Sizes_XS" href='javascript:QuickInfoJS.selectSwatch("Available Sizes","XS","quickInfoSwatch_Available Sizes_XS","quickInfoSwatch_Available Sizes_");
+														QuickInfoJS.notifyAttributeChange();
+														QuickInfoJS.selectItem(true,true);' title="XS" aria-disabled="false">
+										<img id="quickInfoSwatch_Available Sizes_XS" alt="XS" src="../StoreAssets/images/catalog/apparel/women/Swatches/swatch_size/size_xs_enabled.png" class="color_swatch">
+									</a>
+								</li>
+
+								<li>
+									<a role="radio" aria-setsize="6" aria-posinset="2" aria-checked="false" id="WC_QuickInfo_Swatch_Available Sizes_S" href='javascript:QuickInfoJS.selectSwatch("Available Sizes","S","quickInfoSwatch_Available Sizes_S","quickInfoSwatch_Available Sizes_");
+														QuickInfoJS.notifyAttributeChange();
+														QuickInfoJS.selectItem(true,true);' title="S" aria-disabled="true">
+										<img id="quickInfoSwatch_Available Sizes_S" alt="S" src="../StoreAssets/images/catalog/apparel/women/Swatches/swatch_size/size_s_disabled.png" class="color_swatch_disabled">
+									</a>
+								</li>
+
+								<li>
+									<a role="radio" aria-setsize="6" aria-posinset="3" aria-checked="false" id="WC_QuickInfo_Swatch_Available Sizes_M" href='javascript:QuickInfoJS.selectSwatch("Available Sizes","M","quickInfoSwatch_Available Sizes_M","quickInfoSwatch_Available Sizes_");
+														QuickInfoJS.notifyAttributeChange();
+														QuickInfoJS.selectItem(true,true);' title="M" aria-disabled="false">
+										<img id="quickInfoSwatch_Available Sizes_M" alt="M" src="../StoreAssets/images/catalog/apparel/women/Swatches/swatch_size/size_m_enabled.png" class="color_swatch">
+									</a>
+								</li>
+
+								<li>
+									<a role="radio" aria-setsize="6" aria-posinset="4" aria-checked="false" id="WC_QuickInfo_Swatch_Available Sizes_L" href='javascript:QuickInfoJS.selectSwatch("Available Sizes","L","quickInfoSwatch_Available Sizes_L","quickInfoSwatch_Available Sizes_");
+														QuickInfoJS.notifyAttributeChange();
+														QuickInfoJS.selectItem(true,true);' title="L" aria-disabled="false">
+										<img id="quickInfoSwatch_Available Sizes_L" alt="L" src="../StoreAssets/images/catalog/apparel/women/Swatches/swatch_size/size_l_enabled.png" class="color_swatch">
+									</a>
+								</li>
+
+								<li>
+									<a role="radio" aria-setsize="6" aria-posinset="5" aria-checked="false" id="WC_QuickInfo_Swatch_Available Sizes_XL" href='javascript:QuickInfoJS.selectSwatch("Available Sizes","XL","quickInfoSwatch_Available Sizes_XL","quickInfoSwatch_Available Sizes_");
+														QuickInfoJS.notifyAttributeChange();
+														QuickInfoJS.selectItem(true,true);' title="XL" aria-disabled="false">
+										<img id="quickInfoSwatch_Available Sizes_XL" alt="XL" src="../StoreAssets/images/catalog/apparel/women/Swatches/swatch_size/size_xl_enabled.png" class="color_swatch">
+									</a>
+								</li>
+
+								<li>
+									<a role="radio" aria-setsize="6" aria-posinset="6" aria-checked="false" id="WC_QuickInfo_Swatch_Available Sizes_2XL" href='javascript:QuickInfoJS.selectSwatch("Available Sizes","2XL","quickInfoSwatch_Available Sizes_2XL","quickInfoSwatch_Available Sizes_");
+														QuickInfoJS.notifyAttributeChange();
+														QuickInfoJS.selectItem(true,true);' title="2XL" aria-disabled="true">
+										<img id="quickInfoSwatch_Available Sizes_2XL" alt="2XL" src="../StoreAssets/images/catalog/apparel/women/Swatches/swatch_size/size_xxl_disabled.png" class="color_swatch_disabled">
+									</a>
+								</li>
+							
+						</ul>
+					</div>
+					<div class="clear_float"></div>
+					<div class="item_spacer_10px"></div>
+				
+				<input id="WC_QuickInfo_SwatchNames" type="hidden" value="Color_Available Sizes">
+
+			</div>
+
+		<div class="clear_float"></div>
+		<div class="divider"></div>
+
+	<div class="purchase_section" style="position:relative;">
+
+			<span class="quantity_label left"><label for="WC_QuickInfo_input_quantity">[PROPERTIES;QI_QUANTITY;Quantity]&nbsp;</label></span>
+			<div class="content">
+				<input id="WC_QuickInfo_input_quantity" type="text" class="quantity_input" value="1" onchange="javascript:QuickInfoJS.setCatEntryQuantity(this.value);">
+			</div>
+			<div class="clear_float"></div>
+			<div class="item_spacer_7px"></div>
+
+				<a id="WC_QuickInfo_Link_addtocart" class="button_add_to_cart" onclick="javascript: document.getElementById('quickInfoPopup_2').style.display='none'; showMiniShopCartDropDown('widget_minishopcart','quick_cart_container','orderItemAdded');" wairole="button" role="button" title="[PROPERTIES;QI_ADD_TO_CART;Add to Cart]">
+					<div class="left_border"></div>
+					<div class="button_text">[PROPERTIES;QI_ADD_TO_CART;Add to Cart]</div>
+					<div class="right_border"></div>
+				</a>
+				<div class="clear_float"></div>
+				<div class="item_spacer_3px"></div>
+
+<!-- BEGIN ShoppingList.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">ShoppingList.jsp</div>
+<script>
+	shoppingListJSQuickInfo = new ShoppingListJS({storeId: '10152',catalogId: '10001',langId: '-1'}, {id: '10001', name: 'Hermitage Ruched Bodice Cocktail Dress', image: '../StoreAssets/images/catalog/apparel/women/womens_dresses_105x105/WD_028_a_red.jpg', type: 'ProductBean', components: {}, skus: [{id: '10040', attributes: {'Available Sizes': 'XS','Color': 'Red'}},{id: '10041', attributes: {'Available Sizes': 'M','Color': 'Red'}},{id: '10042', attributes: {'Available Sizes': 'L','Color': 'Red'}},{id: '10043', attributes: {'Available Sizes': 'XL','Color': 'Red'}},{id: '10044', attributes: {'Available Sizes': 'S','Color': 'Teal'}},{id: '10045', attributes: {'Available Sizes': 'M','Color': 'Teal'}},{id: '10046', attributes: {'Available Sizes': 'L','Color': 'Teal'}},{id: '10047', attributes: {'Available Sizes': 'XL','Color': 'Teal'}},{id: '10048', attributes: {'Available Sizes': 'XS','Color': 'Yellow'}},{id: '10049', attributes: {'Available Sizes': 'S','Color': 'Yellow'}},{id: '10050', attributes: {'Available Sizes': 'M','Color': 'Yellow'}},{id: '10051', attributes: {'Available Sizes': 'XL','Color': 'Yellow'}},{id: '10052', attributes: {'Available Sizes': '2XL','Color': 'Yellow'}}]}, {}, "shoppingListJSQuickInfo");
+</script>
+
+<div id="shoppingListScript_QuickInfo" style="display:none;">
+	if(typeof(shoppingListJSQuickInfo) == "undefined" || shoppingListJSQuickInfo == null || !shoppingListJSQuickInfo) {
+		shoppingListJSQuickInfo = new ShoppingListJS({storeId: '10152',catalogId: '10001',langId: '-1'}, {id: '10001', name: 'Hermitage Ruched Bodice Cocktail Dress', image: '../StoreAssets/images/catalog/apparel/women/womens_dresses_105x105/WD_028_a_red.jpg', type: 'ProductBean', components: {}, skus: [{id: '10040', attributes: {'Available Sizes': 'XS','Color': 'Red'}},{id: '10041', attributes: {'Available Sizes': 'M','Color': 'Red'}},{id: '10042', attributes: {'Available Sizes': 'L','Color': 'Red'}},{id: '10043', attributes: {'Available Sizes': 'XL','Color': 'Red'}},{id: '10044', attributes: {'Available Sizes': 'S','Color': 'Teal'}},{id: '10045', attributes: {'Available Sizes': 'M','Color': 'Teal'}},{id: '10046', attributes: {'Available Sizes': 'L','Color': 'Teal'}},{id: '10047', attributes: {'Available Sizes': 'XL','Color': 'Teal'}},{id: '10048', attributes: {'Available Sizes': 'XS','Color': 'Yellow'}},{id: '10049', attributes: {'Available Sizes': 'S','Color': 'Yellow'}},{id: '10050', attributes: {'Available Sizes': 'M','Color': 'Yellow'}},{id: '10051', attributes: {'Available Sizes': 'XL','Color': 'Yellow'}},{id: '10052', attributes: {'Available Sizes': '2XL','Color': 'Yellow'}}]}, {}, "shoppingListJSQuickInfo");
+	}
+</div>
+
+<img style="display:none;" src="../StoreAssets/images/catalog/apparel/women/womens_dresses_105x105/WD_028_a_red.jpg">
+<div style="position:relative;">
+	<div id="QuickInfoaddToShoppingListBtn" class="dropdown_primary">
+	
+		<a id="QuickInfoaddToShoppingList" href="javascript:shoppingListJSQuickInfo.showDropDown();" class="button" role="button">
+			<div class="left_border"></div>
+			<div class="content">
+
+						[PROPERTIES;SL_ADD_TO_SHOPPING_LIST;Add to Wish List]
+
+			</div>
+			<div class="right_border"></div>
+		</a>
+			<div class="drop">
+			<div class="white_line"></div>
+				<a id="QuickInfoaddToShoppingListDropdown" onmouseover="javascript: shoppingListJSQuickInfo.mouseOnArrow = true;" onmouseout="javascript: shoppingListJSQuickInfo.mouseOnArrow = false;" href="javascript:shoppingListJSQuickInfo.showDropDown();" class="dropdown_arrow" title="[PROPERTIES;SL_MULTIPLE_SHOPPING_LIST_DD;Multiple wish list drop down. Press enter and tab to display the drop down]" role="button">
+						<img style="margin-top: 10px;"src="../StoreAssets/images/colors/color1/widget_quick_info_popup/dropdown_arrow.png" alt="[PROPERTIES;SL_MULTIPLE_SHOPPING_LIST_DD;Multiple wish list drop down. Press enter and tab to display the drop down]">
+					</a>
+				<div class="right_border"></div>
+			</div>
+	</div>
+	
+			<div id="QuickInfoshoppingListDropDown" style="display: none" class="dropdown_list" onmousedown="javascript:shoppingListJSQuickInfo.hasFocus(event);" onkeydown="javascript:shoppingListJSQuickInfo.navigateDropDown(event);" onblur="javascript: document.getElementById('QuickInfoaddToShoppingListDropdown').focus();" role="menu">
+				<ul class="wish_order_list">
+
+							<li role="menuitem" class="message">[PROPERTIES;SL_SIGN_IN_OR_REGISTER_TO_ACCESS_LIST;Sign In or Register to access your lists.]</li>
+							<div class="divider"></div>
+							<li role="menuitem" id="QuickInfoShoppingList_0" class="created_list" onfocus="javascript:shoppingListJSQuickInfo.focusList(0);" onblur="javascript: this.className = 'created_list';">
+									<a id="QuickInfoShoppingListLink_0" href="SignIn.html" onfocus="javascript:shoppingListJSQuickInfo.focusListLink(0);" role="menuitem" title="[PROPERTIES;SL_SIGN_IN_OR_REGISTER_TO_ACCESS_LIST;Sign In or Register to access your lists.]">[PROPERTIES;SL_SIGN_IN_OR_REGISTER;Sign In / Register]</a>
+							</li>
+
+				</ul>
+			</div>
+		
+</div>
+<!-- Hidden Fields -->
+
+<input id="QuickInfostoreParams" type="hidden" value="{storeId: '10152',catalogId: '10001',langId: '-1'}">
+<input id="QuickInfocatEntryParams" type="hidden" value="{id: '10001', name: 'Hermitage Ruched Bodice Cocktail Dress', image: '../StoreAssets/images/catalog/apparel/women/womens_dresses_105x105/WD_028_a_red.jpg', type: 'ProductBean', components: {}, skus: [{id: '10040', attributes: {'Available Sizes': 'XS','Color': 'Red'}},{id: '10041', attributes: {'Available Sizes': 'M','Color': 'Red'}},{id: '10042', attributes: {'Available Sizes': 'L','Color': 'Red'}},{id: '10043', attributes: {'Available Sizes': 'XL','Color': 'Red'}},{id: '10044', attributes: {'Available Sizes': 'S','Color': 'Teal'}},{id: '10045', attributes: {'Available Sizes': 'M','Color': 'Teal'}},{id: '10046', attributes: {'Available Sizes': 'L','Color': 'Teal'}},{id: '10047', attributes: {'Available Sizes': 'XL','Color': 'Teal'}},{id: '10048', attributes: {'Available Sizes': 'XS','Color': 'Yellow'}},{id: '10049', attributes: {'Available Sizes': 'S','Color': 'Yellow'}},{id: '10050', attributes: {'Available Sizes': 'M','Color': 'Yellow'}},{id: '10051', attributes: {'Available Sizes': 'XL','Color': 'Yellow'}},{id: '10052', attributes: {'Available Sizes': '2XL','Color': 'Yellow'}}]}">
+<input id="QuickInfoshoppingListNames" type="hidden" value="{}">
+
+</span>
+<!-- END ShoppingList.jsp -->
+
+
+		<input id="catEntryParamsForJS" type="hidden" value="{id: '10001', type: 'productbean', skus: [{id: '10040', attributes: {'Available Sizes': 'XS','Color': 'Red'}, 
+			thumbnailAttachments: [], fullImageAttachments: []},{id: '10041', attributes: {'Available Sizes': 'M','Color': 'Red'}, 
+			thumbnailAttachments: [], fullImageAttachments: []},{id: '10042', attributes: {'Available Sizes': 'L','Color': 'Red'}, 
+			thumbnailAttachments: [], fullImageAttachments: []},{id: '10043', attributes: {'Available Sizes': 'XL','Color': 'Red'}, 
+			thumbnailAttachments: [], fullImageAttachments: []},{id: '10044', attributes: {'Available Sizes': 'S','Color': 'Teal'}, 
+			thumbnailAttachments: [], fullImageAttachments: []},{id: '10045', attributes: {'Available Sizes': 'M','Color': 'Teal'}, 
+			thumbnailAttachments: [], fullImageAttachments: []},{id: '10046', attributes: {'Available Sizes': 'L','Color': 'Teal'}, 
+			thumbnailAttachments: [], fullImageAttachments: []},{id: '10047', attributes: {'Available Sizes': 'XL','Color': 'Teal'}, 
+			thumbnailAttachments: [], fullImageAttachments: []},{id: '10048', attributes: {'Available Sizes': 'XS','Color': 'Yellow'}, 
+			thumbnailAttachments: [], fullImageAttachments: []},{id: '10049', attributes: {'Available Sizes': 'S','Color': 'Yellow'}, 
+			thumbnailAttachments: [], fullImageAttachments: []},{id: '10050', attributes: {'Available Sizes': 'M','Color': 'Yellow'}, 
+			thumbnailAttachments: [], fullImageAttachments: []},{id: '10051', attributes: {'Available Sizes': 'XL','Color': 'Yellow'}, 
+			thumbnailAttachments: [], fullImageAttachments: []},{id: '10052', attributes: {'Available Sizes': '2XL','Color': 'Yellow'}, 
+			thumbnailAttachments: [], fullImageAttachments: []}]}">
+	</div>
+
+</div>
+<div class="clear_float"></div>
+
+
+<!-- END QuickInfo.jsp -->
+</div>
+				<!-- End content_right_border -->
+
+				<span title="ACCE_Status_Quick_View_Content_updated=Quick Info Content Display Updated" class="elementKeyIcon"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+			<!-- End content_left_border -->
+
+			</div>
+		</div>
+		<div class="clear_float"></div>
+		<!-- Bottom Border Styling -->
+
+		<div class="bottom">
+			<div class="left_border"></div>
+			<div class="middle"></div>
+			<div class="right_border"></div>
+		</div>
+		<div class="clear_float"></div>
+	</div>
+</div>
+<span title="QUICK_VIEW=Quick Info" class="elementKeyIcon"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div><div title="" widgetid="shoppingListItemAddedPopup" style="display: none; position: absolute;" id="shoppingListItemAddedPopup" aria-labelledby="shoppingListItemAddedPopup_title" role="dialog" class="dijitDialog" tabindex="-1" wairole="dialog" waistate="labelledby-shoppingListItemAddedPopup_title">
+	<div title="Message Dialog" dojoattachpoint="titleBar" class="dijitDialogTitleBar">
+	<span dojoattachpoint="titleNode" class="dijitDialogTitle" id="shoppingListItemAddedPopup_title"><span>Message Dialog<span title="DIALOG_TITLE_MESSAGE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIALOG_TITLE_MESSAGE"></span></span></span>
+	<span dojoattachpoint="closeButtonNode" class="dijitDialogCloseIcon" dojoattachevent="onclick: onCancel" title="Cancel">
+		<span dojoattachpoint="closeText" class="closeText" title="Cancel">x</span>
+	</span>
+	</div>
+		<div dojoattachpoint="containerNode" class="dijitDialogPaneContent">
+	<div class="widget_site_popup">
+												
+		<!-- Top Border Styling -->
+
+		<div class="top">
+			<div class="left_border"></div>
+			<div class="middle"></div>
+			<div class="right_border"></div>
+		</div>
+		<div class="clear_float"></div>
+		<!-- Main Content Area -->
+
+		<div class="middle">
+			<div class="content_left_border">
+				<div class="content_right_border">
+					<div class="content">
+						<div class="header">
+							<span><span>This item has been successfully added to your list.<span title="SL_ITEM_ADDED_SUCCESSFULLY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SL_ITEM_ADDED_SUCCESSFULLY"></span></span></span>
+							<a role="button" id="shoppingListItemAddedClose" href="javascript:ShoppingListDialogJS.close();" class="close" title="Close" alt="Close"></a>
+							<div class="clear_float"></div>
+						<span class="elementKeyIcon" title="SL_CLOSE=Close"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+						
+							<div class="product">
+								<div class="product_image">
+									<img id="shoppingListItemAddedImg" alt="">
+								</div>
+								<div id="shoppingListItemAddedName" class="product_name"></div>
+								<div class="clear_float"></div>
+							</div>
+						
+						<div class="footer">
+							<div class="button_container ">
+								<a id="shoppingListItemAddedContinue" href="javascript:ShoppingListDialogJS.close();" class="button_primary" title="Continue Shopping">
+									<div class="left_border"></div>
+									<div class="button_text"><span>Continue Shopping<span title="SL_CONTINUE_SHOPPING" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SL_CONTINUE_SHOPPING"></span></span></div>
+									<div class="right_border"></div>
+								</a>
+								<div class="clear_float"></div>
+							<span class="elementKeyIcon" title="SL_CONTINUE_SHOPPING=Continue Shopping"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+							
+						</div>
+						<div class="clear_float"></div>
+					<!-- End content Section -->
+
+					</div>
+				<!-- End content_right_border -->
+
+				</div>
+			<!-- End content_left_border -->
+
+			</div>
+		</div>
+		<div class="clear_float"></div>
+		<!-- Bottom Border Styling -->
+
+		<div class="bottom">
+			<div class="left_border"></div>
+			<div class="middle"></div>
+			<div class="right_border"></div>
+		</div>
+		<div class="clear_float"></div>
+	</div>
+</div>
+<span class="elementKeyIcon" title="DIALOG_TITLE_MESSAGE=Message Dialog"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div><div title="" widgetid="progress_bar_dialog" style="display: none; position: absolute;" id="progress_bar_dialog" aria-labelledby="progress_bar_dialog_title" role="dialog" class="dijitDialog" tabindex="-1" wairole="dialog" waistate="labelledby-progress_bar_dialog_title">
+	<div dojoattachpoint="titleBar" class="dijitDialogTitleBar">
+	<span dojoattachpoint="titleNode" class="dijitDialogTitle" id="progress_bar_dialog_title"></span>
+	<span style="display: none;" dojoattachpoint="closeButtonNode" class="dijitDialogCloseIcon" dojoattachevent="onclick: onCancel" title="Cancel">
+		<span dojoattachpoint="closeText" class="closeText" title="Cancel">x</span>
+	</span>
+	</div>
+		<div dojoattachpoint="containerNode" class="dijitDialogPaneContent">
+	
+</div>
+</div><div title="" style="display: none; position: absolute;" widgetid="widget_product_comparison_popup" id="widget_product_comparison_popup" aria-labelledby="widget_product_comparison_popup_title" role="dialog" class="dijitDialog" tabindex="-1" wairole="dialog" waistate="labelledby-widget_product_comparison_popup_title">
+	<div dojoattachpoint="titleBar" class="dijitDialogTitleBar">
+	<span dojoattachpoint="titleNode" class="dijitDialogTitle" id="widget_product_comparison_popup_title"></span>
+	<span dojoattachpoint="closeButtonNode" class="dijitDialogCloseIcon" dojoattachevent="onclick: onCancel" title="Cancel">
+		<span dojoattachpoint="closeText" class="closeText" title="Cancel">x</span>
+	</span>
+	</div>
+		<div dojoattachpoint="containerNode" class="dijitDialogPaneContent">
+		<div class="widget_product_comparison_popup widget_site_popup">													
+			<!-- Top Border Styling -->
+
+			<div class="top">
+				<div class="left_border"></div>
+				<div class="middle"></div>
+				<div class="right_border"></div>
+			</div>
+			<div class="clear_float"></div>
+			<!-- Main Content Area -->
+
+			<div class="middle">
+				<div class="content_left_border">
+					<div class="content_right_border">
+						<div class="content">
+							<div class="header">
+								<span><span>Product Comparison<span title="CP_HEADING" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="CP_HEADING"></span></span></span>
+								<a id="ComparePopupClose" class="close" href="javascript:dijit.byId('widget_product_comparison_popup').hide();" title="CLOSE"></a>
+								<div class="clear_float"></div>
+							<span class="elementKeyIcon" title="CP_CLOSE=CLOSE"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+							<div class="body"><span>
+								The maximum number of products that can be compared is 4. Please refine your selection.<span title="CP_MESSAGE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="CP_MESSAGE"></span>
+							</span></div>
+							
+							<div class="footer">
+								<div class="button_container ">
+									<a id="ComparePopupOK" class="button_primary" tabindex="0" href="javascript: dijit.byId('widget_product_comparison_popup').hide();" title="OK">
+										<div class="left_border"></div>
+										<div class="button_text"><span>OK<span title="CP_OK" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="CP_OK"></span></span></div>
+										<div class="right_border"></div>
+									</a>
+									<div class="clear_float"></div>
+								<span class="elementKeyIcon" title="CP_OK=OK"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+								
+							</div>
+							<div class="clear_float"></div>
+						<!-- End content Section -->
+
+						</div>
+					<!-- End content_right_border -->
+
+					</div>
+				<!-- End content_left_border -->
+
+				</div>
+			</div>
+			<div class="clear_float"></div>
+			<!-- Bottom Border Styling -->
+
+			<div class="bottom">
+				<div class="left_border"></div>
+				<div class="middle"></div>
+				<div class="right_border"></div>
+			</div>
+			<div class="clear_float"></div>
+		</div>
+	</div>
+</div><div title="" style="display: none; position: absolute;" widgetid="widget_language_and_currency_popup" dojoType="wc.widget.WCDialog" id="widget_language_and_currency_popup" dojoType="wc.widget.WCDialog" aria-labelledby="widget_language_and_currency_popup_title" role="dialog" class="dijitDialog" tabindex="-1" wairole="dialog" waistate="labelledby-widget_language_and_currency_popup_title">
+	<div title="Language and Currency Dialog" dojoattachpoint="titleBar" class="dijitDialogTitleBar">
+	<span dojoattachpoint="titleNode" class="dijitDialogTitle" id="widget_language_and_currency_popup_title"><span>Language and Currency Dialog<span title="DIALOG_TITLE_LANGUAGE_AND_CURRENCY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIALOG_TITLE_LANGUAGE_AND_CURRENCY"></span></span></span>
+	<span dojoattachpoint="closeButtonNode" class="dijitDialogCloseIcon" dojoattachevent="onclick: onCancel" title="Cancel">
+		<span dojoattachpoint="closeText" class="closeText" title="Cancel">x</span>
+	</span>
+	</div>
+		<div dojoattachpoint="containerNode" class="dijitDialogPaneContent">
+		<div class="widget_language_and_currency_popup widget_site_popup">										
+			<!-- Top Border Styling -->
+
+			<div class="top">
+				<div class="left_border"></div>
+				<div class="middle"></div>
+				<div class="right_border"></div>
+			</div>
+			<div class="clear_float"></div>
+			<!-- Main Content Area -->
+
+			<div class="middle">
+				<div class="content_left_border">
+					<div class="content_right_border">
+						<div class="content">
+							<div class="header">
+								<span><span>Please select a language and currency<span title="LC_LANGUAGE_CURRENCY_SELECTION" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="LC_LANGUAGE_CURRENCY_SELECTION"></span></span></span>
+								<a id="close" class="close_acce" title="CLOSE" href="javascript:dijit.byId('widget_language_and_currency_popup').hide();"><img role="button" onmouseover="this.src='../StoreAssets/images/colors/color1/close_hover.png'" onmouseout="this.src='../StoreAssets/images/colors/color1/close_normal.png'" src="../StoreAssets/images/colors/color1/close_normal.png" class="closeImg" alt="CLOSE"><span class="elementKeyIcon" title="LC_CLOSE=CLOSE"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></a>
+								<div class="clear_float"></div>
+							<span class="elementKeyIcon" title="LC_CLOSE=CLOSE"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+							<div class="selectors">
+								<div class="selector">
+									<span class="option_name"><span>Language:<span title="LC_LANGUAGE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="LC_LANGUAGE"></span>&nbsp;</span></span>
+									<label for="languageSelection" class="nodisplay"><span>Language:<span title="LC_LANGUAGE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="LC_LANGUAGE"></span></span></label>
+									<select class="left" id="languageSelection" name="langId" onchange="javascript:document.getElementById('languageSelectionHidden').value=this.value">
+
+													<option value="-1" selected="selected">United States English</option>
+
+													<option value="-7">简体中文</option>
+
+													<option value="-2">Français</option>
+
+									</select>
+									<div class="clear_float"></div>
+								</div>
+								<div class="selector">
+									<span class="option_name"><span>Currency:<span title="LC_CURRENCY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="LC_CURRENCY"></span>&nbsp;</span></span>
+									<label for="currencySelection" class="nodisplay"><span>Currency:<span title="LC_CURRENCY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="LC_CURRENCY"></span></span></label>
+									<select class="left" id="currencySelection" name="currency" onchange="javascript:document.getElementById('currencySelectionHidden').value=this.value">
+
+													<option value="USD" selected="selected">US Dollar</option>
+
+													<option value="BRL">Brazilian Real</option>
+
+													<option value="CAD">Canadian Dollar</option>
+
+													<option value="CNY">Chinese Yuan</option>
+
+													<option value="EUR">Euro</option>
+
+													<option value="GBP">British Pound</option>
+
+													<option value="JPY">Japanese Yen</option>
+
+													<option value="KRW">South Korean Won</option>
+
+													<option value="PLN">Polish Zloty</option>
+
+													<option value="RON">Romanian Leu</option>
+
+													<option value="RUB">Russian Ruble</option>
+
+													<option value="TWD">Taiwan Dollar</option>
+
+									</select>
+									<div class="clear_float"></div>
+								</div>
+								<form id="SetLanguageCurrencyPreferenceForm" action="/webapp/wcs/stores/servlet/SetCurrencyPreference" method="post">
+									<input name="storeId" value="10152" type="hidden">
+									<input name="catalogId" value="10001" type="hidden">
+									<input id="languageSelectionHidden" name="langId" value="-1" type="hidden">
+									<input id="currencySelectionHidden" name="currency" value="USD" type="hidden">									
+
+											<input name="URL" value="/webapp/wcs/stores/servlet/AjaxOrderItemDisplayView?currency*=" id="WC_SidebarDisplay_FormInput_URL_2" type="hidden">
+
+												<input name="WcUseHttps" value="true" id="WC_SidebarDisplay_FormInput_parm_1_1" type="hidden">
+
+												<input name="calculationUsageId" value="-1" id="WC_SidebarDisplay_FormInput_parm_2_1" type="hidden">
+
+												<input name="updatePrices" value="1" id="WC_SidebarDisplay_FormInput_parm_3_1" type="hidden">
+
+												<input name="errorViewName" value="AjaxOrderItemDisplayView" id="WC_SidebarDisplay_FormInput_parm_5_1" type="hidden">
+
+												<input name="orderId" value="17089" id="WC_SidebarDisplay_FormInput_parm_7_1" type="hidden">
+
+								</form>
+							</div>
+							<div class="footer">
+								<div class="button_container ">
+									<a id="LangCurrencyApplyBtn" class="button_primary" tabindex="0" href="javascript:dijit.byId('widget_language_and_currency_popup').hide();">
+										<div class="left_border"></div>
+										<div id="LangCurrencyApplyBtnText" class="button_text"><span>Apply<span title="LC_APPLY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="LC_APPLY"></span></span></div>
+										<div class="right_border"></div>
+									</a>
+									<div class="clear_float"></div>
+								</div>
+								
+							</div>
+							<div class="clear_float"></div>
+						<!-- End content Section -->
+
+						</div>
+					<!-- End content_right_border -->
+
+					</div>
+				<!-- End content_left_border -->
+
+				</div>
+			</div>
+			<div class="clear_float"></div>
+			<!-- Bottom Border Styling -->
+
+			<div class="bottom">
+				<div class="left_border"></div>
+				<div class="middle"></div>
+				<div class="right_border"></div>
+			</div>
+			<div class="clear_float"></div>
+		</div>
+	</div>
+<span class="elementKeyIcon" title="DIALOG_TITLE_LANGUAGE_AND_CURRENCY=Language and Currency Dialog"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div><div title="" widgetid="OI90156createShoppingListPopup" style="display: none; position: absolute;" id="OI90156createShoppingListPopup" aria-labelledby="OI90156createShoppingListPopup_title" role="dialog" class="dijitDialog" tabindex="-1" wairole="dialog" waistate="labelledby-OI90156createShoppingListPopup_title">
+	<div title="Create Wish List Dialog" dojoattachpoint="titleBar" class="dijitDialogTitleBar">
+	<span dojoattachpoint="titleNode" class="dijitDialogTitle" id="OI90156createShoppingListPopup_title"><span>Create Wish List Dialog<span title="DIALOG_TITLE_CREATE_WISHLIST" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIALOG_TITLE_CREATE_WISHLIST"></span></span></span>
+	<span dojoattachpoint="closeButtonNode" class="dijitDialogCloseIcon" dojoattachevent="onclick: onCancel" title="Cancel">
+		<span dojoattachpoint="closeText" class="closeText" title="Cancel">x</span>
+	</span>
+	</div>
+		<div dojoattachpoint="containerNode" class="dijitDialogPaneContent">
+	<div class="widget_site_popup">
+		<div class="top">
+			<div class="left_border"></div>
+			<div class="middle"></div>
+			<div class="right_border"></div>
+		</div>
+		<div class="clear_float"></div>
+		<div class="middle">
+			<div class="content_left_border">
+				<div class="content_right_border">
+					<div class="content">
+						<div class="header">
+							<span><span>Create a new Wish List<span title="SL_CREATE_NEW_SHOPPING_LIST" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SL_CREATE_NEW_SHOPPING_LIST"></span></span></span>
+							<a role="button" id="OI90156createShoppingListPopup_close" href="javascript:dijit.byId('OI90156createShoppingListPopup').hide();" class="close" tabindex="4" title="Close"></a>
+							<div class="clear_float"></div>
+						<span class="elementKeyIcon" title="SL_CLOSE=Close"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+						<div class="body">
+							<div id="OI90156shoppingListErrorMessageArea" style="display:none">
+								<img class="error_icon left" src="../StoreAssets//images/colors/color1/error_icon.png" alt="">
+								<p id="OI90156shoppingListErrorMessageText" class="textinlinewithicon"></p>
+								<div class="clear_float"></div>
+							</div>
+							<div class="item_spacer_10px"></div>
+							<p><span>Type a name for your new list.<span title="SL_NAME_NEW_LIST" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SL_NAME_NEW_LIST"></span></span></p>
+							<form>
+								<span class="spanacce">
+									<label for="OI90156newListName"><span>Type a name for your new list.<span title="SL_NAME_NEW_LIST" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SL_NAME_NEW_LIST"></span></span></label>
+								</span>
+								<input id="OI90156newListName" size="35" maxlength="64" value="" onkeypress="if(event.keyCode==13){ shoppingListJSOI90156.create(); dojo.stopEvent(event);}" tabindex="1" type="text">
+							</form>
+							<div class="item_spacer_10px"></div>
+						</div>
+						<div class="footer">
+							<div class="button_container">
+								<a id="OI90156createShoppingListPopup_save" href="javascript: shoppingListJSOI90156.create();" class="button_primary" tabindex="2">
+									<div class="left_border"></div>
+									<span id="OI90156CreateShoppingListPopup_div_create_save" class="button_text"><span>Save<span title="SAVE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SAVE"></span></span></span>
+									<div class="right_border"></div>
+								</a>
+								<a id="OI90156createShoppingListPopup_cancel" href="javascript:dijit.byId('OI90156createShoppingListPopup').hide();" class="button_secondary" tabindex="3">
+									<div class="left_border"></div>
+									<span class="button_text"><span>Cancel<span title="CANCEL" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="CANCEL"></span></span></span>
+									<div class="right_border"></div>
+								</a>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="clear_float"></div>
+		<div class="bottom">
+			<div class="left_border"></div>
+			<div class="middle"></div>
+			<div class="right_border"></div>
+		</div>
+		<div class="clear_float"></div>
+	</div>
+</div>
+<span class="elementKeyIcon" title="DIALOG_TITLE_CREATE_WISHLIST=Create Wish List Dialog"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div><div title="" widgetid="OI90156shoppingListCreateSuccessPopup" style="display: none; position: absolute;" id="OI90156shoppingListCreateSuccessPopup" aria-labelledby="OI90156shoppingListCreateSuccessPopup_title" role="dialog" class="dijitDialog" tabindex="-1" wairole="dialog" waistate="labelledby-OI90156shoppingListCreateSuccessPopup_title">
+	<div title="Message Dialog" dojoattachpoint="titleBar" class="dijitDialogTitleBar">
+	<span dojoattachpoint="titleNode" class="dijitDialogTitle" id="OI90156shoppingListCreateSuccessPopup_title"><span>Message Dialog<span title="DIALOG_TITLE_MESSAGE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIALOG_TITLE_MESSAGE"></span></span></span>
+	<span dojoattachpoint="closeButtonNode" class="dijitDialogCloseIcon" dojoattachevent="onclick: onCancel" title="Cancel">
+		<span dojoattachpoint="closeText" class="closeText" title="Cancel">x</span>
+	</span>
+	</div>
+		<div dojoattachpoint="containerNode" class="dijitDialogPaneContent">
+	<div class="widget_site_popup">
+		<div class="top">
+			<div class="left_border"></div>
+			<div class="middle"></div>
+			<div class="right_border"></div>
+		</div>
+		<div class="clear_float"></div>
+		<div class="middle">
+			<div class="content_left_border">
+				<div class="content_right_border">
+					<div class="content">
+						<a role="button" id="OI90156shoppingListCreateSuccessPopup_close" href="javascript:dijit.byId('OI90156shoppingListCreateSuccessPopup').hide();" class="close" title="Close"></a>
+						<div class="body">
+							<div class="item_spacer_10px"></div>
+							<div class="item_spacer_10px"></div>
+							<div class="item_spacer_10px"></div>
+							<div class="item_spacer_10px"></div>
+							<img class="error_icon left" src="../StoreAssets//images/colors/color1/success_icon.png" alt="">
+							<p id="OI90156successMessageAreaText" class="textinlinewithicon"><span>Wish list created successfully.<span title="LIST_CREATED" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="LIST_CREATED"></span></span></p>
+							<div class="clear_float"></div>
+							<div class="item_spacer_10px"></div>
+							<div class="item_spacer_10px"></div>
+							<div class="item_spacer_10px"></div>
+							<div class="item_spacer_10px"></div>
+						</div>
+						<div class="footer">
+							<div class="button_container">
+								<a id="OI90156shoppingListCreateSuccessPopup_continue_shopping" href="javascript:dijit.byId('OI90156shoppingListCreateSuccessPopup').hide();" class="button_primary">
+									<div class="left_border"></div>
+									<div class="button_text"><span>Continue Shopping<span title="CONTINUE_SHOPPING" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="CONTINUE_SHOPPING"></span></span></div>
+									<div class="right_border"></div>
+								</a>
+								<div class="clear_float"></div>
+							</div>
+							<div class="clear_float"></div>
+						</div>
+						<div class="clear_float"></div>
+					<span class="elementKeyIcon" title="SL_CLOSE=Close"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+				</div>
+			</div>
+		</div>
+		<div class="clear_float"></div>
+		<div class="bottom">
+			<div class="left_border"></div>
+			<div class="middle"></div>
+			<div class="right_border"></div>
+		</div>
+		<div class="clear_float"></div>
+	</div>
+</div>
+<span class="elementKeyIcon" title="DIALOG_TITLE_MESSAGE=Message Dialog"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div><style>.keyIcon {padding:2px;z-index:998;display:none !important;}.elementKeyIcon {position:absolute;top:0px;z-index:999;display:none;}#text_highlight {width:100%;font-family:Verdana, Arial, Helvetica, sans-serif;font-size:11px;color:#2c2c2c;}#text_highlight .bold{font-weight:bold;color:#2c2c2c;}#text_highlight .header {height:1px;width:100%;padding-top:3px;}.details {padding:0px 0px 2px 0px;}.details_container {background-color:#dfe8fb;border:solid 1px #bcd0fb;padding:5px;}.details_container .content {padding-left:3px;}a.light_button {color: #27629C;cursor: pointer;display: -moz-inline-box;display: inline-block;font-size: 11px;height: 17px;padding: 2px;text-decoration: none;line-height: 16px;}a.light_button div.button_text {background: transparent url('../images/preview/b_main_bg.png') top left repeat-x;float: left;height: 17px;padding: 1px 2px 2px 9px;}a.light_button div.button_right {background: transparent url('../images/preview/b_right.png') no-repeat;float: left;height: 20px;width: 6px;}</style><div style="display: none; left: 538px; top: 379.3px;" id="progress_bar">
+		<div id="loading_popup">
+			<div class="top_left" id="WC_StoreCommonUtilities_div_1"><img src="../StoreAssets/images/colors/color1/transparent.gif" alt="No image available"><span class="elementKeyIcon" title="No_Image=No image available"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+		        <div class="top_right" id="WC_StoreCommonUtilities_div_2"><img src="../StoreAssets/images/colors/color1/transparent.gif" alt="No image available"><span class="elementKeyIcon" title="No_Image=No image available"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+		        <div class="header" id="WC_StoreCommonUtilities_div_3"></div>
+		        <div class="bodyarea" id="WC_StoreCommonUtilities_div_4">
+				<div class="bodycontent" id="WC_StoreCommonUtilities_div_5">
+					<img src="../StoreAssets/images/colors/color1/loading.gif" alt="Your request is being processed." border="0" height="44" width="44">
+			        <span class="elementKeyIcon" title="PROGRESS_BAR_REQUEST_PROCESSED=Your request is being processed."><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+			</div>
+			<div class="footer" id="WC_StoreCommonUtilities_div_6">
+				 <div class="bot_left" id="WC_StoreCommonUtilities_div_7"></div>
+				 <div class="bot_right" id="WC_StoreCommonUtilities_div_8"></div>
+			</div>
+		</div>
+	</div><div style="display: block; top: 0px; left: 0px; z-index: 952;" widgetid="dijit_DialogUnderlay_0" id="dijit_DialogUnderlay_0" class="dijitDialogUnderlayWrapper"><div style="width: 1643px; height: 910px;" id="free_gifts_popup_underlay" class="dijitDialogUnderlay _underlay" dojoattachpoint="node"></div><iframe role="presentation" tabindex="-1" style="opacity: 0.1; width: 100%; height: 100%;" class="dijitBackgroundIframe" src='javascript:""'></iframe></div>
+<script type="text/javascript"> function displayHighlightFeatureInHTML(){var all = document.getElementsByTagName('*'); for (var i = 0; i < all.length; i++) { if (all[i].className == 'jspcaption') {all[i].style.display='block';} if (all[i].className == 'highlight') {all[i].style.border='2px dashed red';all[i].style.display='block';} if (all[i].className == 'product') {all[i].style.border='2px dashed red';} if (all[i].className == 'product_price') {all[i].style.border='2px dashed red';} if (all[i].className == 'widget_quick_info_popup') {all[i].style.border='2px dashed red';} if (all[i].className == 'item' && (all[i].id.indexOf('compare') == -1) && (all[i].id.indexOf('sub') == -1) ) {all[i].style.border='2px dashed red';} if (all[i].className == 'item_price') {all[i].style.border='2px dashed red';}} } function activateHighlight (event){ if(event.ctrlKey){ if(event.altKey){ if(event.keyCode == '72'){ displayHighlightFeatureInHTML(); } } } } </script>
+</body></html>
+

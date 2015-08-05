@@ -1,0 +1,286 @@
+<!DOCTYPE HTML>
+
+<html  xmlns:wairole='http://www.w3.org/2005/01/wai-rdf/GUIRoleTaxonomy#' xmlns:waistate='http://www.w3.org/2005/07/aaa' lang='en' xml:lang='en' onkeydown='javascript:activateHighlight(event);'>
+<head>
+	<script type="text/javascript" src="../dojo15/dojo/dojo.js" djConfig="parseOnLoad: false, isDebug: false,  modulePaths: {storetext: '../../StoreAssets'}, useCommentedJson: true,locale: 'en-us' "></script>	
+<!-- BEGIN CommonJSToInclude.jspf -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0;" />
+<meta name="CommerceSearch" content="storeId_10152" />
+<link rel="shortcut icon" href="../StoreAssets/images/favicon.ico" mce_href="../StoreAssets/images/favicon.ico"/>
+<script type="text/javascript">
+	// Convert the WCParam object which contains request properties into javascript object
+	var WCParamJS = {
+		"storeId":'10152',
+		"catalogId":'10001',
+		"langId":'-1',
+		"pageView":'',
+		"orderBy":'',
+		"orderByContent":'',
+		"searchTerm":''
+	};
+	var absoluteURL = document.location.href.split("/");
+	absoluteURL.pop();
+	absoluteURL = absoluteURL.join("/") + "/";
+	var imageDirectoryPath = "../StoreAssets/";
+	var styleDirectoryPath = "images/colors/color1/";
+	var supportPaymentTypePromotions = false;
+	var subsFulfillmentFrequencyAttrName = "fulfillmentFrequency";
+	var subsPaymentFrequencyAttrName = "paymentFrequency";
+	var subsTimePeriodAttrName = "timePeriod";
+	var storeNLS = null;
+	//Summary: Returns the absolute URL to use for prefixing any Ajax URL call.
+	//Description: Dojo does not handle the case where the parameters in the URL are delimeted by the "/" forward slash. Therefore, in order to
+	//             workaround the issue, all AJAX requests must be done using absolute URLs rather than relative.
+	//Returns: The absolute URL to use for prefixing any Ajax URL call.
+	function getAbsoluteURL() {
+		if (absoluteURL != "") {
+			var currentURL = document.URL;
+			var currentProtocol = "";
+			if (currentURL.indexOf("://") != -1) {
+				currentProtocol = currentURL.substring(0, currentURL.indexOf("://"));
+			}
+			var savedProtocol = "";
+			if (absoluteURL.indexOf("://") != -1) {
+				savedProtocol = absoluteURL.substring(0, absoluteURL.indexOf("://"));
+			}
+			if (currentProtocol != savedProtocol) {
+				absoluteURL = currentProtocol + absoluteURL.substring(absoluteURL.indexOf("://"));
+			}
+		}
+		return absoluteURL;
+	}
+	//Summary: Returns the path pointing to the shared image directory.
+	//Description: In order to get the image directory path in any javascript file, this function can be used.
+	//Returns: The path to reference images.
+	function getImageDirectoryPath() {
+		return imageDirectoryPath;
+	}
+	//Summary: Returns the path pointing to the directory containing color-dependant image files.
+	//Description: In order to get the directory containing color-dependant image files in any javascript file, this function can be used.
+	//Returns: The path to reference color-dependant image files.
+	function getStyleDirectoryPath() {
+		return styleDirectoryPath;
+	}
+</script>
+<script type="text/javascript" src="../StoreAssets/javascript/MessageHelper.js"></script>
+<script type="text/javascript" src="../StoreAssets/javascript/StoreCommonUtilities.js"></script>
+<script>
+	dojo.require("wc.service.common");
+	dojo.require("dojo.number");
+</script>
+<script type="text/javascript">
+ //Set the default NLS to use in the store.
+ if(storeNLS == null) {
+	 dojo.requireLocalization("storetext", "StoreText");
+	 storeNLS = dojo.i18n.getLocalization("storetext","StoreText");
+ }
+</script>
+<!-- END CommonJSToInclude.jspf -->
+
+	<link rel="stylesheet" href="../StoreAssets/css/common1_1.css" type="text/css"/>
+	<script type="text/javascript" src="../StoreAssets/javascript/Widgets/Search.js"></script>
+	<script type="text/javascript" src="../StoreAssets/javascript/Widgets/MiniShopCartDisplay/MiniShopCartDisplay.js"></script>
+	<script type="text/javascript" src="../StoreAssets/javascript/Widgets/Department/Department.js"></script>		
+	<script type="text/javascript" src="../StoreAssets/javascript/Common/ShoppingActions.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Website Privacy Policy for AuroraESite</title>
+	<meta name="description" content="Website Privacy Policy for AuroraESite"/>
+	<meta name="keyword" content="Website Privacy Policy AuroraESite"/>
+</head>
+<body>
+<!-- BEGIN Help.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">Help.jsp</div>
+<!-- BEGIN CommonJSPFToInclude.jspf -->
+
+<!-- BEGIN ProgressBar.jspf -->
+
+<div id="progress_bar_dialog" dojoType="dijit.Dialog" style="display: none;">
+	<div id="progress_bar">
+		<div id="loading_popup">
+			<div class="top_left" id="WC_StoreCommonUtilities_div_1"><img src="../StoreAssets/images/colors/color1/transparent.gif" alt="[PROPERTIES;No_Image;No image available]"/></div>
+		        <div class="top_right" id="WC_StoreCommonUtilities_div_2"><img src="../StoreAssets/images/colors/color1/transparent.gif" alt="[PROPERTIES;No_Image;No image available]"/></div>
+		        <div class="header" id="WC_StoreCommonUtilities_div_3"></div>
+		        <div class="bodyarea" id="WC_StoreCommonUtilities_div_4">
+				<div class="bodycontent" id="WC_StoreCommonUtilities_div_5">
+					<img src="../StoreAssets/images/colors/color1/loading.gif" width="44" height="44" border="0" alt="[PROPERTIES;PROGRESS_BAR_REQUEST_PROCESSED;Your request is being processed.]"/>
+			        </div>
+			</div>
+			<div class="footer" id="WC_StoreCommonUtilities_div_6">
+				 <div class="bot_left" id="WC_StoreCommonUtilities_div_7"></div>
+				 <div class="bot_right" id="WC_StoreCommonUtilities_div_8"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- END ProgressBar.jspf -->
+
+<!-- BEGIN MessageDisplay.jspf -->
+
+<span class="spanacce" id="MessageArea_ACCE_Title">[PROPERTIES;DIALOG_TITLE_MESSAGE;Message Dialog]</span>
+<div id="MessageArea" class="store_message" role="alert" aria-labelledby="MessageArea_ACCE_Title">
+	<div id="msgpopup_content_wrapper" class="content">
+		<a id="clickableErrorMessageImg" role="button" class="close right" href="JavaScript:MessageHelper.hideMessageArea();" title="[PROPERTIES;CLOSE;Close]">
+			<div class="close_text left">[PROPERTIES;CLOSE;Close]</div>
+			<div class="close_icon left"></div>
+			<div class="clear_float"></div>
+		</a>
+		<div class="clear_float"></div>
+		<div class="message">
+			<div class="message_icon left">
+				<img id="error_icon" style="display:none;" class="error_icon" src="../StoreAssets/images/colors/color1/error_icon.png" alt=""/>
+				<img id="success_icon" style="display:none;" class="error_icon" src="../StoreAssets/images/colors/color1/success_icon.png" alt=""/>
+			</div>
+			<div class="message_text left" role="region" aria-required="true" aria-labelledby="MessageArea">
+				<span id="ErrorMessageText">
+				</span>
+			</div>
+			<div class="clear_float"></div>
+		</div>		
+	</div>
+</div>
+<span class="spanacce" id="ariaMessage_ACCE_Label">[PROPERTIES;ACCE_Display_Update_Message;Display Update Message]</span>
+<span class="spanacce" role="region" aria-labelledby="ariaMessage_ACCE_Label" id="ariaMessage" aria-live="assertive" aria-atomic="true" aria-relevant="additions"></span>
+<!-- END MessageDisplay.jspf -->
+
+<span id="widget_product_comparison_ACCE_Label" class="spanacce">[PROPERTIES;DIALOG_TITLE_PRODUCT_COMPARE;Product Compare Dialog]</span>
+<div id="widget_product_comparison" style="display:none;" role="dialog" aria-labelledby="widget_product_comparison_ACCE_Label" title="[PROPERTIES;DIALOG_TITLE_PRODUCT_COMPARE;Product Compare Dialog]" >
+	<div id="widget_product_comparison_popup" dojoType="dijit.Dialog" closeOnTimeOut="false">
+		<div class="widget_product_comparison_popup widget_site_popup">													
+			<!-- Top Border Styling -->
+
+			<div class="top">
+				<div class="left_border"></div>
+				<div class="middle"></div>
+				<div class="right_border"></div>
+			</div>
+			<div class="clear_float"></div>
+			<!-- Main Content Area -->
+
+			<div class="middle">
+				<div class="content_left_border">
+					<div class="content_right_border">
+						<div class="content">
+							<div class="header">
+								<span>[PROPERTIES;CP_HEADING;Product Comparison]</span>
+								<a id="ComparePopupClose" class="close" href="javascript:dijit.byId('widget_product_comparison_popup').hide();" title="[PROPERTIES;CP_CLOSE;CLOSE]"></a>
+								<div class="clear_float"></div>
+							</div>
+							<div class="body">
+								[PROPERTIES;CP_MESSAGE;The maximum number of products that can be compared is 4. Please refine your selection.]
+							</div>
+							<div class="footer">
+								<div class="button_container ">
+									<a id="ComparePopupOK" class="button_primary" tabindex="0" href="javascript: dijit.byId('widget_product_comparison_popup').hide();" title="[PROPERTIES;CP_OK;OK]">
+										<div class="left_border"></div>
+										<div class="button_text">[PROPERTIES;CP_OK;OK]</div>
+										<div class="right_border"></div>
+									</a>
+									<div class="clear_float"></div>
+								</div>
+							</div>
+							<div class="clear_float"></div>
+						<!-- End content Section -->
+
+						</div>
+					<!-- End content_right_border -->
+
+					</div>
+				<!-- End content_left_border -->
+
+				</div>
+			</div>
+			<div class="clear_float"></div>
+			<!-- Bottom Border Styling -->
+
+			<div class="bottom">
+				<div class="left_border"></div>
+				<div class="middle"></div>
+				<div class="right_border"></div>
+			</div>
+			<div class="clear_float"></div>
+		</div>
+	</div>
+</div>
+<!-- END CommonJSPFToInclude.jspf -->
+
+<div id="page">
+	<!-- Import Header Widget -->
+
+	<div class="header_wrapper_position" id="headerWidget">
+	</div>
+	<!-- Header Nav End -->
+
+			<!--Start Page Content-->
+
+			<div class="content_wrapper_position" role="main">
+				<div class="content_wrapper">
+					<!--For border customization -->
+
+					<div class="content_top">
+						<div class="left_border"></div>
+						<div class="middle"></div>
+						<div class="right_border"></div>
+					</div>
+					<!-- Main Content Area -->
+
+					<div class="content_left_shadow">
+						<div class="content_right_shadow">				
+							<div class="main_content">
+								<!-- Start Main Content -->
+
+								<!-- Static Page Content -->
+
+								<div class="container_static_full_width container_margin_5px"> 
+									<div class="static_page_content">
+										<div class="page_header" role="heading" aria-level="1">Privacy Policy</div>
+										<div class="content_box">
+											<div class="header_top">Personal Information</div>
+											<div class="item_spacer_5px"></div>
+											<div class="item_spacer_10px"></div>
+<!-- BEGIN ContentRecommendation.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">ContentRecommendation.jsp</div>
+	<div class="widget_height" tabindex="0">
+						<div class="info_section"> <p>AuroraESite is committed to protecting and respecting your privacy. You can visit AuroraESite on the Web without telling us who you are or revealing any information about yourself. When necessary, for shipping and billing purposes, your personal information is stored in a secure server and will never be sold to a third party or used for contacting you without your consent. </p> <br> <p>If you choose to give us personal information through the Internet that we may need to correspond with you or to process an order, it is our intent to let you know how we will use this information. If you tell us that you do not wish to have this information used as a basis for further contact with you, we will respect your wishes.</p> <br> <p>Information collected by AuroraESite is used internally by authorized AuroraESite employees for three main purposes. First, we collect information to determine how to improve our site by seeing which areas, features and products are most popular. Second, we collect information in order to personalize the site for our customers. For example, in the future, we may recommend products or features you may like based on what you have liked in the past. Lastly, we keep track of the domains from which people visit us. We analyze this data for trends and statistics, and then discard it. </p> <br> <p>That is our commitment to you.</p> </div> 
+	</div>
+</span>
+<!-- END ContentRecommendation.jsp -->
+
+										</div>
+									</div>
+									<div class="clear_float"></div>
+								</div>
+								<!-- End Static Page Content -->
+
+								<!-- End Main Content -->
+
+							</div>
+						</div>				
+					</div>
+					<!--For border customization -->
+
+					<div class="content_bottom">
+						<div class="left_border"></div>
+						<div class="middle"></div>
+						<div class="right_border"></div>
+					</div>
+				</div>
+			</div>
+			<!--End Page Content-->
+
+	<!-- Footer Start -->
+
+	<div class="footer_wrapper_position">
+	</div>
+	<!-- Footer End -->
+
+</div>
+</span>
+<!-- END Help.jsp -->
+
+<script type="text/javascript"> function displayHighlightFeatureInHTML(){var all = document.getElementsByTagName('*'); for (var i = 0; i < all.length; i++) { if (all[i].className == 'jspcaption') {all[i].style.display='block';} if (all[i].className == 'highlight') {all[i].style.border='2px dashed red';all[i].style.display='block';} if (all[i].className == 'product') {all[i].style.border='2px dashed red';} if (all[i].className == 'product_price') {all[i].style.border='2px dashed red';} if (all[i].className == 'widget_quick_info_popup') {all[i].style.border='2px dashed red';} if (all[i].className == 'item' && (all[i].id.indexOf('compare') == -1) ) {all[i].style.border='2px dashed red';} if (all[i].className == 'item_price') {all[i].style.border='2px dashed red';}} } function activateHighlight (event){ if(event.ctrlKey){ if(event.altKey){ if(event.keyCode == '72'){ displayHighlightFeatureInHTML(); } } } } </script>
+</body>
+</html>
+

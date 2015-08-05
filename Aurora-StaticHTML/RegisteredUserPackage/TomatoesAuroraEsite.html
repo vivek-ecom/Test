@@ -1,0 +1,2996 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+
+<!-- BEGIN ProductDisplay.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">ProductDisplay.jsp</div>
+	
+
+<html  xmlns:wairole='http://www.w3.org/2005/01/wai-rdf/GUIRoleTaxonomy#' xmlns:waistate='http://www.w3.org/2005/07/aaa' lang='en' xml:lang='en' onkeydown='javascript:activateHighlight(event);'>
+
+	
+
+
+	<head>
+	
+		<title>Tomatoes | AuroraESite</title>
+		<meta name="description" content="Vine ripened tomatoes."/>
+		<meta name="keyword" content="ProductKeyword California Sun"/>
+	    <link rel="canonical" href="TomatoesAuroraEsite.html" />
+		
+		<!--Main Stylesheet for browser -->
+
+		<link rel="stylesheet" href="../StoreAssets/css/common1_1.css" type="text/css" media="screen"/>
+		<!-- Style sheet for print -->
+
+		<link rel="stylesheet" href="../StoreAssets/css/print.css" type="text/css" media="print"/>
+		
+		<!-- Include script files -->
+
+		<script type="text/javascript" src="../dojo18/dojo/dojo.js" djConfig="parseOnLoad: false, isDebug: false,  modulePaths: {storetext: '../../StoreAssets'}, useCommentedJson: true,locale: 'en-us' "></script>
+		
+<!-- BEGIN CommonJSToInclude.jspf -->
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0;" />
+<meta name="CommerceSearch" content="storeId_10152" />
+
+
+<link rel="shortcut icon" href="../StoreAssets/images/favicon.ico" mce_href="../StoreAssets/images/favicon.ico"/>
+
+<script type="text/javascript">
+	// Convert the WCParam object which contains request properties into javascript object
+	var WCParamJS = {
+		"storeId":'10152',
+		"catalogId":'10001',
+		"langId":'-1',
+		"pageView":'',
+		"orderBy":'',
+		"orderByContent":'',
+		"searchTerm":''
+	};
+	var absoluteURL = "";
+	var imageDirectoryPath = "../StoreAssets/";
+	var styleDirectoryPath = "images/colors/color1/";
+	var supportPaymentTypePromotions = false;
+	
+	var subsFulfillmentFrequencyAttrName = "fulfillmentFrequency";
+	var subsPaymentFrequencyAttrName = "paymentFrequency";
+	var subsTimePeriodAttrName = "timePeriod";
+	
+	var storeNLS = null;
+	
+	//Summary: Returns the absolute URL to use for prefixing any Ajax URL call.
+	//Description: Dojo does not handle the case where the parameters in the URL are delimeted by the "/" forward slash. Therefore, in order to
+	//             workaround the issue, all AJAX requests must be done using absolute URLs rather than relative.
+	//Returns: The absolute URL to use for prefixing any Ajax URL call.
+	function getAbsoluteURL() {
+		if (absoluteURL != "") {
+			var currentURL = document.URL;
+			var currentProtocol = "";
+		
+			if (currentURL.indexOf("://") != -1) {
+				currentProtocol = currentURL.substring(0, currentURL.indexOf("://"));
+			}
+			
+			var savedProtocol = "";
+			if (absoluteURL.indexOf("://") != -1) {
+				savedProtocol = absoluteURL.substring(0, absoluteURL.indexOf("://"));
+			}
+			
+			if (currentProtocol != savedProtocol) {
+				absoluteURL = currentProtocol + absoluteURL.substring(absoluteURL.indexOf("://"));
+			}
+		}
+		
+		return absoluteURL;
+	}
+	//Summary: Returns the path pointing to the shared image directory.
+	//Description: In order to get the image directory path in any javascript file, this function can be used.
+	//Returns: The path to reference images.
+	function getImageDirectoryPath() {
+		return imageDirectoryPath;
+	}
+	//Summary: Returns the path pointing to the directory containing color-dependant image files.
+	//Description: In order to get the directory containing color-dependant image files in any javascript file, this function can be used.
+	//Returns: The path to reference color-dependant image files.
+	function getStyleDirectoryPath() {
+		return styleDirectoryPath;
+	}
+</script>
+
+<script type="text/javascript" src="../StoreAssets/javascript/MessageHelper.js"></script>
+<script type="text/javascript" src="../StoreAssets/javascript/StoreCommonUtilities.js"></script>
+<script>
+	dojo.require("wc.service.common");
+	dojo.require("dojo.number");
+</script>
+
+<script type="text/javascript">
+ //Set the default NLS to use in the store.
+ if(storeNLS == null) {
+	 dojo.requireLocalization("storetext", "StoreText");
+	 storeNLS = dojo.i18n.getLocalization("storetext","StoreText");
+ }
+</script>
+
+
+	
+	
+					
+				
+
+<!-- END CommonJSToInclude.jspf -->
+
+		<script type="text/javascript" src="../StoreAssets/javascript/StoreCommonUtilities.js"></script>
+		<script type="text/javascript" src="../StoreAssets/javascript/Widgets/Search.js"></script>
+		<script type="text/javascript" src="../StoreAssets/javascript/Widgets/ESpot/ProductRecommendation.js"></script>
+		<script type="text/javascript" src="../StoreAssets/javascript/CommonContextsDeclarations.js"></script>
+		<script type="text/javascript" src="../StoreAssets/javascript/CommonControllersDeclaration.js"></script>
+		<script type="text/javascript" src="../StoreAssets/javascript/Widgets/ProductFullImage/ProductFullImage.js"></script>
+		<script type="text/javascript" src="../StoreAssets/javascript/Widgets/MerchandisingAssociation/MerchandisingAssociation.js"></script>
+		<script type="text/javascript" src="../StoreAssets/javascript/Widgets/ProductTab/ProductTab.js"></script>
+		<script type="text/javascript" src="../StoreAssets/javascript/Widgets/InventoryStatus/InventoryStatus.js"></script>
+		<script type="text/javascript" src="../StoreAssets/javascript/Widgets/ShoppingList/ShoppingList.js"></script>
+		<script type="text/javascript" src="../StoreAssets/javascript/Widgets/ShoppingList/ShoppingListServicesDeclaration.js"></script>
+		<script type="text/javascript" src="../StoreAssets/javascript/Common/ShoppingActionsServicesDeclaration.js"></script>
+		<script type="text/javascript" src="../StoreAssets/javascript/Common/ShoppingActions.js"></script>
+		<script type="text/javascript" src="../StoreAssets/javascript/Widgets/MiniShopCartDisplay/MiniShopCartDisplay.js"></script>
+		<script type="text/javascript" src="../StoreAssets/javascript/Widgets/Department/Department.js"></script>
+		<script type="text/javascript" src="../StoreAssets/javascript/Widgets/QuickInfo/QuickInfo.js"></script>
+		<script type="text/javascript" src="../StoreAssets/javascript/Widgets/ProductFullImage/ProductFullImage.js"></script>
+		<script type="text/javascript">
+			dojo.addOnLoad(function() { 
+					shoppingActionsJS.setCommonParameters('-1','10152','10001','R','$');
+					shoppingActionsServicesDeclarationJS.setCommonParameters('-1','10152','10001');
+				});
+		</script>
+	
+			
+			<meta property="og:title" content="Tomatoes | AuroraESite" />
+			
+			<meta property="og:image" content="../StoreAssets/images/catalog/grocery/gve034_vegetables/160x160/gve034_3407.jpg"/>
+			
+			<meta property="og:url" content="TomatoesAuroraEsite.html"/>
+			<meta property="og:type" content="product"/>
+			<meta property="og:description" content="Vine ripened tomatoes." />
+			<meta property="fb:app_id" name="fb_app_id" content="116247245179970"/>
+		
+
+	</head>
+		
+	<body>
+
+<!-- BEGIN CommonJSPFToInclude.jspf -->
+
+
+	
+
+<!-- BEGIN ProgressBar.jspf -->
+
+<div id="progress_bar_dialog" dojoType="dijit.Dialog" style="display: none;">
+	<div id="progress_bar">
+		<div id="loading_popup">
+			<div class="top_left" id="WC_StoreCommonUtilities_div_1"><img src="../StoreAssets/images/colors/color1/transparent.gif" alt="[PROPERTIES;No_Image;No image available]"/></div>
+		        <div class="top_right" id="WC_StoreCommonUtilities_div_2"><img src="../StoreAssets/images/colors/color1/transparent.gif" alt="[PROPERTIES;No_Image;No image available]"/></div>
+		        <div class="header" id="WC_StoreCommonUtilities_div_3"></div>
+		        <div class="bodyarea" id="WC_StoreCommonUtilities_div_4">
+				<div class="bodycontent" id="WC_StoreCommonUtilities_div_5">
+					<img src="../StoreAssets/images/colors/color1/loading.gif" width="44" height="44" border="0" alt="[PROPERTIES;PROGRESS_BAR_REQUEST_PROCESSED;Your request is being processed.]"/>
+			        </div>
+			</div>
+			<div class="footer" id="WC_StoreCommonUtilities_div_6">
+				 <div class="bot_left" id="WC_StoreCommonUtilities_div_7"></div>
+				 <div class="bot_right" id="WC_StoreCommonUtilities_div_8"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- END ProgressBar.jspf -->
+
+	
+
+<!-- BEGIN MessageDisplay.jspf -->
+
+
+<span class="spanacce" id="MessageArea_ACCE_Title">[PROPERTIES;DIALOG_TITLE_MESSAGE;Message Dialog]</span>
+<div id="MessageArea" class="store_message" role="alert" aria-labelledby="MessageArea_ACCE_Title">
+	<div id="msgpopup_content_wrapper" class="content">
+		<a id="clickableErrorMessageImg" role="button" class="close right" href="JavaScript:MessageHelper.hideMessageArea();" title="[PROPERTIES;CLOSE;Close]">
+			<div class="close_text left">[PROPERTIES;CLOSE;Close]</div>
+			<div class="close_icon left"></div>
+			<div class="clear_float"></div>
+		</a>
+		
+		<div class="clear_float"></div>
+		
+		<div class="message">
+			<div class="message_icon left">
+				<img id="error_icon" style="display:none;" class="error_icon" src="../StoreAssets/images/colors/color1/error_icon.png" alt=""/>
+				<img id="success_icon" style="display:none;" class="error_icon" src="../StoreAssets/images/colors/color1/success_icon.png" alt=""/>
+			</div>
+			<div class="message_text left" role="region" aria-required="true" aria-labelledby="MessageArea">
+				<span id="ErrorMessageText">
+					
+				</span>
+			</div>
+			<div class="clear_float"></div>
+		</div>		
+	</div>
+</div>
+<span class="spanacce" id="ariaMessage_ACCE_Label">[PROPERTIES;ACCE_Display_Update_Message;Display Update Message]</span>
+<span class="spanacce" role="region" aria-labelledby="ariaMessage_ACCE_Label" id="ariaMessage" aria-live="assertive" aria-atomic="true" aria-relevant="additions"></span>
+<!-- END MessageDisplay.jspf -->
+
+
+	
+
+<span id="widget_product_comparison_ACCE_Label" class="spanacce">[PROPERTIES;DIALOG_TITLE_PRODUCT_COMPARE;Product Compare Dialog]</span>
+<div id="widget_product_comparison" style="display:none;" role="dialog" aria-labelledby="widget_product_comparison_ACCE_Label" title="[PROPERTIES;DIALOG_TITLE_PRODUCT_COMPARE;Product Compare Dialog]" >
+	<div id="widget_product_comparison_popup" dojoType="dijit.Dialog" closeOnTimeOut="false">
+		<div class="widget_product_comparison_popup widget_site_popup">													
+			<!-- Top Border Styling -->
+
+			<div class="top">
+				<div class="left_border"></div>
+				<div class="middle"></div>
+				<div class="right_border"></div>
+			</div>
+			<div class="clear_float"></div>
+			<!-- Main Content Area -->
+
+			<div class="middle">
+				<div class="content_left_border">
+					<div class="content_right_border">
+						<div class="content">
+							<div class="header">
+								<span>[PROPERTIES;CP_HEADING;Product Comparison]</span>
+								<a id="ComparePopupClose" class="close" href="javascript:dijit.byId('widget_product_comparison_popup').hide();" title="[PROPERTIES;CP_CLOSE;CLOSE]"></a>
+								<div class="clear_float"></div>
+							</div>
+							<div class="body">
+								[PROPERTIES;CP_MESSAGE;The maximum number of products that can be compared is 4. Please refine your selection.]
+							</div>
+							
+							<div class="footer">
+								<div class="button_container ">
+									<a id="ComparePopupOK" class="button_primary" tabindex="0" href="javascript: dijit.byId('widget_product_comparison_popup').hide();" title="[PROPERTIES;CP_OK;OK]">
+										<div class="left_border"></div>
+										<div class="button_text">[PROPERTIES;CP_OK;OK]</div>
+										<div class="right_border"></div>
+									</a>
+									<div class="clear_float"></div>
+								</div>
+								
+							</div>
+							<div class="clear_float"></div>
+						<!-- End content Section -->
+
+						</div>
+					<!-- End content_right_border -->
+
+					</div>
+				<!-- End content_left_border -->
+
+				</div>
+			</div>
+			<div class="clear_float"></div>
+			<!-- Bottom Border Styling -->
+
+			<div class="bottom">
+				<div class="left_border"></div>
+				<div class="middle"></div>
+				<div class="right_border"></div>
+			</div>
+			<div class="clear_float"></div>
+		</div>
+	</div>
+</div>
+	
+<!-- END CommonJSPFToInclude.jspf -->
+
+		
+<div id="quickInfoPopup" role="dialog" dojoType="dijit.Dialog" style="display:none;" onkeypress="QuickInfoJS.setFocus" title="[PROPERTIES;QUICK_VIEW;Quick Info]">
+	<div class="widget_quick_info_popup">
+		
+		<!-- Top Border Styling -->
+
+		<div class="top">
+			<div class="left_border"></div>
+			<div class="middle"></div>
+			<div class="right_border"></div>
+		</div>
+		<div class="clear_float"></div>
+		<!-- Main Content Area -->
+
+		<div class="middle">
+			<div class="content_left_border">
+				<div class="content_right_border">
+				<span id="quickInfoRefreshArea_ACCE_Label" class="spanacce">[PROPERTIES;QUICK_VIEW_CONTENT_ACCE;Quick Info Content]</span>
+				<div id="quickInfoRefreshArea" class="content" dojoType="wc.widget.RefreshArea" controllerId="QuickInfoDetailsController" ariaMessage="[PROPERTIES;ACCE_Status_Quick_View_Content_updated;Quick Info Content Display Updated]" ariaLiveId="ariaMessage" role="region" aria-labelledby="quickInfoRefreshArea_ACCE_Label">
+					</div>
+				<!-- End content_right_border -->
+
+				</div>
+			<!-- End content_left_border -->
+
+			</div>
+		</div>
+		<div class="clear_float"></div>
+		<!-- Bottom Border Styling -->
+
+		<div class="bottom">
+			<div class="left_border"></div>
+			<div class="middle"></div>
+			<div class="right_border"></div>
+		</div>
+		<div class="clear_float"></div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	dojo.addOnLoad(function() { 
+		CommonControllersDeclarationJS.setControllerURL('QuickInfoDetailsController', 'QuickInfo_Tomatoes.html');
+	});        
+</script>
+		
+<div id="shoppingListItemAddedPopup" dojoType="dijit.Dialog" style="display:none;" title="[PROPERTIES;DIALOG_TITLE_MESSAGE;Message Dialog]">
+	<div class="widget_site_popup">
+												
+		<!-- Top Border Styling -->
+
+		<div class="top">
+			<div class="left_border"></div>
+			<div class="middle"></div>
+			<div class="right_border"></div>
+		</div>
+		<div class="clear_float"></div>
+		<!-- Main Content Area -->
+
+		<div class="middle">
+			<div class="content_left_border">
+				<div class="content_right_border">
+					<div class="content">
+						<div class="header">
+							<span>[PROPERTIES;SL_ITEM_ADDED_SUCCESSFULLY;This item has been successfully added to your list.]</span>
+							<a role="button" id="shoppingListItemAddedClose" href="javascript:ShoppingListDialogJS.close();" class="close" title="[PROPERTIES;SL_CLOSE;Close]" alt="[PROPERTIES;SL_CLOSE;Close]"></a>
+							<div class="clear_float"></div>
+						</div>
+						
+							<div class="product">
+								<div class="product_image">
+									<img id="shoppingListItemAddedImg" alt=""/>
+								</div>
+								<div id="shoppingListItemAddedName" class="product_name"></div>
+								<div class="clear_float"></div>
+							</div>
+						
+						<div class="footer">
+							<div class="button_container ">
+								<a id="shoppingListItemAddedContinue" href="javascript:ShoppingListDialogJS.close();" class="button_primary" title="[PROPERTIES;SL_CONTINUE_SHOPPING;Continue Shopping]">
+									<div class="left_border"></div>
+									<div class="button_text">[PROPERTIES;SL_CONTINUE_SHOPPING;Continue Shopping]</div>
+									<div class="right_border"></div>
+								</a>
+								<div class="clear_float"></div>
+							</div>
+							
+						</div>
+						<div class="clear_float"></div>
+					<!-- End content Section -->
+
+					</div>
+				<!-- End content_right_border -->
+
+				</div>
+			<!-- End content_left_border -->
+
+			</div>
+		</div>
+		<div class="clear_float"></div>
+		<!-- Bottom Border Styling -->
+
+		<div class="bottom">
+			<div class="left_border"></div>
+			<div class="middle"></div>
+			<div class="right_border"></div>
+		</div>
+		<div class="clear_float"></div>
+	</div>
+</div>
+		
+		<!-- Begin Page -->
+
+		<div id="page">
+		
+			<!-- Import Header Widget -->
+
+			<div class="header_wrapper_position" id="headerWidget">
+				
+					
+
+<!-- BEGIN Header.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">Header.jsp</div>
+<div id="text_highlight"></div>
+<script type="text/javascript" src="../StoreAssets/javascript/Properties.js"></script>
+<script type="text/javascript" src="../StoreAssets/javascript/Analytics.js"></script>
+	<script type="text/javascript">
+	dojo.addOnLoad(function() {
+		analyticsJS.storeId=10152;
+		analyticsJS.catalogId=10001;
+		analyticsJS.loadShopCartHandler();
+		analyticsJS.loadPagingHandler();
+		analyticsJS.loadProductQuickInfoHandler('productIdQuickInfo');
+		analyticsJS.loadStoreLocatorPageViews();
+		analyticsJS.loadWishlistHandler();
+		dojo.require("wc.analytics.CoremetricsEventListener");		
+			(new wc.analytics.CoremetricsEventListener()).load(true);
+			});
+	</script>
+	
+
+<script>
+	var isGuest = false;
+</script>
+<div class="header_wrapper" role="banner">
+	<!--For border customization -->
+
+	<div class="header_top">
+		<div class="left_border"></div>
+		<div class="middle"></div>
+		<div class="right_border"></div>
+	</div>
+	<!-- Main Header Area -->
+
+	<div class="header_left_shadow">
+		<div class="header_right_shadow">				
+			<div class="header">
+				<!-- Start Header Content -->
+
+				
+				<!-- Start Masthead -->
+
+				<div id="masthead">
+					<div class="top"></div>
+					<div class="content">
+						<!-- Masthead Logo Widget -->
+
+						<div class="widget_masthead_logo_position">
+							<div id="widget_masthead_logo1">
+								
+					
+<!-- BEGIN ContentRecommendation.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">ContentRecommendation.jsp</div>
+	<div class="widget_height" tabindex="0">
+		
+							<div class="left_espot">
+								
+									<a id="ContentAreaESpotInfoImgLink_10073_1" 
+										href="WelcometoAuroraESite.html" title="AuroraStorefrontAssetStore">
+								
+										<img id="ContentAreaESpotImg_HeaderStoreLogo_Content_1" src="../StoreAssets/images/logo.png" alt="AuroraStorefrontAssetStore"/>
+								
+									</a>
+								
+							</div>
+						
+	</div>
+
+</span>
+<!-- END ContentRecommendation.jsp -->
+
+								
+							</div>
+						</div>
+						<!-- End Masthead Logo Widget -->
+
+						
+						<!-- Masthead Links Widget -->
+
+						<div class="widget_masthead_links_position" role="navigation">
+							<div id="widget_masthead_links">
+								<div class="left">
+									<div id="masthead_espot">
+						
+<!-- BEGIN ContentRecommendation.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">ContentRecommendation.jsp</div>
+</span>
+<!-- END ContentRecommendation.jsp -->
+																			
+									</div>																		
+									<div class="masthead_links">
+										<div class="content">
+											<span class="masthead_links_container">
+												
+													<span class="masthead_links_item"><a id="MyAccountLink" href="MyAccount.html">[PROPERTIES;HEADER_MY_ACCOUNT;My Account]</a></span> [PROPERTIES;DIVIDING_BAR;|]
+												
+												
+													<span class="masthead_links_item"><a id="ShoppingListDisplayLink" href="Wishlist.html">[PROPERTIES;HEADER_SHOPPING_LIST;Wish List]</a></span> [PROPERTIES;DIVIDING_BAR;|]
+											
+<!-- BEGIN LanguageCurrency.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">LanguageCurrency.jsp</div>
+<div id="widget_language_and_currency" style="display:none;">
+	<div id="widget_language_and_currency_popup" dojoType="wc.widget.WCDialog" closeOnTimeOut="false" title="[PROPERTIES;DIALOG_TITLE_LANGUAGE_AND_CURRENCY;Language and Currency Dialog]">
+		<div class="widget_language_and_currency_popup widget_site_popup">										
+			<!-- Top Border Styling -->
+
+			<div class="top">
+				<div class="left_border"></div>
+				<div class="middle"></div>
+				<div class="right_border"></div>
+			</div>
+			<div class="clear_float"></div>
+			<!-- Main Content Area -->
+
+			<div class="middle">
+				<div class="content_left_border">
+					<div class="content_right_border">
+						<div class="content">
+							<div class="header">
+								<span>[PROPERTIES;LC_LANGUAGE_CURRENCY_SELECTION;Please select a language and currency]</span>
+								<a id="close" class="close_acce" title="[PROPERTIES;LC_CLOSE;CLOSE]" href="javascript:dijit.byId('widget_language_and_currency_popup').hide();"><img role="button" onmouseover="this.src='../StoreAssets/images/colors/color1/close_hover.png'" onmouseout="this.src='../StoreAssets/images/colors/color1/close_normal.png'" src="../StoreAssets/images/colors/color1/close_normal.png" class="closeImg" alt="[PROPERTIES;LC_CLOSE;CLOSE]"/></a>
+								<div class="clear_float"></div>
+							</div>
+							<div class="selectors">
+								<div class="selector">
+									<span class="option_name">[PROPERTIES;LC_LANGUAGE;Language:]&nbsp;</span>
+									<label for="languageSelection" class="nodisplay">[PROPERTIES;LC_LANGUAGE;Language:]</label>
+									<select class="left" id="languageSelection" name="langId" onchange="javascript:document.getElementById('languageSelectionHidden').value=this.value">
+										
+													<option value='-1' selected="selected">United States English</option>
+												
+													<option value='-7'>????</option>
+												
+													<option value='-2'>Fran�ais</option>
+												
+											
+										
+									</select>
+									<div class="clear_float"></div>
+								</div>
+								<div class="selector">
+									<span class="option_name">[PROPERTIES;LC_CURRENCY;Currency:]&nbsp;</span>
+									<label for="currencySelection" class="nodisplay">[PROPERTIES;LC_CURRENCY;Currency:]</label>
+									<select class="left" id="currencySelection" name="currency" onchange="javascript:document.getElementById('currencySelectionHidden').value=this.value">
+										
+											
+												
+													<option value='USD' selected="selected">US Dollar</option>
+												
+												
+											
+										
+											
+												
+													
+												
+											
+											
+												
+												
+													<option value='BRL'>Brazilian Real</option>
+												
+											
+										
+											
+												
+													
+												
+											
+											
+												
+												
+													<option value='CAD'>Canadian Dollar</option>
+												
+											
+										
+											
+												
+													
+												
+											
+											
+												
+												
+													<option value='CNY'>Chinese Yuan</option>
+												
+											
+										
+											
+												
+													
+												
+											
+											
+												
+												
+													<option value='EUR'>Euro</option>
+												
+											
+										
+											
+												
+													
+												
+											
+											
+												
+												
+													<option value='GBP'>British Pound</option>
+												
+											
+										
+											
+												
+													
+												
+											
+											
+												
+												
+													<option value='JPY'>Japanese Yen</option>
+												
+											
+										
+											
+												
+													
+												
+											
+											
+												
+												
+													<option value='KRW'>South Korean Won</option>
+												
+											
+										
+											
+												
+													
+												
+											
+											
+												
+												
+													<option value='PLN'>Polish Zloty</option>
+												
+											
+										
+											
+												
+													
+												
+											
+											
+												
+												
+													<option value='RON'>Romanian Leu</option>
+												
+											
+										
+											
+												
+													
+												
+											
+											
+												
+												
+													<option value='RUB'>Russian Ruble</option>
+												
+											
+										
+											
+												
+													
+												
+											
+											
+												
+												
+													<option value='TWD'>Taiwan Dollar</option>
+												
+											
+										
+									</select>
+									<div class="clear_float"></div>
+								</div>
+								<form id="SetLanguageCurrencyPreferenceForm"action="/webapp/wcs/stores/servlet/SetCurrencyPreference" method="post">
+									<input type="hidden" name="storeId" value="10152"/>
+									<input type="hidden" name="catalogId" value="10001"/>
+									<input type="hidden" id="languageSelectionHidden" name="langId" value="-1"/>
+									<input type="hidden" id="currencySelectionHidden" name="currency" value="USD"/>									
+									
+									
+										
+										
+											<input type="hidden" name="URL" value="/webapp/wcs/stores/servlet/ProductDisplay?currency*=" id="WC_SidebarDisplay_FormInput_URL_2"/>
+										
+									
+									
+										
+											
+										
+									
+										
+											
+												<input type="hidden" name="errorViewName" value="ProductDisplayErrorView" id="WC_SidebarDisplay_FormInput_parm_2_1"/>
+											
+										
+									
+										
+											
+												<input type="hidden" name="parent_category_rn" value="10033" id="WC_SidebarDisplay_FormInput_parm_3_1"/>
+											
+										
+									
+										
+											
+												<input type="hidden" name="top_category" value="10033" id="WC_SidebarDisplay_FormInput_parm_4_1"/>
+											
+										
+									
+										
+											
+												<input type="hidden" name="categoryId" value="10037" id="WC_SidebarDisplay_FormInput_parm_5_1"/>
+											
+										
+									
+										
+											
+										
+									
+										
+											
+												<input type="hidden" name="pageName" value="CatalogEntryPage" id="WC_SidebarDisplay_FormInput_parm_7_1"/>
+											
+										
+									
+										
+											
+												<input type="hidden" name="productId" value="12752" id="WC_SidebarDisplay_FormInput_parm_8_1"/>
+											
+										
+									
+										
+											
+										
+									
+									
+								</form>
+							</div>
+							<div class="footer">
+								<div class="button_container ">
+									<a id="LangCurrencyApplyBtn" class="button_primary" tabindex="0" href="javascript:dijit.byId('widget_language_and_currency_popup').hide();document.getElementById('SetLanguageCurrencyPreferenceForm').submit();">
+										<div class="left_border"></div>
+										<div id="LangCurrencyApplyBtnText" class="button_text">[PROPERTIES;LC_APPLY;Apply]</div>
+										<div class="right_border"></div>
+									</a>
+									<div class="clear_float"></div>
+								</div>
+								
+							</div>
+							<div class="clear_float"></div>
+						<!-- End content Section -->
+
+						</div>
+					<!-- End content_right_border -->
+
+					</div>
+				<!-- End content_left_border -->
+
+				</div>
+			</div>
+			<div class="clear_float"></div>
+			<!-- Bottom Border Styling -->
+
+			<div class="bottom">
+				<div class="left_border"></div>
+				<div class="middle"></div>
+				<div class="right_border"></div>
+			</div>
+			<div class="clear_float"></div>
+		</div>
+	</div>
+</div>
+
+
+<span class="masthead_links_item"><a id="LanguageCurrencyChangeLink" href="javaScript: shoppingActionsJS.showWCDialogPopup('widget_language_and_currency_popup');">[PROPERTIES;LC_LANGUAGE_CURRENCY;Language/Currency]</a></span> &#124;
+
+		
+	
+
+
+
+</span>
+<!-- END LanguageCurrency.jsp -->
+
+												
+												<span class="masthead_links_item"><a id="SignOutLink" href="SignIn.html">[PROPERTIES;HEADER_SIGN_OUT;Sign Out]</a></span>
+											</span>
+										</div>
+									</div>
+									<div class="masthead_social">
+										<div class="content">
+											<span class="masthead_links_container">
+												
+										        
+													<span class="masthead_links_item">		
+														
+														
+
+<!-- BEGIN FacebookConnect.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">FacebookConnect.jsp</div>
+<!-- BEGIN FacebookConnect_UI.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">FacebookConnect_UI.jsp</div>
+<!--script type="text/javascript" src="../StoreAssets/javascript/FBintegration.js?locale=en_US&appId=116247245179970"></script-->
+
+
+<span id="SocialIntegrationArea">
+	<span id="header-fb-login-button-span" > 
+		<a href="javascript:void(0);" tabindex="0" onclick="javascript:fbIntegrationJS.onClickFacebookLogin();return false;"  class="h_tnav_but" id="headerFBlogin">
+		    [PROPERTIES;HEADER_CONNECT_TO_FACEBOOK;Connect to Facebook]
+			<img class="img_align" id="WC_FacebookConnectDisconnectDisplayImg_1" src="../StoreAssets/images/socialIntegration/social_networking.png" alt="" /></a>
+	</span> 
+	
+	<span id="header-fb-logout-button-span" class="nodisplay" > 
+		<span id="header_menu_facebook_loaded" style="display:none;">
+			<span id="menu_DropDown_Facebook" class="headerMenu_DropDown_Facebook" 
+				onMouseOver="javascript:fbIntegrationJS.openDropDown();" 
+				onMouseLeave="javascript:fbIntegrationJS.closeDropDown();" 
+				dojoType="wc.widget.WCDropDownButton" 
+				title="[PROPERTIES;FACEBOOK_DROPDOWN_ACTIVATE;Use shift plus enter key then press the down arrow key to disconnect from Facebook.]" 
+				alt="[PROPERTIES;FACEBOOK_DROPDOWN_ACTIVATE;Use shift plus enter key then press the down arrow key to disconnect from Facebook.]" >
+			    <span id="WC_CachedHeaderDisplayFacebook_div" class="dropdown"
+			    	onItemHover="javascript:fbIntegrationJS.menuItemHover();" dojoType="wc.widget.WCMenu"
+					onMouseLeave="javascript:fbIntegrationJS.closeDropDown();" 
+			    	maxItemsPerColumn="6" forceDisplayShowAll="false" 
+			    	showAllText="[PROPERTIES;SHOW_ALL_FACEBOOK_OPTIONS;Show All Facebook options]" >
+			        <span id="WC_CachedHeaderDisplayFacebook_div_2" 
+			        	dojoType="dijit.MenuItem" 
+			        	onClick="javascript:fbIntegrationJS.onClickFacebookLogout();return false;" >
+			            <span>
+			                <a href="javascript:void(0);" tabindex="0" 
+								class="h_tnav_but" id="headerFBlogout">
+								[PROPERTIES;HEADER_DISCONNECT_FROM_FACEBOOK;Disconnect from Facebook]
+							</a>
+			            </span>
+			        </span>
+			    </span>
+			</span>
+		</span>		
+	</span>
+	
+</span>	
+
+</span>
+<!-- END FacebookConnect_UI.jsp -->
+
+
+
+</span>
+<!-- END FacebookConnect.jsp -->
+
+														
+													</span>[PROPERTIES;DIVIDING_BAR;|]
+	                                	        
+												<span class="masthead_links_item">1-800-555-1234</span>
+												
+													[PROPERTIES;DIVIDING_BAR;|]
+													<span class="masthead_links_item"><a id="StoreLocatorLink" href="StoreLocator.html">[PROPERTIES;HEADER_STORE_LOCATOR;Store Locator]</a></span>
+												
+											</span>
+										</div>
+									</div>												
+								</div>
+								<div class="right" style="display:none;">
+									<div class="social_avatar">
+									</div>
+								</div>
+								<div class="clear_float"></div>
+							</div>
+						</div>
+						<!-- End Masthead Links Widget -->
+
+
+						<!-- MiniShopCart Widget -->
+
+						<div class="widget_minishopcart_position">
+							
+<span id="MiniShoppingCart_Label" class="spanacce">[PROPERTIES;ACCE_Region_Shopping_Cart_Content;Shopping Cart]</span>
+<div dojoType="wc.widget.RefreshArea" id="MiniShoppingCart" widgetId="MiniShoppingCart" 
+	controllerId="MiniShoppingCartController" 
+	ariaMessage="[PROPERTIES;ACCE_Status_Shopping_Cart_Content_Updated;Shopping Cart Display Updated]" ariaLiveId="ariaMessage" 
+	role="region" aria-labelledby="MiniShoppingCart_Label">
+	
+<script type="text/javascript">
+  dojo.addOnLoad(function() {
+		setMiniShopCartControllerURL(getAbsoluteURL()+'MiniShopCartDisplayView?storeId=10152&catalogId=10001&langId=-1');
+	});
+</script>
+
+
+<div id="widget_minishopcart" role="button" tabindex="0"
+	onclick="javascript:showMiniShopCartDropDown('widget_minishopcart','quick_cart_container','orderItemsList');"
+	onKeyPress="javascript:showMiniShopCartDropDownEvent(event,'widget_minishopcart','quick_cart_container','orderItemsList');" 
+	onMouseOver="javascript:showMiniShopCartDropDown('widget_minishopcart','quick_cart_container','orderItemsListAutoClose');">
+	<div id="miniShopCartLeftCorner" class="left_border"></div>
+	<div id="miniShopCartBody" class="content">
+		<div class="info">
+			<div class="subtotal">[PROPERTIES;MSC_SUBTOTAL;Subtotal:] <span id="minishopcart_subtotal">$0.00</span></div>
+			<div class="cart">[PROPERTIES;MSC_SHOPPING_CART;Cart:] 
+				<span id="minishopcart_total">
+					[PROPERTIES;MSC_ITEMS;0 item(s)]
+				</span>
+			</div>
+		</div>
+		<div class="cart_icon"></div>
+		<div class="arrow"></div>
+	</div>
+	<div id="miniShopCartRightCorner" class="right_border"></div>
+	<div class="clear_float"></div>												
+</div>
+
+<div id="placeHolder"></div>
+
+<div id="quick_cart_container">
+	<span class="spanacce" id="quick_cart_container_ACCE_Label">[PROPERTIES;ACCE_MSC_SHOPPING_CART_POPUP_REGION;Shopping Cart Popup]</span>
+	<div id="quick_cart">
+		<div id ="MiniShopCartProductsList" style="display:none">
+			<div id="widget_minishopcart_popup">
+				<div class="top">
+					<div class="left_border"></div>
+					<div class="middle_tile"></div>
+					<div class="right_border"></div>
+				</div>
+				<div class="middle">
+					<div class="left_border">
+						<div class="right_border">
+							<div class="content">
+							<a id="MiniShopCartCloseButton_1" href="javascript:dijit.byId('quick_cart_container').hide();" class="close_control">
+								<div class="icon"></div>
+								<span class="close">[PROPERTIES;CLOSE;Close]</span>
+							</a>
+								<div class="notification">[PROPERTIES;MSC_ITEMS_IN_CART;Items in your cart:]</div>
+									
+										
+										
+											<div class="empty">[PROPERTIES;MSC_EMPTY_SHOP_CART;Your cart is empty]</div>
+										
+									
+								<div class="go_to_cart">
+									<a id="GotoCartButton1" href="javascript:location.href='ShoppingCartTomatoes.html'" class="button_primary" tabindex="0">
+										<div class="left_border"></div>
+										<div class="button_text">[PROPERTIES;MSC_GO_TO_CART;Go to Cart]</div>
+										<div class="right_border"></div>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="bottom">
+					<div class="left_border"></div>
+					<div class="middle_tile"></div>
+					<div class="right_border"></div>
+				</div>
+			</div>
+		</div>
+
+		<div id = "MiniShopCartProductAdded" style="display:none">
+			<div id="widget_minishopcart_popup_1">
+				<div class="top">
+					<div class="left_border"></div>
+					<div class="middle_tile"></div>
+					<div class="right_border"></div>
+				</div>
+				<div class="middle">
+					<div class="left_border">
+						<div class="right_border">
+							<div class="content">
+								<a id="MiniShopCartCloseButton_2" href="javascript:dijit.byId('quick_cart_container').hide();" class="close_control">
+									<div class="icon"></div>
+									<span class="close">[PROPERTIES;CLOSE;Close]</span>
+								</a>
+								<div class="notification">[PROPERTIES;MSC_ITEM_ADDED;This item has been successfully added:]</div>
+								<div class="products added">
+									<div class="product">
+											<div class="product_image">
+												<a id="MiniShopCartAddedProdImg_Tomatoes" href="TomatoesAuroraESite.html" title="Econo Sense">
+													
+													
+
+													<img src="../StoreAssets/images/catalog/grocery/gve034_vegetables/105x105/gve034_3407.jpg" alt="Tomatoes">
+												</a>
+
+											</div>
+											<div class="product_name">
+												<a id="MiniShopCartAddedProdName_Econo Sense" href="TomatoesAuroraESite.html">Tomatoes</a>
+											</div>
+											<div class="item_spacer_7px"></div>
+											
+												<div class="product_color">
+												[PROPERTIES;ATTRNAMEKEY;Brand:] California Sun
+												[PROPERTIES;ATTRNAMEKEY;Type:] Tomatoes</div>
+											
+											<div class="item_spacer_3px"></div>
+
+											<span class="product_quantity">[PROPERTIES;MSC_QTY;QTY:] 1</span>
+											<span class="product_price">$3.29</span>
+										</div>
+								</div>
+								<div class="go_to_cart">
+									<a id="GotoCartButton2" href="javascript:location.href='ShoppingCartTomatoes.html'" class="button_primary" tabindex="0">
+										<div class="left_border"></div>
+										<div class="button_text">[PROPERTIES;MSC_GO_TO_CART;Go to Cart]</div>
+										<div class="right_border"></div>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="bottom">
+					<div class="left_border"></div>
+					<div class="middle_tile"></div>
+					<div class="right_border"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+					
+</div>
+				
+						</div>
+						<!-- End MiniShopCart Widget -->
+
+
+					</div>
+					<div class="navigation">
+						<!-- Department Selection Widget -->
+
+						<div class="widget_departments_position" role="navigation" aria-label="[PROPERTIES;DEPARTMENTS;Departments]">
+							
+<script type="text/javascript">
+	dojo.addOnLoad(function() {
+		if(document.getElementById("widget_departments")){
+			document.getElementById("widget_departments").style.display = "block";
+		}
+		DepartmentJS.init();
+		wc.render.getRefreshControllerById("DepartmentDropdownController").url = getAbsoluteURL()+"DepartmentDropDownView.html";
+	});
+
+	dojo.addOnUnload(function() {
+		if(document.getElementById("drop_down")){
+			document.getElementById("drop_down").style.display = "none";
+		}
+	});
+</script>
+
+
+<div id="widget_departments" tabindex="0" title="[PROPERTIES;DEPARTMENT_MENU_ACCE;Departments]" style="display:none;">
+		<div class="left_border"></div>
+		<div class="content">
+			<span class="label">[PROPERTIES;DEPARTMENTS;Departments]</span>
+			<div class="arrow"></div>
+		</div>
+		<div class="right_border"></div>
+		<div class="clear_float"></div>
+		
+		
+		<div class="drop_down" id="drop_down" dojoType="wc.widget.RefreshArea" widgetId="drop_down" controllerId="DepartmentDropdownController" style="display:none;">
+			
+				
+
+<!-- BEGIN Department.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">Department.jsp</div>
+</span>
+<!-- END Department.jsp -->
+
+			
+		</div>
+</div>
+			
+						</div>
+						<!-- End Department Selection Widget -->
+
+
+						<!-- Search Widget -->
+
+						<div id="searchComponent">
+					
+<!-- BEGIN Search.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">Search.jsp</div>
+		<meta name="CommerceSearch" content="storeId_10152" />
+		
+		<!-- Begin Search Widget -->
+
+		<script type="text/javascript">
+				dojo.addOnLoad(function(){
+					SearchJS.init();
+					SearchJS.setCachedSuggestionsURL('SearchComponentCachedSuggestionsView.html');
+					SearchJS.setAutoSuggestURL('SearchComponentAutoSuggestView.html');
+				});
+
+				// The primary Array to hold all static search suggestions
+				var staticContent = new Array();
+
+				// The titles of each search grouping
+				var staticContentHeaders = new Array();
+		</script>	
+	
+<form name="CatalogSearchForm" action="SearchResults.html" method="get" id="CatalogSearchForm">
+	
+	<!-- Search Widget -->
+
+	<div class="widget_search_position" role="search">
+		<div id="widget_search">
+			<div class="left_border"></div>
+			<div class="content">
+	
+				<label for="SimpleSearchForm_SearchTerm" class="nodisplay">[PROPERTIES;SEARCH_CATALOG;Search]</label>
+				<input type="text" class="search_input gray_color" placeholder="[PROPERTIES;SEARCH_CATALOG;Search]" name="searchTerm" id="SimpleSearchForm_SearchTerm" autocomplete="off" maxlength="65" tabindex="0" title="[PROPERTIES;SEARCH_SUGGESTION;Press the Up or Down Arrow keys to navigate through the search suggestions. Suggested site content and search history, if any, are included after the suggestions.  Press the Enter key for all search results.]" onkeypress="return SearchJS._onKeyPress(event);" value='[PROPERTIES;SEARCH_CATALOG;Search]'></input>
+
+				<div role="button" aria-labelledby="searchDepartmentList_ACCE_Label" onclick="$('searchDepartmentList').style.display='block'" onfocus="$('searchDepartmentList').style.display='block'; dojo.byId('searchDepartmentList_0').focus();" tabindex="0" class="all_departments">
+					<span id="searchDepartmentLabel">[PROPERTIES;SEARCH_ALL_DEPARTMENTS;All Departments]</span>
+				</div>
+				<input id="search_categoryId" type="hidden" name="categoryId" value=""/>
+				<span class="spanacce" id="searchDepartmentList_ACCE_Label">[PROPERTIES;SEARCH_IN;Search in]</span>
+				<div class="widget_search_departments_dropdown_position" role="menu" aria-labelledby="searchDepartmentList_ACCE_Label" onblur="clearTimeout(SearchJS.searchDepartmentHoverTimeout);SearchJS.searchDepartmentHoverTimeout=setTimeout('SearchJS.hideSearchDepartmentList()',300)" onmouseout="clearTimeout(SearchJS.searchDepartmentHoverTimeout);SearchJS.searchDepartmentHoverTimeout=setTimeout('SearchJS.hideSearchDepartmentList()',300)" onmouseover="clearTimeout(SearchJS.searchDepartmentHoverTimeout);" id="searchDepartmentList">
+					<div class="widget_search_departments_dropdown">
+						<div class="top">
+							<div class="left_border"></div>
+							<div class="middle"></div>
+							<div class="right_border"></div>
+						</div>
+
+						<div class="clear_float"></div>
+						<div class="content_left_border">
+							<div class="content_right_border">
+								<ul id="searchDepartmentList_root">
+									<li><a href="#" id="searchDepartmentList_0" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 0, 6, '', this);" onmousedown="SearchJS.searchDepartmentSelect('', this)" onmouseover="this.className='enabled'" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseout="this.className='disabled'">[PROPERTIES;SEARCH_ALL_DEPARTMENTS;All Departments]</a></li>
+									
+										<li><a href="#" id="searchDepartmentList_1" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 1, 6, '10001', this);" onmousedown="SearchJS.searchDepartmentSelect('10001', this)" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseover="this.className='enabled'" onmouseout="this.className='disabled'">Apparel</a></li>
+									
+										<li><a href="#" id="searchDepartmentList_2" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 2, 6, '10027', this);" onmousedown="SearchJS.searchDepartmentSelect('10027', this)" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseover="this.className='enabled'" onmouseout="this.className='disabled'">Electronics</a></li>
+									
+										<li><a href="#" id="searchDepartmentList_3" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 3, 6, '10033', this);" onmousedown="SearchJS.searchDepartmentSelect('10033', this)" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseover="this.className='enabled'" onmouseout="this.className='disabled'">Grocery</a></li>
+									
+										<li><a href="#" id="searchDepartmentList_4" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 4, 6, '10038', this);" onmousedown="SearchJS.searchDepartmentSelect('10038', this)" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseover="this.className='enabled'" onmouseout="this.className='disabled'">Health</a></li>
+									
+										<li><a href="#" id="searchDepartmentList_5" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 5, 6, '10041', this);" onmousedown="SearchJS.searchDepartmentSelect('10041', this)" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseover="this.className='enabled'" onmouseout="this.className='disabled'">Home &amp; Furnishing</a></li>
+									
+										<li><a href="#" id="searchDepartmentList_6" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 6, 6, '10048', this);" onmousedown="SearchJS.searchDepartmentSelect('10048', this)" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseover="this.className='enabled'" onmouseout="this.className='disabled'">Newsletters &amp; Magazines</a></li>
+									
+								</ul>
+							</div>
+						</div>
+						<div class="clear_float"></div>
+
+						<div class="bottom">																
+							<div class="left_border"></div>
+							<div class="middle"></div>
+							<div class="right_border"></div>
+						</div>
+
+						<div class="clear_float"></div>	
+					</div>
+				</div>
+				
+				<input id="search_submit" class="search_submit" type="image" onmouseout="javascript: this.src='../StoreAssets/images/colors/color1/widget_search/search_submit.png'" onmouseover="javascript: this.src='../StoreAssets/images/colors/color1/widget_search/search_submit_hover.png'" onblur="javascript: this.src='../StoreAssets/images/colors/color1/widget_search/search_submit.png'" onfocus="javascript: this.src='../StoreAssets/images/colors/color1/widget_search/search_submit_hover.png'" alt="[PROPERTIES;SEARCH_CATALOG;Search]" src="../StoreAssets/images/colors/color1/widget_search/search_submit.png"  value="[PROPERTIES;SEARCH_CATALOG;Search]" />
+
+			</div> <!-- content -->
+
+			<div class="right_border"></div>
+			<div class="clear_float"></div>
+		</div> <!-- widget_search -->
+
+	</div> <!-- widget_search_position -->
+
+
+	<!-- Start SearchDropdownWidget -->
+
+	<div id="autoSuggest_Result_div" style="display:none;">
+
+		<div id="widget_search_dropdown" class="widget_search_dropdown_position">
+			<div class="widget_search_dropdown">
+		
+				<!-- Top Border Styling -->
+
+				<div class="top">
+					<div class="left_border"></div>
+					<div class="middle"></div>
+					<div class="right_border"></div>
+				</div>
+				<div class="clear_float"></div>
+				
+				<!-- Main Content Area -->
+
+				<div class="content_left_border">
+					<div class="content_right_border">
+		
+						<div id="AutoSuggestDiv" class="content" role="region" aria-required="true" aria-labelledby="AutoSuggestDiv" onmouseover="SearchJS.autoSuggestHover = true;" onmouseout="SearchJS.autoSuggestHover = false; document.getElementById('SimpleSearchForm_SearchTerm').focus();">
+							
+								<span id="autoSuggestDynamic_Result_div_ACCE_Label" class="spanacce">[PROPERTIES;SEARCH_AUTO_SUGGEST_ACCE_REGION;Suggested keywords menu]</span>  
+								<div dojoType="wc.widget.RefreshArea" widgetId="autoSuggestDisplay_Widget" controllerId="AutoSuggestDisplayController" id="autoSuggestDynamic_Result_div" role="region" aria-live="polite" aria-atomic="true" aria-relevant="all" aria-labelledby="autoSuggestDynamic_Result_div_ACCE_Label" >
+									
+								</div>
+		
+								<div id="autoSuggestStatic_1"></div>
+								<div id="autoSuggestStatic_2"></div>
+								<div id="autoSuggestStatic_3"></div>
+								<div id="autoSuggestHistory"></div>
+								<div class="heading"> <a href="#" id="viewAllResults" ><div>[PROPERTIES;VIEW_ALL_RESULTS;View all results]</div></a> </div>
+		
+						<!-- End content Section -->
+
+						</div>
+		
+					<!-- End content_right_border -->
+
+					</div>
+				<!-- End content_left_border -->
+
+				</div>
+				
+				<!-- Bottom Border Styling -->
+
+				<div class="bottom">
+					<div class="left_border"></div>
+					<div class="middle"></div>
+					<div class="right_border"></div>
+				</div>
+				
+			</div>
+		</div>
+	<!-- End SearchDropdownWidget -->
+
+	</div>
+	
+	<!-- Refresh area to retrieve cached suggestions -->
+
+	<span id="autoSuggestCachedSuggestions_div_ACCE_Label" class="spanacce">[PROPERTIES;SEARCH_AUTO_SUGGEST_CACHED_ACCE_REGION;Suggested site content and search history menu]</span>
+	<div dojoType="wc.widget.RefreshArea" widgetId="AutoSuggestCachedSuggestions" controllerId="AutoSuggestCachedSuggestionsController" id="autoSuggestCachedSuggestions_div" role="region" aria-live="polite" aria-atomic="true" aria-relevant="all" style="display:none;" aria-labelledby="autoSuggestCachedSuggestions_div_ACCE_Label">
+	</div>
+
+	
+	<input type="hidden" name="storeId" value='10152' />
+	<input type="hidden" name="catalogId" value='10001' />
+	<input type="hidden" name="langId" value='-1' />
+	<input type="hidden" name="pageSize" value="12" />
+	<input type="hidden" name="beginIndex" value="0" />
+	<input type="hidden" name="sType" value="SimpleSearch" />
+	<input type="hidden" name="resultCatEntryType" value="2" />
+	<input type="hidden" name="showResultsPage" value="true" />
+	<input type="hidden" name="searchSource" value="Q" />
+	<input type="hidden" name="pageView" value="" />
+	<span id="searchTextHolder" class="nodisplay">[PROPERTIES;SEARCH_CATALOG;Search]</span>
+
+</form>
+	
+	<!-- End Search Widget -->
+
+
+
+
+</span>
+<!-- END Search.jsp -->
+
+							
+						</div>
+						<!-- End Search Widget -->
+
+					</div>			
+					<div class="header_espot_container">		
+						
+<!-- BEGIN ContentRecommendation.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">ContentRecommendation.jsp</div>
+</span>
+<!-- END ContentRecommendation.jsp -->
+						
+					</div>					
+				</div>
+				<!-- End Masthead -->
+
+				
+				<!-- End Header Content -->
+
+			</div>
+		</div>				
+	</div>
+	<!--For border customization -->
+
+	<div class="header_bottom">
+		<div class="left_border"></div>
+		<div class="middle"></div>
+		<div class="right_border"></div>
+	</div>
+</div>
+<div id="productIdQuickInfo" style="display:none"></div>
+
+</span>
+<!-- END Header.jsp -->
+
+				
+			</div>
+			
+			<!--Start Page Content-->
+
+			<div class="content_wrapper_position" role="main">
+				<div class="content_wrapper">
+					<!--For border customization -->
+
+					<div class="content_top">
+						<div class="left_border"></div>
+						<div class="middle"></div>
+						<div class="right_border"></div>
+					</div>
+					<!-- Main Content Area -->
+
+					<div class="content_left_shadow">
+						<div class="content_right_shadow">				
+							<div class="main_content">
+								<!-- Start Main Content -->
+
+								
+								<!-- Start Double E-Spot Container -->
+
+								<div class="widget_double_espot_container_position">
+									<div class="widget_double_espot_container">
+										
+											
+<!-- BEGIN ContentRecommendation.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">ContentRecommendation.jsp</div>
+	<div class="widget_height" tabindex="0">
+		
+							<div class="left_espot">
+								
+										<img id="ContentAreaESpotImg_CatalogBanner_Content_1" src="../StoreAssets/images/advertisements/en_US/save_15_off_purchase.jpg" alt="Save 15% Off Your Entire Purchase"/>
+								
+							</div>
+						
+							<div class="right_espot espot_spacer">
+								
+										<img id="ContentAreaESpotImg_CatalogBanner_Content_2" src="../StoreAssets/images/advertisements/en_US/097B_EHT_FreeShipping_001.jpg" alt="Free Shipping On orders over $100"/>
+								
+							</div>
+				
+	</div>
+	
+</span>
+<!-- END ContentRecommendation.jsp -->
+
+												
+											
+										
+									</div>
+								</div>
+								<!-- End Double E-Spot Container --->
+								
+								
+								<div class="container_full_width container_margin_8px">
+									<!-- Widget Breadcrumb-->
+
+									<div class="widget_breadcrumb_position">
+										
+											
+
+<!-- BEGIN BreadCrumb.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">BreadCrumb.jsp</div>
+<div id="widget_breadcrumb">
+	<ul>
+		
+		
+			<li><a id="WC_BreadCrumb_Link_1" href="WelcometoAuroraESite.html">[PROPERTIES;BCT_HOME;Home]</a><span class="divider">\</span></li>
+		
+			<li><a id="WC_BreadCrumb_Link_2" href="GroceryAuroraEsite.html">Grocery</a><span class="divider">\</span></li>
+		
+			<li><a id="WC_BreadCrumb_Link_3" href="VegetablesAuroraEsite.html">Vegetables</a><span class="divider">\</span></li>
+		
+		
+		<li class="current">Tomatoes</li>
+	</ul>
+</div>
+
+</span>
+<!-- END BreadCrumb.jsp -->
+
+
+
+										
+									</div>
+									<!-- Widget Breadcrumb -->
+
+								</div>
+								
+								<!-- Product Image and Product Information -->
+
+								<div class="container_product_details_image_information container_margin_5px">
+									<div class="left_column">
+									
+										<!-- Widget Product Image Viewer -->
+
+										<div class="widget_product_image_viewer_position">
+											
+												
+
+<!-- BEGIN ProductFullImage.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">ProductFullImage.jsp</div>
+<!-- Widget Product Image Viewer -->
+<div id="widget_product_image_viewer">
+	<div class="top">
+		<div class="left_border"></div>
+		<div class="middle"></div>
+		<div class="right_border"></div>
+	</div>
+	<div class="left_border">
+		<div class="right_border">
+			<div class="content">
+				<div class="image_container">
+					<img id="productMainImage" src="../StoreAssets/images/catalog/grocery/gve034_vegetables/447x447/gve034_3407.jpg" alt="Image for Tomatoes from AuroraESite" title="Image for Tomatoes from AuroraESite" class="product_main_image"/>
+					<div class="clear_float"></div>
+					<div class="hover_text">
+						<span style="display:none;">[PROPERTIES;FI_HOVER_OVER_IMAGE_TO_ZOOM;+ / - Hover over image to Zoom]</span>
+					</div>
+				</div>
+				
+						<div class="other_views" style="display:none;">
+						</div>
+					
+				
+			</div>
+		</div>
+	</div>
+	<div class="clear_float"></div>
+	<div class="bottom">
+		<div class="left_border"></div>
+		<div class="middle"></div>
+		<div class="right_border"></div>
+	</div>
+</div>
+<!-- End Widget Product Image Viewer -->
+
+
+
+
+
+</span>
+<!-- END ProductFullImage.jsp -->
+
+											
+										</div>										
+										<!-- End Widget Product Image Viewer -->
+
+									
+									</div>
+									<div class="right_column">
+										<!-- Widget Product Information Viewer -->
+
+										<div class="widget_product_info_viewer_position">
+											
+											
+		<!-- added -->
+
+		
+<div id="entitledItem_12752" style="display:none;">
+		[
+		
+					
+
+					{
+					"catentry_id" : "12753",
+					"Attributes" :	{
+																	
+						
+							
+							
+							
+							
+								
+								"Brand_California Sun":"1"
+								
+							
+						
+							
+							
+							
+							
+								,
+								"Type_Tomatoes":"2"
+								
+							
+						
+						},
+						
+						
+							
+								"ItemImage" : "../StoreAssets/images/catalog/grocery/gve034_vegetables/1000x1000/gve034_3407.jpg",
+								"ItemImage467" : "../StoreAssets/images/catalog/grocery/gve034_vegetables/447x447/gve034_3407.jpg",
+								"ItemThumbnailImage" : "../StoreAssets/images/catalog/grocery/gve034_vegetables/160x160/gve034_3407.jpg"
+								
+							
+						
+						
+					}
+				
+			
+		
+		
+		]
+</div>
+
+<!-- Widget Product Information Viewer -->
+
+<div id="widget_product_info_viewer" itemscope itemtype="">
+	<div class="top" itemprop="offerDetails" itemscope itemtype="">
+		
+		
+		<div class="print_section">
+			<span id="PrintTextLink" role="button" onclick="JavaScript: print();">[PROPERTIES;PD_PRINT;Print]</span>
+			<a id="PrintIconLink" role="button" href="JavaScript: print();" class="print_icon" title="[PROPERTIES;PD_PRINT;Print]"></a>
+		</div>
+
+		<div class="clear_float"></div>
+		<div class="item_spacer_3px"></div>
+		<span id="product_name_12752" class="main_header" role="heading" aria-level="1" itemprop="name">Tomatoes</span>
+
+		<span id="product_SKU_12752" class="sku">[PROPERTIES;CurrentOrder_SKU;SKU:] GVE034_3407</span>
+		<div class="clear_float"></div>
+		
+		
+		
+		<div class="item_spacer_10px"></div>
+		<div id="price_display_12752">
+			
+<!-- BEGIN PriceDisplay.jsp -->
+
+<div class="jspcaption" style="display:none">PriceDisplay.jsp</div>
+		<span id="listPrice_12752" class="old_price">
+			$3.99
+		</span>
+		<span id="offerPrice_12752" class="price" itemprop="price">
+			&nbsp;$3.29
+		</span>
+	
+<!-- END PriceDisplay.jsp -->
+
+		</div>
+
+<!-- BEGIN Discounts.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">Discounts.jsp</div>
+</span>
+<!-- END Discounts.jsp -->
+			
+		<div class="clear_float"></div>
+		<div class="item_spacer_10px"></div>
+		
+				<div id="BVRRSummaryContainer"></div>
+
+		<div class="clear_float"></div>
+		
+	</div>
+	
+	<div class="product_text">
+				<p itemprop="description" id="product_shortdescription_12752"/>Vine ripened tomatoes.</p>
+
+				<div class="recurring">
+					<div class="recurring_icon"></div>
+					<a id="RecurringPopupLink" class="recurring_text" href="javaScript: shoppingActionsJS.showWCDialogPopup('widget_subscription_item_popup');">[PROPERTIES;PD_RECURRING_ITEM;Recurring Item]</a>
+				</div>
+			
+		
+		<div class="clear_float"></div>		
+	</div>
+	
+	<script type="text/javascript">
+		dojo.addOnLoad(function() { 
+			shoppingActionsJS.setSKUImageId('productMainImage');
+		});
+	</script>
+	
+	<div class="product_options">
+
+		<div class="color_and_size left ">
+
+			
+						
+						<div class="heading">
+							[PROPERTIES;ATTRNAMEKEY;Brand:]
+							
+								California Sun
+							
+							
+						</div>
+						<script type="text/javascript">
+							dojo.addOnLoad(function() { 
+								shoppingActionsJS.setSKUImageId('productMainImage');
+								shoppingActionsJS.setSelectedAttribute("Brand","California Sun", "entitledItem_12752");
+							});
+						</script>
+						
+					
+						
+						
+						
+						<div class="heading">
+							[PROPERTIES;ATTRNAMEKEY;Type:]
+							
+								Tomatoes
+							
+							
+						</div>
+						<script type="text/javascript">
+							dojo.addOnLoad(function() { 
+								shoppingActionsJS.setSKUImageId('productMainImage');
+								shoppingActionsJS.setSelectedAttribute("Type","Tomatoes", "entitledItem_12752");
+							});
+						</script>
+						
+				<script type="text/javascript">
+					dojo.addOnLoad(function() {
+						if( typeof(InventoryStatusJS_12752) != "undefined"){
+							InventoryStatusJS_12752.isFetchInventoryStatus = true;
+						}
+						shoppingActionsJS.notifyAttributeChange("12752");
+						
+						//	shoppingActionsJS.changePrice("entitledItem_12752",false,true,"12752");
+						
+					});
+				</script>
+			
+<!-- BEGIN PriceQuantity.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">PriceQuantity.jsp</div>
+				<!-- For each contract -->
+				
+			
+
+<div id="itemLevelPriceRange_12752" class="quantity_discount clear_margin" style="display: none;">
+</div>
+
+
+</span>
+<!-- END PriceQuantity.jsp -->
+
+
+					<div class="quantity_section">
+						<label for="quantity_12752" class="header">[PROPERTIES;PD_QTY;Quantity]</label>
+						<input name="quantity_12752" id="quantity_12752" type="text" class="quantity_input" value="1" onchange="javascript:shoppingActionsJS.notifyQuantityChange(this.value);">
+						<div class="clear_float"></div>
+					</div>
+				
+					<div class="clear_float"></div>
+					<div class="item_spacer_7px"></div>
+					<a id="add2CartBtn" onclick="showMiniShopCartDropDown('widget_minishopcart','quick_cart_container','orderItemAdded');" wairole="button" role="button" class="button_add_to_cart"
+						title="[PROPERTIES;PD_ADD_TO_CART;Add to Cart]">
+						<div class="left_border"></div>
+						<div id="productPageAdd2Cart" class="button_text">
+							[PROPERTIES;PD_ADD_TO_CART;Add to Cart]
+						</div>
+						<div class="right_border"></div>
+					</a>
+				
+
+			<div class="clear_float"></div>
+			<div class="item_spacer_7px"></div>			
+
+
+<!-- BEGIN ShoppingList.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">ShoppingList.jsp</div>
+<script>
+	shoppingListJS = new ShoppingListJS({storeId: '10152',catalogId: '10001',langId: '-1'}, {id: '12753', name: 'Tomatoes', image: '../StoreAssets/images/catalog/grocery/gve034_vegetables/105x105/gve034_3407.jpg', type: 'ItemBean', components: {}, skus: []}, {'WISH LIST': 1}, "shoppingListJS");
+</script>
+
+<div id="shoppingListScript_" style="display:none;">
+	if(typeof(shoppingListJS) == "undefined" || shoppingListJS == null || !shoppingListJS) {
+		shoppingListJS = new ShoppingListJS({storeId: '10152',catalogId: '10001',langId: '-1'}, {id: '12753', name: 'Tomatoes', image: '../StoreAssets/images/catalog/grocery/gve034_vegetables/105x105/gve034_3407.jpg', type: 'ItemBean', components: {}, skus: []}, {'WISH LIST': 1}, "shoppingListJS");
+	}
+</div>
+
+<img style="display:none;" src="../StoreAssets/images/catalog/grocery/gve034_vegetables/105x105/gve034_3407.jpg"/>
+<div style="position:relative;">
+	<div id="addToShoppingListBtn" class="dropdown_primary">
+	
+		<a id="addToShoppingList" href="
+			
+				
+				
+					javascript:shoppingListJS.createDefaultListAndAddItem('-1', '');
+				
+			
+			" class="button" role="button">
+			<div class="left_border"></div>
+			<div class="content">
+				
+					
+						[PROPERTIES;SL_ADD_TO_SHOPPING_LIST;Add to Wish List]
+					
+					
+				
+			</div>
+			<div class="right_border"></div>
+		</a>
+			<div class="drop">
+			<div class="white_line"></div>
+				<a id="addToShoppingListDropdown" onmouseover="javascript: shoppingListJS.mouseOnArrow = true;" onmouseout="javascript: shoppingListJS.mouseOnArrow = false;" href="javascript:shoppingListJS.showDropDown();" class="dropdown_arrow" title="[PROPERTIES;SL_MULTIPLE_SHOPPING_LIST_DD;Multiple wish list drop down. Press enter and tab to display the drop down]" role="button">
+						<img src="../StoreAssets/images/colors/color1/widget_quick_info_popup/dropdown_arrow.png" style="margin-top: 10px;" alt="[PROPERTIES;SL_MULTIPLE_SHOPPING_LIST_DD;Multiple wish list drop down. Press enter and tab to display the drop down]"/>
+					</a>
+				<div class="right_border"></div>
+			</div>
+	</div>
+	
+			<div id="shoppingListDropDown" style="display: none" class="dropdown_list" onmousedown="javascript:shoppingListJS.hasFocus(event);"
+				onkeydown="javascript:shoppingListJS.navigateDropDown(event);"
+				onblur="javascript: document.getElementById('addToShoppingListDropdown').focus();" role="menu">
+				<ul class="wish_order_list">
+					
+						
+						
+							
+							<ol role="menuitem" id="listOfShoppingLists" class="created_list_wrapper" tabindex="-1" onblur="javascript: if(!shoppingListJS.exceptionFlag){shoppingListJS.dropDownInFocus = false; shoppingListJS.hideIfNoFocus();}">														
+							
+								<li role="menuitem" id="ShoppingList_11001" class="created_list" role="link" onfocus="javascript:shoppingListJS.focusList(11001);"
+								onblur="javascript: this.className = 'created_list';"
+								onclick="
+										
+											
+												shoppingListJS.addToList('11001');
+											
+											
+										
+								">
+									<a id="ShoppingListLink_11001" href="
+										
+											
+												javascript:shoppingListJS.addToList('11001');
+											
+											
+										
+										" onfocus="javascript:shoppingListJS.focusListLink(11001);" role="menuitem">
+										Wish List
+									</a>
+								</li>
+							
+															
+							<li style="display:none;" id="ShoppingListDivider"></li>
+							</ol>
+							<div class="divider"></div>
+							<li role="menuitem" id="ShoppingList_0" class="created_list" role="link" onfocus="javascript:shoppingListJS.focusList(0);"
+							onmouseover="javascript: shoppingListJS.exceptionFlag = true; document.getElementById('ShoppingListLink_0').focus();"
+							onmouseout="javascript: this.className = 'created_list'; shoppingListJS.exceptionFlag = false; if(document.getElementById('shoppingListDropDown').style.display != 'none'){document.getElementById('listOfShoppingLists').focus();}"
+							onblur="javascript: this.className = 'created_list';"
+							onclick="shoppingListJS.showPopup('create');">
+									<a id="ShoppingListLink_0" href="javascript:shoppingListJS.showPopup('create');"
+										onfocus="javascript:shoppingListJS.focusListLink(0);"
+										role="menuitem">[PROPERTIES;SL_CREATE_NEW_SHOPPING_LIST;Create a new Wish List]</a>
+							</li>
+						
+					
+				</ul>
+			</div>
+		
+</div>
+<!-- Hidden Fields -->
+
+<input id="storeParams" type="hidden" value="{storeId: '10152',catalogId: '10001',langId: '-1'}"/>
+<input id="catEntryParams" type="hidden" value="{id: '12753', name: 'Tomatoes', image: '../StoreAssets/images/catalog/grocery/gve034_vegetables/105x105/gve034_3407.jpg', type: 'ItemBean', components: {}, skus: []}"/>
+<input id="shoppingListNames" type="hidden" value="{'WISH LIST': 1}"/>
+
+
+
+<div id="createShoppingListPopup" dojoType="dijit.Dialog" title="[PROPERTIES;DIALOG_TITLE_CREATE_WISHLIST;Create Wish List Dialog]" style="display:none;">
+	<div class="widget_site_popup">
+		<div class="top">
+			<div class="left_border"></div>
+			<div class="middle"></div>
+			<div class="right_border"></div>
+		</div>
+		<div class="clear_float"></div>
+		<div class="middle">
+			<div class="content_left_border">
+				<div class="content_right_border">
+					<div class="content">
+						<div class="header">
+							<span>[PROPERTIES;SL_CREATE_NEW_SHOPPING_LIST;Create a new Wish List]</span>
+							<a role="button" id="createShoppingListPopup_close" 
+							
+								
+								
+									href="javascript:dijit.byId('createShoppingListPopup').hide();"
+								
+							 
+							class="close" tabindex="4" title="[PROPERTIES;SL_CLOSE;Close]"></a>
+							<div class="clear_float"></div>
+						</div>
+						<div class="body">
+							<div id="shoppingListErrorMessageArea" style="display:none">
+								<img class="error_icon left" src="../StoreAssets//images/colors/color1/error_icon.png" alt=""/>
+								<p id="shoppingListErrorMessageText" class="textinlinewithicon"></p>
+								<div class="clear_float"></div>
+							</div>
+							<div class="item_spacer_10px"></div>
+							<p>[PROPERTIES;SL_NAME_NEW_LIST;Type a name for your new list.]</p>
+							<form>
+								<span class="spanacce">
+									<label for="newListName">[PROPERTIES;SL_NAME_NEW_LIST;Type a name for your new list.]</label>
+								</span>
+								<input id="newListName" type="text" size="35" maxlength="64" value="" onkeypress='if(event.keyCode==13){ shoppingListJS.create(); dojo.stopEvent(event);}' tabindex="1"/>
+							</form>
+							<div class="item_spacer_10px"></div>
+						</div>
+						<div class="footer">
+							<div class="button_container">
+								<a id="createShoppingListPopup_save" href="javascript: shoppingListJS.create();" class="button_primary" tabindex="2">
+									<div class="left_border"></div>
+									<span id="CreateShoppingListPopup_div_create_save" class="button_text">[PROPERTIES;SAVE;Save]</span>
+									<div class="right_border"></div>
+								</a>
+								<a id="createShoppingListPopup_cancel" 
+								
+									
+									
+										href="javascript:dijit.byId('createShoppingListPopup').hide();" 
+									
+								 
+								class="button_secondary" tabindex="3">
+									<div class="left_border"></div>
+									<span class="button_text">[PROPERTIES;CANCEL;Cancel]</span>
+									<div class="right_border"></div>
+								</a>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="clear_float"></div>
+		<div class="bottom">
+			<div class="left_border"></div>
+			<div class="middle"></div>
+			<div class="right_border"></div>
+		</div>
+		<div class="clear_float"></div>
+	</div>
+</div>
+
+
+
+<div id="shoppingListCreateSuccessPopup" dojoType="dijit.Dialog" title="[PROPERTIES;DIALOG_TITLE_MESSAGE;Message Dialog]" style="display:none;">
+	<div class="widget_site_popup">
+		<div class="top">
+			<div class="left_border"></div>
+			<div class="middle"></div>
+			<div class="right_border"></div>
+		</div>
+		<div class="clear_float"></div>
+		<div class="middle">
+			<div class="content_left_border">
+				<div class="content_right_border">
+					<div class="content">
+						<a role="button" id="shoppingListCreateSuccessPopup_close" 
+						
+							
+							
+								href="javascript:dijit.byId('shoppingListCreateSuccessPopup').hide();"
+							
+						 
+						class="close" title="[PROPERTIES;SL_CLOSE;Close]"></a>
+						<div class="body">
+							<div class="item_spacer_10px"></div>
+							<div class="item_spacer_10px"></div>
+							<div class="item_spacer_10px"></div>
+							<div class="item_spacer_10px"></div>
+							<img class="error_icon left" src="../StoreAssets//images/colors/color1/success_icon.png" alt=""/>
+							<p id="successMessageAreaText" class="textinlinewithicon">[PROPERTIES;LIST_CREATED;Wish list created successfully.]</p>
+							<div class="clear_float"></div>
+							<div class="item_spacer_10px"></div>
+							<div class="item_spacer_10px"></div>
+							<div class="item_spacer_10px"></div>
+							<div class="item_spacer_10px"></div>
+						</div>
+						<div class="footer">
+							<div class="button_container">
+								<a id="shoppingListCreateSuccessPopup_continue_shopping" 
+								
+									
+									
+										href="javascript:dijit.byId('shoppingListCreateSuccessPopup').hide();" 
+									
+								 
+								class="button_primary">
+									<div class="left_border"></div>
+									<div class="button_text">[PROPERTIES;CONTINUE_SHOPPING;Continue Shopping]</div>
+									<div class="right_border"></div>
+								</a>
+								<div class="clear_float"></div>
+							</div>
+							<div class="clear_float"></div>
+						</div>
+						<div class="clear_float"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="clear_float"></div>
+		<div class="bottom">
+			<div class="left_border"></div>
+			<div class="middle"></div>
+			<div class="right_border"></div>
+		</div>
+		<div class="clear_float"></div>
+	</div>
+</div>
+
+	
+	
+	
+
+
+</span>
+<!-- END ShoppingList.jsp -->
+
+			
+			<div class="clear_float"></div>
+			
+			
+		</div>
+		
+<!-- BEGIN InventoryStatus.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">InventoryStatus.jsp</div>
+<script>
+	InventoryStatusJS_12752 = new InventoryStatusJS({storeId: '10152',catalogId: '10001',langId: '-1'}, {id: '12753', type: 'ItemBean', skus: []}, [], '12752');
+</script>
+<div class="left" id="progressbar_12752"></div>
+<div id="InventoryStatus_Availability_Section_12752" class="left available" >
+	<div class="header">[PROPERTIES;AVAILABLE_ONLINE;Available Online]</div>
+	
+	<div class="sublist">
+		<span>
+			<img id="InventoryStatus_OnlineStatus_Img_12752" src="../StoreAssets/images/colors/color1/widget_product_info/[PROPERTIES;IMG_NAME_Available;checkmark_icon.png]" 
+				alt="[PROPERTIES;IMG_INV_STATUS_Available;In-Stock]" border="0" />
+		</span>
+		
+		<span id="InventoryStatus_OnlineStatus_12752" class="text" itemprop="availability" content="in_stock">[PROPERTIES;INV_STATUS_Available;In-Stock]</span>
+		<div class="clear_float"></div>
+	</div>
+	<div class="item_spacer_7px"></div>
+	
+	
+		<div id="InventoryStatus_InStore_Heading_12752" class="header">[PROPERTIES;AVAILABLE_INSTORE;Available In-Store]</div>
+		
+		
+		
+		<div class="item_spacer_10px"></div>
+		<a id="InventoryStatus_SelectStoreLink_12752" href="StoreLocator.html" class="check_stores">[PROPERTIES;INV_STATUS_CHECK_IN_STORES;Select Store]</a>
+	
+</div>
+
+<div id="InventoryStatus_ShowLink_Section_12752" class="left available" style="display:none;">
+	<span class="text">[PROPERTIES;INV_SELECT_ATTRIBUTES_TO_SEE_AVAILABILITY;Select attributes to see availability]</span>
+</div>
+
+
+	<div id="InventoryStatus_Store_Details_12752" dojoType="dijit.Dialog" style="display:none;">
+		<div class="widget_store_details_popup">
+			<!-- Top Border Styling -->
+
+			<div class="top">
+				<div class="left_border"></div>
+				<div class="middle"></div>
+				<div class="right_border"></div>
+			</div>
+			<div class="clear_float"></div>
+			<!-- Main Content Area -->
+
+			<div class="middle">
+				<div class="content_left_border">
+					<div class="content_right_border">
+						<div class="content">
+							<div class="header">
+								<span>[PROPERTIES;INV_STORE_DETAILS;Store Details]</span>
+								<a id="WC_InventoryStatus_Link_12752_2" href="javascript:dijit.byId('InventoryStatus_Store_Details_12752').hide();" 
+									class="close" title='[PROPERTIES;INV_CLOSE_BUTTON;Close button]'><img role="button" onmouseover="this.src='../StoreAssets/images/colors/color1/close_hover.png'" onmouseout="this.src='../StoreAssets/images/colors/color1/close_normal.png'" src="../StoreAssets/images/colors/color1/close_normal.png" alt="[PROPERTIES;LC_CLOSE;CLOSE]"/></a>
+								<div class="clear_float"></div>
+							</div>
+							<div id="Store_Details_Template_12752" style="display:none;">
+								<div class="container_store_address">
+									<div class="header">
+										[PROPERTIES;INV_STORE_NAME_AND_ADDRESS;Store Name and Address]
+									</div>
+									<div class="item_spacer_10px"></div>
+									<div class="item_spacer_3px"></div>
+									<p>{address.name}</p>
+									<p>{address.addressLine}</p>
+									<p>{address.city}, {address.stateOrProvinceName}, {address.postalCode}</p>
+									<p>{address.country}</p>
+									<p>{address.telephone}</p>
+								</div>
+								
+								<div class="container_hours">
+									<div class="header">
+										[PROPERTIES;INV_STORE_HOURS;Hours]
+									</div>
+									<div class="item_spacer_10px"></div>
+									<div class="item_spacer_3px"></div>
+									<p>{hours}</p>
+								</div>
+								
+								<div class="container_availability">
+									<div class="header">
+										[PROPERTIES;INV_STORE_AVAILABILITY;Availability]
+									</div>
+									<div class="item_spacer_10px"></div>
+									<div class="item_spacer_3px"></div>
+									<span class="status_img_div">{imageTag}</span><span>{statusText} {availabilityDetails}</span>
+								</div>
+								
+								<div class="clear_float"></div>
+							</div>
+							<div id="Store_Details_12752" class="body"></div>
+							<div class="clear_float"></div>
+						<!-- End content Section -->
+	
+						</div>
+					<!-- End content_right_border -->
+
+					</div>
+				<!-- End content_left_border -->
+
+				</div>
+			</div>
+			<div class="clear_float"></div>
+			<!-- Bottom Border Styling -->
+
+			<div class="bottom">
+				<div class="left_border"></div>
+				<div class="middle"></div>
+				<div class="right_border"></div>
+			</div>
+			<div class="clear_float"></div>
+		</div>
+	</div>
+
+</span>
+<!-- END InventoryStatus.jsp -->
+
+	
+		<div class="clear_float"></div>
+		
+	</div>	
+</div>
+
+		<div id="widget_subscription_item" style="display:none;">
+			<div id="widget_subscription_item_popup" dojoType="wc.widget.WCDialog" closeOnTimeOut="false" parseOnLoad="true" title="[PROPERTIES;PD_RECURRING_ITEM;Recurring Item]">
+				<div class="widget_subscription_item">
+					<div class="top">
+						<div class="left_border"></div>
+						<div class="middle"></div>
+						<div class="right_border"></div>
+					</div>
+					<div class="clear_float"></div>
+					<div class="middle">
+						<div class="content_left_border">
+							<div class="content_right_border">
+								<div class="content">
+									<div class="header">
+										<span>[PROPERTIES;PD_RECURRING_ITEM;Recurring Item]</span>
+										<a id="widget_subscription_item_popup_close" class="close" href="javascript:dijit.byId('widget_subscription_item_popup').hide();"><img role="button" onmouseover="this.src='../StoreAssets/images/colors/color1/close_hover.png'" onmouseout="this.src='../StoreAssets/images/colors/color1/close_normal.png'" src="../StoreAssets/images/colors/color1/close_normal.png" alt="[PROPERTIES;LC_CLOSE;CLOSE]"/></a>
+										<div class="clear_float"></div>
+									</div>
+									<div class="clear_float"></div>
+									<div class="input_section">
+										<span>[PROPERTIES;PD_RECURRING_ITEM_DESC;Item available as a recurring order. To automatically re-order this item before you run out, select the recurring order option during checkout.]</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="clear_float"></div>
+					<div class="bottom">
+						<div class="left_border"></div>
+						<div class="middle"></div>
+						<div class="right_border"></div>
+					</div>
+					<div class="clear_float"></div>
+				</div>
+			</div>
+		</div>
+	
+<!-- BEGIN ContentRecommendation.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">ContentRecommendation.jsp</div>
+<!-- BEGIN FacebookLike.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">FacebookLike.jsp</div>
+
+
+<br/>
+<div id="FacebookLike_div" class="content social_facebook_container_like_productpage_width">
+	<div><img src="../StoreAssets/images/socialIntegration/Love_0.png" alt="Like on Facebook"/>&nbsp;&nbsp;<img src="../StoreAssets/images/socialIntegration/Send.png" alt="Send to friends"/></div>
+</div>
+
+
+</span>
+<!-- END FacebookLike.jsp -->
+
+												
+			                                
+										</div>
+										<!-- End Widget Product Information Viewer -->
+
+									</div>
+									<div class="clear_float"></div>
+								</div>
+								<!-- End Product Image and Product Information -->
+
+								
+								<!-- Content with Right Sidebar -->
+
+								<div class="container_content_rightsidebar container_margin">
+									<div class="left_column">
+										
+										
+											
+											<!-- Start coordinate widget -->
+
+											<div class="widget_coordinate_position">
+												
+													
+
+<!-- BEGIN MerchandisingAssociation.jsp -->
+
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">MerchandisingAssociation.jsp</div>
+</span>
+<!-- END MerchandisingAssociation.jsp -->
+												
+											</div>
+											<!-- End coordinate widget-->
+
+										
+																				
+										<!-- Widget Tab Container -->
+
+										<div class="widget_tab_container_position">
+											
+												
+													
+													
+													
+												
+
+<!-- BEGIN ProductTab.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">ProductTab.jsp</div>
+<script>
+	addToWidgetsList("tabContainer");
+	dojo.subscribe('AttachmentPagination_Context',ProductTabJS,'showAttachmentPage');
+	wc.render.getRefreshControllerById("AttachmentPagination_Controller").url='';
+</script>
+<div id="tabContainer" class="widget_tab_container" role="tablist">
+	<div class="header">
+		<ul>
+			
+			
+			
+				
+			
+			
+				
+			
+			<li id="tab1" class="first_tab selected">
+				<a role="tab" aria-setsize="3" aria-posinset="1" aria-selected="true" id="tab1_link" onclick="ProductTabJS.selectTab('tab1');" onkeydown="ProductTabJS.selectTabWithKeyboard('tab1', event);" href="javascript:void(0);" 
+					onfocus="javascript:ProductTabJS.focusTab('tab1');"
+					onblur="javascript:ProductTabJS.blurTab('tab1');">[PROPERTIES;PT_TECHNICAL_SPECIFICATIONS;Description]</a>
+			</li>
+			
+		    
+			<li id="tab2">
+				<a role="tab" aria-setsize="3" aria-posinset="2" id="tab2_link" onclick="ProductTabJS.selectTab('tab2');" onkeydown="ProductTabJS.selectTabWithKeyboard('tab2', event);" href="javascript:void(0);" 
+					onfocus="javascript:ProductTabJS.focusTab('tab2');"
+					onblur="javascript:ProductTabJS.blurTab('tab2');">[PROPERTIES;PT_CUSTOMER_REVIEWS;Customer Reviews]</a>
+			</li>
+			
+		    
+			
+			<li id="tab3">
+				<a role="tab" aria-setsize="3" aria-posinset="3" id="tab3_link" onclick="ProductTabJS.selectTab('tab3');" onkeydown="ProductTabJS.selectTabWithKeyboard('tab3', event);" href="javascript:void(0);" 
+					onfocus="javascript:ProductTabJS.focusTab('tab3');"
+					onblur="javascript:ProductTabJS.blurTab('tab3');">[PROPERTIES;PT_OTHER_CUSTOMERS_ALSO_PURCHASED;Other Customers Also Purchased]</a>
+			</li>
+			
+		</ul>
+	</div>
+	<div id="productTabContainer" class="content padding_sides" dojoType="dijit.layout.TabContainer" doLayout="false" tabPosition="left-h" class="content">
+	    <div id="tab1_content" dojoType="dijit.layout.ContentPane">
+			
+				
+					
+				
+
+<!-- BEGIN TechnicalSpecification.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">TechnicalSpecification.jsp</div>
+<p>Great for salads or sauces. High in antioxidants, vitamins and nutrients. Tomatoes are great for the cardiovascular system.</p>
+
+
+	<ul>
+	
+		<li>
+			<span id="descAttributeName_1">
+				[PROPERTIES;ATTRNAMEKEY;Size:]
+			</span>
+			
+			
+				
+				
+			
+			<span id="descAttributeValue_1">Medium</span>
+		</li>
+	
+		<li>
+			<span id="descAttributeName_2">
+				[PROPERTIES;ATTRNAMEKEY;Price:]
+			</span>
+			
+			
+				
+				
+			
+			<span id="descAttributeValue_2">/lb</span>
+		</li>
+	
+		<li>
+			<span id="descAttributeName_3">
+				[PROPERTIES;ATTRNAMEKEY;Type:]
+			</span>
+			
+			
+				
+				
+			
+			<span id="descAttributeValue_3">Tomatoes</span>
+		</li>
+	
+		<li>
+			<span id="descAttributeName_4">
+				[PROPERTIES;ATTRNAMEKEY;Category:]
+			</span>
+			
+			
+				
+				
+			
+			<span id="descAttributeValue_4">Vegetables</span>
+		</li>
+	
+	</ul>
+
+
+
+
+
+
+<div class="item_spacer_5px"></div>
+<div class="item_spacer_10px"></div>
+<div dojoType="wc.widget.RefreshArea" controllerId="AttachmentPagination_Controller" id="attachmentPaginationContainer">
+	
+<!-- BEGIN AttachmentList.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">AttachmentList.jsp</div>
+</span>
+<!-- END AttachmentList.jsp -->
+	
+</div>
+
+
+
+</span>
+<!-- END TechnicalSpecification.jsp -->
+
+			
+	    </div>
+	    <div id="tab2_content" dojoType="dijit.layout.ContentPane">
+		
+				<div id="BVRRContainer">
+					
+					
+
+
+
+<!-- BEGIN BVSEOContent.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">BVSEOContent.jsp</div>
+		
+	<!-- SEO User Generated Content. -->
+
+	
+	
+	
+	
+
+	<!-- Caught exception when reading Bazaarvoice SEO content: java.lang.NullPointerException-->
+
+
+
+</span>
+<!-- END BVSEOContent.jsp -->
+
+
+					
+
+
+				</div>
+	
+	    </div>
+	    <div id="tab3_content" dojoType="dijit.layout.ContentPane">
+	    	<!-- Intelligent offer product recommendations -->
+
+			
+				<div class="widget_product_listing_position">
+						
+
+<!-- BEGIN IntelligentOffer.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">IntelligentOffer.jsp</div>
+			<div class="WC_IntelligentOfferESpot_container_class_A222" dojoType="wc.widget.RefreshArea" 
+	   			id="WC_IntelligentOfferESpot_container_ID_A222" 
+	   			controllerId="WC_IntelligentOfferESpot_controller_ID_A222">
+			</div>
+	
+			<script type="text/javascript">
+				dojo.addOnLoad(function() { 
+					IntelligentOfferJS.declareRefreshController("WC_IntelligentOfferESpot_controller_ID_A222",  "WC_IntelligentOfferESpot_context_ID_A222", "true");
+					wc.render.getRefreshControllerById('WC_IntelligentOfferESpot_controller_ID_A222').url = '';		
+				
+				});
+			</script>	
+    
+<script type="text/javascript" src="../StoreAssets/javascript/Widgets/ESpot/IntelligentOffer.js"></script>
+ 
+
+
+</span>
+<!-- END IntelligentOffer.jsp -->
+
+							
+						
+					
+				</div>	
+			
+	    </div>
+	</div>
+</div>
+
+</span>
+<!-- END ProductTab.jsp -->
+
+											
+										</div>
+										<!-- End Widget Tab Container -->
+
+										
+									</div>
+									
+									<div class="right_column">
+									
+										<!-- Widget Reccommended Vertical -->
+
+										<div class="widget_recommended_position">											
+											
+<!-- BEGIN ProductRecommendation.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">ProductRecommendation.jsp</div>
+		<div id="widget_recommended_10803_1" class="widget_sidebar_container" >
+			<div class="top">
+				<div class="left_border"></div>
+				<div class="middle"></div>
+				<div class="right_border"></div>
+			</div>
+
+			<div class="left_border">
+				<div class="right_border">
+					<div class="content">
+						
+						<div class="header_content">
+							
+							
+							
+							<div class="clear_float"></div>
+							<h1 class="left">[PROPERTIES;ES_RECOMMENDATIONS;Recommended]</h1>
+							<div class="clear_float"></div>
+							
+						</div>
+
+<!-- BEGIN SearchESpotSetup.jspf-->
+
+
+
+<!-- BEGIN CatalogEntryDisplay.jsp -->
+
+
+<div class="jspcaption" style="display:none">CatalogEntryDisplay.jsp</div>
+<div class="item" id="item_12742" onblur="hideSection('item_quickview_VegetablesProductRight_CatEntries_div12742');">
+	<div class="left_column">
+		<span id="item_12742_acce_label" class="spanacce">Leaf Lettuce</span>
+		<a  href="TomatoesAuroraEsite.html" id="catalogEntry_img12742"
+				onkeydown="shiftTabHideSection('item_quickview_VegetablesProductRight_CatEntries_div12742',event);"
+				onfocus="showSection('item_quickview_VegetablesProductRight_CatEntries_div12742');" title="Leaf Lettuce">
+			<img alt="Leaf Lettuce" src="../StoreAssets/images/catalog/grocery/gve034_vegetables/70x70/gve034_3402.jpg" />
+		</a> 
+		<div id="item_quickview_VegetablesProductRight_CatEntries_div12742" class="quick_info_toggle">
+			<a id="SideBarQuickViewLink_12742" title="[PROPERTIES;QUICK_VIEW_BUTTON_ACCE;Press Enter key to view quick information of the product in a popup.]" role="button" wairole="button" href="javascript:setCurrentId('SideBarQuickViewLink_12742');
+					QuickInfoJS.showDetails('12742');" 
+					onblur="hideSection('item_quickview_VegetablesProductRight_CatEntries_div12742');">[PROPERTIES;QUICK_VIEW;Quick Info]</a>
+		</div>
+	</div>
+
+	<div class="right_column">
+		<div class="item_name">
+			<a id="WC_CatalogEntryDBThumbnailDisplayJSPF_12742"
+				 href="TomatoesAuroraEsite.html" >
+				Leaf Lettuce
+			</a>
+		</div>
+	
+		<div class="item_price"id="item_price_12742">
+
+<!-- BEGIN PriceDisplay.jsp -->
+
+
+<div class="jspcaption" style="display:none">PriceDisplay.jsp</div>
+		<span id="offerPrice_12742" class="price" itemprop="price">
+			$0.89
+		</span>
+	
+	
+<!-- END PriceDisplay.jsp -->
+ 
+			
+			
+			
+		</div>
+	</div>
+	<div class="clear_float"></div>
+</div>		
+
+<!-- END CatalogEntryDisplay.jsp -->
+
+		
+
+<!-- END SearchESpotSetup.jspf-->
+
+
+								<div class="clear_float"></div>
+								
+									<div class="divider"></div>
+	
+<!-- BEGIN SearchESpotSetup.jspf-->
+
+
+<!-- BEGIN CatalogEntryDisplay.jsp -->
+
+<div class="jspcaption" style="display:none">CatalogEntryDisplay.jsp</div>
+<div class="item" id="item_12748" onblur="hideSection('item_quickview_VegetablesProductRight_CatEntries_div12748');">
+	<div class="left_column">
+		<span id="item_12748_acce_label" class="spanacce">Onions</span>
+		<a  href="TomatoesAuroraEsite.html" id="catalogEntry_img12748"
+				onkeydown="shiftTabHideSection('item_quickview_VegetablesProductRight_CatEntries_div12748',event);"
+				onfocus="showSection('item_quickview_VegetablesProductRight_CatEntries_div12748');" title="Onions">
+			<img alt="Onions" src="../StoreAssets/images/catalog/grocery/gve034_vegetables/70x70/gve034_3405.jpg" />
+		</a> 
+		<div id="item_quickview_VegetablesProductRight_CatEntries_div12748" class="quick_info_toggle">
+			<a id="SideBarQuickViewLink_12748" title="[PROPERTIES;QUICK_VIEW_BUTTON_ACCE;Press Enter key to view quick information of the product in a popup.]" role="button" wairole="button" href="javascript:setCurrentId('SideBarQuickViewLink_12748');
+					QuickInfoJS.showDetails('12748');" 
+					onblur="hideSection('item_quickview_VegetablesProductRight_CatEntries_div12748');">[PROPERTIES;QUICK_VIEW;Quick Info]</a>
+		</div>
+	</div>
+
+	<div class="right_column">
+		<div class="item_name">
+			<a id="WC_CatalogEntryDBThumbnailDisplayJSPF_12748"
+				 href="TomatoesAuroraEsite.html" >
+				Onions
+			</a>
+		</div>
+	
+		<div class="item_price"id="item_price_12748">
+
+<!-- BEGIN PriceDisplay.jsp -->
+
+<div class="jspcaption" style="display:none">PriceDisplay.jsp</div>
+		<span id="offerPrice_12748" class="price" itemprop="price">
+			$0.69
+		</span>
+	
+<!-- END PriceDisplay.jsp -->
+ 
+			
+		</div>
+	</div>
+	<div class="clear_float"></div>
+</div>		
+
+<!-- END CatalogEntryDisplay.jsp -->
+
+		
+<!-- END SearchESpotSetup.jspf-->
+
+
+								<div class="clear_float"></div>
+								
+									<div class="divider"></div>
+								
+		
+<!-- BEGIN SearchESpotSetup.jspf-->
+
+
+<!-- BEGIN CatalogEntryDisplay.jsp -->
+
+<div class="jspcaption" style="display:none">CatalogEntryDisplay.jsp</div>
+<div class="item" id="item_12754" onblur="hideSection('item_quickview_VegetablesProductRight_CatEntries_div12754');">
+	<div class="left_column">
+		<span id="item_12754_acce_label" class="spanacce">Broccoli</span>
+		<a  href="TomatoesAuroraEsite.html" id="catalogEntry_img12754"
+				onkeydown="shiftTabHideSection('item_quickview_VegetablesProductRight_CatEntries_div12754',event);"
+				onfocus="showSection('item_quickview_VegetablesProductRight_CatEntries_div12754');" title="Broccoli">
+			<img alt="Broccoli" src="../StoreAssets/images/catalog/grocery/gve034_vegetables/70x70/gve034_3408.jpg" />
+		</a> 
+		<div id="item_quickview_VegetablesProductRight_CatEntries_div12754" class="quick_info_toggle">
+			<a id="SideBarQuickViewLink_12754" title="[PROPERTIES;QUICK_VIEW_BUTTON_ACCE;Press Enter key to view quick information of the product in a popup.]" role="button" wairole="button" href="javascript:setCurrentId('SideBarQuickViewLink_12754');
+					QuickInfoJS.showDetails('12754');" 
+					onblur="hideSection('item_quickview_VegetablesProductRight_CatEntries_div12754');">[PROPERTIES;QUICK_VIEW;Quick Info]</a>
+		</div>
+	</div>
+
+	<div class="right_column">
+		<div class="item_name">
+			<a id="WC_CatalogEntryDBThumbnailDisplayJSPF_12754"
+				 href="TomatoesAuroraEsite.html" >
+				Broccoli
+			</a>
+		</div>
+	
+		<div class="item_price"id="item_price_12754">
+
+<!-- BEGIN PriceDisplay.jsp -->
+
+<div class="jspcaption" style="display:none">PriceDisplay.jsp</div>
+		<span id="offerPrice_12754" class="price" itemprop="price">
+			$1.79
+		</span>
+		
+<!-- END PriceDisplay.jsp -->
+ 
+			
+		</div>
+	</div>
+	<div class="clear_float"></div>
+</div>		
+
+<!-- END CatalogEntryDisplay.jsp -->
+
+		
+<!-- END SearchESpotSetup.jspf-->
+
+
+								<div class="clear_float"></div>
+								
+									<div class="divider"></div>
+			
+<!-- BEGIN SearchESpotSetup.jspf-->
+
+
+<!-- BEGIN CatalogEntryDisplay.jsp -->
+
+<div class="jspcaption" style="display:none">CatalogEntryDisplay.jsp</div>
+<div class="item" id="item_12758" onblur="hideSection('item_quickview_VegetablesProductRight_CatEntries_div12758');">
+	<div class="left_column">
+		<span id="item_12758_acce_label" class="spanacce">Large Eggplant</span>
+		<a  href="TomatoesAuroraEsite.html" id="catalogEntry_img12758"
+				onkeydown="shiftTabHideSection('item_quickview_VegetablesProductRight_CatEntries_div12758',event);"
+				onfocus="showSection('item_quickview_VegetablesProductRight_CatEntries_div12758');" title="Large Eggplant">
+			<img alt="Large Eggplant" src="../StoreAssets/images/catalog/grocery/gve034_vegetables/70x70/gve034_3410.jpg" />
+		</a> 
+		<div id="item_quickview_VegetablesProductRight_CatEntries_div12758" class="quick_info_toggle">
+			<a id="SideBarQuickViewLink_12758" title="[PROPERTIES;QUICK_VIEW_BUTTON_ACCE;Press Enter key to view quick information of the product in a popup.]" role="button" wairole="button" href="javascript:setCurrentId('SideBarQuickViewLink_12758');
+					QuickInfoJS.showDetails('12758');" 
+					onblur="hideSection('item_quickview_VegetablesProductRight_CatEntries_div12758');">[PROPERTIES;QUICK_VIEW;Quick Info]</a>
+		</div>
+	</div>
+
+	<div class="right_column">
+		<div class="item_name">
+			<a id="WC_CatalogEntryDBThumbnailDisplayJSPF_12758"
+				 href="TomatoesAuroraEsite.html" >
+				Large Eggplant
+			</a>
+		</div>
+	
+		<div class="item_price"id="item_price_12758">
+
+<!-- BEGIN PriceDisplay.jsp -->
+
+<div class="jspcaption" style="display:none">PriceDisplay.jsp</div>
+		<span id="offerPrice_12758" class="price" itemprop="price">
+			$1.59
+		</span>
+	
+<!-- END PriceDisplay.jsp -->
+ 
+			
+		</div>
+	</div>
+	<div class="clear_float"></div>
+</div>		
+
+<!-- END CatalogEntryDisplay.jsp -->
+
+		
+<!-- END SearchESpotSetup.jspf-->
+
+
+								<div class="clear_float"></div>
+								
+																	
+					</div>
+				</div>
+			</div>
+			<div class="clear_float"></div>
+				
+			<div class="bottom">
+				<div class="left_border"></div>
+				<div class="middle"></div>
+				<div class="right_border"></div>
+			</div>
+		</div>
+
+</span>
+<!-- END ProductRecommendation.jsp -->
+
+											
+																						
+										</div>
+										<!-- End Widget Reccommended Vertical -->
+	
+									
+										<div class="nested_widget_spacer"></div>
+										
+											
+										<!-- Widget Recently Viewed -->
+
+										<div class="widget_recentlyviewed_position">											
+											
+<!-- BEGIN ProductRecommendation.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">ProductRecommendation.jsp</div>
+		<div id="widget_recommended_10060_1" class="widget_sidebar_container" >
+			<div class="top">
+				<div class="left_border"></div>
+				<div class="middle"></div>
+				<div class="right_border"></div>
+			</div>
+
+			<div class="left_border">
+				<div class="right_border">
+					<div class="content">
+						
+						<div class="header_content">
+							
+							
+							
+							<div class="clear_float"></div>
+							<h1 class="left">[PROPERTIES;ES_RECENTLY_VIEWED;Recently Viewed]</h1>
+							<div class="clear_float"></div>
+							
+						</div>
+						
+						
+							
+								
+
+<!-- BEGIN SearchESpotSetup.jspf-->
+
+
+<!-- BEGIN CatalogEntryDisplay.jsp -->
+
+<div class="jspcaption" style="display:none">CatalogEntryDisplay.jsp</div>
+<div class="item" id="item_12740" onblur="hideSection('item_quickview_RecViewed_CatEntries_div12740');">
+	<div class="left_column">
+		<span id="item_12740_acce_label" class="spanacce">Snow Peas</span>
+		<a  href="TomatoesAuroraEsite.html" id="catalogEntry_img12740"
+				onkeydown="shiftTabHideSection('item_quickview_RecViewed_CatEntries_div12740',event);"
+				onfocus="showSection('item_quickview_RecViewed_CatEntries_div12740');" title="Snow Peas">
+			<img alt="Snow Peas" src="../StoreAssets/images/catalog/grocery/gve034_vegetables/70x70/gve034_3401.jpg" />
+		</a> 
+		<div id="item_quickview_RecViewed_CatEntries_div12740" class="quick_info_toggle">
+			<a id="SideBarQuickViewLink_12740" title="[PROPERTIES;QUICK_VIEW_BUTTON_ACCE;Press Enter key to view quick information of the product in a popup.]" role="button" wairole="button" href="javascript:setCurrentId('SideBarQuickViewLink_12740');
+					QuickInfoJS.showDetails('12740');" 
+					onblur="hideSection('item_quickview_RecViewed_CatEntries_div12740');">[PROPERTIES;QUICK_VIEW;Quick Info]</a>
+		</div>
+	</div>
+
+	<div class="right_column">
+		<div class="item_name">
+			<a id="WC_CatalogEntryDBThumbnailDisplayJSPF_12740"
+				 href="TomatoesAuroraEsite.html" >
+				Snow Peas
+			</a>
+		</div>
+	
+		<div class="item_price"id="item_price_12740">
+			
+<!-- BEGIN PriceDisplay.jsp -->
+
+<div class="jspcaption" style="display:none">PriceDisplay.jsp</div>
+		<span id="offerPrice_12740" class="price" itemprop="price">
+			$1.69
+		</span>
+	
+<!-- END PriceDisplay.jsp -->
+ 
+			
+			
+		</div>
+	</div>
+	<div class="clear_float"></div>
+</div>		
+
+<!-- END CatalogEntryDisplay.jsp -->
+
+		
+	
+<!-- END SearchESpotSetup.jspf-->
+
+
+								<div class="clear_float"></div>
+								
+																	
+					</div>
+				</div>
+			</div>
+			<div class="clear_float"></div>
+				
+			<div class="bottom">
+				<div class="left_border"></div>
+				<div class="middle"></div>
+				<div class="right_border"></div>
+			</div>
+		</div>
+
+</span>
+<!-- END ProductRecommendation.jsp -->
+
+											
+																						
+										</div>
+										<!-- End Widget Recently Viewed -->
+								
+									</div>
+									<div class="clear_float"></div>
+								</div>
+								<!-- End Content With Right Sidebar -->
+
+								
+								<!-- End Main Content -->
+
+							</div>
+						</div>				
+					</div>
+
+					<!--For border customization -->
+
+					<div class="content_bottom">
+						<div class="left_border"></div>
+						<div class="middle"></div>
+						<div class="right_border"></div>
+					</div>
+
+				</div>
+			</div>
+			<!--End Page Content-->
+
+			
+			<!--Start Footer Content-->
+
+			<div class="footer_wrapper_position">
+				
+					
+
+<!-- BEGIN Footer.jsp -->
+
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">Footer.jsp</div>
+<div class="footer_wrapper" role="contentinfo">
+	<!--For border customization -->
+
+	<div class="footer_top">
+		<div class="left_border"></div>
+		<div class="middle"></div>
+		<div class="right_border"></div>
+	</div>
+	<!--Main footer Area -->
+
+	<div class="footer_left_shadow">
+		<div class="footer_right_shadow">				
+			<div class="footer_content" id="footer_content">
+				
+				<!--Start Footer Content -->
+
+				<div id="footer">
+					<div class="footer_element_container right_border large">
+						<h2>[PROPERTIES;FOOTER_CUSTOMER_SERVICE;Customer Service]</h2>
+						<ul>
+							<li><a id="FooterQuickOrder" href="QuickOrderView.html"><span>Quick Order<span title="FOOTER_QUICK_ORDER" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_QUICK_ORDER"></span></span></a></li>
+							<li><a id="FooterHelpLink" href="HelpandContactUsatAuroraESite.html"><span>Help<span title="FOOTER_HELP" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_HELP"></span></span></a></li>
+							<li><a id="FooterContactUsLink" href="HelpandContactUsatAuroraESite_6.html"><span>Contact Us<span title="FOOTER_CONTACT_US" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_CONTACT_US"></span></span></a></li>
+							<li><a id="FooterReturnPolicyLink" href="ReturnPolicyforAuroraESite.html"><span>Return Policy<span title="FOOTER_RETURN_POLICY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_RETURN_POLICY"></span></span></a></li>
+							<li><a id="FooterPrivacyPolicyLink" href="WebsitePrivacyPolicyforAuroraESite.html"><span>Privacy Policy<span title="FOOTER_PRIVACY_POLICY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_PRIVACY_POLICY"></span></span></a></li>
+						</ul>
+							
+					</div>
+					<div class="footer_element_container right_border large">
+						<h2>[PROPERTIES;FOOTER_CORPORATE_INFO;Corporate Info]</h2>
+						<ul>
+							<li><a id="FooterAboutUsLink" href="AboutUsforAuroraESite.html">[PROPERTIES;FOOTER_ABOUT_US;About Us]</a></li>
+							<li><a id="FooterCorporateContactUsLink" href="ContactUsforAuroraESite.html">[PROPERTIES;FOOTER_CONTACT_US;Contact Us]</a></li>
+							
+								<li><a id="FooterStoreLocatorLink" href="StoreLocator.html">[PROPERTIES;FOOTER_STORE_LOCATOR;Store Locator]</a></li>
+							
+						</ul>							
+					</div>
+					
+					<div class="footer_element_container right_border large" id="WC_Footer_UI_Links_3">
+						<h2>[PROPERTIES;FOOTER_EXPLORE;Explore]</h2>
+						<ul>
+							<li><a id="FooterSiteMapLink" href="SiteMapforAuroraESite.html"><span>Site Map<span title="FOOTER_SITE_MAP" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_SITE_MAP"></span></span></a></li><li><a href="AdvancedSearch.html" id="AdvancedSearchDisplayLink">[PROPERTIES;FOOTER_ADVANCED_SEARCH;Advanced Search]</a></li>
+							
+							
+						</ul>
+					</div>
+					
+					
+						<div class="footer_element_container large" id="FooterSocialLinks">
+							<h2>[PROPERTIES;FOOTER_FOLLOW_US;Follow Us]</h2>
+							<ul>
+								<li><a id="FacebookLink" ><span>Facebook<span title="FOOTER_FACEBOOK" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_FACEBOOK"></span></span></a></li>
+							</ul>
+						</div>
+					
+					
+					<div class="footer_element_container large" id="FooterRightContentESpot">					
+						
+						
+
+<!-- BEGIN ContentRecommendation.jsp -->
+
+
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">ContentRecommendation.jsp</div>
+</span>
+<!-- END ContentRecommendation.jsp -->
+							
+					</div>					
+												
+				</div>
+				<!--End Footer Content -->
+
+				
+			</div>
+		</div>				
+	</div>
+	<!--For border customization -->
+
+	<div class="footer_bottom">
+		<div class="left_border"></div>
+		<div class="middle">
+		</div>
+		<div class="right_border"></div>
+	</div>
+	<!--
+ =================================================================
+  Licensed Materials - Property of IBM
+
+  WebSphere Commerce
+
+  (C) Copyright IBM Corp. 2011 All Rights Reserved.
+
+  US Government Users Restricted Rights - Use, duplication or
+  disclosure restricted by GSA ADP Schedule Contract with
+  IBM Corp.
+ =================================================================
+-->
+
+
+
+<script type="text/javascript">
+	dojo.addOnLoad(function() { 
+		//Make sure page is loaded at this point
+		//Set requestedSubmitted to false
+		requestSubmitted = false;
+
+		// All div's whose id attribute contains dojoWidget subString -- dojo.query('div[id*="dojoWidget"]')
+		// All div's which contains dojoType attribute -- dojo.query(div[dojoType])
+		dojo.query('div[dojoType]').forEach(function(node, index, arr){
+			console.debug("Parse "+node.id);
+			addToWidgetsList(node.id);
+		});
+		parseAllWidgets();
+	}); 	
+</script>
+</div>
+
+
+
+
+</span>
+<!-- END Footer.jsp -->
+
+				
+			</div>
+			<!--End Footer Content-->
+
+			
+			<!--Start: Contents after page load-->
+
+			
+			<!--End: Contents after page load-->
+
+			
+		</div>
+	
+	
+
+
+	
+<script type="text/javascript"> function displayHighlightFeatureInHTML(){var all = document.getElementsByTagName('*'); for (var i = 0; i < all.length; i++) { if (all[i].className == 'jspcaption') {all[i].style.display='block';} if (all[i].className == 'highlight') {all[i].style.border='2px dashed red';all[i].style.display='block';} if (all[i].className == 'product') {all[i].style.border='2px dashed red';} if (all[i].className == 'product_price') {all[i].style.border='2px dashed red';} if (all[i].className == 'widget_quick_info_popup') {all[i].style.border='2px dashed red';} if (all[i].className == 'item' && (all[i].id.indexOf('compare') == -1) && (all[i].id.indexOf('sub') == -1) ) {all[i].style.border='2px dashed red';} if (all[i].className == 'item_price') {all[i].style.border='2px dashed red';}} } function activateHighlight (event){ if(event.ctrlKey){ if(event.altKey){ if(event.keyCode == '72'){ displayHighlightFeatureInHTML(); } } } } </script>
+</body>
+
+</span>
+<!-- END ProductDisplay.jsp -->
+		
+</html>

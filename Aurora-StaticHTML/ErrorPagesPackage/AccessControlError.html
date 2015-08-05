@@ -1,0 +1,1154 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+
+<html  xmlns:wairole='http://www.w3.org/2005/01/wai-rdf/GUIRoleTaxonomy#' xmlns:waistate='http://www.w3.org/2005/07/aaa' lang='en' xml:lang='en' onkeydown='javascript:activateHighlight(event);'>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	
+	<title>
+
+				[PROPERTIES;ERROR_TITLE;Generic Error]
+
+	</title>
+	<link rel="stylesheet" href="../StoreAssets/css/common1_1.css" type="text/css"/>
+	<script type="text/javascript" src="../dojo18/dojo/dojo.js" djConfig="parseOnLoad: false, isDebug: false,  modulePaths: {storetext: '../../StoreAssets'}, useCommentedJson: true,locale: 'en-us' "></script>
+	<script>
+		if(self!=top){
+			top.location.href = location.href;
+		}
+	</script>
+	
+<!-- BEGIN CommonJSToInclude.jspf -->
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0;" />
+<meta name="CommerceSearch" content="storeId_10152" />
+
+<link rel="shortcut icon" href="../StoreAssets/images/favicon.ico" mce_href="../StoreAssets/images/favicon.ico"/>
+
+<script type="text/javascript">
+	// Convert the WCParam object which contains request properties into javascript object
+	var WCParamJS = {
+		"storeId":'10152',
+		"catalogId":'10001',
+		"langId":'-1',
+		"pageView":'',
+		"orderBy":'',
+		"orderByContent":'',
+		"searchTerm":''
+	};
+	var absoluteURL = document.location.href.split("/");
+	absoluteURL.pop();
+	absoluteURL = absoluteURL.join("/") + "/";
+	var imageDirectoryPath = "../StoreAssets/";
+	var styleDirectoryPath = "images/colors/color1/";
+	var supportPaymentTypePromotions = false;
+	
+	var subsFulfillmentFrequencyAttrName = "fulfillmentFrequency";
+	var subsPaymentFrequencyAttrName = "paymentFrequency";
+	var subsTimePeriodAttrName = "timePeriod";
+	
+	var storeNLS = null;
+	
+	//Summary: Returns the absolute URL to use for prefixing any Ajax URL call.
+	//Description: Dojo does not handle the case where the parameters in the URL are delimeted by the "/" forward slash. Therefore, in order to
+	//             workaround the issue, all AJAX requests must be done using absolute URLs rather than relative.
+	//Returns: The absolute URL to use for prefixing any Ajax URL call.
+	function getAbsoluteURL() {
+		if (absoluteURL != "") {
+			var currentURL = document.URL;
+			var currentProtocol = "";
+		
+			if (currentURL.indexOf("://") != -1) {
+				currentProtocol = currentURL.substring(0, currentURL.indexOf("://"));
+			}
+			
+			var savedProtocol = "";
+			if (absoluteURL.indexOf("://") != -1) {
+				savedProtocol = absoluteURL.substring(0, absoluteURL.indexOf("://"));
+			}
+			
+			if (currentProtocol != savedProtocol) {
+				absoluteURL = currentProtocol + absoluteURL.substring(absoluteURL.indexOf("://"));
+			}
+		}
+		
+		return absoluteURL;
+	}
+	//Summary: Returns the path pointing to the shared image directory.
+	//Description: In order to get the image directory path in any javascript file, this function can be used.
+	//Returns: The path to reference images.
+	function getImageDirectoryPath() {
+		return imageDirectoryPath;
+	}
+	//Summary: Returns the path pointing to the directory containing color-dependant image files.
+	//Description: In order to get the directory containing color-dependant image files in any javascript file, this function can be used.
+	//Returns: The path to reference color-dependant image files.
+	function getStyleDirectoryPath() {
+		return styleDirectoryPath;
+	}
+</script>
+
+<script type="text/javascript" src="../StoreAssets/javascript/MessageHelper.js"></script>
+<script type="text/javascript" src="../StoreAssets/javascript/StoreCommonUtilities.js"></script>
+<script>
+	dojo.require("wc.service.common");
+	dojo.require("dojo.number");
+</script>
+
+<script type="text/javascript">
+ //Set the default NLS to use in the store.
+ if(storeNLS == null) {
+	 dojo.requireLocalization("storetext", "StoreText");
+	 storeNLS = dojo.i18n.getLocalization("storetext","StoreText");
+ }
+</script>
+
+					<script type="text/javascript" src=""></script> 
+
+<!-- END CommonJSToInclude.jspf -->
+
+	<script type="text/javascript" src="../StoreAssets/javascript/Widgets/Search.js"></script>
+	<script type="text/javascript" src="../StoreAssets/javascript/Widgets/MiniShopCartDisplay/MiniShopCartDisplay.js"></script>
+	<script type="text/javascript" src="../StoreAssets/javascript/Widgets/Department/Department.js"></script>
+	<script type="text/javascript" src="../StoreAssets/javascript/Common/ShoppingActions.js"></script>
+
+<!-- BEGIN CommonJSPFToInclude.jspf -->
+
+
+<!-- BEGIN ProgressBar.jspf -->
+
+<div id="progress_bar_dialog" dojoType="dijit.Dialog" style="display: none;">
+	<div id="progress_bar">
+		<div id="loading_popup">
+			<div class="top_left" id="WC_StoreCommonUtilities_div_1"><img src="../StoreAssets/images/colors/color1/transparent.gif" alt="[PROPERTIES;No_Image;No image available]"/></div>
+		        <div class="top_right" id="WC_StoreCommonUtilities_div_2"><img src="../StoreAssets/images/colors/color1/transparent.gif" alt="[PROPERTIES;No_Image;No image available]"/></div>
+		        <div class="header" id="WC_StoreCommonUtilities_div_3"></div>
+		        <div class="bodyarea" id="WC_StoreCommonUtilities_div_4">
+				<div class="bodycontent" id="WC_StoreCommonUtilities_div_5">
+					<img src="../StoreAssets/images/colors/color1/loading.gif" width="44" height="44" border="0" alt="[PROPERTIES;PROGRESS_BAR_REQUEST_PROCESSED;Your request is being processed.]"/>
+			        </div>
+			</div>
+			<div class="footer" id="WC_StoreCommonUtilities_div_6">
+				 <div class="bot_left" id="WC_StoreCommonUtilities_div_7"></div>
+				 <div class="bot_right" id="WC_StoreCommonUtilities_div_8"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- END ProgressBar.jspf -->
+
+
+<!-- BEGIN MessageDisplay.jspf -->
+
+
+<span class="spanacce" id="MessageArea_ACCE_Title">[PROPERTIES;DIALOG_TITLE_MESSAGE;Message Dialog]</span>
+<div id="MessageArea" class="store_message" role="alert" aria-labelledby="MessageArea_ACCE_Title">
+	<div id="msgpopup_content_wrapper" class="content">
+		<a id="clickableErrorMessageImg" role="button" class="close right" href="JavaScript:MessageHelper.hideMessageArea();" title="[PROPERTIES;CLOSE;Close]">
+			<div class="close_text left">[PROPERTIES;CLOSE;Close]</div>
+			<div class="close_icon left"></div>
+			<div class="clear_float"></div>
+		</a>
+		
+		<div class="clear_float"></div>
+		
+		<div class="message">
+			<div class="message_icon left">
+				<img id="error_icon" style="display:none;" class="error_icon" src="../StoreAssets/images/colors/color1/error_icon.png" alt=""/>
+				<img id="success_icon" style="display:none;" class="error_icon" src="../StoreAssets/images/colors/color1/success_icon.png" alt=""/>
+			</div>
+			<div class="message_text left" role="region" aria-required="true" aria-labelledby="MessageArea">
+				<span id="ErrorMessageText">
+					
+				</span>
+			</div>
+			<div class="clear_float"></div>
+		</div>		
+	</div>
+</div>
+<span class="spanacce" id="ariaMessage_ACCE_Label">[PROPERTIES;ACCE_Display_Update_Message;Display Update Message]</span>
+<span class="spanacce" role="region" aria-labelledby="ariaMessage_ACCE_Label" id="ariaMessage" aria-live="assertive" aria-atomic="true" aria-relevant="additions"></span>
+<!-- END MessageDisplay.jspf -->
+
+
+<span id="widget_product_comparison_ACCE_Label" class="spanacce">[PROPERTIES;DIALOG_TITLE_PRODUCT_COMPARE;Product Compare Dialog]</span>
+<div id="widget_product_comparison" style="display:none;" role="dialog" aria-labelledby="widget_product_comparison_ACCE_Label" title="[PROPERTIES;DIALOG_TITLE_PRODUCT_COMPARE;Product Compare Dialog]" >
+	<div id="widget_product_comparison_popup" dojoType="dijit.Dialog" closeOnTimeOut="false">
+		<div class="widget_product_comparison_popup widget_site_popup">													
+			<!-- Top Border Styling -->
+
+			<div class="top">
+				<div class="left_border"></div>
+				<div class="middle"></div>
+				<div class="right_border"></div>
+			</div>
+			<div class="clear_float"></div>
+			<!-- Main Content Area -->
+
+			<div class="middle">
+				<div class="content_left_border">
+					<div class="content_right_border">
+						<div class="content">
+							<div class="header">
+								<span>[PROPERTIES;CP_HEADING;Product Comparison]</span>
+								<a id="ComparePopupClose" class="close" href="javascript:dijit.byId('widget_product_comparison_popup').hide();" title="[PROPERTIES;CP_CLOSE;CLOSE]"></a>
+								<div class="clear_float"></div>
+							</div>
+							<div class="body">
+								[PROPERTIES;CP_MESSAGE;The maximum number of products that can be compared is 4. Please refine your selection.]
+							</div>
+							
+							<div class="footer">
+								<div class="button_container ">
+									<a id="ComparePopupOK" class="button_primary" tabindex="0" href="javascript: dijit.byId('widget_product_comparison_popup').hide();" title="[PROPERTIES;CP_OK;OK]">
+										<div class="left_border"></div>
+										<div class="button_text">[PROPERTIES;CP_OK;OK]</div>
+										<div class="right_border"></div>
+									</a>
+									<div class="clear_float"></div>
+								</div>
+								
+							</div>
+							<div class="clear_float"></div>
+						<!-- End content Section -->
+
+						</div>
+					<!-- End content_right_border -->
+
+					</div>
+				<!-- End content_left_border -->
+
+				</div>
+			</div>
+			<div class="clear_float"></div>
+			<!-- Bottom Border Styling -->
+
+			<div class="bottom">
+				<div class="left_border"></div>
+				<div class="middle"></div>
+				<div class="right_border"></div>
+			</div>
+			<div class="clear_float"></div>
+		</div>
+	</div>
+</div>
+	
+<!-- END CommonJSPFToInclude.jspf -->
+
+	
+</head>
+ 
+<body>
+
+<div id="page">
+    <!-- Header Nav Start -->
+
+
+			<!-- Import Header Widget -->
+
+			<div class="header_wrapper_position" id="headerWidget">
+
+<!-- BEGIN Header.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">Header.jsp</div>
+<div id="text_highlight"></div>
+<script type="text/javascript" src="../StoreAssets/javascript/Properties.js"/>"></script>
+	
+	<script type="text/javascript" src="../StoreAssets/javascript/Analytics.js"></script>
+	<script type="text/javascript">
+	dojo.addOnLoad(function() {
+		analyticsJS.storeId=10152;
+		analyticsJS.catalogId=10001;
+		analyticsJS.loadShopCartHandler();
+		analyticsJS.loadPagingHandler();
+		analyticsJS.loadProductQuickInfoHandler('productIdQuickInfo');
+		analyticsJS.loadStoreLocatorPageViews();
+		analyticsJS.loadWishlistHandler();
+		dojo.require("wc.analytics.CoremetricsEventListener");		
+			(new wc.analytics.CoremetricsEventListener()).load(true);
+			});
+	</script>
+
+<script>
+	var isGuest = true;
+</script>
+<div class="header_wrapper" role="banner">
+	<!--For border customization -->
+
+	<div class="header_top">
+		<div class="left_border"></div>
+		<div class="middle"></div>
+		<div class="right_border"></div>
+	</div>
+	<!-- Main Header Area -->
+
+	<div class="header_left_shadow">
+		<div class="header_right_shadow">				
+			<div class="header">
+				<!-- Start Header Content -->
+
+				
+				<!-- Start Masthead -->
+
+				<div id="masthead">
+					<div class="top"></div>
+					<div class="content">
+						<!-- Masthead Logo Widget -->
+
+						<div class="widget_masthead_logo_position">
+							<div id="widget_masthead_logo1">
+
+<!-- BEGIN ContentRecommendation.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">ContentRecommendation.jsp</div>
+ 
+	<div class="widget_height" tabindex="0">
+
+							<div class="left_espot">
+								
+									<a id="ContentAreaESpotInfoImgLink_10073_1" 
+										 title="StoreAssets">
+								
+										<img id="ContentAreaESpotImg_HeaderStoreLogo_Content_1" src="../StoreAssets/images/logo.png" alt="StoreAssets"/>
+								
+									</a>
+								
+							</div>
+	
+	</div>
+
+</span>
+<!-- END ContentRecommendation.jsp -->
+
+								
+							</div>
+						</div>
+						<!-- End Masthead Logo Widget -->
+
+						
+						<!-- Masthead Links Widget -->
+
+						<div class="widget_masthead_links_position" role="navigation">
+							<div id="widget_masthead_links">
+								<div class="left">
+									<div id="masthead_espot">
+									
+<!-- BEGIN ContentRecommendation.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">ContentRecommendation.jsp</div>
+</span>
+<!-- END ContentRecommendation.jsp -->
+																			
+									</div>																		
+									<div class="masthead_links">
+										<div class="content">
+											<span class="masthead_links_container">
+
+													<span class="masthead_links_item"><a id="ShoppingListDisplayLink" >[PROPERTIES;HEADER_SHOPPING_LIST;Wish List]</a></span> [PROPERTIES;DIVIDING_BAR;|]
+												
+<!-- BEGIN LanguageCurrency.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">LanguageCurrency.jsp</div>
+<div id="widget_language_and_currency" style="display:none;">
+	<div id="widget_language_and_currency_popup" dojoType="wc.widget.WCDialog" dojoType="wc.widget.WCDialog" closeOnTimeOut="false" title="[PROPERTIES;DIALOG_TITLE_LANGUAGE_AND_CURRENCY;Language and Currency Dialog]">
+		<div class="widget_language_and_currency_popup widget_site_popup">										
+			<!-- Top Border Styling -->
+
+			<div class="top">
+				<div class="left_border"></div>
+				<div class="middle"></div>
+				<div class="right_border"></div>
+			</div>
+			<div class="clear_float"></div>
+			<!-- Main Content Area -->
+
+			<div class="middle">
+				<div class="content_left_border">
+					<div class="content_right_border">
+						<div class="content">
+							<div class="header">
+								<span>[PROPERTIES;LC_LANGUAGE_CURRENCY_SELECTION;Please select a language and currency]</span>
+								<a id="close" class="close_acce" title="[PROPERTIES;LC_CLOSE;CLOSE]" href="javascript:dijit.byId('widget_language_and_currency_popup').hide();"><img role="button" onmouseover="this.src='../StoreAssets/images/colors/color1/close_hover.png'" onmouseout="this.src='../StoreAssets/images/colors/color1/close_normal.png'" src="../StoreAssets/images/colors/color1/close_normal.png" class="closeImg" alt="[PROPERTIES;LC_CLOSE;CLOSE]"/></a>
+								<div class="clear_float"></div>
+							</div>
+							<div class="selectors">
+								<div class="selector">
+									<span class="option_name">[PROPERTIES;LC_LANGUAGE;Language:]&nbsp;</span>
+									<label for="languageSelection" class="nodisplay">[PROPERTIES;LC_LANGUAGE;Language:]</label>
+									<select class="left" id="languageSelection" name="langId" onchange="javascript:document.getElementById('languageSelectionHidden').value=this.value">
+
+													<option value='-2'>Français</option>
+									
+									</select>
+									<div class="clear_float"></div>
+								</div>
+								<div class="selector">
+									<span class="option_name">[PROPERTIES;LC_CURRENCY;Currency:]&nbsp;</span>
+									<label for="currencySelection" class="nodisplay">[PROPERTIES;LC_CURRENCY;Currency:]</label>
+									<select class="left" id="currencySelection" name="currency" onchange="javascript:document.getElementById('currencySelectionHidden').value=this.value">
+							
+													<option value='USD' selected="selected">US Dollar</option>
+													<option value='BRL'>Brazilian Real</option>
+													<option value='CAD'>Canadian Dollar</option>
+													<option value='CNY'>Chinese Yuan</option>
+													<option value='EUR'>Euro</option>
+													<option value='GBP'>British Pound</option>
+													<option value='JPY'>Japanese Yen</option>
+													<option value='KRW'>South Korean Won</option>
+													<option value='PLN'>Polish Zloty</option>
+													<option value='RON'>Romanian Leu</option>
+													<option value='RUB'>Russian Ruble</option>
+													<option value='TWD'>Taiwan Dollar</option>
+											
+									</select>
+									<div class="clear_float"></div>
+								</div>
+								<form id="SetLanguageCurrencyPreferenceForm"action="/webapp/wcs/stores/servlet/SetCurrencyPreference" method="post">
+									<input type="hidden" name="storeId" value="10152"/>
+									<input type="hidden" name="catalogId" value="10001"/>
+									<input type="hidden" id="languageSelectionHidden" name="langId" value="-1"/>
+									<input type="hidden" id="currencySelectionHidden" name="currency" value="USD"/>									
+									<input type="hidden" name="URL" value="/webapp/wcs/stores/servlet/AccessControlErrorView?currency*=" id="WC_SidebarDisplay_FormInput_URL_2"/>
+							
+								</form>
+							</div>
+							<div class="footer">
+								<div class="button_container ">
+									<a id="LangCurrencyApplyBtn" class="button_primary" tabindex="0" href="javascript:dijit.byId('widget_language_and_currency_popup').hide();">
+										<div class="left_border"></div>
+										<div id="LangCurrencyApplyBtnText" class="button_text">[PROPERTIES;LC_APPLY;Apply]</div>
+										<div class="right_border"></div>
+									</a>
+									<div class="clear_float"></div>
+								</div>
+								
+							</div>
+							<div class="clear_float"></div>
+						<!-- End content Section -->
+
+						</div>
+					<!-- End content_right_border -->
+
+					</div>
+				<!-- End content_left_border -->
+
+				</div>
+			</div>
+			<div class="clear_float"></div>
+			<!-- Bottom Border Styling -->
+
+			<div class="bottom">
+				<div class="left_border"></div>
+				<div class="middle"></div>
+				<div class="right_border"></div>
+			</div>
+			<div class="clear_float"></div>
+		</div>
+	</div>
+</div>
+
+<span class="masthead_links_item"><a id="LanguageCurrencyChangeLink" href="javaScript: shoppingActionsJS.showWCDialogPopup('widget_language_and_currency_popup');">[PROPERTIES;LC_LANGUAGE_CURRENCY;Language/Currency]</a></span> &#124;
+
+</span>
+<!-- END LanguageCurrency.jsp -->
+
+												
+												<span class="masthead_links_item"><a id="SignInLink" >[PROPERTIES;HEADER_SIGN_IN_REGISTER;Sign In/Register]</a></span>
+											</span>
+										</div>
+									</div>
+									<div class="masthead_social">
+										<div class="content">
+											<span class="masthead_links_container">
+
+													<span class="masthead_links_item">		
+
+<!-- BEGIN FacebookConnect.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">FacebookConnect.jsp</div>
+<!-- BEGIN FacebookConnect_UI.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">FacebookConnect_UI.jsp</div>
+
+<span id="SocialIntegrationArea">
+	<span id="header-fb-login-button-span" > 
+		<a  tabindex="0" id="headerFBlogin">
+		    [PROPERTIES;HEADER_CONNECT_TO_FACEBOOK;Connect to Facebook]
+			<img class="img_align" id="WC_FacebookConnectDisconnectDisplayImg_1" src="../StoreAssets/images/socialIntegration/social_networking.png" alt="" /></a>
+	</span> 
+	
+	<span id="header-fb-logout-button-span" class="nodisplay" > 
+		<span id="header_menu_facebook_loaded" style="display:none;">
+			<span id="menu_DropDown_Facebook" class="headerMenu_DropDown_Facebook" 
+				onMouseOver="javascript:fbIntegrationJS.openDropDown();" 
+				onMouseLeave="javascript:fbIntegrationJS.closeDropDown();" 
+				dojoType="wc.widget.WCDropDownButton" 
+				title="[PROPERTIES;FACEBOOK_DROPDOWN_ACTIVATE;Use shift plus enter key then press the down arrow key to disconnect from Facebook.]" 
+				alt="[PROPERTIES;FACEBOOK_DROPDOWN_ACTIVATE;Use shift plus enter key then press the down arrow key to disconnect from Facebook.]" >
+			    <span id="WC_CachedHeaderDisplayFacebook_div" class="dropdown"
+			    	onItemHover="javascript:fbIntegrationJS.menuItemHover();" dojoType="wc.widget.WCMenu"
+					onMouseLeave="javascript:fbIntegrationJS.closeDropDown();" 
+			    	maxItemsPerColumn="6" forceDisplayShowAll="false" 
+			    	showAllText="[PROPERTIES;SHOW_ALL_FACEBOOK_OPTIONS;Show All Facebook options]" >
+			        <span id="WC_CachedHeaderDisplayFacebook_div_2" 
+			        	dojoType="dijit.MenuItem" 
+			        	onClick="javascript:fbIntegrationJS.onClickFacebookLogout();return false;" >
+			            <span>
+			                <a href="javascript:void(0);" tabindex="0" 
+								class="h_tnav_but" id="headerFBlogout">
+								[PROPERTIES;HEADER_DISCONNECT_FROM_FACEBOOK;Disconnect from Facebook]
+							</a>
+			            </span>
+			        </span>
+			    </span>
+			</span>
+		</span>		
+	</span>
+	
+</span>	
+
+</span>
+<!-- END FacebookConnect_UI.jsp -->
+
+
+</span>
+<!-- END FacebookConnect.jsp -->
+
+														
+													</span>[PROPERTIES;DIVIDING_BAR;|]
+	                                	        
+												<span class="masthead_links_item">1-800-555-1234</span>
+												
+													[PROPERTIES;DIVIDING_BAR;|]
+													<span class="masthead_links_item"><a id="StoreLocatorLink" >[PROPERTIES;HEADER_STORE_LOCATOR;Store Locator]</a></span>
+												
+											</span>
+										</div>
+									</div>												
+								</div>
+								<div class="right" style="display:none;">
+									<div class="social_avatar">
+									</div>
+								</div>
+								<div class="clear_float"></div>
+							</div>
+						</div>
+						<!-- End Masthead Links Widget -->
+
+
+						<!-- MiniShopCart Widget -->
+
+						<div class="widget_minishopcart_position">
+	
+<span id="MiniShoppingCart_Label" class="spanacce">[PROPERTIES;ACCE_Region_Shopping_Cart_Content;Shopping Cart]</span>
+<div dojoType="wc.widget.RefreshArea" id="MiniShoppingCart" widgetId="MiniShoppingCart" 
+	controllerId="MiniShoppingCartController" 
+	ariaMessage="[PROPERTIES;ACCE_Status_Shopping_Cart_Content_Updated;Shopping Cart Display Updated]" ariaLiveId="ariaMessage" 
+	role="region" aria-labelledby="MiniShoppingCart_Label">
+
+<script type="text/javascript">
+  dojo.addOnLoad(function() {
+		setMiniShopCartControllerURL(getAbsoluteURL()+'MiniShopCartDisplayView?storeId=10152&catalogId=10001&langId=-1');
+	});
+</script>
+
+<div id="widget_minishopcart" role="button" tabindex="0"
+	onclick="javascript:showMiniShopCartDropDown('widget_minishopcart','quick_cart_container','orderItemsList');"
+	onKeyPress="javascript:showMiniShopCartDropDownEvent(event,'widget_minishopcart','quick_cart_container','orderItemsList');" 
+	onMouseOver="javascript:showMiniShopCartDropDown('widget_minishopcart','quick_cart_container','orderItemsListAutoClose');">
+	<div id="miniShopCartLeftCorner" class="left_border"></div>
+	<div id="miniShopCartBody" class="content">
+		<div class="info">
+			<div class="subtotal">[PROPERTIES;MSC_SUBTOTAL;Subtotal:] <span id="minishopcart_subtotal">$0.00</span></div>
+			<div class="cart">[PROPERTIES;MSC_SHOPPING_CART;Cart:] 
+				<span id="minishopcart_total">
+					[PROPERTIES;MSC_ITEMS;0 item(s)]
+				</span>
+			</div>
+		</div>
+		<div class="cart_icon"></div>
+		<div class="arrow"></div>
+	</div>
+	<div id="miniShopCartRightCorner" class="right_border"></div>
+	<div class="clear_float"></div>												
+</div>
+
+<div id="placeHolder"></div>
+
+<div id="quick_cart_container">
+	<span class="spanacce" id="quick_cart_container_ACCE_Label">[PROPERTIES;ACCE_MSC_SHOPPING_CART_POPUP_REGION;Shopping Cart Popup]</span>
+	<div id="quick_cart">
+		<div id ="MiniShopCartProductsList" style="display:none">
+			<div id="widget_minishopcart_popup">
+				<div class="top">
+					<div class="left_border"></div>
+					<div class="middle_tile"></div>
+					<div class="right_border"></div>
+				</div>
+				<div class="middle">
+					<div class="left_border">
+						<div class="right_border">
+							<div class="content">
+							<a id="MiniShopCartCloseButton_1" href="javascript:dijit.byId('quick_cart_container').hide();" class="close_control">
+								<div class="icon"></div>
+								<span class="close">[PROPERTIES;CLOSE;Close]</span>
+							</a>
+								<div class="notification">[PROPERTIES;MSC_ITEMS_IN_CART;Items in your cart:]</div>
+
+											<div class="empty">[PROPERTIES;MSC_EMPTY_SHOP_CART;Your cart is empty]</div>
+
+								<div class="go_to_cart">
+									<a id="GotoCartButton1"  class="button_primary" tabindex="0">
+										<div class="left_border"></div>
+										<div class="button_text">[PROPERTIES;MSC_GO_TO_CART;Go to Cart]</div>
+										<div class="right_border"></div>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="bottom">
+					<div class="left_border"></div>
+					<div class="middle_tile"></div>
+					<div class="right_border"></div>
+				</div>
+			</div>
+		</div>
+
+		<div id = "MiniShopCartProductAdded" style="display:none">
+			<div id="widget_minishopcart_popup_1">
+				<div class="top">
+					<div class="left_border"></div>
+					<div class="middle_tile"></div>
+					<div class="right_border"></div>
+				</div>
+				<div class="middle">
+					<div class="left_border">
+						<div class="right_border">
+							<div class="content">
+								<a id="MiniShopCartCloseButton_2" href="javascript:dijit.byId('quick_cart_container').hide();" class="close_control">
+									<div class="icon"></div>
+									<span class="close">[PROPERTIES;CLOSE;Close]</span>
+								</a>
+								<div class="notification">[PROPERTIES;MSC_ITEM_ADDED;This item has been successfully added:]</div>
+								<div class="products added">
+									
+								</div>
+								<div class="go_to_cart">
+									<a id="GotoCartButton2"  class="button_primary" tabindex="0">
+										<div class="left_border"></div>
+										<div class="button_text">[PROPERTIES;MSC_GO_TO_CART;Go to Cart]</div>
+										<div class="right_border"></div>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="bottom">
+					<div class="left_border"></div>
+					<div class="middle_tile"></div>
+					<div class="right_border"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</div>
+	
+						</div>
+						<!-- End MiniShopCart Widget -->
+
+
+					</div>
+					<div class="navigation">
+						<!-- Department Selection Widget -->
+
+						<div class="widget_departments_position" role="navigation" aria-label="[PROPERTIES;DEPARTMENTS;Departments]">
+		
+<script type="text/javascript">
+	dojo.addOnLoad(function() {
+		if(document.getElementById("widget_departments")){
+			document.getElementById("widget_departments").style.display = "block";
+		}
+		DepartmentJS.init();
+		wc.render.getRefreshControllerById("DepartmentDropdownController").url = getAbsoluteURL()+"DepartmentDropdownView.html";
+	});
+
+	dojo.addOnUnload(function() {
+		if(document.getElementById("drop_down")){
+			document.getElementById("drop_down").style.display = "none";
+		}
+	});
+</script>
+
+<div id="widget_departments" tabindex="0" title="[PROPERTIES;DEPARTMENT_MENU_ACCE;Departments]" style="display:none;">
+		<div class="left_border"></div>
+		<div class="content">
+			<span class="label">[PROPERTIES;DEPARTMENTS;Departments]</span>
+			<div class="arrow"></div>
+		</div>
+		<div class="right_border"></div>
+		<div class="clear_float"></div>
+
+		<div class="drop_down" id="drop_down" dojoType="wc.widget.RefreshArea" widgetId="drop_down" controllerId="DepartmentDropdownController" style="display:none;">
+
+<!-- BEGIN Department.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">Department.jsp</div>
+</span>
+<!-- END Department.jsp -->
+
+		</div>
+</div>
+	
+						</div>
+						<!-- End Department Selection Widget -->
+
+
+						<!-- Search Widget -->
+
+						<div id="searchComponent">
+
+<!-- BEGIN Search.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">Search.jsp</div>
+		<meta name="CommerceSearch" content="storeId_10152" />
+
+		<!-- Begin Search Widget -->
+
+		<script type="text/javascript">
+				dojo.addOnLoad(function(){
+					SearchJS.init();
+					SearchJS.setCachedSuggestionsURL('');
+					});
+
+				// The primary Array to hold all static search suggestions
+				var staticContent = new Array();
+
+				// The titles of each search grouping
+				var staticContentHeaders = new Array();
+		</script>	
+
+<form name="CatalogSearchForm" action="#" method="get" id="CatalogSearchForm">
+	
+	<!-- Search Widget -->
+
+	<div class="widget_search_position" role="search">
+		<div id="widget_search">
+			<div class="left_border"></div>
+			<div class="content">
+	
+				<label for="SimpleSearchForm_SearchTerm" class="nodisplay">[PROPERTIES;SEARCH_CATALOG;Search]</label>
+				<input type="text" class="search_input gray_color" placeholder="[PROPERTIES;SEARCH_CATALOG;Search]" name="searchTerm" id="SimpleSearchForm_SearchTerm" autocomplete="off" maxlength="65" tabindex="0" title="[PROPERTIES;SEARCH_SUGGESTION;Press the Up or Down Arrow keys to navigate through the search suggestions. Suggested site content and search history, if any, are included after the suggestions.  Press the Enter key for all search results.]" onkeypress="return SearchJS._onKeyPress(event);" value='[PROPERTIES;SEARCH_CATALOG;Search]'></input>
+
+				<div role="button" aria-labelledby="searchDepartmentList_ACCE_Label" onclick="$('searchDepartmentList').style.display='block'" onfocus="$('searchDepartmentList').style.display='block'; dojo.byId('searchDepartmentList_0').focus();" tabindex="0" class="all_departments">
+					<span id="searchDepartmentLabel">[PROPERTIES;SEARCH_ALL_DEPARTMENTS;All Departments]</span>
+				</div>
+				<input id="search_categoryId" type="hidden" name="categoryId" value=""/>
+				<span class="spanacce" id="searchDepartmentList_ACCE_Label">[PROPERTIES;SEARCH_IN;Search in]</span>
+				<div class="widget_search_departments_dropdown_position" role="menu" aria-labelledby="searchDepartmentList_ACCE_Label" onblur="clearTimeout(SearchJS.searchDepartmentHoverTimeout);SearchJS.searchDepartmentHoverTimeout=setTimeout('SearchJS.hideSearchDepartmentList()',300)" onmouseout="clearTimeout(SearchJS.searchDepartmentHoverTimeout);SearchJS.searchDepartmentHoverTimeout=setTimeout('SearchJS.hideSearchDepartmentList()',300)" onmouseover="clearTimeout(SearchJS.searchDepartmentHoverTimeout);" id="searchDepartmentList">
+					<div class="widget_search_departments_dropdown">
+						<div class="top">
+							<div class="left_border"></div>
+							<div class="middle"></div>
+							<div class="right_border"></div>
+						</div>
+
+						<div class="clear_float"></div>
+						<div class="content_left_border">
+							<div class="content_right_border">
+								<ul id="searchDepartmentList_root">
+									<li><a  id="searchDepartmentList_0" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 0, 6, '', this);" onmousedown="SearchJS.searchDepartmentSelect('', this)" onmouseover="this.className='enabled'" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseout="this.className='disabled'">[PROPERTIES;SEARCH_ALL_DEPARTMENTS;All Departments]</a></li>
+									
+										<li><a  id="searchDepartmentList_1" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 1, 6, '10001', this);" onmousedown="SearchJS.searchDepartmentSelect('10001', this)" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseover="this.className='enabled'" onmouseout="this.className='disabled'">Apparel</a></li>
+									
+										<li><a  id="searchDepartmentList_2" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 2, 6, '10027', this);" onmousedown="SearchJS.searchDepartmentSelect('10027', this)" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseover="this.className='enabled'" onmouseout="this.className='disabled'">Electronics</a></li>
+									
+										<li><a  id="searchDepartmentList_3" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 3, 6, '10033', this);" onmousedown="SearchJS.searchDepartmentSelect('10033', this)" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseover="this.className='enabled'" onmouseout="this.className='disabled'">Grocery</a></li>
+									
+										<li><a  id="searchDepartmentList_4" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 4, 6, '10038', this);" onmousedown="SearchJS.searchDepartmentSelect('10038', this)" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseover="this.className='enabled'" onmouseout="this.className='disabled'">Health</a></li>
+									
+										<li><a  id="searchDepartmentList_5" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 5, 6, '10041', this);" onmousedown="SearchJS.searchDepartmentSelect('10041', this)" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseover="this.className='enabled'" onmouseout="this.className='disabled'">Home &amp; Furnishing</a></li>
+									
+										<li><a  id="searchDepartmentList_6" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 6, 6, '10048', this);" onmousedown="SearchJS.searchDepartmentSelect('10048', this)" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseover="this.className='enabled'" onmouseout="this.className='disabled'">Newsletters &amp; Magazines</a></li>
+									
+								</ul>
+							</div>
+						</div>
+						<div class="clear_float"></div>
+
+						<div class="bottom">																
+							<div class="left_border"></div>
+							<div class="middle"></div>
+							<div class="right_border"></div>
+						</div>
+
+						<div class="clear_float"></div>	
+					</div>
+				</div>
+				
+				<input id="search_submit" class="search_submit" type="image" onmouseout="javascript: this.src='../StoreAssets/images/colors/color1/widget_search/search_submit.png'" onmouseover="javascript: this.src='../StoreAssets/images/colors/color1/widget_search/search_submit_hover.png'" onblur="javascript: this.src='../StoreAssets/images/colors/color1/widget_search/search_submit.png'" onfocus="javascript: this.src='../StoreAssets/images/colors/color1/widget_search/search_submit_hover.png'" alt="[PROPERTIES;SEARCH_CATALOG;Search]" src="../StoreAssets/images/colors/color1/widget_search/search_submit.png"  value="[PROPERTIES;SEARCH_CATALOG;Search]" />
+
+			</div> <!-- content -->
+
+			<div class="right_border"></div>
+			<div class="clear_float"></div>
+		</div> <!-- widget_search -->
+
+	</div> <!-- widget_search_position -->
+
+
+	<!-- Start SearchDropdownWidget -->
+
+	<div id="autoSuggest_Result_div" style="display:none;">
+
+		<div id="widget_search_dropdown" class="widget_search_dropdown_position">
+			<div class="widget_search_dropdown">
+		
+				<!-- Top Border Styling -->
+
+				<div class="top">
+					<div class="left_border"></div>
+					<div class="middle"></div>
+					<div class="right_border"></div>
+				</div>
+				<div class="clear_float"></div>
+				
+				<!-- Main Content Area -->
+
+				<div class="content_left_border">
+					<div class="content_right_border">
+		
+						<div id="AutoSuggestDiv" class="content" role="region" aria-required="true" aria-labelledby="AutoSuggestDiv" onmouseover="SearchJS.autoSuggestHover = true;" onmouseout="SearchJS.autoSuggestHover = false; document.getElementById('SimpleSearchForm_SearchTerm').focus();">
+							
+								<span id="autoSuggestDynamic_Result_div_ACCE_Label" class="spanacce">[PROPERTIES;SEARCH_AUTO_SUGGEST_ACCE_REGION;Suggested keywords menu]</span>  
+								<div dojoType="wc.widget.RefreshArea" widgetId="autoSuggestDisplay_Widget" controllerId="AutoSuggestDisplayController" id="autoSuggestDynamic_Result_div" role="region" aria-live="polite" aria-atomic="true" aria-relevant="all" aria-labelledby="autoSuggestDynamic_Result_div_ACCE_Label" >
+									
+								</div>
+		
+								<div id="autoSuggestStatic_1"></div>
+								<div id="autoSuggestStatic_2"></div>
+								<div id="autoSuggestStatic_3"></div>
+								<div id="autoSuggestHistory"></div>
+								<div class="heading"> <a  id="viewAllResults" ><div>[PROPERTIES;VIEW_ALL_RESULTS;View all results]</div></a> </div>
+		
+						<!-- End content Section -->
+
+						</div>
+		
+					<!-- End content_right_border -->
+
+					</div>
+				<!-- End content_left_border -->
+
+				</div>
+				
+				<!-- Bottom Border Styling -->
+
+				<div class="bottom">
+					<div class="left_border"></div>
+					<div class="middle"></div>
+					<div class="right_border"></div>
+				</div>
+				
+			</div>
+		</div>
+	<!-- End SearchDropdownWidget -->
+
+	</div>
+	
+	<!-- Refresh area to retrieve cached suggestions -->
+
+	<span id="autoSuggestCachedSuggestions_div_ACCE_Label" class="spanacce">[PROPERTIES;SEARCH_AUTO_SUGGEST_CACHED_ACCE_REGION;Suggested site content and search history menu]</span>
+	<div dojoType="wc.widget.RefreshArea" widgetId="AutoSuggestCachedSuggestions" controllerId="AutoSuggestCachedSuggestionsController" id="autoSuggestCachedSuggestions_div" role="region" aria-live="polite" aria-atomic="true" aria-relevant="all" style="display:none;" aria-labelledby="autoSuggestCachedSuggestions_div_ACCE_Label">
+	</div>
+
+	<input type="hidden" name="storeId" value='10152' />
+	<input type="hidden" name="catalogId" value='10001' />
+	<input type="hidden" name="langId" value='-1' />
+	<input type="hidden" name="pageSize" value="12" />
+	<input type="hidden" name="beginIndex" value="0" />
+	<input type="hidden" name="sType" value="SimpleSearch" />
+	<input type="hidden" name="resultCatEntryType" value="2" />
+	<input type="hidden" name="showResultsPage" value="true" />
+	<input type="hidden" name="searchSource" value="Q" />
+	<input type="hidden" name="pageView" value="" />
+	<span id="searchTextHolder" class="nodisplay">[PROPERTIES;SEARCH_CATALOG;Search]</span>
+
+</form>
+
+	<!-- End Search Widget -->
+
+
+</span>
+<!-- END Search.jsp -->
+
+							
+						</div>
+						<!-- End Search Widget -->
+
+					</div>			
+					<div class="header_espot_container">		
+
+<!-- BEGIN ContentRecommendation.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">ContentRecommendation.jsp</div>
+</span>
+<!-- END ContentRecommendation.jsp -->
+						
+					</div>					
+				</div>
+				<!-- End Masthead -->
+
+				
+				<!-- End Header Content -->
+
+			</div>
+		</div>				
+	</div>
+	<!--For border customization -->
+
+	<div class="header_bottom">
+		<div class="left_border"></div>
+		<div class="middle"></div>
+		<div class="right_border"></div>
+	</div>
+</div>
+<div id="productIdQuickInfo" style="display:none"></div>
+
+</span>
+<!-- END Header.jsp -->
+
+				
+			</div>
+			<!-- Header Nav End -->
+
+			<div class="content_wrapper_position">
+				<div class="content_wrapper">
+					<div class="content_left_shadow">
+						<div class="content_right_shadow">
+							<div class="main_content">
+								<div class="container_full_width">
+
+	<!-- Main Content Start -->
+
+	<div id="content_wrapper_border" role="main">
+		<!-- Content Start -->
+
+		<div id="box" class="my_account generic_error_container">
+			<div id="errorPage">
+				<h1 class="myaccount_header">[PROPERTIES;ERROR_TITLE;Generic Error]</h1>
+			</div>
+				
+			<div id="WC_GenericError_5" class="content">
+				<div id="WC_GenericError_6" class="info">
+
+										<span >[PROPERTIES;GENERICERR_TEXT1;The following section is intended to aid store developers in debugging problems in the sample store.]</span>
+										<br />
+										<span>[PROPERTIES;GENERICERR_TEXT2;Error information is listed below.  For further details, increase the  logging for your WebSphere Commerce system, and check the log file.]</span>
+
+					<br /><br />
+					
+						<span class="generic_error_developers">[PROPERTIES;GENERICERR_DEVELOPER;Store developers:]</span>
+					
+						<span>[PROPERTIES;GENERICERR_HTML;To view detailed error information, see the comments in the HTML source for this page.]</span>
+								
+						<!--
+						//********************************************************************
+						//*-------------------------------------------------------------------
+						
+						[PROPERTIES;GENERICERR_TEXT1;The following section is intended to aid store developers in debugging problems in the sample store.]
+						[PROPERTIES;GENERICERR_TEXT2;Error information is listed below.  For further details, increase the  logging for your WebSphere Commerce system, and check the log file.]
+						[PROPERTIES;GENERICERR_TYPE;Exception Type:]	
+						[PROPERTIES;GENERICERR_KEY;Message Key:] 
+						[PROPERTIES;GENERICERR_MESSAGE;Message:] 
+						[PROPERTIES;GENERICERR_SYSMESSAGE;System Message:] 
+						[PROPERTIES;GENERICERR_CMD;Originating Command:] 
+						[PROPERTIES;GENERICERR_CORR_ACTION;Corrective Action:] 
+
+						//*-------------------------------------------------------------------
+						//********************************************************************
+						-->
+								
+					</div>
+				</div>
+							
+				<div id="WC_GenericError_8" class="footer">
+					<div id="WC_GenericError_9" class="left_corner"></div>
+					<div id="WC_GenericError_10" class="left"></div>
+					<div id="WC_GenericError_11" class="right_corner"></div>
+				</div>
+			</div>
+		</div>
+		<!-- Content End -->
+
+	</div>
+	<!-- Main Content End -->
+
+	
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+
+	<!-- Footer Start -->
+
+	<div class="footer_wrapper_position">
+
+<!-- BEGIN Footer.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">Footer.jsp</div>
+<div class="footer_wrapper" role="contentinfo">
+	<!--For border customization -->
+
+	<div class="footer_top">
+		<div class="left_border"></div>
+		<div class="middle"></div>
+		<div class="right_border"></div>
+	</div>
+	<!--Main footer Area -->
+
+	<div class="footer_left_shadow">
+		<div class="footer_right_shadow">				
+			<div class="footer_content" id="footer_content">
+				
+				<!--Start Footer Content -->
+
+				<div id="footer">
+					<div class="footer_element_container right_border large">
+						<h2>[PROPERTIES;FOOTER_CUSTOMER_SERVICE;Customer Service]</h2>
+						<ul>
+							
+								<li><a id="FooterQuickOrder" >[PROPERTIES;FOOTER_QUICK_ORDER;Quick Order]</a></li>
+							
+							<li><a id="FooterHelpLink" >[PROPERTIES;FOOTER_HELP;Help]</a></li>
+							<li><a id="FooterContactUsLink" >[PROPERTIES;FOOTER_CONTACT_US;Contact Us]</a></li>
+							<li><a id="FooterReturnPolicyLink" >[PROPERTIES;FOOTER_RETURN_POLICY;Return Policy]</a></li>
+							<li><a id="FooterPrivacyPolicyLink" >[PROPERTIES;FOOTER_PRIVACY_POLICY;Privacy Policy]</a></li>
+						</ul>
+							
+					</div>
+					<div class="footer_element_container right_border large">
+						<h2>[PROPERTIES;FOOTER_CORPORATE_INFO;Corporate Info]</h2>
+						<ul>
+							<li><a id="FooterAboutUsLink" >[PROPERTIES;FOOTER_ABOUT_US;About Us]</a></li>
+							<li><a id="FooterCorporateContactUsLink" >[PROPERTIES;FOOTER_CONTACT_US;Contact Us]</a></li>
+							
+								<li><a id="FooterStoreLocatorLink" >[PROPERTIES;FOOTER_STORE_LOCATOR;Store Locator]</a></li>
+							
+						</ul>							
+					</div>
+					
+					<div class="footer_element_container right_border large" id="WC_Footer_UI_Links_3">
+						<h2>[PROPERTIES;FOOTER_EXPLORE;Explore]</h2>
+						<ul>
+							<li><a id="FooterSiteMapLink" >[PROPERTIES;FOOTER_SITE_MAP;Site Map]</a></li><li><a href="AdvancedSearch.html" id="AdvancedSearchDisplayLink">Advanced Search</a></li>
+
+						</ul>
+					</div>
+
+						<div class="footer_element_container large" id="FooterSocialLinks">
+							<h2>[PROPERTIES;FOOTER_FOLLOW_US;Follow Us]</h2>
+							<ul>
+								<li><a id="FacebookLink" >[PROPERTIES;FOOTER_FACEBOOK;Facebook]</a></li>
+							</ul>
+						</div>
+
+					<div class="footer_element_container large" id="FooterRightContentESpot">					
+
+<!-- BEGIN ContentRecommendation.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">ContentRecommendation.jsp</div>
+</span>
+<!-- END ContentRecommendation.jsp -->
+							
+					</div>					
+												
+				</div>
+				<!--End Footer Content -->
+
+				
+			</div>
+		</div>				
+	</div>
+	<!--For border customization -->
+
+	<div class="footer_bottom">
+		<div class="left_border"></div>
+		<div class="middle">
+		</div>
+		<div class="right_border"></div>
+	</div>
+	<!--
+ =================================================================
+  Licensed Materials - Property of IBM
+
+  WebSphere Commerce
+
+  (C) Copyright IBM Corp. 2011 All Rights Reserved.
+
+  US Government Users Restricted Rights - Use, duplication or
+  disclosure restricted by GSA ADP Schedule Contract with
+  IBM Corp.
+ =================================================================
+-->
+
+<script type="text/javascript">
+	dojo.addOnLoad(function() { 
+		//Make sure page is loaded at this point
+		//Set requestedSubmitted to false
+		requestSubmitted = false;
+
+		// All div's whose id attribute contains dojoWidget subString -- dojo.query('div[id*="dojoWidget"]')
+		// All div's which contains dojoType attribute -- dojo.query(div[dojoType])
+		dojo.query('div[dojoType]').forEach(function(node, index, arr){
+			console.debug("Parse "+node.id);
+			addToWidgetsList(node.id);
+		});
+		parseAllWidgets();
+	}); 	
+</script>
+</div>
+
+		<div id="cm-tag-output">
+		 	<div id="cm-pageview"></div>
+		 	<div id="cm-productview"></div>
+			<div id="cm-shopAction"></div>
+		 	<div id="cm-order"></div>
+		 	<div id="cm-registration"></div>
+		 	<div id="cm-element"></div>
+			<div id="cm-conversionevent"></div>
+	 	</div>
+
+</span>
+<!-- END Footer.jsp -->
+
+		
+	</div>
+	<!-- Footer End -->
+
+</div>
+
+			<script type="text/JavaScript">
+
+</script>
+
+<script type="text/javascript"> function displayHighlightFeatureInHTML(){var all = document.getElementsByTagName('*'); for (var i = 0; i < all.length; i++) { if (all[i].className == 'jspcaption') {all[i].style.display='block';} if (all[i].className == 'highlight') {all[i].style.border='2px dashed red';all[i].style.display='block';} if (all[i].className == 'product') {all[i].style.border='2px dashed red';} if (all[i].className == 'product_price') {all[i].style.border='2px dashed red';} if (all[i].className == 'widget_quick_info_popup') {all[i].style.border='2px dashed red';} if (all[i].className == 'item' && (all[i].id.indexOf('compare') == -1) && (all[i].id.indexOf('sub') == -1) ) {all[i].style.border='2px dashed red';} if (all[i].className == 'item_price') {all[i].style.border='2px dashed red';}} } function activateHighlight (event){ if(event.ctrlKey){ if(event.altKey){ if(event.keyCode == '72'){ displayHighlightFeatureInHTML(); } } } } </script>
+</body>
+</html>
+
+

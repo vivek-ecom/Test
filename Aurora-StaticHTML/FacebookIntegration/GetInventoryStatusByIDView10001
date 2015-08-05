@@ -1,0 +1,12 @@
+/*
+{
+"onlineInventory": {
+	status: "In-Stock",
+	image: "../StoreAssets/images/colors/color1/widget_product_info/checkmark_icon.png",
+	altText: "[PROPERTIES;IMG_INV_STATUS_Available;In-Stock]"},
+"inStoreInventory": {
+	stores: [],
+	checkStoreText: "Select Store"
+	}
+}
+*/

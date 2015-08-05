@@ -1,0 +1,51 @@
+<html  xmlns:wairole='http://www.w3.org/2005/01/wai-rdf/GUIRoleTaxonomy#' xmlns:waistate='http://www.w3.org/2005/07/aaa' lang='en' xml:lang='en' onkeydown='javascript:activateHighlight(event);'>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="en-US" />
+<meta name="viewport" content="width=device-width" />
+<title></title>
+
+<link href="../StoreAssets/BV/bazaarvoice.css" rel="stylesheet" type="text/css"/>
+<link href="../StoreAssets/BV/bazaarvoiceUI.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">
+.BVPhotoUploadContentBody {border:none; padding:0; margin:0; background:transparent;}
+</style>
+</head>
+<body class="BVPhotoUploadContentBody">
+<div id="BVWidgetID"
+class="BVRootElement BVWidget
+BVPhotoUploadWidget"
+style="position: absolute; left: 0px; top: 0px;">
+<form class="BVForm " accept-charset="utf-8" method="POST" action="#" onsubmit="mediaUploadFormOnSubmit();" enctype="multipart/form-data" name="BVPhotoUploadForm"> <input type="hidden" name="format" value="embeddedrpc"/>
+<input type="hidden" name="campaignid" value="BV_REVIEW_DISPLAY"/>
+<input type="hidden" name="sessionparams" value="__BVSESSIONPARAMS__"/>
+<input type="hidden" name="user" value="8bc4b557f742442736f00397f29b8e0a646174653d3230313230383133267573657269643d5465737455736572"/>
+<input type="hidden" name="authsourcetype" value="SITE"/>
+<input type="hidden" name="contenttype" value="review"/>
+<input type="hidden" name="universal" value="true"/>
+<input type="hidden" name="fileinputsize" value="25"/>
+<input type="hidden" name="forceIeUnicodeSubmission" value="＀"/>
+<input type="file" id="BVVisiblePhotoUploadInputID" name="photo" class="BVFieldFile BVFieldInput BVField BVPhotoFileFieldInput" onchange="document.getElementById('BVVisiblePhotoUploadSubmitID').disabled = false;" size="25"/>
+<input type="submit" id="BVVisiblePhotoUploadSubmitID" value="Upload" class="BVFieldSubmit BVFileSubmit BVFileSubmitPhotoUpload" disabled="disabled"/>
+</form>
+</div>
+<script type="text/javascript">
+$BV.Internal.configureAppLoader("rr",false,{});
+$BV.Internal.require(["photoUpload","jquery.core","domUtils","json2","swfobject","rpcSupport","iframeSupport","parseUri","requester"],function(){
+var bvPhotoRenderer = bvMakePhotoRenderer('BV', window, "(^|\\.)(bazaarvoice\\.com|ibm\\.com|.*)(:\\d+)?$");
+window.mediaUploadFormOnSubmit = function() {
+document.getElementById('BVVisiblePhotoUploadSubmitID').disabled = true;
+bvPhotoRenderer.sendStartPhotoUploadToReceiver();
+}
+bvPhotoRenderer.sendResizeRendererFrameToReceiver();
+bvPhotoRenderer.sendOnWidgetRenderFinish();
+});
+</script>
+<script type="text/javascript">
+$BV.Internal.require(["photoUpload","jquery.core","domUtils","json2","swfobject","rpcSupport","iframeSupport","parseUri","requester"]);
+</script>
+<div id="BVpageRenderSuccess" style="display:none"></div>
+<script type="text/javascript"> function displayHighlightFeatureInHTML(){var all = document.getElementsByTagName('*'); for (var i = 0; i < all.length; i++) { if (all[i].className == 'jspcaption') {all[i].style.display='block';} if (all[i].className == 'highlight') {all[i].style.border='2px dashed red';all[i].style.display='block';} if (all[i].className == 'product') {all[i].style.border='2px dashed red';} if (all[i].className == 'product_price') {all[i].style.border='2px dashed red';} if (all[i].className == 'widget_quick_info_popup') {all[i].style.border='2px dashed red';} if (all[i].className == 'item' && (all[i].id.indexOf('compare') == -1) ) {all[i].style.border='2px dashed red';} if (all[i].className == 'item_price') {all[i].style.border='2px dashed red';}} } function activateHighlight (event){ if(event.ctrlKey){ if(event.altKey){ if(event.keyCode == '72'){ displayHighlightFeatureInHTML(); } } } } </script>
+</body>
+</html>
+
+

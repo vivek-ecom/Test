@@ -1,0 +1,408 @@
+<div id="coshop">
+	
+	<!--  The next two elements are replaced by the coshopping link. They are here so that the CEA widget does not break due to missing dojoAttachPoints -->
+	<span dojoAttachPoint="createCollabInviteString" style="visibility:hidden">${createCollabInviteString}</span>
+	<button dojoType="collaboration.widget.WCButton" style="visibility:hidden" dojoAttachPoint="createCollaborationButton" dojoAttachEvent="onClick:openInvitationDialog" style="display:none">${createButtonString}</button>
+	<button dojoType="collaboration.widget.WCButton" style="visibility:hidden" dojoAttachEvent="onClick:endCollaboration" dojoAttachPoint="endCollaborationButton"  class="cobrowseWidgetButton" style="display:none">${endCollabButtonString}</button>
+	<div dojoAttachPoint="status" style="visibility:hidden" class="cobrowseWidgetStatus marginTop marginBottom" style="display:none"></div>				
+
+					
+	<div dojoAttachPoint="collaborationDialog" 
+		dojoType="collaboration.widget.CollaborationDialog" 
+		canControlCollaboration="${canControlCollaboration}" 
+		defaultCollaborationUri="${defaultCollaborationUri}" 
+		highlightElementList="${highlightElementList}" 
+		isHighlightableCallback="${isHighlightableCallback}" 
+		isClickableCallback="${isClickableCallback}" 
+		sendPageUrlRewriteCallback="${sendPageUrlRewriteCallback}"
+		hideURLField="${hideURLField}"
+		startInFollowMeMode="${startInFollowMeMode}"
+		hideSendPageButton="${hideSendPageButton}">
+	</div>
+	
+	
+	<!-- invitation dialog for the initiator  -->
+	<div id="invitationDialog" dojoType="dijit.Dialog" dojoAttachPoint="invitationDialog" class="invitationDialog">	
+	
+		<div class="top_left"></div>
+		<div class="top_right"></div>
+
+		<div id="invitationDialogHeader" class="header padding">
+			<div class="close" dojoAttachEvent="onclick:closeInvitationDialog">
+			    <span class="popupCloseImg" title="${close}">
+			   	 <a id="closeLink" title="${close}" class="closeLink" href="#" >${close}</a>
+			    </span>
+			</div>
+		</div>
+		
+		<div class="bodycontent padding">
+				<h2 tabindex="0" title="${invitationDialogHeader}">${invitationDialogHeader}</h2>
+				<div id="peerDialogError"></div>		
+				<div>
+					<div id="invitationDialogNameSection">
+						<div><label for="peerNameInput">${pls_enter_name}</label></div>
+						<div><input name="peerName" id="peerNameInput" class="peerNameInputTextBox"></input></div>
+					</div>
+					
+					<div dojoAttachPoint="invitationLinkString" class="invitationLinkString" style="display:none;">
+						
+						<p tabindex="0" class="marginTop marginBottom" title="${invitation_dialog_description}">
+							${invitation_dialog_description}
+						</p>
+					
+						<label for="invitationLinkStringInput" dojoAttachPoint="invitationLinkLabel">${invitationLinkString}:</label>
+						<input id="invitationLinkStringInput" name="invitationLinkString" dojoType="dijit.form.Textarea" dojoAttachEvent="onClick:_peerCollaborationLinkClick" dojoAttachPoint="peerCollaborationLink" class="cobrowseWidgetTextBox"></input>
+						
+						
+						<p tabindex="0" class="marginTop marginBottom" title="${invitation_dialog_instructions}">
+							${invitation_dialog_instructions}
+						</p>
+						
+					</div>
+					
+					<div id="redirectToHomeSection" style="display:none">
+						<p tabindex="0" class="warning" id="warningMsg" title="${redirectToHome}">${redirectToHome}</p>
+						<div>
+						<span class="primary_button" id="redirectToHomeYesButton" >
+							<span class="button_container">
+								<span class="button_bg">
+								<span class="button_top">
+									<span class="button_bottom">   
+										<a href="#" id="redirectToHomeYesLink" dojoAttachEvent="onclick:goToHomePage">${YES}</a>
+									</span>
+								</span>	
+								</span>
+							</span>
+						</span>	
+						
+						<span class="secondary_button" id="redirectToHomeNoButton" >
+							<span class="button_container">
+								<span class="button_bg">
+								<span class="button_top">
+									<span class="button_bottom">   
+										<a href="#" id="redirectToHomeNoLink" dojoAttachEvent="onclick:closeInvitationDialog">${NO}</a>
+									</span>
+								</span>	
+								</span>
+							</span>
+						</span>													
+						</div>
+					</div>
+					
+						
+					<div>		
+						<button dojoType="collaboration.widget.WCButton" dojoAttachEvent="onClick:openCollabDialog" dojoAttachPoint="openCollabDialogButton"  class="cobrowseWidgetButton" style="display:none">${openCollabDialogButtonString}</button>
+
+						<span class="primary_button" id="invitationDialogEndCollaboration" style="display:none">
+							<span class="button_container">
+								<span class="button_bg">
+								<span class="button_top">
+									<span class="button_bottom">   
+										<a href="#" id="invitationDialogEndCollaborationLink">${endCollabButtonString}</a>
+									</span>
+								</span>	
+								</span>
+							</span>
+						</span>	
+											
+						<span class="primary_button" id="invitationDialogNextButtonSection">
+							<span class="button_container">
+								<span class="button_bg">
+								<span class="button_top">
+									<span class="button_bottom">   
+										<a href="#" id="invitationDialogNextButton">${invitationDialogNextButtonString}</a>
+									</span>
+								</span>	
+								</span>
+							</span>
+						</span>	
+
+						<span class="secondary_button" id="continueShoppingSection" style="display:none">
+							<span class="button_container">
+								<span class="button_bg">
+								<span class="button_top">
+									<span class="button_bottom">   
+										<a href="#" id="continueShoppingButton">${continueShopping}</a>
+									</span>
+								</span>	
+								</span>
+							</span>
+						</span>	
+						
+					</div>
+								 						
+				</div>		  
+		</div>	
+
+		<div class="footer" id="">
+		    <div class="bot_left" id=""></div>
+		    <div class="bot_right" id=""></div>
+		</div>
+			
+	</div>
+	<!-- end invitation dialog for the initiator  -->
+	
+	
+	<!-- user information dialog for invitee -->
+	<div dojoType="dijit.Dialog" dojoAttachPoint="inviteeInfoDialog" class="invitationDialog">
+	
+		<div class="top_left">&nbsp;</div>
+		<div class="top_right">&nbsp;</div>
+
+		<div id="inviteeDialogHeader" class="header padding">
+			<div class="close" dojoAttachEvent="onclick:closeInviteeDialog">
+			    <span class="popupCloseImg" title="${close}">
+			   	 <a id="inviteeDialogHeaderCloseLink" title="${close}" class="closeLink" href="#" >${close}</a>
+			    </span>
+			</div>
+		</div>
+		
+		
+		<div class="bodycontent padding">
+			<h2 tabindex="0" title="${inviteeDialogHeader}">${inviteeDialogHeader}</h2>
+			<div id="inviteeInfoError"></div>	
+			<label for="inviteeNameInput">${pls_enter_name}</label>
+			<div>
+				<input id="inviteeNameInput"  name="peerName" class="peerNameInputTextBox"></input>
+			</div>			
+			<div>
+				<span class="primary_button">
+					<span class="button_container">
+						<span class="button_bg">
+						<span class="button_top">
+							<span class="button_bottom">   
+								<a id="inviteeDialogNextButton" href="#">${inviteeDialogNextButtonString}</a>
+							</span>
+						</span>	
+						</span>
+					</span>
+				</span>	
+				<br/>
+		 	</div>				
+		</div>					
+	 	
+	 	<div class="footer" id="">
+		    <div class="bot_left" id=""></div>
+		    <div class="bot_right" id=""></div>
+		</div>		 						 	
+	</div>
+	<!-- end user information dialog for invitee -->
+	
+	<!-- begin: end collaboration dialog  -->
+	<div dojoType="dijit.Dialog" dojoAttachPoint="exitConfirmationDialog" class="invitationDialog">	
+	
+		<div class="top_left">&nbsp;</div>
+		<div class="top_right">&nbsp;</div>
+		
+		<div class="bodycontent padding">
+			<h2 tabindex="0" id="confirmExitString"></h2>
+			
+			<div id="confirmationButtons"/>
+				<span class="primary_button">
+					<span class="button_container">
+						<span class="button_bg">
+						<span class="button_top">
+							<span class="button_bottom">   
+								<a href="#" id="exitConfirmationDialogYesButton">${YES}</a>
+							</span>
+						</span>	
+						</span>
+					</span>
+				</span>	
+						
+				<span class="secondary_button">
+					<span class="button_container">
+						<span class="button_bg">
+						<span class="button_top">
+							<span class="button_bottom">   
+								<a href="#" id="exitConfirmationDialogNoButton">${NO}</a>
+							</span>
+						</span>	
+						</span>
+					</span>
+				</span>				
+			</div>	
+			
+			<div id="closeButtonAfterPeerDisconnectDiv" style="display:none">
+				<span class="primary_button">
+					<span class="button_container">
+						<span class="button_bg">
+						<span class="button_top">
+							<span class="button_bottom">   
+								<a href="#" id="closeButtonAfterPeerDisconnect">${close}</a>
+							</span>
+						</span>	
+						</span>
+					</span>
+				</span>				
+			</div>											 								  
+		</div>	
+
+		<div class="footer" id="">
+		    <div class="bot_left" id=""></div>
+		    <div class="bot_right" id=""></div>
+		</div>
+			
+	</div>
+	<!-- end: end collaboration dialog  -->
+
+	<!--  help -->
+	<div dojoType="dijit.Dialog" id="helpDialog" class="helpDialog">
+
+		<div id="helpContent" class="coshopHelp">	
+			<div>
+				<div class="top_left"></div>
+				<div class="top_right"></div>
+			</div>
+			
+			<div class="header padding">
+				<div class="close">
+				    <span class="popupCloseImg">
+				 	  	 <a dojoAttachPoint="coshopHelpCloseLink" title="${close}" class="closeLink" href="#" >${close}</a>
+				    </span>
+				</div>
+			</div>
+				
+			<div class="bodycontent padding">
+					<h2 title="${coshop_help}" tabindex="0" >${coshop_help}</h2> 
+					
+					<div class="section">
+						<div class="icon left">
+							<div class="coshopHelpIcons collaborationDialogWidgetFollowMeIcon center"></div>
+						</div>
+						<p tabindex="0" title="${leadIconDesc}" class="desc left">${leadIconDesc} </p>
+						<div class="clear_both"></div>	
+					</div>
+					
+					<div class="section">
+						<div class="icon left">
+							<div class="coshopHelpIconsChecked collaborationDialogWidgetFollowMeIcon center"></div>
+						</div>
+						<p tabindex="0" title="${followIconDesc}" class="desc left">${followIconDesc} </p>
+						<div class="clear_both"></div>	
+					</div>
+					
+						
+					<div class="section">
+						<div class="icon left">
+							<div class="coshopHelpIcons collaborationDialogWidgetStopFollowingIcon center"></div>
+						</div>
+						<p tabindex="0" title="${stopIconDesc}" class="desc left">${stopIconDesc}</p>
+						<div class="clear_both"></div>
+					</div>
+								
+					<div class="section">
+						<div class="icon left">
+							<div class="coshopHelpIcons collaborationDialogWidgetEndCollabIcon center"></div>
+						</div>
+						<p tabindex="0" title="${endIconDesc}" class="desc left">${endIconDesc} </p>
+						<div class="clear_both"></div>
+					</div>
+		
+					<div class="section">
+						<div class="icon left">
+							<div class="coshopHelpIcons collaborationDialogWidgetChatIcon center"></div>
+						</div>
+						<p tabindex="0" title="${chatIconDesc}" class="desc left">${chatIconDesc} </p>
+						<div class="clear_both"></div>
+					</div>
+		
+					<div class="section">
+						<div class="icon left">
+							<div class="coshopHelpIcons collaborationDialogWidgetHighlightIcon center"></div>
+						</div>
+						<p tabindex="0" title="${highlightIconDesc}" class="desc left">${highlightIconDesc} </p>
+						<div class="clear_both"></div>
+					</div>			
+		
+		
+					<div class="section">
+						<div class="icon left">
+							<div class="coshopHelpIcons collaborationDialogWidgetHelpIcon center"></div>
+						</div>
+						<p tabindex="0" title="${helpIconDesc}" class="desc left">${helpIconDesc} </p>
+						<div class="clear_both"></div>
+					</div>			
+					
+					<div>
+						<span class="primary_button">
+							<span class="button_container">
+								<span class="button_bg">
+									<span class="button_top">
+										<span class="button_bottom">
+											<a href="#" dojoAttachPoint="helpContinueShoppingButton">${continueShopping} </a>
+										</span>
+									</span>
+								</span>
+							</span>
+						</span>			
+					</div>
+																	
+			</div>	
+						
+		
+			<div class="footer">
+			    <div class="bot_left"></div>
+			    <div class="bot_right"></div>
+			</div>
+					
+		
+		</div>		
+	</div>
+	
+	<!--  permission dialog -->
+	<div dojoType="dijit.Dialog" id="permissionDialogDijit">
+	
+		<div class="coshopHelp">	
+			<div>
+				<div class="top_left"></div>
+				<div class="top_right"></div>
+			</div>
+			
+			<div class="header padding">
+
+			</div>
+			
+			<div class="bodycontent padding">
+				<h2 tabindex="0" title="${permission_dialog_title}" class="title">${permission_dialog_title}</h2>
+				<div class="desc"></div>
+				<p tabindex="0" id="permissionDialogDesc">${permission_dialog_desc}</p>
+				<p tabindex="0" id="permissionDialogDesc2">${permission_dialog_desc2}</p>		
+				<div class="clear_both">
+						<span class="primary_button">
+							<span class="button_container">
+								<span class="button_bg">
+									<span class="button_top">
+										<span class="button_bottom">
+											<a href="#" id="permissionAcceptButton"> ${accept} 
+											</a>
+										</span>
+									</span>
+								</span>
+							</span>
+						</span>
+						<span class="secondary_button">
+							<span class="button_container">
+								<span class="button_bg">
+									<span class="button_top">
+										<span class="button_bottom">
+											<a href="#"	id="permissionDeclineButton"> ${decline} 
+											</a>
+										</span>
+									</span>
+								</span>
+							</span>
+						</span>
+				</div>												
+			</div>	
+								
+			<div class="footer">
+			    <div class="bot_left"></div>
+			    <div class="bot_right"></div>
+			</div>
+					
+		
+		</div>		
+
+	</div>
+</div>

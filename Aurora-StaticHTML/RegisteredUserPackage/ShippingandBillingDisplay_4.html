@@ -1,0 +1,3198 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+
+<html  xmlns:wairole='http://www.w3.org/2005/01/wai-rdf/GUIRoleTaxonomy#' xmlns:waistate='http://www.w3.org/2005/07/aaa' lang='en' xml:lang='en' onkeydown='javascript:activateHighlight(event);'>
+
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+		AuroraESite - [PROPERTIES;TITLE_SHIPMENT_DISPLAY;Shipping and Billing Display]
+</title>
+<link rel="stylesheet" href="../StoreAssets/css/common1_1.css" type="text/css"/>
+<script type="text/javascript" src="../dojo18/dojo/dojo.js" djConfig="parseOnLoad: false, isDebug: false,  modulePaths: {storetext: '../../StoreAssets'}, useCommentedJson: true,locale: 'en-us' "></script>
+<!-- BEGIN CommonJSToInclude.jspf -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0;" />
+<meta name="CommerceSearch" content="storeId_10152" />
+<link rel="shortcut icon" href="../StoreAssets/images/favicon.ico" mce_href="../StoreAssets/images/favicon.ico"/>
+<script type="text/javascript">
+	// Convert the WCParam object which contains request properties into javascript object
+	var WCParamJS = {
+		"storeId":'10152',
+		"catalogId":'10001',
+		"langId":'-1',
+		"pageView":'',
+		"orderBy":'',
+		"orderByContent":'',
+		"searchTerm":''
+	};
+	var absoluteURL = document.location.href.split("/");
+	absoluteURL.pop();
+	absoluteURL = absoluteURL.join("/") + "/";
+	var imageDirectoryPath = "../StoreAssets/";
+	var styleDirectoryPath = "images/colors/color1/";
+	var supportPaymentTypePromotions = false;
+	var subsFulfillmentFrequencyAttrName = "fulfillmentFrequency";
+	var subsPaymentFrequencyAttrName = "paymentFrequency";
+	var subsTimePeriodAttrName = "timePeriod";
+	var storeNLS = null;
+	//Summary: Returns the absolute URL to use for prefixing any Ajax URL call.
+	//Description: Dojo does not handle the case where the parameters in the URL are delimeted by the "/" forward slash. Therefore, in order to
+	//             workaround the issue, all AJAX requests must be done using absolute URLs rather than relative.
+	//Returns: The absolute URL to use for prefixing any Ajax URL call.
+	function getAbsoluteURL() {
+		if (absoluteURL != "") {
+			var currentURL = document.URL;
+			var currentProtocol = "";
+			if (currentURL.indexOf("://") != -1) {
+				currentProtocol = currentURL.substring(0, currentURL.indexOf("://"));
+			}
+			var savedProtocol = "";
+			if (absoluteURL.indexOf("://") != -1) {
+				savedProtocol = absoluteURL.substring(0, absoluteURL.indexOf("://"));
+			}
+			if (currentProtocol != savedProtocol) {
+				absoluteURL = currentProtocol + absoluteURL.substring(absoluteURL.indexOf("://"));
+			}
+		}
+		return absoluteURL;
+	}
+	//Summary: Returns the path pointing to the shared image directory.
+	//Description: In order to get the image directory path in any javascript file, this function can be used.
+	//Returns: The path to reference images.
+	function getImageDirectoryPath() {
+		return imageDirectoryPath;
+	}
+	//Summary: Returns the path pointing to the directory containing color-dependant image files.
+	//Description: In order to get the directory containing color-dependant image files in any javascript file, this function can be used.
+	//Returns: The path to reference color-dependant image files.
+	function getStyleDirectoryPath() {
+		return styleDirectoryPath;
+	}
+</script>
+<script type="text/javascript" src="../StoreAssets/javascript/MessageHelper.js"></script>
+<script type="text/javascript" src="../StoreAssets/javascript/StoreCommonUtilities.js"></script>
+<script>
+	dojo.require("wc.service.common");
+	dojo.require("dojo.number");
+</script>
+<script type="text/javascript">
+ //Set the default NLS to use in the store.
+ if(storeNLS == null) {
+	 dojo.requireLocalization("storetext", "StoreText");
+	 storeNLS = dojo.i18n.getLocalization("storetext","StoreText");
+ }
+</script>
+<!-- END CommonJSToInclude.jspf -->
+
+<script type="text/javascript" src="../StoreAssets/javascript/UserArea/AddressHelper.js"></script>
+<script type="text/javascript" src="../StoreAssets/javascript/CatalogArea/CategoryDisplay.js"></script>
+<script type="text/javascript" src="../StoreAssets/javascript/CheckoutArea/CheckoutHelper.js"></script>
+<script type="text/javascript" src="../StoreAssets/javascript/MessageHelper.js"></script>
+<script type="text/javascript" src="../StoreAssets/javascript/ServicesDeclaration.js"></script>
+<script type="text/javascript" src="../StoreAssets/javascript/CheckoutArea/ShippingAndBillingServicesDeclaration.js"></script>
+<script type="text/javascript" src="../StoreAssets/javascript/CommonContextsDeclarations.js"></script>
+<script type="text/javascript" src="../StoreAssets/javascript/CommonControllersDeclaration.js"></script>
+<script type="text/javascript" src="../StoreAssets/javascript/ServicesEventMapping.js"></script>
+<script type="text/javascript" src="../StoreAssets/javascript/CheckoutArea/ShippingAndBillingControllersDeclaration.js"></script>
+<script type="text/javascript" src="../StoreAssets/javascript/Widgets/Search.js"></script>
+<script type="text/javascript" src="../StoreAssets/javascript/Widgets/MiniShopCartDisplay/MiniShopCartDisplay.js"></script>
+<script type="text/javascript" src="../StoreAssets/javascript/Widgets/Department/Department.js"></script>
+<script type="text/javascript" src="../StoreAssets/javascript/Common/ShoppingActions.js"></script>
+<script type="text/javascript" src="../StoreAssets/javascript/Widgets/QuickInfo/QuickInfo.js"></script>
+<script type="text/javascript" src="../StoreAssets/javascript/Widgets/ShoppingList/ShoppingList.js"></script>
+<script type="text/javascript" src="../StoreAssets/javascript/Widgets/ShoppingList/ShoppingListServicesDeclaration.js"></script>
+<!-- BEGIN CommonUtilities.jspf -->
+
+<script type="text/javascript">
+    dojo.addOnLoad(function() {
+	MessageHelper.setMessage("ERR_RESOLVING_SKU", "[PROPERTIES;ERR_RESOLVING_SKU;Your selection is either incomplete or not in stock. Please be sure to supply a value for each attribute or consider a different combination of values.]");
+	MessageHelper.setMessage("QUANTITY_INPUT_ERROR", "[PROPERTIES;QUANTITY_INPUT_ERROR;The value in the Quantity field is invalid. Ensure the value is a positive integer and try again.]");
+	MessageHelper.setMessage("WISHLIST_ADDED", "[PROPERTIES;WISHLIST_ADDED;The item has been successfully added to your WishList]");
+	MessageHelper.setMessage("ERROR_RecipientTooLong", "[PROPERTIES;ERROR_RecipientTooLong;The value entered in the recipient field is too long.]");
+	MessageHelper.setMessage("ERROR_FirstNameTooLong", "[PROPERTIES;ERROR_FirstNameTooLong;The value entered in the first name field is too long.]");
+	MessageHelper.setMessage("ERROR_LastNameTooLong", "[PROPERTIES;ERROR_FirstNameTooLong;The value entered in the first name field is too long.]");
+	MessageHelper.setMessage("ERROR_MiddleNameTooLong", "[PROPERTIES;ERROR_MiddleNameTooLong;The value entered in the middle name field is too long.]");
+	MessageHelper.setMessage("ERROR_AddressTooLong", "[PROPERTIES;ERROR_AddressTooLong;The value entered in the street address field is too long.]");
+	MessageHelper.setMessage("ERROR_CityTooLong", "[PROPERTIES;ERROR_CityTooLong;The value entered in the city field is too long.]");
+	MessageHelper.setMessage("ERROR_StateTooLong", "[PROPERTIES;ERROR_StateTooLong;The value entered in the state/province field is too long.]");
+	MessageHelper.setMessage("ERROR_CountryTooLong", "[PROPERTIES;ERROR_CountryTooLong;The value entered in the country/region field is too long.]");
+	MessageHelper.setMessage("ERROR_ZipCodeTooLong", "[PROPERTIES;ERROR_ZipCodeTooLong;The value entered in the ZIP code/postal code field is too long.]");
+	MessageHelper.setMessage("ERROR_EmailTooLong", "[PROPERTIES;ERROR_EmailTooLong;The value entered in the email field is too long.]");
+	MessageHelper.setMessage("ERROR_PhoneTooLong", "[PROPERTIES;ERROR_PhoneTooLong;The value entered in the phone number field is too long.]");
+	MessageHelper.setMessage("ERROR_RecipientEmpty", "[PROPERTIES;ERROR_RecipientEmpty;The recipient field cannot be empty.]");
+	MessageHelper.setMessage("ERROR_LastNameEmpty", "[PROPERTIES;ERROR_LastNameEmpty;The last name field cannot be empty.]");
+	MessageHelper.setMessage("ERROR_MiddleNameEmpty", "[PROPERTIES;ERROR_MiddleNameEmpty;The middle name field cannot be empty.]");
+	MessageHelper.setMessage("ERROR_AddressEmpty", "[PROPERTIES;ERROR_AddressEmpty;The street address field cannot be empty.]");
+	MessageHelper.setMessage("ERROR_CityEmpty", "[PROPERTIES;ERROR_CityEmpty;The city field cannot be empty.]");
+	MessageHelper.setMessage("ERROR_StateEmpty", "[PROPERTIES;ERROR_StateEmpty;The state/province field cannot be empty.]");
+	MessageHelper.setMessage("ERROR_CountryEmpty", "[PROPERTIES;ERROR_CountryEmpty;The country/region field cannot be empty.]");
+	MessageHelper.setMessage("ERROR_ZipCodeEmpty", "[PROPERTIES;ERROR_ZipCodeEmpty;The ZIP code/postal code field cannot be empty.]");
+	MessageHelper.setMessage("ERROR_EmailEmpty", "[PROPERTIES;ERROR_EmailEmpty;The Email address field cannot be empty.]");
+	MessageHelper.setMessage("ERROR_FirstNameEmpty", "[PROPERTIES;ERROR_FirstNameEmpty;The first name field cannot be empty.]");
+	MessageHelper.setMessage("ERROR_INVALIDEMAILFORMAT", "[PROPERTIES;ERROR_INVALIDEMAILFORMAT;The email entered is not in a valid format.]");       
+	MessageHelper.setMessage("ERROR_MESSAGE_TYPE", "[PROPERTIES;ERROR_MESSAGE_TYPE;Error:]");
+	MessageHelper.setMessage("ERROR_INVALIDPHONE", "[PROPERTIES;ERROR_INVALIDPHONE;The phone number entered is not in a valid format.]");
+    });
+</script>
+<!-- END CommonUtilities.jspf -->
+
+<script type="text/javascript">
+	dojo.addOnLoad(function() { 
+		CheckoutHelperJS.setCommonParameters('-1','10152','10001');
+		CheckoutHelperJS.setSinglePageCheckout(true);
+		ServicesDeclarationJS.setCommonParameters('-1','10152','10001');
+		SBServicesDeclarationJS.setCommonParameters('-1','10152','10001');
+		SBServicesDeclarationJS.orderPrepare='';
+		SBServicesDeclarationJS.setAjaxCheckOut(true);
+		SBServicesDeclarationJS.setSinglePageCheckout(true);
+		CommonContextsJS.setCommonParameters('-1','10152','10001');
+		SBControllersDeclarationJS.setAjaxCheckOut('true');
+		SBControllersDeclarationJS.setSinglePageCheckout(true);
+		SBControllersDeclarationJS.setControllerURL('traditionalShipmentDetailsController','https:///webapp/wcs/stores/servlet/TraditionalAjaxShippingDetailsURL?catalogId=10001&amp;langId=-1&amp;storeId=10152');
+		SBControllersDeclarationJS.setControllerURL('shippingAddressSelectBoxAreaController','https:///webapp/wcs/stores/servlet/ShippingAddressDisplayView?catalogId=10001&amp;langId=-1&amp;storeId=10152&amp;forceShipmentType=1');
+		SBControllersDeclarationJS.setControllerURL('multipleShipmentDetailsController','https:///webapp/wcs/stores/servlet/AjaxMultipleShipmentOrderItemDetailsView?catalogId=10001&amp;langId=-1&amp;storeId=10152');
+		SBControllersDeclarationJS.setControllerURL('currentOrderTotalsAreaController','https:///webapp/wcs/stores/servlet/CurrentOrderInformationView?catalogId=10001&amp;orderId=&amp;langId=-1&amp;storeId=10152');
+		SBControllersDeclarationJS.setControllerURL('billingAddressSelectBoxAreaController','https:///webapp/wcs/stores/servlet/BillingAddressDisplayView?catalogId=10001&amp;langId=-1&amp;storeId=10152');
+		CommonContextsJS.setContextProperty('billingAddressDropDownBoxContext','billingURL1','https:///webapp/wcs/stores/servlet/BillingAddressDisplayView_1?catalogId=10001&langId=-1&storeId=10152');
+		CommonContextsJS.setContextProperty('billingAddressDropDownBoxContext','billingURL2','https:///webapp/wcs/stores/servlet/BillingAddressDisplayView_2?catalogId=10001&langId=-1&storeId=10152');
+		CommonContextsJS.setContextProperty('billingAddressDropDownBoxContext','billingURL3','https:///webapp/wcs/stores/servlet/BillingAddressDisplayView_3?catalogId=10001&langId=-1&storeId=10152');
+		MessageHelper.setMessage("ERROR_RETRIEVE_PRICE", "[PROPERTIES;GENERICERR_MAINTEXT;The store has encountered a problem processing the last request. Please try again. If the problem persists, [PROPERTIES;GENERICERR_CONTACT_US;contact us] for assistance.]");
+		MessageHelper.setMessage("ERROR_UPDATE_FIRST", "[PROPERTIES;ERROR_UPDATE_FIRST;The shipping information has been modified. Please click Update before continuing.]");
+		MessageHelper.setMessage("SHOPCART_ADDED", "[PROPERTIES;SHOPCART_ADDED;The item has been successfully added to your shopping cart]");
+		MessageHelper.setMessage("SHOPCART_REMOVEITEM",  "[PROPERTIES;SHOPCART_REMOVEITEM;The item was removed from the Shopping Cart.]");
+		MessageHelper.setMessage("SHIPPING_INVALID_ADDRESS", "[PROPERTIES;SHIPPING_INVALID_ADDRESS;Please select a valid address]");
+		MessageHelper.setMessage("ERROR_QUICKCHECKOUT_ADDRESS_CHANGE", "[PROPERTIES;ERROR_QUICKCHECKOUT_ADDRESS_CHANGE;Please use My Account to change your quick checkout profile address.]");
+		MessageHelper.setMessage("REQUESTED_SHIPPING_DATE_OUT_OF_RANGE_ERROR", "[PROPERTIES;REQUESTED_SHIPPING_DATE_OUT_OF_RANGE_ERROR;The requested shipping date must be a future date.]");
+		MessageHelper.setMessage("ERROR_ShippingInstructions_TooLong", "[PROPERTIES;ERROR_ShippingInstructions_TooLong;The value entered in the Shipping Instructions field is too long.]");		
+		MessageHelper.setMessage("PAST_DATE_ERROR", "[PROPERTIES;PAST_DATE_ERROR;The order date must be a current or future date.]");
+		MessageHelper.setMessage("SCHEDULE_ORDER_MISSING_START_DATE", "[PROPERTIES;SCHEDULE_ORDER_MISSING_START_DATE;Specify a start date for your order.]");
+		MessageHelper.setMessage("SCHEDULE_ORDER_MISSING_FREQUENCY", "[PROPERTIES;SCHEDULE_ORDER_MISSING_FREQUENCY;Specify the frequency of your order.]");
+		MessageHelper.setMessage("ERROR_CONTRACT_EXPIRED_GOTO_ORDER", "???ERROR_CONTRACT_EXPIRED_GOTO_ORDER???");
+		MessageHelper.setMessage("ERROR_SWITCH_SINGLE_SHIPMENT", "???ERROR_SWITCH_SINGLE_SHIPMENT???");
+	}); 
+</script>
+</head>
+<body>
+<!-- BEGIN OrderShippingBillingDetails.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">OrderShippingBillingDetails.jsp</div>
+<!-- Page Start -->
+
+	<div id="page">
+<!-- BEGIN CommonJSPFToInclude.jspf -->
+
+<!-- BEGIN ProgressBar.jspf -->
+
+<div id="progress_bar_dialog" dojoType="dijit.Dialog" style="display: none;">
+	<div id="progress_bar">
+		<div id="loading_popup">
+			<div class="top_left" id="WC_StoreCommonUtilities_div_1"><img src="../StoreAssets/images/colors/color1/transparent.gif" alt="[PROPERTIES;No_Image;No image available]"/></div>
+		        <div class="top_right" id="WC_StoreCommonUtilities_div_2"><img src="../StoreAssets/images/colors/color1/transparent.gif" alt="[PROPERTIES;No_Image;No image available]"/></div>
+		        <div class="header" id="WC_StoreCommonUtilities_div_3"></div>
+		        <div class="bodyarea" id="WC_StoreCommonUtilities_div_4">
+				<div class="bodycontent" id="WC_StoreCommonUtilities_div_5">
+					<img src="../StoreAssets/images/colors/color1/loading.gif" width="44" height="44" border="0" alt="[PROPERTIES;PROGRESS_BAR_REQUEST_PROCESSED;Your request is being processed.]"/>
+			        </div>
+			</div>
+			<div class="footer" id="WC_StoreCommonUtilities_div_6">
+				 <div class="bot_left" id="WC_StoreCommonUtilities_div_7"></div>
+				 <div class="bot_right" id="WC_StoreCommonUtilities_div_8"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- END ProgressBar.jspf -->
+
+<!-- BEGIN MessageDisplay.jspf -->
+
+<span class="spanacce" id="MessageArea_ACCE_Title">[PROPERTIES;DIALOG_TITLE_MESSAGE;Message Dialog]</span>
+<div id="MessageArea" class="store_message" role="alert" aria-labelledby="MessageArea_ACCE_Title">
+	<div id="msgpopup_content_wrapper" class="content">
+		<a id="clickableErrorMessageImg" role="button" class="close right" href="JavaScript:MessageHelper.hideMessageArea();" title="[PROPERTIES;CLOSE;Close]">
+			<div class="close_text left">[PROPERTIES;CLOSE;Close]</div>
+			<div class="close_icon left"></div>
+			<div class="clear_float"></div>
+		</a>
+		<div class="clear_float"></div>
+		<div class="message">
+			<div class="message_icon left">
+				<img id="error_icon" style="display:none;" class="error_icon" src="../StoreAssets/images/colors/color1/error_icon.png" alt=""/>
+				<img id="success_icon" style="display:none;" class="error_icon" src="../StoreAssets/images/colors/color1/success_icon.png" alt=""/>
+			</div>
+			<div class="message_text left" role="region" aria-required="true" aria-labelledby="MessageArea">
+				<span id="ErrorMessageText">
+				</span>
+			</div>
+			<div class="clear_float"></div>
+		</div>		
+	</div>
+</div>
+<span class="spanacce" id="ariaMessage_ACCE_Label">[PROPERTIES;ACCE_Display_Update_Message;Display Update Message]</span>
+<span class="spanacce" role="region" aria-labelledby="ariaMessage_ACCE_Label" id="ariaMessage" aria-live="assertive" aria-atomic="true" aria-relevant="additions"></span>
+<!-- END MessageDisplay.jspf -->
+
+<span id="widget_product_comparison_ACCE_Label" class="spanacce">[PROPERTIES;DIALOG_TITLE_PRODUCT_COMPARE;Product Compare Dialog]</span>
+<div id="widget_product_comparison" style="display:none;" role="dialog" aria-labelledby="widget_product_comparison_ACCE_Label" title="[PROPERTIES;DIALOG_TITLE_PRODUCT_COMPARE;Product Compare Dialog]" >
+	<div id="widget_product_comparison_popup" dojoType="dijit.Dialog" closeOnTimeOut="false">
+		<div class="widget_product_comparison_popup widget_site_popup">													
+			<!-- Top Border Styling -->
+
+			<div class="top">
+				<div class="left_border"></div>
+				<div class="middle"></div>
+				<div class="right_border"></div>
+			</div>
+			<div class="clear_float"></div>
+			<!-- Main Content Area -->
+
+			<div class="middle">
+				<div class="content_left_border">
+					<div class="content_right_border">
+						<div class="content">
+							<div class="header">
+								<span>[PROPERTIES;CP_HEADING;Product Comparison]</span>
+								<a id="ComparePopupClose" class="close" href="javascript:dijit.byId('widget_product_comparison_popup').hide();" title="[PROPERTIES;CP_CLOSE;CLOSE]"></a>
+								<div class="clear_float"></div>
+							</div>
+							<div class="body">
+								[PROPERTIES;CP_MESSAGE;The maximum number of products that can be compared is 4. Please refine your selection.]
+							</div>
+							<div class="footer">
+								<div class="button_container ">
+									<a id="ComparePopupOK" class="button_primary" tabindex="0" href="javascript: dijit.byId('widget_product_comparison_popup').hide();" title="[PROPERTIES;CP_OK;OK]">
+										<div class="left_border"></div>
+										<div class="button_text">[PROPERTIES;CP_OK;OK]</div>
+										<div class="right_border"></div>
+									</a>
+									<div class="clear_float"></div>
+								</div>
+							</div>
+							<div class="clear_float"></div>
+						<!-- End content Section -->
+
+						</div>
+					<!-- End content_right_border -->
+
+					</div>
+				<!-- End content_left_border -->
+
+				</div>
+			</div>
+			<div class="clear_float"></div>
+			<!-- Bottom Border Styling -->
+
+			<div class="bottom">
+				<div class="left_border"></div>
+				<div class="middle"></div>
+				<div class="right_border"></div>
+			</div>
+			<div class="clear_float"></div>
+		</div>
+	</div>
+</div>
+<!-- END CommonJSPFToInclude.jspf -->
+
+<div title="" widgetid="quickInfoPopup_1" style="position: fixed; opacity: 1; left: 454px; top: 100px; z-index: 951; display: none;" id="quickInfoPopup_1" aria-labelledby="quickInfoPopup_title" role="dialog" class="dijitDialog" tabindex="-1" wairole="dialog" waistate="labelledby-quickInfoPopup_title">
+	<div title="Quick Info" dojoattachpoint="titleBar" class="dijitDialogTitleBar">
+	<span dojoattachpoint="titleNode" class="dijitDialogTitle" id="quickInfoPopup_title"><span>Quick Info<span title="QUICK_VIEW" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="QUICK_VIEW"></span></span></span>
+	<span dojoattachpoint="closeButtonNode" class="dijitDialogCloseIcon" dojoattachevent="onclick: onCancel" title="Cancel">
+		<span dojoattachpoint="closeText" class="closeText" title="Cancel">x</span>
+	</span>
+	</div>
+		<div dojoattachpoint="containerNode" class="dijitDialogPaneContent">
+	<div class="widget_quick_info_popup">
+		<!-- Top Border Styling -->
+
+		<div class="top">
+			<div class="left_border"></div>
+			<div class="middle"></div>
+			<div class="right_border"></div>
+		</div>
+		<div class="clear_float"></div>
+		<!-- Main Content Area -->
+
+		<div class="middle">
+			<div class="content_left_border">
+				<div class="content_right_border">
+				<span id="quickInfoRefreshArea_ACCE_Label" class="spanacce"><span>Quick Info Content<span title="QUICK_VIEW_CONTENT_ACCE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="QUICK_VIEW_CONTENT_ACCE"></span></span></span>
+				<div title="" widgetid="quickInfoRefreshArea" id="quickInfoRefreshArea" class="content dijitContentPane" dojotype="wc.widget.RefreshArea" controllerid="QuickInfoDetailsController" ariamessage="Quick Info Content Display Updated" arialiveid="ariaMessage" role="region" aria-labelledby="quickInfoRefreshArea_ACCE_Label">
+<!-- BEGIN QuickInfo.jsp -->
+
+<div class="jspcaption" style="display:none">QuickInfo.jsp</div>
+<div class="left_column">
+	<div class="image_container">
+		<img id="quickInfoMainImage" src="../StoreAssets/images/catalog/apparel/women/womens_dresses_330x330/WD_028_a_red.jpg" alt="Image for Hermitage Ruched Bodice Cocktail Dress from AuroraESite" title="Image for Hermitage Ruched Bodice Cocktail Dress from AuroraESite" height="330" width="330">
+	</div>
+	<div class="other_views">
+		<ul>
+		</ul>
+	</div>
+</div>
+<div class="right_column">
+	<a id="WC_QuickInfo_Link_close_1" onclick="javascript: document.getElementById('quickInfoPopup_1').style.display='none';" class="close_group" title="[PROPERTIES;QI_CLOSE_BUTTON;Close button]">
+		<div class="close"></div>
+		<div class="close_text">[PROPERTIES;CLOSE;Close]</div>
+	</a>
+	<span class="main_header">Hermitage Ruched Bodice Cocktail Dress</span>
+	<div class="clear_float"></div>
+	<span class="sku">SKU: AuroraWMDRS-002</span>
+	<div class="clear_float"></div>
+	<div class="item_spacer_5px"></div>
+<!-- BEGIN PriceDisplay.jsp -->
+<div class="jspcaption" style="display:none">PriceDisplay.jsp</div>
+		<span id="listPrice_10001" class="old_price">$250.00</span>
+		<span id="offerPrice_10001" class="price" itemprop="price">$100.00</span>
+<!-- END PriceDisplay.jsp -->
+
+<!-- BEGIN Discounts.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">Discounts.jsp</div>
+</span>
+<!-- END Discounts.jsp -->
+	<div class="clear_float"></div>
+	<div class="divider"></div>
+	<p>This strapless cocktail dress shows off your shoulders and the ruched bodice enhances your gorgeous figure. Bright and elegant, this dress will make you the center of attention in any party.</p>
+	<ul>
+			<li>
+				<span id="descAttributeName_1">
+					[PROPERTIES;ATTRNAMEKEY;Construction:]
+				</span>
+				<span id="descAttributeValue_1">Knit</span>
+			</li>
+			<li>
+				<span id="descAttributeName_2">
+					[PROPERTIES;ATTRNAMEKEY;Length:]
+				</span>
+				<span id="descAttributeValue_2">Short</span>
+			</li>
+			<li>
+				<span id="descAttributeName_3">
+					[PROPERTIES;ATTRNAMEKEY;Occasion:]
+				</span>
+				<span id="descAttributeValue_3">Cocktail &amp; Evening</span>
+			</li>
+			<li>
+				<span id="descAttributeName_4">
+					[PROPERTIES;ATTRNAMEKEY;Material:]
+				</span>
+				<span id="descAttributeValue_4">Synthetic</span>
+			</li>
+	</ul>
+	<a id="WC_QuickInfo_Link_viewdetails" href="HermitageRuchedBodiceCocktailDressAuroraESite.html">[PROPERTIES;QI_VIEW_FULL_DETAILS;View full product details]</a>
+	<div class="clear_float"></div>
+	<div class="divider"></div>
+			<div class="color_and_size">
+					<div class="heading">
+						[PROPERTIES;ATTRNAMEKEY;Color:]
+						<span class="selectedAttribute" id="quickinfo_swatch_selection_Color">Red</span>
+					</div>
+					<span class="spanacce" id="swatch_ACCE_description_Color">[PROPERTIES;ACCE_Region_Price_Update;The price of the product might be updated based on your selection]</span>
+					<div class="color_swatch_list" role="radiogroup" aria-label="Color" aria-describedby="swatch_ACCE_description_Color">
+						<ul>
+								<li>
+									<a role="radio" aria-setsize="3" aria-posinset="1" aria-checked="true" id="WC_QuickInfo_Swatch_Color_Red" href='javascript:QuickInfoJS.selectSwatch("Color","Red","quickInfoSwatch_Color_Red","quickInfoSwatch_Color_");
+														QuickInfoJS.notifyAttributeChange();
+														QuickInfoJS.selectItem(true,true);' title="Red">
+										<img id="quickInfoSwatch_Color_Red" alt="Red" src="../StoreAssets/images/catalog/apparel/women/Swatches/AuroraWMDRS-1/WD_028_a_red_s.jpg" class="color_swatch_selected">
+									</a>
+								</li>
+								<li>
+									<a role="radio" aria-setsize="3" aria-posinset="2" aria-checked="false" id="WC_QuickInfo_Swatch_Color_Teal" href='javascript:QuickInfoJS.selectSwatch("Color","Teal","quickInfoSwatch_Color_Teal","quickInfoSwatch_Color_");
+														QuickInfoJS.notifyAttributeChange();
+														QuickInfoJS.selectItem(true,true);' title="Teal">
+										<img id="quickInfoSwatch_Color_Teal" alt="Teal" src="../StoreAssets/images/catalog/apparel/women/Swatches/AuroraWMDRS-1/WD_028_a_teal_s.jpg" class="color_swatch">
+									</a>
+								</li>
+								<li>
+									<a role="radio" aria-setsize="3" aria-posinset="3" aria-checked="false" id="WC_QuickInfo_Swatch_Color_Yellow" href='javascript:QuickInfoJS.selectSwatch("Color","Yellow","quickInfoSwatch_Color_Yellow","quickInfoSwatch_Color_");
+														QuickInfoJS.notifyAttributeChange();
+														QuickInfoJS.selectItem(true,true);' title="Yellow">
+										<img id="quickInfoSwatch_Color_Yellow" alt="Yellow" src="../StoreAssets/images/catalog/apparel/women/Swatches/AuroraWMDRS-1/WD_028_a_yellow_s.jpg" class="color_swatch">
+									</a>
+								</li>
+						</ul>
+					</div>
+					<div class="clear_float"></div>
+					<div class="item_spacer_10px"></div>
+					<div class="heading">
+						[PROPERTIES;ATTRNAMEKEY;Available Sizes:]
+						<span class="selectedAttribute" id="quickinfo_swatch_selection_Available Sizes">M</span>
+					</div>
+					<span class="spanacce" id="swatch_ACCE_description_Available-Sizes">[PROPERTIES;ACCE_Region_Price_Update;The price of the product might be updated based on your selection]</span>
+					<div class="color_swatch_list" role="radiogroup" aria-label="Available Sizes" aria-describedby="swatch_ACCE_description_Available-Sizes">
+						<ul>
+								<li>
+									<a aria-disabled="false" role="radio" aria-setsize="6" aria-posinset="1" aria-checked="false" id="WC_QuickInfo_Swatch_Available Sizes_XS" href='javascript:QuickInfoJS.selectSwatch("Available Sizes","XS","quickInfoSwatch_Available Sizes_XS","quickInfoSwatch_Available Sizes_");
+														QuickInfoJS.notifyAttributeChange();
+														QuickInfoJS.selectItem(true,true);' title="XS">
+										<img id="quickInfoSwatch_Available Sizes_XS" alt="XS" src="../StoreAssets/images/catalog/apparel/women/Swatches/swatch_size/size_xs_enabled.png" class="color_swatch">
+									</a>
+								</li>
+								<li>
+									<a aria-disabled="true" role="radio" aria-setsize="6" aria-posinset="2" aria-checked="false" id="WC_QuickInfo_Swatch_Available Sizes_S" href='javascript:QuickInfoJS.selectSwatch("Available Sizes","S","quickInfoSwatch_Available Sizes_S","quickInfoSwatch_Available Sizes_");
+														QuickInfoJS.notifyAttributeChange();
+														QuickInfoJS.selectItem(true,true);' title="S">
+										<img id="quickInfoSwatch_Available Sizes_S" alt="S" src="../StoreAssets/images/catalog/apparel/women/Swatches/swatch_size/size_s_disabled.png" class="color_swatch_disabled">
+									</a>
+								</li>
+								<li>
+									<a role="radio" aria-setsize="6" aria-posinset="3" aria-checked="false" id="WC_QuickInfo_Swatch_Available Sizes_M" href='javascript:QuickInfoJS.selectSwatch("Available Sizes","M","quickInfoSwatch_Available Sizes_M","quickInfoSwatch_Available Sizes_");
+														QuickInfoJS.notifyAttributeChange();
+														QuickInfoJS.selectItem(true,true);' title="M">
+										<img id="quickInfoSwatch_Available Sizes_M" alt="M" src="../StoreAssets/images/catalog/apparel/women/Swatches/swatch_size/size_m_enabled.png" class="color_swatch_selected">
+									</a>
+								</li>
+								<li>
+									<a aria-disabled="false" role="radio" aria-setsize="6" aria-posinset="4" aria-checked="false" id="WC_QuickInfo_Swatch_Available Sizes_L" href='javascript:QuickInfoJS.selectSwatch("Available Sizes","L","quickInfoSwatch_Available Sizes_L","quickInfoSwatch_Available Sizes_");
+														QuickInfoJS.notifyAttributeChange();
+														QuickInfoJS.selectItem(true,true);' title="L">
+										<img id="quickInfoSwatch_Available Sizes_L" alt="L" src="../StoreAssets/images/catalog/apparel/women/Swatches/swatch_size/size_l_enabled.png" class="color_swatch">
+									</a>
+								</li>
+								<li>
+									<a aria-disabled="false" role="radio" aria-setsize="6" aria-posinset="5" aria-checked="false" id="WC_QuickInfo_Swatch_Available Sizes_XL" href='javascript:QuickInfoJS.selectSwatch("Available Sizes","XL","quickInfoSwatch_Available Sizes_XL","quickInfoSwatch_Available Sizes_");
+														QuickInfoJS.notifyAttributeChange();
+														QuickInfoJS.selectItem(true,true);' title="XL">
+										<img id="quickInfoSwatch_Available Sizes_XL" alt="XL" src="../StoreAssets/images/catalog/apparel/women/Swatches/swatch_size/size_xl_enabled.png" class="color_swatch">
+									</a>
+								</li>
+								<li>
+									<a aria-disabled="true" role="radio" aria-setsize="6" aria-posinset="6" aria-checked="false" id="WC_QuickInfo_Swatch_Available Sizes_2XL" href='javascript:QuickInfoJS.selectSwatch("Available Sizes","2XL","quickInfoSwatch_Available Sizes_2XL","quickInfoSwatch_Available Sizes_");
+														QuickInfoJS.notifyAttributeChange();
+														QuickInfoJS.selectItem(true,true);' title="2XL">
+										<img id="quickInfoSwatch_Available Sizes_2XL" alt="2XL" src="../StoreAssets/images/catalog/apparel/women/Swatches/swatch_size/size_xxl_disabled.png" class="color_swatch_disabled">
+									</a>
+								</li>
+						</ul>
+					</div>
+					<div class="clear_float"></div>
+					<div class="item_spacer_10px"></div>
+				<input id="WC_QuickInfo_SwatchNames" value="Color_Available Sizes" type="hidden">
+			</div>
+		<div class="clear_float"></div>
+		<div class="divider"></div>
+	<div class="purchase_section" style="position:relative;">
+			<span class="quantity_label left"><label for="WC_QuickInfo_input_quantity">[PROPERTIES;QI_QUANTITY;Quantity]&nbsp;</label></span>
+			<div class="content">
+				<input disabled="disabled" id="WC_QuickInfo_input_quantity" class="quantity_input" value="1" onchange="javascript:QuickInfoJS.setCatEntryQuantity(this.value);" type="text">
+			</div>
+			<div class="clear_float"></div>
+			<div class="item_spacer_7px"></div>
+				<a id="WC_QuickInfo_Link_UpdateCartItem" class="button_add_to_cart" onclick="javascript: document:getElementById('quickInfoPopup_1').style.display='none';" wairole="button" role="button" title="[PROPERTIES;QI_UPDATE_CART_ITEM;Update Cart Item]">
+					<div class="left_border"></div>
+					<div class="button_text">[PROPERTIES;QI_UPDATE_CART_ITEM;Update Cart Item]</div>
+					<div class="right_border"></div>
+				</a>
+				<div class="clear_float"></div>
+		<input id="catEntryParamsForJS" value="{id: '10001', type: 'productbean', skus: [{id: '10046', attributes: {'Available Sizes': 'L','Color': 'Teal'}, 
+			thumbnailAttachments: [], fullImageAttachments: []},{id: '10047', attributes: {'Available Sizes': 'XL','Color': 'Teal'}, 
+			thumbnailAttachments: [], fullImageAttachments: []},{id: '10048', attributes: {'Available Sizes': 'XS','Color': 'Yellow'}, 
+			thumbnailAttachments: [], fullImageAttachments: []},{id: '10049', attributes: {'Available Sizes': 'S','Color': 'Yellow'}, 
+			thumbnailAttachments: [], fullImageAttachments: []},{id: '10050', attributes: {'Available Sizes': 'M','Color': 'Yellow'}, 
+			thumbnailAttachments: [], fullImageAttachments: []},{id: '10051', attributes: {'Available Sizes': 'XL','Color': 'Yellow'}, 
+			thumbnailAttachments: [], fullImageAttachments: []},{id: '10052', attributes: {'Available Sizes': '2XL','Color': 'Yellow'}, 
+			thumbnailAttachments: [], fullImageAttachments: []},{id: '10040', attributes: {'Available Sizes': 'XS','Color': 'Red'}, 
+			thumbnailAttachments: [], fullImageAttachments: []},{id: '10041', attributes: {'Available Sizes': 'M','Color': 'Red'}, 
+			thumbnailAttachments: [], fullImageAttachments: []},{id: '10042', attributes: {'Available Sizes': 'L','Color': 'Red'}, 
+			thumbnailAttachments: [], fullImageAttachments: []},{id: '10043', attributes: {'Available Sizes': 'XL','Color': 'Red'}, 
+			thumbnailAttachments: [], fullImageAttachments: []},{id: '10044', attributes: {'Available Sizes': 'S','Color': 'Teal'}, 
+			thumbnailAttachments: [], fullImageAttachments: []},{id: '10045', attributes: {'Available Sizes': 'M','Color': 'Teal'}, 
+			thumbnailAttachments: [], fullImageAttachments: []}]}" type="hidden">
+	</div>
+</div>
+<div class="clear_float"></div>
+
+<!-- END QuickInfo.jsp -->
+</div>
+				<!-- End content_right_border -->
+
+				<span class="elementKeyIcon" title="ACCE_Status_Quick_View_Content_updated=Quick Info Content Display Updated"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+			<!-- End content_left_border -->
+
+			</div>
+		</div>
+		<div class="clear_float"></div>
+		<!-- Bottom Border Styling -->
+
+		<div class="bottom">
+			<div class="left_border"></div>
+			<div class="middle"></div>
+			<div class="right_border"></div>
+		</div>
+		<div class="clear_float"></div>
+	</div>
+</div>
+<span class="elementKeyIcon" title="QUICK_VIEW=Quick Info"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+<script type="text/javascript">
+	dojo.addOnLoad(function() { 
+		CommonControllersDeclarationJS.setControllerURL('QuickInfoDetailsController', '');
+	});        
+</script>
+<div id="shoppingListItemAddedPopup" dojoType="dijit.Dialog" style="display:none;" title="[PROPERTIES;DIALOG_TITLE_MESSAGE;Message Dialog]">
+	<div class="widget_site_popup">
+		<!-- Top Border Styling -->
+
+		<div class="top">
+			<div class="left_border"></div>
+			<div class="middle"></div>
+			<div class="right_border"></div>
+		</div>
+		<div class="clear_float"></div>
+		<!-- Main Content Area -->
+
+		<div class="middle">
+			<div class="content_left_border">
+				<div class="content_right_border">
+					<div class="content">
+						<div class="header">
+							<span>[PROPERTIES;SL_ITEM_ADDED_SUCCESSFULLY;This item has been successfully added to your list.]</span>
+							<a role="button" id="shoppingListItemAddedClose" href="javascript:ShoppingListDialogJS.close();" class="close" title="[PROPERTIES;SL_CLOSE;Close]" alt="[PROPERTIES;SL_CLOSE;Close]"></a>
+							<div class="clear_float"></div>
+						</div>
+							<div class="product">
+								<div class="product_image">
+									<img id="shoppingListItemAddedImg" alt=""/>
+								</div>
+								<div id="shoppingListItemAddedName" class="product_name"></div>
+								<div class="clear_float"></div>
+							</div>
+						<div class="footer">
+							<div class="button_container ">
+								<a id="shoppingListItemAddedContinue" href="javascript:ShoppingListDialogJS.close();" class="button_primary" title="[PROPERTIES;SL_CONTINUE_SHOPPING;Continue Shopping]">
+									<div class="left_border"></div>
+									<div class="button_text">[PROPERTIES;SL_CONTINUE_SHOPPING;Continue Shopping]</div>
+									<div class="right_border"></div>
+								</a>
+								<div class="clear_float"></div>
+							</div>
+						</div>
+						<div class="clear_float"></div>
+					<!-- End content Section -->
+
+					</div>
+				<!-- End content_right_border -->
+
+				</div>
+			<!-- End content_left_border -->
+
+			</div>
+		</div>
+		<div class="clear_float"></div>
+		<!-- Bottom Border Styling -->
+
+		<div class="bottom">
+			<div class="left_border"></div>
+			<div class="middle"></div>
+			<div class="right_border"></div>
+		</div>
+		<div class="clear_float"></div>
+	</div>
+</div>
+		<!-- Import Header Widget -->
+
+		<div class="header_wrapper_position" id="headerWidget">
+<!-- BEGIN Header.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">Header.jsp</div>
+<div id="text_highlight"></div>
+<script type="text/javascript" src="../StoreAssets/javascript/Properties.js"/>"></script>
+	<script type="text/javascript" src="../StoreAssets/javascript/Analytics.js"></script>
+	<script type="text/javascript">
+	dojo.addOnLoad(function() {
+		analyticsJS.storeId=10152;
+		analyticsJS.catalogId=10001;
+		analyticsJS.loadShopCartHandler();
+		analyticsJS.loadPagingHandler();
+		analyticsJS.loadProductQuickInfoHandler('productIdQuickInfo');
+		analyticsJS.loadStoreLocatorPageViews();
+		analyticsJS.loadWishlistHandler();
+		dojo.require("wc.analytics.CoremetricsEventListener");		
+			(new wc.analytics.CoremetricsEventListener()).load(true);
+			});
+	</script>
+<script>
+	var isGuest = false;
+</script>
+<div class="header_wrapper" role="banner">
+	<!--For border customization -->
+
+	<div class="header_top">
+		<div class="left_border"></div>
+		<div class="middle"></div>
+		<div class="right_border"></div>
+	</div>
+	<!-- Main Header Area -->
+
+	<div class="header_left_shadow">
+		<div class="header_right_shadow">				
+			<div class="header">
+				<!-- Start Header Content -->
+
+				<!-- Start Masthead -->
+
+				<div id="masthead">
+					<div class="top"></div>
+					<div class="content">
+						<!-- Masthead Logo Widget -->
+
+						<div class="widget_masthead_logo_position">
+							<div id="widget_masthead_logo1">
+<!-- BEGIN ContentRecommendation.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">ContentRecommendation.jsp</div>
+	<div class="widget_height" tabindex="0">
+							<div class="left_espot">
+									<a id="ContentAreaESpotInfoImgLink_10073_1" 
+										href="WelcometoAuroraESite.html" title="StoreAssets">
+										<img id="ContentAreaESpotImg_HeaderStoreLogo_Content_1" src="../StoreAssets/images/logo.png" alt="StoreAssets"/>
+									</a>
+							</div>
+	</div>
+</span>
+<!-- END ContentRecommendation.jsp -->
+
+							</div>
+						</div>
+						<!-- End Masthead Logo Widget -->
+
+						<!-- Masthead Links Widget -->
+
+						<div class="widget_masthead_links_position" role="navigation">
+							<div id="widget_masthead_links">
+								<div class="left">
+									<div id="masthead_espot">
+<!-- BEGIN ContentRecommendation.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">ContentRecommendation.jsp</div>
+</span>
+<!-- END ContentRecommendation.jsp -->
+									</div>																		
+									<div class="masthead_links">
+										<div class="content">
+											<span class="masthead_links_container">
+													<span class="masthead_links_item"><a id="MyAccountLink" href="MyAccount.html">[PROPERTIES;HEADER_MY_ACCOUNT;My Account]</a></span> [PROPERTIES;DIVIDING_BAR;|]
+													<span class="masthead_links_item"><a id="ShoppingListDisplayLink" href="Wishlist.html">[PROPERTIES;HEADER_SHOPPING_LIST;Wish List]</a></span> [PROPERTIES;DIVIDING_BAR;|]
+<!-- BEGIN LanguageCurrency.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">LanguageCurrency.jsp</div>
+<div id="widget_language_and_currency" style="display:none;">
+	<div id="widget_language_and_currency_popup" dojoType="wc.widget.WCDialog" dojoType="wc.widget.WCDialog" closeOnTimeOut="false" title="[PROPERTIES;DIALOG_TITLE_LANGUAGE_AND_CURRENCY;Language and Currency Dialog]">
+		<div class="widget_language_and_currency_popup widget_site_popup">										
+			<!-- Top Border Styling -->
+
+			<div class="top">
+				<div class="left_border"></div>
+				<div class="middle"></div>
+				<div class="right_border"></div>
+			</div>
+			<div class="clear_float"></div>
+			<!-- Main Content Area -->
+
+			<div class="middle">
+				<div class="content_left_border">
+					<div class="content_right_border">
+						<div class="content">
+							<div class="header">
+								<span>[PROPERTIES;LC_LANGUAGE_CURRENCY_SELECTION;Please select a language and currency]</span>
+								<a id="close" class="close_acce" title="[PROPERTIES;LC_CLOSE;CLOSE]" href="javascript:dijit.byId('widget_language_and_currency_popup').hide();"><img role="button" onmouseover="this.src='../StoreAssets/images/colors/color1/close_hover.png'" onmouseout="this.src='../StoreAssets/images/colors/color1/close_normal.png'" src="../StoreAssets/images/colors/color1/close_normal.png" class="closeImg" alt="[PROPERTIES;LC_CLOSE;CLOSE]"/></a>
+								<div class="clear_float"></div>
+							</div>
+							<div class="selectors">
+								<div class="selector">
+									<span class="option_name">[PROPERTIES;LC_LANGUAGE;Language:]&nbsp;</span>
+									<label for="languageSelection" class="nodisplay">[PROPERTIES;LC_LANGUAGE;Language:]</label>
+									<select class="left" id="languageSelection" name="langId" onchange="javascript:document.getElementById('languageSelectionHidden').value=this.value">
+													<option value='-1' selected="selected">United States English</option>
+													<option value='-7'>简体中文</option>
+													<option value='-2'>Français</option>
+									</select>
+									<div class="clear_float"></div>
+								</div>
+								<div class="selector">
+									<span class="option_name">[PROPERTIES;LC_CURRENCY;Currency:]&nbsp;</span>
+									<label for="currencySelection" class="nodisplay">[PROPERTIES;LC_CURRENCY;Currency:]</label>
+									<select class="left" id="currencySelection" name="currency" onchange="javascript:document.getElementById('currencySelectionHidden').value=this.value">
+													<option value='USD' selected="selected">US Dollar</option>
+													<option value='BRL'>Brazilian Real</option>
+													<option value='CAD'>Canadian Dollar</option>
+													<option value='CNY'>Chinese Yuan</option>
+													<option value='EUR'>Euro</option>
+													<option value='GBP'>British Pound</option>
+													<option value='JPY'>Japanese Yen</option>
+													<option value='KRW'>South Korean Won</option>
+													<option value='PLN'>Polish Zloty</option>
+													<option value='RON'>Romanian Leu</option>
+													<option value='RUB'>Russian Ruble</option>
+													<option value='TWD'>Taiwan Dollar</option>
+									</select>
+									<div class="clear_float"></div>
+								</div>
+								<form id="SetLanguageCurrencyPreferenceForm"action="/webapp/wcs/stores/servlet/SetCurrencyPreference" method="post">
+									<input type="hidden" name="storeId" value="10152"/>
+									<input type="hidden" name="catalogId" value="10001"/>
+									<input type="hidden" id="languageSelectionHidden" name="langId" value="-1"/>
+									<input type="hidden" id="currencySelectionHidden" name="currency" value="USD"/>									
+											<input type="hidden" name="URL" value="/webapp/wcs/stores/servlet/OrderShippingBillingView?currency*=" id="WC_SidebarDisplay_FormInput_URL_2"/>
+												<input type="hidden" name="quickCheckoutProfileForPayment" value="" id="WC_SidebarDisplay_FormInput_parm_1_1"/>
+												<input type="hidden" name="orderId" value="17087" id="WC_SidebarDisplay_FormInput_parm_4_1"/>
+												<input type="hidden" name="forceShipmentType" value="2" id="WC_SidebarDisplay_FormInput_parm_6_1"/>
+								</form>
+							</div>
+							<div class="footer">
+								<div class="button_container ">
+									<a id="LangCurrencyApplyBtn" class="button_primary" tabindex="0" href="javascript:dijit.byId('widget_language_and_currency_popup').hide();">
+										<div class="left_border"></div>
+										<div id="LangCurrencyApplyBtnText" class="button_text">[PROPERTIES;LC_APPLY;Apply]</div>
+										<div class="right_border"></div>
+									</a>
+									<div class="clear_float"></div>
+								</div>
+							</div>
+							<div class="clear_float"></div>
+						<!-- End content Section -->
+
+						</div>
+					<!-- End content_right_border -->
+
+					</div>
+				<!-- End content_left_border -->
+
+				</div>
+			</div>
+			<div class="clear_float"></div>
+			<!-- Bottom Border Styling -->
+
+			<div class="bottom">
+				<div class="left_border"></div>
+				<div class="middle"></div>
+				<div class="right_border"></div>
+			</div>
+			<div class="clear_float"></div>
+		</div>
+	</div>
+</div>
+<span class="masthead_links_item"><a id="LanguageCurrencyChangeLink" href="javaScript: shoppingActionsJS.showWCDialogPopup('widget_language_and_currency_popup');">[PROPERTIES;LC_LANGUAGE_CURRENCY;Language/Currency]</a></span> &#124;
+</span>
+<!-- END LanguageCurrency.jsp -->
+
+												<span class="masthead_links_item"><a id="SignOutLink" href="SignIn.html">[PROPERTIES;HEADER_SIGN_OUT;Sign Out]</a></span>
+											</span>
+										</div>
+									</div>
+									<div class="masthead_social">
+										<div class="content">
+											<span class="masthead_links_container">
+													<span class="masthead_links_item">		
+<!-- BEGIN FacebookConnect.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">FacebookConnect.jsp</div>
+<!-- BEGIN FacebookConnect_UI.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">FacebookConnect_UI.jsp</div>
+ 
+<span id="SocialIntegrationArea">
+	<span id="header-fb-login-button-span" > 
+		<a tabindex="0" onclick="" id="headerFBlogin">
+		    [PROPERTIES;HEADER_CONNECT_TO_FACEBOOK;Connect to Facebook]
+			<img class="img_align" id="WC_FacebookConnectDisconnectDisplayImg_1" src="../StoreAssets/images/socialIntegration/social_networking.png" alt="" /></a>
+	</span> 
+	<span id="header-fb-logout-button-span" class="nodisplay" > 
+		<span id="header_menu_facebook_loaded" style="display:none;">
+			<span id="menu_DropDown_Facebook" class="headerMenu_DropDown_Facebook" 
+				onMouseOver="javascript:fbIntegrationJS.openDropDown();" 
+				onMouseLeave="javascript:fbIntegrationJS.closeDropDown();" 
+				dojoType="wc.widget.WCDropDownButton" 
+				title="[PROPERTIES;FACEBOOK_DROPDOWN_ACTIVATE;Use shift plus enter key then press the down arrow key to disconnect from Facebook.]" 
+				alt="[PROPERTIES;FACEBOOK_DROPDOWN_ACTIVATE;Use shift plus enter key then press the down arrow key to disconnect from Facebook.]" >
+			    <span id="WC_CachedHeaderDisplayFacebook_div" class="dropdown"
+			    	onItemHover="javascript:fbIntegrationJS.menuItemHover();" dojoType="wc.widget.WCMenu"
+					onMouseLeave="javascript:fbIntegrationJS.closeDropDown();" 
+			    	maxItemsPerColumn="6" forceDisplayShowAll="false" 
+			    	showAllText="[PROPERTIES;SHOW_ALL_FACEBOOK_OPTIONS;Show All Facebook options]" >
+			        <span id="WC_CachedHeaderDisplayFacebook_div_2" 
+			        	dojoType="dijit.MenuItem" 
+			        	onClick="javascript:fbIntegrationJS.onClickFacebookLogout();return false;" >
+			            <span>
+			                <a href="javascript:void(0);" tabindex="0" 
+								class="h_tnav_but" id="headerFBlogout">
+								[PROPERTIES;HEADER_DISCONNECT_FROM_FACEBOOK;Disconnect from Facebook]
+							</a>
+			            </span>
+			        </span>
+			    </span>
+			</span>
+		</span>		
+	</span>
+</span>	
+</span>
+<!-- END FacebookConnect_UI.jsp -->
+
+</span>
+<!-- END FacebookConnect.jsp -->
+
+													</span>[PROPERTIES;DIVIDING_BAR;|]
+												<span class="masthead_links_item">1-800-555-1234</span>
+													[PROPERTIES;DIVIDING_BAR;|]
+													<span class="masthead_links_item"><a id="StoreLocatorLink" href="StoreLocator.html">[PROPERTIES;HEADER_STORE_LOCATOR;Store Locator]</a></span>
+											</span>
+										</div>
+									</div>												
+								</div>
+								<div class="right" style="display:none;">
+									<div class="social_avatar">
+									</div>
+								</div>
+								<div class="clear_float"></div>
+							</div>
+						</div>
+						<!-- End Masthead Links Widget -->
+
+						<!-- MiniShopCart Widget -->
+
+						<div class="widget_minishopcart_position">
+<span id="MiniShoppingCart_Label" class="spanacce">[PROPERTIES;ACCE_Region_Shopping_Cart_Content;Shopping Cart]</span>
+<div dojoType="wc.widget.RefreshArea" id="MiniShoppingCart" widgetId="MiniShoppingCart" 
+	controllerId="MiniShoppingCartController" 
+	ariaMessage="[PROPERTIES;ACCE_Status_Shopping_Cart_Content_Updated;Shopping Cart Display Updated]" ariaLiveId="ariaMessage" 
+	role="region" aria-labelledby="MiniShoppingCart_Label">
+<script type="text/javascript">
+  dojo.addOnLoad(function() {
+		setMiniShopCartControllerURL(getAbsoluteURL()+'MiniShopCartDisplayView?storeId=10152&catalogId=10001&langId=-1');
+	});
+</script>
+<div id="widget_minishopcart" role="button" tabindex="0"
+	onclick="javascript:showMiniShopCartDropDown('widget_minishopcart','quick_cart_container','orderItemsList');"
+	onKeyPress="javascript:showMiniShopCartDropDownEvent(event,'widget_minishopcart','quick_cart_container','orderItemsList');" 
+	onMouseOver="javascript:showMiniShopCartDropDown('widget_minishopcart','quick_cart_container','orderItemsListAutoClose');">
+	<div id="miniShopCartLeftCorner" class="left_border"></div>
+	<div id="miniShopCartBody" class="content">
+		<div class="info">
+			<div class="subtotal">[PROPERTIES;MSC_SUBTOTAL;Subtotal:] <span id="minishopcart_subtotal">$100.00</span></div>
+			<div class="cart">[PROPERTIES;MSC_SHOPPING_CART;Cart:] 
+				<span id="minishopcart_total">
+					[PROPERTIES;MSC_ITEMS;1 item(s)]
+				</span>
+			</div>
+		</div>
+		<div class="cart_icon"></div>
+		<div class="arrow"></div>
+	</div>
+	<div id="miniShopCartRightCorner" class="right_border"></div>
+	<div class="clear_float"></div>												
+</div>
+<div id="placeHolder"></div>
+<div id="quick_cart_container">
+	<span class="spanacce" id="quick_cart_container_ACCE_Label">[PROPERTIES;ACCE_MSC_SHOPPING_CART_POPUP_REGION;Shopping Cart Popup]</span>
+	<div id="quick_cart">
+		<div id ="MiniShopCartProductsList" style="display:none">
+			<div id="widget_minishopcart_popup">
+				<div class="top">
+					<div class="left_border"></div>
+					<div class="middle_tile"></div>
+					<div class="right_border"></div>
+				</div>
+				<div class="middle">
+					<div class="left_border">
+						<div class="right_border">
+							<div class="content">
+							<a id="MiniShopCartCloseButton_1" href="javascript:dijit.byId('quick_cart_container').hide();" class="close_control">
+								<div class="icon"></div>
+								<span class="close">[PROPERTIES;CLOSE;Close]</span>
+							</a>
+								<div class="notification">[PROPERTIES;MSC_ITEMS_IN_CART;Items in your cart:]</div>
+											<div class="products">
+													<div class="product">
+														<div class="product_image">
+															<a id="MiniShopCartProdImg_90149" href="HermitageRuchedBodiceCocktailDressAuroraESite.html">
+																<img src="../StoreAssets/images/catalog/apparel/women/womens_dresses_70x70/WD_028_a_red.jpg" alt="Hermitage Ruched Bodice Cocktail Dress">
+															</a>
+														</div>
+														<div class="product_name">
+															<a id="MiniShopCartProdName_90149" href="HermitageRuchedBodiceCocktailDressAuroraESite.html">Hermitage Ruched Bodice Cocktail Dress</a>
+														</div>
+														<div class="item_spacer_3px"></div>
+														<span class="product_quantity">[PROPERTIES;MSC_QTY;QTY:] 1</span>
+														<span class="product_price">$100.00</span>
+													</div>
+											</div>
+											<div class="subtotal">
+												<span class="product_price">$100.00</span>
+												<span>
+													[PROPERTIES;MSC_SUBTOTAL_FOR_ITEMS;Subtotal for 1 item(s)]
+												</span>
+											</div>
+								<div class="go_to_cart">
+									<a id="GotoCartButton1" href="ShoppingCart.html" class="button_primary" tabindex="0">
+										<div class="left_border"></div>
+										<div class="button_text">[PROPERTIES;MSC_GO_TO_CART;Go to Cart]</div>
+										<div class="right_border"></div>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="bottom">
+					<div class="left_border"></div>
+					<div class="middle_tile"></div>
+					<div class="right_border"></div>
+				</div>
+			</div>
+		</div>
+		<div id = "MiniShopCartProductAdded" style="display:none">
+			<div id="widget_minishopcart_popup_1">
+				<div class="top">
+					<div class="left_border"></div>
+					<div class="middle_tile"></div>
+					<div class="right_border"></div>
+				</div>
+				<div class="middle">
+					<div class="left_border">
+						<div class="right_border">
+							<div class="content">
+								<a id="MiniShopCartCloseButton_2" href="javascript:dijit.byId('quick_cart_container').hide();" class="close_control">
+									<div class="icon"></div>
+									<span class="close">[PROPERTIES;CLOSE;Close]</span>
+								</a>
+								<div class="notification">[PROPERTIES;MSC_ITEM_ADDED;This item has been successfully added:]</div>
+								<div class="products added">
+								</div>
+								<div class="go_to_cart">
+									<a id="GotoCartButton2" href="ShoppingCart.html" class="button_primary" tabindex="0">
+										<div class="left_border"></div>
+										<div class="button_text">[PROPERTIES;MSC_GO_TO_CART;Go to Cart]</div>
+										<div class="right_border"></div>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="bottom">
+					<div class="left_border"></div>
+					<div class="middle_tile"></div>
+					<div class="right_border"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+						</div>
+						<!-- End MiniShopCart Widget -->
+
+					</div>
+					<div class="navigation">
+						<!-- Department Selection Widget -->
+
+						<div class="widget_departments_position" role="navigation" aria-label="[PROPERTIES;DEPARTMENTS;Departments]">
+<script type="text/javascript">
+	dojo.addOnLoad(function() {
+		if(document.getElementById("widget_departments")){
+			document.getElementById("widget_departments").style.display = "block";
+		}
+		DepartmentJS.init();
+		wc.render.getRefreshControllerById("DepartmentDropdownController").url = getAbsoluteURL()+"DepartmentDropdownView.html";
+	});
+	dojo.addOnUnload(function() {
+		if(document.getElementById("drop_down")){
+			document.getElementById("drop_down").style.display = "none";
+		}
+	});
+</script>
+<div id="widget_departments" tabindex="0" title="[PROPERTIES;DEPARTMENT_MENU_ACCE;Departments]" style="display:none;">
+		<div class="left_border"></div>
+		<div class="content">
+			<span class="label">[PROPERTIES;DEPARTMENTS;Departments]</span>
+			<div class="arrow"></div>
+		</div>
+		<div class="right_border"></div>
+		<div class="clear_float"></div>
+		<div class="drop_down" id="drop_down" dojoType="wc.widget.RefreshArea" widgetId="drop_down" controllerId="DepartmentDropdownController" style="display:none;">
+<!-- BEGIN Department.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">Department.jsp</div>
+</span>
+<!-- END Department.jsp -->
+		</div>
+</div>
+						</div>
+						<!-- End Department Selection Widget -->
+
+						<!-- Search Widget -->
+
+						<div id="searchComponent">
+<!-- BEGIN Search.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">Search.jsp</div>
+		<meta name="CommerceSearch" content="storeId_10152" />
+		<!-- Begin Search Widget -->
+
+		<script type="text/javascript">
+				dojo.addOnLoad(function(){
+					SearchJS.init();
+					SearchJS.setCachedSuggestionsURL('SearchComponentCachedSuggestionsView.html');
+					SearchJS.setAutoSuggestURL('SearchComponentAutoSuggestView.html');
+				});
+
+				// The primary Array to hold all static search suggestions
+				var staticContent = new Array();
+
+				// The titles of each search grouping
+				var staticContentHeaders = new Array();
+		</script>
+<form name="CatalogSearchForm" action="SearchResults.html" method="get" id="CatalogSearchForm">
+	<!-- Search Widget -->
+
+	<div class="widget_search_position" role="search">
+		<div id="widget_search">
+			<div class="left_border"></div>
+			<div class="content">
+				<label for="SimpleSearchForm_SearchTerm" class="nodisplay">[PROPERTIES;SEARCH_CATALOG;Search]</label>
+				<input type="text" class="search_input gray_color" placeholder="[PROPERTIES;SEARCH_CATALOG;Search]" name="searchTerm" id="SimpleSearchForm_SearchTerm" autocomplete="off" maxlength="65" tabindex="0" title="[PROPERTIES;SEARCH_SUGGESTION;Press the Up or Down Arrow keys to navigate through the search suggestions. Suggested site content and search history, if any, are included after the suggestions.  Press the Enter key for all search results.]" onkeypress="return SearchJS._onKeyPress(event);" value='[PROPERTIES;SEARCH_CATALOG;Search]'></input>
+				<div role="button" aria-labelledby="searchDepartmentList_ACCE_Label" onclick="$('searchDepartmentList').style.display='block'" onfocus="$('searchDepartmentList').style.display='block'; dojo.byId('searchDepartmentList_0').focus();" tabindex="0" class="all_departments">
+					<span id="searchDepartmentLabel">[PROPERTIES;SEARCH_ALL_DEPARTMENTS;All Departments]</span>
+				</div>
+				<input id="search_categoryId" type="hidden" name="categoryId" value=""/>
+				<span class="spanacce" id="searchDepartmentList_ACCE_Label">[PROPERTIES;SEARCH_IN;Search in]</span>
+				<div class="widget_search_departments_dropdown_position" role="menu" aria-labelledby="searchDepartmentList_ACCE_Label" onblur="clearTimeout(SearchJS.searchDepartmentHoverTimeout);SearchJS.searchDepartmentHoverTimeout=setTimeout('SearchJS.hideSearchDepartmentList()',300)" onmouseout="clearTimeout(SearchJS.searchDepartmentHoverTimeout);SearchJS.searchDepartmentHoverTimeout=setTimeout('SearchJS.hideSearchDepartmentList()',300)" onmouseover="clearTimeout(SearchJS.searchDepartmentHoverTimeout);" id="searchDepartmentList">
+					<div class="widget_search_departments_dropdown">
+						<div class="top">
+							<div class="left_border"></div>
+							<div class="middle"></div>
+							<div class="right_border"></div>
+						</div>
+						<div class="clear_float"></div>
+						<div class="content_left_border">
+							<div class="content_right_border">
+								<ul id="searchDepartmentList_root">
+									<li><a  id="searchDepartmentList_0" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 0, 6, '', this);" onmousedown="SearchJS.searchDepartmentSelect('', this)" onmouseover="this.className='enabled'" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseout="this.className='disabled'">[PROPERTIES;SEARCH_ALL_DEPARTMENTS;All Departments]</a></li>
+										<li><a  id="searchDepartmentList_1" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 1, 6, '10001', this);" onmousedown="SearchJS.searchDepartmentSelect('10001', this)" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseover="this.className='enabled'" onmouseout="this.className='disabled'">Apparel</a></li>
+										<li><a  id="searchDepartmentList_2" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 2, 6, '10027', this);" onmousedown="SearchJS.searchDepartmentSelect('10027', this)" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseover="this.className='enabled'" onmouseout="this.className='disabled'">Electronics</a></li>
+										<li><a  id="searchDepartmentList_3" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 3, 6, '10033', this);" onmousedown="SearchJS.searchDepartmentSelect('10033', this)" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseover="this.className='enabled'" onmouseout="this.className='disabled'">Grocery</a></li>
+										<li><a  id="searchDepartmentList_4" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 4, 6, '10038', this);" onmousedown="SearchJS.searchDepartmentSelect('10038', this)" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseover="this.className='enabled'" onmouseout="this.className='disabled'">Health</a></li>
+										<li><a  id="searchDepartmentList_5" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 5, 6, '10041', this);" onmousedown="SearchJS.searchDepartmentSelect('10041', this)" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseover="this.className='enabled'" onmouseout="this.className='disabled'">Home &amp; Furnishing</a></li>
+										<li><a  id="searchDepartmentList_6" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 6, 6, '10048', this);" onmousedown="SearchJS.searchDepartmentSelect('10048', this)" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseover="this.className='enabled'" onmouseout="this.className='disabled'">Newsletters &amp; Magazines</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="clear_float"></div>
+						<div class="bottom">																
+							<div class="left_border"></div>
+							<div class="middle"></div>
+							<div class="right_border"></div>
+						</div>
+						<div class="clear_float"></div>	
+					</div>
+				</div>
+				<input id="search_submit" class="search_submit" type="image" onmouseout="javascript: this.src='../StoreAssets/images/colors/color1/widget_search/search_submit.png'" onmouseover="javascript: this.src='../StoreAssets/images/colors/color1/widget_search/search_submit_hover.png'" onblur="javascript: this.src='../StoreAssets/images/colors/color1/widget_search/search_submit.png'" onfocus="javascript: this.src='../StoreAssets/images/colors/color1/widget_search/search_submit_hover.png'" alt="[PROPERTIES;SEARCH_CATALOG;Search]" src="../StoreAssets/images/colors/color1/widget_search/search_submit.png"  value="[PROPERTIES;SEARCH_CATALOG;Search]" />
+			</div> <!-- content -->
+
+			<div class="right_border"></div>
+			<div class="clear_float"></div>
+		</div> <!-- widget_search -->
+
+	</div> <!-- widget_search_position -->
+
+	<!-- Start SearchDropdownWidget -->
+
+	<div id="autoSuggest_Result_div" style="display:none;">
+		<div id="widget_search_dropdown" class="widget_search_dropdown_position">
+			<div class="widget_search_dropdown">
+				<!-- Top Border Styling -->
+
+				<div class="top">
+					<div class="left_border"></div>
+					<div class="middle"></div>
+					<div class="right_border"></div>
+				</div>
+				<div class="clear_float"></div>
+				<!-- Main Content Area -->
+
+				<div class="content_left_border">
+					<div class="content_right_border">
+						<div id="AutoSuggestDiv" class="content" role="region" aria-required="true" aria-labelledby="AutoSuggestDiv" onmouseover="SearchJS.autoSuggestHover = true;" onmouseout="SearchJS.autoSuggestHover = false; document.getElementById('SimpleSearchForm_SearchTerm').focus();">
+								<span id="autoSuggestDynamic_Result_div_ACCE_Label" class="spanacce">[PROPERTIES;SEARCH_AUTO_SUGGEST_ACCE_REGION;Suggested keywords menu]</span>  
+								<div dojoType="wc.widget.RefreshArea" widgetId="autoSuggestDisplay_Widget" controllerId="AutoSuggestDisplayController" id="autoSuggestDynamic_Result_div" role="region" aria-live="polite" aria-atomic="true" aria-relevant="all" aria-labelledby="autoSuggestDynamic_Result_div_ACCE_Label" >
+								</div>
+								<div id="autoSuggestStatic_1"></div>
+								<div id="autoSuggestStatic_2"></div>
+								<div id="autoSuggestStatic_3"></div>
+								<div id="autoSuggestHistory"></div>
+								<div class="heading"> <a  id="viewAllResults" ><div>[PROPERTIES;VIEW_ALL_RESULTS;View all results]</div></a> </div>
+						<!-- End content Section -->
+
+						</div>
+					<!-- End content_right_border -->
+
+					</div>
+				<!-- End content_left_border -->
+
+				</div>
+				<!-- Bottom Border Styling -->
+
+				<div class="bottom">
+					<div class="left_border"></div>
+					<div class="middle"></div>
+					<div class="right_border"></div>
+				</div>
+			</div>
+		</div>
+	<!-- End SearchDropdownWidget -->
+
+	</div>
+	<!-- Refresh area to retrieve cached suggestions -->
+
+	<span id="autoSuggestCachedSuggestions_div_ACCE_Label" class="spanacce">[PROPERTIES;SEARCH_AUTO_SUGGEST_CACHED_ACCE_REGION;Suggested site content and search history menu]</span>
+	<div dojoType="wc.widget.RefreshArea" widgetId="AutoSuggestCachedSuggestions" controllerId="AutoSuggestCachedSuggestionsController" id="autoSuggestCachedSuggestions_div" role="region" aria-live="polite" aria-atomic="true" aria-relevant="all" style="display:none;" aria-labelledby="autoSuggestCachedSuggestions_div_ACCE_Label">
+	</div>
+	<input type="hidden" name="storeId" value='10152' />
+	<input type="hidden" name="catalogId" value='10001' />
+	<input type="hidden" name="langId" value='-1' />
+	<input type="hidden" name="pageSize" value="12" />
+	<input type="hidden" name="beginIndex" value="0" />
+	<input type="hidden" name="sType" value="SimpleSearch" />
+	<input type="hidden" name="resultCatEntryType" value="2" />
+	<input type="hidden" name="showResultsPage" value="true" />
+	<input type="hidden" name="searchSource" value="Q" />
+	<input type="hidden" name="pageView" value="" />
+	<span id="searchTextHolder" class="nodisplay">[PROPERTIES;SEARCH_CATALOG;Search]</span>
+</form>
+	<!-- End Search Widget -->
+
+</span>
+<!-- END Search.jsp -->
+
+						</div>
+						<!-- End Search Widget -->
+
+					</div>			
+					<div class="header_espot_container">		
+<!-- BEGIN ContentRecommendation.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">ContentRecommendation.jsp</div>
+</span>
+<!-- END ContentRecommendation.jsp -->
+					</div>					
+				</div>
+				<!-- End Masthead -->
+
+				<!-- End Header Content -->
+
+			</div>
+		</div>				
+	</div>
+	<!--For border customization -->
+
+	<div class="header_bottom">
+		<div class="left_border"></div>
+		<div class="middle"></div>
+		<div class="right_border"></div>
+	</div>
+</div>
+<div id="productIdQuickInfo" style="display:none"></div>
+</span>
+<!-- END Header.jsp -->
+
+		</div>
+		<div id="OrderShippingBillingErrorArea" class="nodisplay" role="alert" aria-describedby="WC_OrderShippingBillingDetails_div_3">
+			<div id="WC_OrderShippingBillingDetails_div_1">
+				<div class="body" id="WC_OrderShippingBillingDetails_div_2">
+					<div class="left" id="WC_OrderShippingBillingDetails_div_3">
+						[PROPERTIES;SHIP_PROBLEM_DESC;Click on the 'Go Back' button to return to the previous page and correct the problems before proceeding with the checkout process.]
+					</div>
+					<br clear="all" />
+					<div class="button_align" id="WC_OrderShippingBillingDetails_div_4">
+						<a role="button" class="button_primary" id="WC_OrderShippingBillingDetails_links_1" tabindex="0" href="javascript:setPageLocation('https:///webapp/wcs/stores/servlet/OrderCalculate?calculationUsageId=-1&amp;updatePrices=1&amp;catalogId=10001&amp;errorViewName=AjaxCheckoutDisplayView&amp;orderId=.&amp;langId=-1&amp;storeId=10152&amp;URL=AjaxCheckoutDisplayView')">
+							<div class="left_border"></div>
+							<div class="button_text">[PROPERTIES;SHIP_GO_BACK;Go Back]<span class="spanacce">[PROPERTIES;Checkout_ACCE_back_shopping_cart;to shopping cart page]</span></div>
+							<div class="right_border"></div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+				<script type="text/javascript">
+					wc.render.declareRefreshController({
+						id: "editShippingAdddressAreaController",
+						renderContext: wc.render.getContextById("editShippingAddressContext"),
+						url: "https:///webapp/wcs/stores/servlet/AddressEditView?catalogId=10001&langId=-1&storeId=10152",
+						formId: ""
+						,modelChangedHandler: function(message, widget) {
+							if('2' == 2){
+								var controller = this;
+								var renderContext = this.renderContext;
+								if (message.actionId in address_updated){
+									//This means, invokeService for Address Add/Edit has been called..so update our select box area
+									wc.render.updateContext('contextForMainAndAddressDiv', {'showArea':'mainContents','hideArea':'editAddressContents'});
+									selectedAddressId = message.addressId;
+									CheckoutHelperJS.updateAddressIdOFItemsOnCreateEditAddress(selectedAddressId);
+									cursor_clear();  
+								} 
+							}
+						}
+						,renderContextChangedHandler: function(message, widget) {
+							var controller = this;
+							var renderContext = this.renderContext;
+							if (controller.testForChangedRC(["shippingAddress"])) {
+								var addressId = renderContext.properties["shippingAddress"];
+								//reset the addressID..so that when user selects create address next time it works properly..
+								renderContext.properties["shippingAddress"] = 0;
+								var addressType = renderContext.properties["addressType"];
+								widget.refresh({"addressId": addressId,"addressType":addressType});
+							}
+						}
+						,postRefreshHandler: function(widget) {
+							var controller = this;
+							var renderContext = this.renderContext;
+							cursor_clear();
+							AddressHelper.loadStatesUI('shopcartAddressForm','','stateDiv','state', true);
+						}
+					});
+				</script>
+				<div id="content_wrapper" class="content_wrapper_position" dojoType="wc.widget.RefreshArea" widgetId="content_wrapper" controllerId="controllerForMainAndAddressDiv" role="main">
+					<div class="content_wrapper">
+						<div class="content_left_shadow">
+							<div class="content_right_shadow">
+							<!-- Content Start -->
+
+							<!-- There are two parts in the content (editAddressContents and mainContents Div)..One Div contains the entire checkoutContents (shopping cart, shipping address, billing info and other things.. The second DIV contains only edit Address page .. On click of Edit Address button, the first div will be hidden and edit address page div will be displayed...
+								Instead of having both the div's in same page, we can make a call to server on click of edit button and get the edit Address page..But the problem in that case is, if user clicks on Cancel/Submit button after changing the address details, we update the server with the changes and again redirect the user to Shipping and Billing address page which results in resetting any changes made in shipping / billing details. User will loose all the changes made in shipping/billing page before clicking on edit address button..To avoid this situation we have both the DIV's defined in this page and use hide/show logic here..-->
+								<div class="main_content" style="display:block">
+									<div class="container_full_width">
+										<!-- Breadcrumb Start -->
+
+										<div id="checkout_crumb">
+											<div class="crumb" id="WC_ShipmentDisplay_div_4">
+													<a href="ShoppingCart.html" id="WC_ShipmentDisplay_links_2">
+														<span class="step_off">[PROPERTIES;BCT_SHOPPING_CART;Shopping Cart]</span>
+													</a> 
+													<span class="step_arrow"></span>
+															<span class="step_on">[PROPERTIES;BCT_SHIPPING_AND_BILLING;Shipping & Billing Method]</span>
+															<span class="step_arrow"></span>
+													<span class="step_off">[PROPERTIES;BCT_ORDER_SUMMARY;Order Summary]</span>
+											</div>
+										</div>
+						        		<!-- Breadcrumb End -->
+
+									<div id="mainContents" style="display:block">
+										<div id="box">                                          
+<!-- BEGIN ShippingDetailsDisplay.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">ShippingDetailsDisplay.jsp</div>
+<script type="text/javascript">
+	dojo.addOnLoad(function() {
+		CheckoutHelperJS.initializeShipmentPage('2');
+		CheckoutHelperJS.setAjaxCheckOut(true);
+		CheckoutHelperJS.setCommonParameters('-1','10152','10001');
+	});
+</script>
+<!-- BEGIN PromotionChoiceOfFreeGiftsPopup.jspf -->
+
+<script type="text/javascript">
+	dojo.addOnLoad(function() { parseWidget("free_gifts_popup"); parseWidget("PromotionFreeGiftsDisplay");});	
+</script>       
+<script type="text/javascript" src="../StoreAssets/javascript/CheckoutArea/PromotionChoiceOfFreeGifts.js"></script>
+<div id="free_gifts_popup_main_div">
+	<div title="" widgetid="free_gifts_popup" style="position: absolute; opacity: 1; left: 590px; top: 187px; z-index: 951; display: none;" id="free_gifts_popup" aria-labelledby="free_gifts_popup_title" role="dialog" class="dijitDialog dijitDialogFocused dijitFocused" tabindex="-1" wairole="dialog" waistate="labelledby-free_gifts_popup_title">
+	<div title="Message Dialog" dojoattachpoint="titleBar" class="dijitDialogTitleBar">
+	<span dojoattachpoint="titleNode" class="dijitDialogTitle" id="free_gifts_popup_title"><span>Message Dialog<span title="DIALOG_TITLE_MESSAGE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIALOG_TITLE_MESSAGE"></span></span></span>
+	<span style="display: none;" dojoattachpoint="closeButtonNode" class="dijitDialogCloseIcon" dojoattachevent="onclick: onCancel" title="Cancel">
+		<span dojoattachpoint="closeText" class="closeText" title="Cancel">x</span>
+	</span>
+	</div>
+		<div style="width: auto; height: auto;" dojoattachpoint="containerNode" class="dijitDialogPaneContent">
+		<!-- Refresh area -->
+
+			<span id="PromotionFreeGiftsDisplay_ACCE_Label" class="spanacce"><span>Free Gift<span title="ACCE_Region_Free_Gift" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="ACCE_Region_Free_Gift"></span></span></span>
+			<div class="dijitContentPane" role="group" title="" widgetid="PromotionFreeGiftsDisplay" dojotype="wc.widget.RefreshArea" id="PromotionFreeGiftsDisplay" controllerid="PromotionFreeGifts_Controller">
+<!-- BEGIN PromotionChoiceOfFreeGiftsPopupContent.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">PromotionChoiceOfFreeGiftsPopupContent.jsp</div>
+<script type="text/javascript">
+	dojo.addOnLoad(function() {
+		MessageHelper.setMessage("PROMOTION_FREE_GIFTS_POPUP_ERROR_EXCEED_GIFT_QUANTITY", "[PROPERTIES;PROMOTION_FREE_GIFTS_POPUP_ERROR_EXCEED_GIFT_QUANTITY;You have selected more free gifts than this promotion allows  ]");
+		MessageHelper.setMessage("PROMOTION_FREE_GIFTS_POPUP_NUMBER_OF_SELECTIONS", "[PROPERTIES;PROMOTION_FREE_GIFTS_POPUP_NUMBER_OF_SELECTIONS;You have selected %0 free gifts]");
+		MessageHelper.setMessage("PROMOTION_FREE_GIFTS_POPUP_NUMBER_OF_SELECTIONS_ONE", "[PROPERTIES;PROMOTION_FREE_GIFTS_POPUP_NUMBER_OF_SELECTIONS_ONE;You have selected 1 free gift ]");                            
+	});
+</script>
+<div class="widget_site_popup" role="dialog" aria-labelledby="popupHeader">
+	<div class="top">
+		<div class="left_border"></div>
+		<div class="middle"></div>
+		<div class="right_border"></div>
+	</div>
+	<div class="clear_float"></div>
+	<div class="middle">
+		<div class="content_left_border">
+			<div class="content_right_border">
+				<div class="content">
+							<div class="header" id="popupHeader">
+								<span>
+											[PROPERTIES;PROMOTION_FREE_GIFTS_POPUP_PICK_GIFT;Select your free gift]
+								</span>
+								<a role="button" id="promotionChoice_closeLink" class="close" title="[PROPERTIES;PROMOTION_FREE_GIFTS_POPUP_CLOSE;close]" onclick="javascript: document.getElementById('free_gifts_popup').style.display='none';"></a>
+								<div class="clear_float"></div>
+							</div>
+							<div class="body">              
+								<div id="radio_choices">
+									<div id="WC_PromotionChoiceOfFreeGiftsPopupContent_div_2">
+										<input name="choose_gift_type" id="free_item" checked="checked" onclick="PromotionChoiceOfFreeGiftsJS.rewardChoicesEnabledStatus();" type="radio">              
+												<label for="free_item">[PROPERTIES;PROMOTION_FREE_GIFTS_POPUP_PICK_ONE_GIFT;I would like the following free gift]</label>
+									</div>
+									<div id="WC_PromotionChoiceOfFreeGiftsPopupContent_div_3">
+										<input name="choose_gift_type" id="no_gifts" onclick="PromotionChoiceOfFreeGiftsJS.rewardChoicesEnabledStatus();" type="radio"> 
+												<label for="no_gifts">[PROPERTIES;PROMOTION_FREE_GIFTS_POPUP_PICK_NO_GIFT;I do not want the free gift]</label>
+									</div>
+								</div>
+								<div id="free_gifts_table">
+									<div class="gifts_wrapper" id="WC_PromotionChoiceOfFreeGiftsPopupContent_div_4">
+												<div class="gift_item_container" id="WC_PromotionChoiceOfFreeGiftsPopupContent_div_5_1_1">
+													<input name="catalogEntryID" value="10291" id="CatalogEntryID_1" type="hidden">
+													<input name="giftItemQuantity" value="1" id="GiftItemQuantity_1" type="hidden">
+															<div class="selection" id="WC_PromotionChoiceOfFreeGiftsPopupContent_div_6_1_1"><input id="SelectFreeGift_1" name="freeGift" onclick="PromotionChoiceOfFreeGiftsJS.checkNumberOfAllowedItems('1.0');" type="radio"></div>
+													<div class="image" id="WC_PromotionChoiceOfFreeGiftsPopupContent_div_7_1_1">
+																<img src="../StoreAssets/images/catalog/apparel/women/womens_dresses_160x160/WD_032_a_blue.jpg" name="catEntryImage" alt="Albini Sleeveless Silk Dress [PROPERTIES;Checkout_ACCE_for;for] " escapexml="false" height="70" width="70">
+													</div>
+													<div class="product_info" id="WC_PromotionChoiceOfFreeGiftsPopupContent_div_8_1_1">        
+														<h2><label for="SelectFreeGift_1">Albini Sleeveless Silk Dress</label></h2>
+														<p>Silk sheath cocktail dress with straight lines and high neck</p>
+															<p class="online_availability">[PROPERTIES;PRODUCT_INV_ONLINE;Online Availability:]</p>
+																	<input name="onlineAvailability" value="Available" id="OnlineAvailability_1" type="hidden">
+															<p class="stock_status"><img id="WC_PromotionChoiceOfFreeGiftsPopupContent_div_8b_1_1" src="../StoreAssets/images/Available.gif" alt="[PROPERTIES;INV_STATUS_Available;In-Stock]" border="0">&nbsp;<span>[PROPERTIES;INV_STATUS_Available;In-Stock]</span></p>
+														<div class="price" id="WC_PromotionChoiceOfFreeGiftsPopupContent_div_9_1_1">
+<!-- BEGIN CatalogEntryPriceDisplay.jspf-->
+
+			<span class="price bold">
+				$100.00
+			</span>
+<!-- END CatalogEntryPriceDisplay.jspf-->
+
+														</div>                                               	
+													</div>
+													<br>                                                             
+													<div class="clear_float" id="WC_PromotionChoiceOfFreeGiftsPopupContent_div_10_1_1"></div>
+												</div>                                          
+												<div class="gift_item_container" id="WC_PromotionChoiceOfFreeGiftsPopupContent_div_5_2_1">
+													<input name="catalogEntryID" value="10280" id="CatalogEntryID_2" type="hidden">
+													<input name="giftItemQuantity" value="1" id="GiftItemQuantity_2" type="hidden">
+															<div class="selection" id="WC_PromotionChoiceOfFreeGiftsPopupContent_div_6_2_1"><input id="SelectFreeGift_2" name="freeGift" onclick="PromotionChoiceOfFreeGiftsJS.checkNumberOfAllowedItems('1.0');" type="radio"></div>
+													<div class="image" id="WC_PromotionChoiceOfFreeGiftsPopupContent_div_7_2_1">
+																<img src="../StoreAssets/images/catalog/apparel/women/womens_dresses_160x160/WD_002_a_green.jpg" name="catEntryImage" alt="Albini Empire Waist Knit Dress [PROPERTIES;Checkout_ACCE_for;for] " escapexml="false" height="70" width="70">
+													</div>
+													<div class="product_info" id="WC_PromotionChoiceOfFreeGiftsPopupContent_div_8_2_1">        
+														<h2><label for="SelectFreeGift_2">Albini Empire Waist Knit Dress</label></h2>
+														<p>V-necked sleeveless dress with empire waist and belt tie</p>
+															<p class="online_availability">[PROPERTIES;PRODUCT_INV_ONLINE;Online Availability:]</p>
+																	<input name="onlineAvailability" value="Available" id="OnlineAvailability_2" type="hidden">
+															<p class="stock_status"><img id="WC_PromotionChoiceOfFreeGiftsPopupContent_div_8b_2_1" src="../StoreAssets/images/Available.gif" alt="[PROPERTIES;INV_STATUS_Available;In-Stock]" border="0">&nbsp;<span>[PROPERTIES;INV_STATUS_Available;In-Stock]</span></p>
+														<div class="price" id="WC_PromotionChoiceOfFreeGiftsPopupContent_div_9_2_1">
+<!-- BEGIN CatalogEntryPriceDisplay.jspf-->
+
+			<span class="price bold">
+				$100.00
+			</span>
+<!-- END CatalogEntryPriceDisplay.jspf-->
+
+														</div>                                               	
+													</div>
+													<br>                                                             
+													<div class="clear_float" id="WC_PromotionChoiceOfFreeGiftsPopupContent_div_10_2_1"></div>
+												</div>                                          
+									</div>
+								</div>      
+								<div id="FreeGiftsMessageArea">
+									<p id="message">&nbsp;</p>                               
+								</div>
+								<div class="clear_float"></div>
+							</div>
+							<div class="footer">
+								<div class="button_container" id="submit_div_1">
+									<a  role="button" aria-labelledby="WC_PromotionChoiceOfFreeGiftsPopupContent_Cancel_ACCE_Label" class="button_secondary button_left_padding" id="cancel" onclick="javascript: document.getElementById('free_gifts_popup').style.display='none';">
+										<div class="left_border"></div>
+										<div class="button_text">[PROPERTIES;CANCEL;Cancel]<span id="WC_PromotionChoiceOfFreeGiftsPopupContent_Cancel_ACCE_Label" class="spanacce">[PROPERTIES;Checkout_ACCE_promo_free_gifts_cancel;cancel to close the pop-up and not apply any selections to the shopping cart]</span></div>
+										<div class="right_border"></div>
+									</a>
+									<a  role="button" aria-labelledby="WC_PromotionChoiceOfFreeGiftsPopupContent_Apply_ACCE_Label" class="button_primary" id="submitChoices" onclick="javascript: document.getElementById('free_gifts_popup').style.display='none';">
+										<div class="left_border"></div>
+										<div class="button_text">[PROPERTIES;APPLY;Apply]<span id="WC_PromotionChoiceOfFreeGiftsPopupContent_Apply_ACCE_Label" class="spanacce">[PROPERTIES;Checkout_ACCE_promo_free_gifts_apply;apply the free gifts selections to the shopping cart]</span></div>
+										<div class="right_border"></div>
+									</a>
+								</div>
+								<div class="clear_float"></div>
+							</div>					
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="clear_float"></div>
+	<div class="bottom">
+		<div class="left_border"></div>
+		<div class="middle"></div>
+		<div class="right_border"></div>
+	</div>
+	<div class="clear_float"></div>
+</div>
+</span>
+<!-- END PromotionChoiceOfFreeGiftsPopupContent.jsp -->
+
+</div>		
+	</div>
+<span class="elementKeyIcon" title="DIALOG_TITLE_MESSAGE=Message Dialog"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>  
+</div>
+<!-- END PromotionChoiceOfFreeGiftsPopup.jspf -->
+
+<div class="main_header" id="WC_ShipmentDisplay_div_5">
+	<div class="left_corner" id="WC_ShipmentDisplay_div_6"></div>
+	<div class="left" id="WC_ShipmentDisplay_div_7"><span aria-level="1" class="main_header_text" role="heading">[PROPERTIES;BCT_SHIPPING_INFO;Shipping Information]</span></div>
+	<div class="right_corner" id="WC_ShipmentDisplay_div_8"></div>
+<!-- BEGIN CheckoutTopESpotDisplay.jspf -->
+
+<div class="espot_checkout_top" id="WC_CheckoutTopESpotDisplay_div_1">
+<!-- BEGIN ContentRecommendation.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">ContentRecommendation.jsp</div>
+</span>
+<!-- END ContentRecommendation.jsp -->
+</div>
+<!-- END CheckoutTopESpotDisplay.jspf -->
+
+</div>
+		 <div class="checkout_subheader" id="WC_MultipleShipmentDisplay_div_9">
+			<div class="left_corner" id="WC_MultipleShipmentDisplay_div_10"></div>
+			<input type="hidden" id="commonShipModeId" name="commonShipModeId" value="10052"/>
+			<div class="left" id="WC_MultipleShipmentDisplay_div_11"><span class="content_text">[PROPERTIES;SHIP_SINGLE_SHIPMENT_MESSAGE;Click single shipment if shipping to one address]</span></div>
+			<div class="header_element_align" id="WC_MultipleShipmentDisplay_div_12">
+				<a role="button" class="button_primary" id="WC_MultipleShipmentDisplay_links_3" tabindex="0" href="ShippingandBillingDisplay.html">
+					<div class="left_border"></div>
+					<div class="button_text">[PROPERTIES;SHIP_SINGLE_SHIPMENT;Single Shipment]<span class="spanacce">[PROPERTIES;Checkout_ACCE_Single_Shipping;select to use single shipment to ship to one address]</span></div>
+					<div class="right_border"></div>
+				</a>
+			</div>
+			<div id="WC_ShipmentDisplay_div_14a" class="header_element_align">
+<!-- BEGIN ContentRecommendation.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">ContentRecommendation.jsp</div>
+</span>
+<!-- END ContentRecommendation.jsp -->
+			</div>			
+			<div class="right_corner" id="WC_MultipleShipmentDisplay_div_15"></div>
+		 </div>
+<div class="body left" id="WC_ShipmentDisplay_div_16">
+	<div id="shipping">
+				<div id="WC_MultipleShipmentDisplay_div_17">
+						<br/>
+						<span class="checkbox">
+								<input type="checkbox" title="[PROPERTIES;SHIP_SHIP_AS_COMPLETE;Ship as Complete]" class="checkbox" id="shipAsComplete" name = "shipAsComplete"
+									checked="checked"
+								 />
+							<span class="text"><label for="shipAsComplete">[PROPERTIES;SHIP_SHIP_AS_COMPLETE;Ship as Complete]</label></span>
+						</span>
+				</div>
+				<span id="multipleShipmentOrderDetails_ACCE_Label" class="spanacce">[PROPERTIES;ACCE_Region_Order_Item_List;Order Item List]</span>
+				<div id="WC_MultipleShipmentDisplay_div_18" class="shipping_billing_img_padding" dojoType="wc.widget.RefreshArea" widgetId="multipleShipmentOrderDetails" controllerId="multipleShipmentDetailsController" ariaMessage="[PROPERTIES;ACCE_Status_Order_Item_List_Updated;Order Item List Updated]" ariaLiveId="ariaMessage" role="region" aria-labelledby="multipleShipmentOrderDetails_ACCE_Label">
+<!-- BEGIN MSOrderItemDetails.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">MSOrderItemDetails.jsp</div>
+<script type="text/javascript">
+	dojo.addOnLoad(function() { 
+              categoryDisplayJS.setCommonParameters('-1','10152','10001','R');
+	});
+</script>
+<!-- Get order Details using the ORDER SOI -->
+
+<input type="hidden" name="OrderTotalAmount" value="100.00000" id="OrderTotalAmount" />
+<input type="hidden" name="currentPageNumber" value="1" id="currentPageNumber"/>
+<table id="order_details" cellpadding="0" cellspacing="0" border="0" width="100%" summary="[PROPERTIES;SHOPCART_TABLE_SUMMARY;This table contains details about your current order. It contains product details, availability, quantity, unit price and total price of each item in the current order. You can change quantity or remove the item from current order by navigating through this table.]">
+	<tr class="nested">
+		<th class="align_left" id="MultipleShipments_tableCell_productName">[PROPERTIES;PRODUCT;Product]</th>
+		<th class="align_left" id="MultipleShipments_tableCell_shipAddress">[PROPERTIES;SHIP_SHIPPING_ADDRESS;Shipping Address]</th>
+		<th class="align_left" id="MultipleShipments_tableCell_shipMethod">[PROPERTIES;SHIP_SHIPPING_METHOD;Shipping Method]</th>
+		<th class="align_left" id="MultipleShipments_tableCell_availability">[PROPERTIES;AVAILABILITY;Availability]</th>
+		<th class="align_center" id="MultipleShipments_tableCell_quantity" abbr="[PROPERTIES;QUANTITY1;Quantity]">[PROPERTIES;QTY;Qty]</th>
+		<th class="align_right" id="MultipleShipments_tableCell_unitPrice" abbr="[PROPERTIES;UNIT_PRICE;Unit Price]">[PROPERTIES;EACH;Each]</th>
+		<th class="align_right" id="MultipleShipments_tableCell_totalPrie" abbr="[PROPERTIES;TOTAL_PRICE;Total Price]">[PROPERTIES;TOTAL;Total]</th>
+	</tr>
+		<input type="hidden" value='90149' name='orderItem_1' id='orderItem_1'/>
+		<input type="hidden" value='10041' name='catalogId_1' id='catalogId_1'/>
+		<tr>
+			 <th class="th_align_left_normal " id="MultipleShipping_rowHeader_product1" abbr="[PROPERTIES;Checkout_ACCE_for;for] Hermitage Ruched Bodice Cocktail Dress" width="225">
+				<div class="img" id="WC_MSOrderItemDetails_div_1_1">
+					<a href="HermitageRuchedBodiceCocktailDressAuroraESite.html" id="catalogEntry_img_90149" title="Hermitage Ruched Bodice Cocktail Dress">
+						<img alt="Hermitage Ruched Bodice Cocktail Dress" src="../StoreAssets/images/catalog/apparel/women/womens_dresses_70x70/WD_028_a_red.jpg"/>
+					</a> 
+				</div>
+				<div class="itemspecs hover_underline" id="WC_MSOrderItemDetails_div_2_1">
+					<p><a class="hover_underline" id="catalogEntry_name_90149" href="HermitageRuchedBodiceCocktailDressAuroraESite.html">Hermitage Ruched Bodice Cocktail Dress</a></p>
+					<span>[PROPERTIES;CurrentOrder_SKU;SKU:] AuroraWMDRS-002</span>
+					<br />
+									<a class="order_link" id="WC_MSOrderItemDetails_link_1_1_"  onclick="javaScript: document.getElementById('quickInfoPopup_1').style.display='block';"> 
+									[PROPERTIES;CHANGE_ATTRIBUTES;Change Attributes]
+									</a>
+								 <input type="hidden" name="selectedAttr" id="selectedAttr_90149" value="Available Sizes|M|Color|Red"/>
+					<br />
+					<br />
+					<p>
+<!-- BEGIN ShoppingList.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">ShoppingList.jsp</div>
+<script>
+	shoppingListJSOI90149 = new ShoppingListJS({storeId: '10152',catalogId: '10001',langId: '-1'}, {id: '10041', name: 'Hermitage Ruched Bodice Cocktail Dress', image: '../StoreAssets/images/catalog/apparel/women/womens_dresses_105x105/WD_028_a_red.jpg', type: 'ItemBean', components: {}, skus: []}, {}, "shoppingListJSOI90149");
+</script>
+<div id="shoppingListScript_OI90149" style="display:none;">
+	if(typeof(shoppingListJSOI90149) == "undefined" || shoppingListJSOI90149 == null || !shoppingListJSOI90149) {
+		shoppingListJSOI90149 = new ShoppingListJS({storeId: '10152',catalogId: '10001',langId: '-1'}, {id: '10041', name: 'Hermitage Ruched Bodice Cocktail Dress', image: '../StoreAssets/images/catalog/apparel/women/womens_dresses_105x105/WD_028_a_red.jpg', type: 'ItemBean', components: {}, skus: []}, {}, "shoppingListJSOI90149");
+	}
+</div>
+<img style="display:none;" src="../StoreAssets/images/catalog/apparel/women/womens_dresses_105x105/WD_028_a_red.jpg"/>
+<div style="position:relative;">
+	<div id="OI90149addToShoppingListBtn" class="dropdown_primary">
+		<a id="OI90149addToShoppingList" href="
+					javascript:shoppingListJSOI90149.createDefaultListAndAddItem('-1', '90149');
+			" class="button" role="button">
+			<div class="left_border"></div>
+			<div class="content">
+						[PROPERTIES;MOVE_TO_WISH_LIST;Move to Wish List]
+			</div>
+			<div class="right_border"></div>
+		</a>
+			<div class="drop">
+			<div class="white_line"></div>
+				<a id="OI90149addToShoppingListDropdown" onmouseover="javascript: shoppingListJSOI90149.mouseOnArrow = true;" onmouseout="javascript: shoppingListJSOI90149.mouseOnArrow = false;" href="javascript:shoppingListJSOI90149.showDropDown();" class="dropdown_arrow" title="[PROPERTIES;SL_MULTIPLE_SHOPPING_LIST_DD;Multiple wish list drop down. Press enter and tab to display the drop down]" role="button">
+						<img style="margin-top: 10px;" src="../StoreAssets/images/colors/color1/widget_quick_info_popup/dropdown_arrow.png" alt="[PROPERTIES;SL_MULTIPLE_SHOPPING_LIST_DD;Multiple wish list drop down. Press enter and tab to display the drop down]"/>
+					</a>
+				<div class="right_border"></div>
+			</div>
+	</div>
+			<div id="OI90149shoppingListDropDown" style="display: none" class="dropdown_list" onmousedown="javascript:shoppingListJSOI90149.hasFocus(event);"
+				onkeydown="javascript:shoppingListJSOI90149.navigateDropDown(event);"
+				onblur="javascript: document.getElementById('OI90149addToShoppingListDropdown').focus();" role="menu">
+				<ul class="wish_order_list">
+								<li role="menuitem" class="message">[PROPERTIES;SL_SELECT_LIST;Select a list to Add to:]</li>
+							<ol role="menuitem" id="OI90149listOfShoppingLists" class="created_list_wrapper" tabindex="-1" onblur="javascript: if(!shoppingListJSOI90149.exceptionFlag){shoppingListJSOI90149.dropDownInFocus = false; shoppingListJSOI90149.hideIfNoFocus();}">														
+							<li style="display:none;" id="OI90149ShoppingListDivider"></li>
+							</ol>
+							<div class="divider"></div>
+							<li role="menuitem" id="OI90149ShoppingList_0" class="created_list" role="link" onfocus="javascript:shoppingListJSOI90149.focusList(0);"
+							onmouseover="javascript: shoppingListJSOI90149.exceptionFlag = true; document.getElementById('OI90149ShoppingListLink_0').focus();"
+							onmouseout="javascript: this.className = 'created_list'; shoppingListJSOI90149.exceptionFlag = false; if(document.getElementById('OI90149shoppingListDropDown').style.display != 'none'){document.getElementById('OI90149listOfShoppingLists').focus();}"
+							onblur="javascript: this.className = 'created_list';"
+							onclick="shoppingListJSOI90149.showPopup('create');">
+									<a id="OI90149ShoppingListLink_0" href="javascript:shoppingListJSOI90149.showPopup('create');"
+										onfocus="javascript:shoppingListJSOI90149.focusListLink(0);"
+										role="menuitem">[PROPERTIES;SL_CREATE_NEW_SHOPPING_LIST;Create a new Wish List]</a>
+							</li>
+				</ul>
+			</div>
+</div>
+<!-- Hidden Fields -->
+
+<input id="OI90149storeParams" type="hidden" value="{storeId: '10152',catalogId: '10001',langId: '-1'}"/>
+<input id="OI90149catEntryParams" type="hidden" value="{id: '10041', name: 'Hermitage Ruched Bodice Cocktail Dress', image: '../StoreAssets/images/catalog/apparel/women/womens_dresses_105x105/WD_028_a_red.jpg', type: 'ItemBean', components: {}, skus: []}"/>
+<input id="OI90149shoppingListNames" type="hidden" value="{}"/>
+<div id="OI90149createShoppingListPopup" dojoType="dijit.Dialog" title="[PROPERTIES;DIALOG_TITLE_CREATE_WISHLIST;Create Wish List Dialog]" style="display:none;">
+	<div class="widget_site_popup">
+		<div class="top">
+			<div class="left_border"></div>
+			<div class="middle"></div>
+			<div class="right_border"></div>
+		</div>
+		<div class="clear_float"></div>
+		<div class="middle">
+			<div class="content_left_border">
+				<div class="content_right_border">
+					<div class="content">
+						<div class="header">
+							<span>[PROPERTIES;SL_CREATE_NEW_SHOPPING_LIST;Create a new Wish List]</span>
+							<a role="button" id="OI90149createShoppingListPopup_close" 
+									href="javascript:dijit.byId('OI90149createShoppingListPopup').hide();"
+							class="close" tabindex="4" title="[PROPERTIES;SL_CLOSE;Close]"></a>
+							<div class="clear_float"></div>
+						</div>
+						<div class="body">
+							<div id="OI90149shoppingListErrorMessageArea" style="display:none">
+								<img class="error_icon left" src="../StoreAssets//images/colors/color1/error_icon.png" alt=""/>
+								<p id="OI90149shoppingListErrorMessageText" class="textinlinewithicon"></p>
+								<div class="clear_float"></div>
+							</div>
+							<div class="item_spacer_10px"></div>
+							<p>[PROPERTIES;SL_NAME_NEW_LIST;Type a name for your new list.]</p>
+							<form>
+								<span class="spanacce">
+									<label for="OI90149newListName">[PROPERTIES;SL_NAME_NEW_LIST;Type a name for your new list.]</label>
+								</span>
+								<input id="OI90149newListName" type="text" size="35" maxlength="64" value="" onkeypress='if(event.keyCode==13){ shoppingListJSOI90149.create(); dojo.stopEvent(event);}' tabindex="1"/>
+							</form>
+							<div class="item_spacer_10px"></div>
+						</div>
+						<div class="footer">
+							<div class="button_container">
+								<a id="OI90149createShoppingListPopup_save" href="javascript: shoppingListJSOI90149.create();" class="button_primary" tabindex="2">
+									<div class="left_border"></div>
+									<span id="OI90149CreateShoppingListPopup_div_create_save" class="button_text">[PROPERTIES;SAVE;Save]</span>
+									<div class="right_border"></div>
+								</a>
+								<a id="OI90149createShoppingListPopup_cancel" 
+										href="javascript:dijit.byId('OI90149createShoppingListPopup').hide();" 
+								class="button_secondary" tabindex="3">
+									<div class="left_border"></div>
+									<span class="button_text">[PROPERTIES;CANCEL;Cancel]</span>
+									<div class="right_border"></div>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="clear_float"></div>
+		<div class="bottom">
+			<div class="left_border"></div>
+			<div class="middle"></div>
+			<div class="right_border"></div>
+		</div>
+		<div class="clear_float"></div>
+	</div>
+</div>
+<div id="OI90149shoppingListCreateSuccessPopup" dojoType="dijit.Dialog" title="[PROPERTIES;DIALOG_TITLE_MESSAGE;Message Dialog]" style="display:none;">
+	<div class="widget_site_popup">
+		<div class="top">
+			<div class="left_border"></div>
+			<div class="middle"></div>
+			<div class="right_border"></div>
+		</div>
+		<div class="clear_float"></div>
+		<div class="middle">
+			<div class="content_left_border">
+				<div class="content_right_border">
+					<div class="content">
+						<a role="button" id="OI90149shoppingListCreateSuccessPopup_close" 
+								href="javascript:dijit.byId('OI90149shoppingListCreateSuccessPopup').hide();"
+						class="close" title="[PROPERTIES;SL_CLOSE;Close]"></a>
+						<div class="body">
+							<div class="item_spacer_10px"></div>
+							<div class="item_spacer_10px"></div>
+							<div class="item_spacer_10px"></div>
+							<div class="item_spacer_10px"></div>
+							<img class="error_icon left" src="../StoreAssets//images/colors/color1/success_icon.png" alt=""/>
+							<p id="OI90149successMessageAreaText" class="textinlinewithicon">[PROPERTIES;LIST_CREATED;Wish list created successfully.]</p>
+							<div class="clear_float"></div>
+							<div class="item_spacer_10px"></div>
+							<div class="item_spacer_10px"></div>
+							<div class="item_spacer_10px"></div>
+							<div class="item_spacer_10px"></div>
+						</div>
+						<div class="footer">
+							<div class="button_container">
+								<a id="OI90149shoppingListCreateSuccessPopup_continue_shopping" 
+										href="javascript:dijit.byId('OI90149shoppingListCreateSuccessPopup').hide();" 
+								class="button_primary">
+									<div class="left_border"></div>
+									<div class="button_text">[PROPERTIES;CONTINUE_SHOPPING;Continue Shopping]</div>
+									<div class="right_border"></div>
+								</a>
+								<div class="clear_float"></div>
+							</div>
+							<div class="clear_float"></div>
+						</div>
+						<div class="clear_float"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="clear_float"></div>
+		<div class="bottom">
+			<div class="left_border"></div>
+			<div class="middle"></div>
+			<div class="right_border"></div>
+		</div>
+		<div class="clear_float"></div>
+	</div>
+</div>
+</span>
+<!-- END ShoppingList.jsp -->
+
+					</p>
+					<p>
+							<a class="remove_address_link" href="ShippingandBillingDisplay_2.html" onfocus="javascript:CheckoutHelperJS.setLastFocus(this.id);" id="WC_MSOrderItemDetails_link_2_1">
+								<img src="../StoreAssets/images/colors/color1/table_x_delete.png" alt=""/>
+								[PROPERTIES;REMOVE;Remove]
+							</a>
+					</p>
+					<br/>
+				</div>
+			</th>
+			<td class=" shippingaddress_nest" width="200" id="WC_MSOrderItemDetails_td_1_1" headers="MultipleShipments_tableCell_shipAddress MultipleShipping_rowHeader_product1">
+				<div class="shipping_address_nester" id="WC_MSOrderItemDetails_div_3_1"> 
+<!-- BEGIN ShippingAddressSelect.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">ShippingAddressSelect.jsp</div>
+<!-- this context is for dealing with states for the shipping addresses in all shipments -->
+<script type="text/javascript">
+	wc.render.declareContext("shippingAddressContext",{shippingAddress: "0"},"");
+	wc.render.declareRefreshController({
+		id: "shippingAdddressDisplayAreaController",
+		renderContext: wc.render.getContextById("shippingAddressContext"),
+		url: "https:///webapp/wcs/stores/servlet/AjaxAddressDisplayView?catalogId=10001&langId=-1&storeId=10152",
+		formId: ""
+		,renderContextChangedHandler: function(message, widget) {
+			var controller = this;
+			var renderContext = this.renderContext;
+			if (controller.testForChangedRC(["shippingAddress"])) {
+				var addressId = renderContext.properties["shippingAddress"];
+				widget.refresh({"addressId": addressId});
+			}
+			cursor_clear();
+		}
+	});
+</script>
+<div class="shipping_address_MS_shipping_info_page" id="WC_ShippingAddressSelectMultiple_div_90149">
+<div id="MS_ShippingAddress_Section_90149" class="">
+	<p>
+			<label for="MS_ShipmentAddress_90149"><span class="spanacce">[PROPERTIES;SHIP_SHIPPING_ADDRESS;Shipping Address]</span></label>
+				<select class="drop_down_shipping form_input" name="MS_ShipmentAddress_90149" id="MS_ShipmentAddress_90149" onChange="JavaScript:setCurrentId('MS_ShipmentAddress_90149'); CheckoutHelperJS.updateAddressIdForThisItem(this.value,'90149');CheckoutHelperJS.displayAddressDetailsForMS(this.value,'90149','Shipping');CheckoutHelperJS.showHideEditAddressLink(this,'90149')" onkeydown="CheckoutHelperJS.tabPressed(event);">
+						<option value="15277"
+						selected="selected"
+					>
+					TestUser</option>
+				</select>
+	</p>
+		<input type="hidden" id="shippingOrganizationAddressList" value="-2000" name="shippingOrganizationAddressList"/>
+		<!-- Area where selected shipping Address details is showed in short..-->
+
+		<div id="MS_shippingAddressDisplayArea_90149">
+			<!-- This value is equal to value in struts-config-ext.xml for view Name AjaxAddressDisplayView -->
+
+<!-- BEGIN AddressDisplay.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">AddressDisplay.jsp</div>
+	<script type="text/javascript">
+		dojo.addOnLoad(function() {
+			console.debug("addressId= " + "15277");
+			console.debug("mode= " + "");
+		});
+	</script>
+<!-- BEGIN AddressDisplay.jspf -->
+
+<!-- Set the country and state display name to the country and state codes respectively. This is in case the display name is not found. -->
+
+		<!-- Retrieve the country display name from the country code -->
+
+	<!-- Retrieve the state display name from the state code -->
+
+<!-- BEGIN Address.jspf -->
+
+	John Clark<br />
+	122 Fake St&nbsp;<br />
+	Toronto&nbsp;Ontario&nbsp;<br />
+	Canada&nbsp;H0H 0H0&nbsp;<br />
+	905-555-2000<br />
+	john@test.test<br />
+<!-- END Address.jspf -->
+
+<!-- END AddressDisplay.jspf -->
+
+</span>
+<!-- END AddressDisplay.jsp -->
+
+			<input type="hidden" value="15277" id="addressId_90149" name="addressId_90149"/>
+		</div>
+		<!-- Show Edit button only if there are any valid address.. -->
+
+			<br/>
+			<div class="editAddressLink hover_underline" id="editAddressLink_90149" style="display:block;">
+					<a href="ShippingandBillingDisplay_1.html?source=3" onfocus="javascript:CheckoutHelperJS.setLastFocus(this.id);" id="WC_ShippingAddressSelectMultiple_link_2_90149">
+						<img src="../StoreAssets/images/edit_icon.png" alt="" /> 
+						[PROPERTIES;ADDR_EDIT_ADDRESS;Edit Address]
+					</a>
+			</div>
+	<div class="newShippingAddressButton hover_underline" id="newShippingAddressButton_90149">
+			<a href="ShippingandBillingDisplay_3.html?source=3" id="WC_ShippingAddressSelectMultiple_link_3_90149">
+				<img class="nopadding" src="../StoreAssets/images/colors/color1/table_plus_add.png" alt="" />
+				[PROPERTIES;ADDR_CREATE_ADDRESS;Create Address]
+			</a>
+	</div>
+<script type="text/javascript">
+			dojo.addOnLoad(function() { 
+				CheckoutHelperJS.showHideEditAddressLink(document.getElementById("MS_ShipmentAddress_90149"),'90149');
+			});
+</script>
+</div>
+</div>
+</span>
+<!-- END ShippingAddressSelect.jsp -->
+
+				</div>
+			</td>
+			<td class=" shippingmethod_nest" id="WC_MSOrderItemDetails_td_2_1" headers="MultipleShipments_tableCell_shipMethod MultipleShipping_rowHeader_product1">
+				<div class="shipping_method_nested" id="WC_MSOrderItemDetails_div_4_1">
+<!-- BEGIN ShippingMethodDetails.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">ShippingMethodDetails.jsp</div>
+<script type="text/javascript">
+	dojo.addOnLoad(function() { 
+		SBServicesDeclarationJS.setCommonParameters('-1','10152','10001');
+		SBServicesDeclarationJS.setAjaxCheckOut('true');
+	});
+</script>
+<!-- If shipping instructions are empty, then hide the div which displays the date and instructions -->
+
+<!-- this will update the Shipping info(Instructions, shipAsComplete and requested ship date) for each orderItem -->
+
+<div class="shipping_method_MS_shipping_info_page" id="WC_ShippingMethodDetails_div_90149">
+	<p>
+		<label for="MS_ShippingMode_90149"><span class="spanacce">[PROPERTIES;SHIP_SHIPPING_METHOD;Shipping Method]</span></label>
+		<select class="drop_down_shipping" name="MS_ShippingMode_90149" id="MS_ShippingMode_90149" onchange="JavaScript:setCurrentId(this.id); CheckoutHelperJS.updateShipModeForThisItem(this,'90149')">
+					<option shipModeCode="Mail" selected="selected" value="10052">
+								Mail
+					</option>						
+					<option shipModeCode="Express"  value="10552">
+								Express
+					</option>						
+					<option shipModeCode="International Priority"  value="10654">
+								International Priority
+					</option>						
+					<option shipModeCode="International Regular"  value="10655">
+								International Regular
+					</option>						
+					<option shipModeCode="US - 2-Day Express Delivery"  value="10653">
+								US - 2-Day Express Delivery
+					</option>						
+					<option shipModeCode="US - Overnight Delivery"  value="10652">
+								US - Overnight Delivery
+					</option>						
+					<option shipModeCode="US Regular Delivery"  value="10651">
+								US - Regular Delivery
+					</option>						
+		</select>
+	</p>
+			<p>
+				<span class="checkbox">
+					<input type="checkbox" class="checkbox" id="MS_shippingInstructionsCheckbox_90149" name="MS_shippingInstructionsCheckbox_90149" onclick="JavaScript:setCurrentId(this.id);CheckoutHelperJS.checkShippingInstructionsBox('MS_shippingInstructionsCheckbox','MS_shippingInstructionsDiv','90149')"
+					/>
+					<label for="MS_shippingInstructionsCheckbox_90149"><span class="text">Add Shipping Instructions</span></label>
+				</span>
+			</p>
+			<div name = "MS_shippingInstructionsDiv_90149" id = "MS_shippingInstructionsDiv_90149" style="display:none">
+				<span>
+					<p>
+						<label for="MS_shipInstructions_90149">
+							<span class="spanacce">Specify additional shipping instructions</span>
+						</label>
+					</p>
+					<p>
+						<textarea id="MS_shipInstructions_90149" name="MS_shipInstructions_90149" rows="2" onchange="JavaScript:setCurrentId(this.id);CheckoutHelperJS.updateShippingInstructionsForThisItem(this,'90149')"></textarea>
+					</p>
+				</span>
+			</div>
+			<p>
+				<span class="checkbox">
+					<input type="checkbox" class="checkbox" id="MS_requestShippingDateCheckbox_90149" name="MS_requestShippingDateCheckbox_90149" onclick="JavaScript:setCurrentId(this.id);CheckoutHelperJS.checkRequestShippingDateBox('MS_requestShippingDateCheckbox','MS_requestShippingDateDiv','90149')"
+					/>
+					<label for="MS_requestShippingDateCheckbox_90149"><span class="text">Request Shipping Date</span></label>
+				</span>
+			</p>
+			<div name="MS_requestShippingDateDiv_90149" id="MS_requestShippingDateDiv_90149" style="display:none">
+				<div id="MS_requestedShippingDate_90149_label">
+					<label for="MS_requestedShippingDate_90149">
+						<span class="spanacce">The date format should be month/day/year, therefore m m/d d/y y y y</span>
+					</label>
+				</div>
+				<div id="MS_requestedShippingDate_90149_inputField" class="dijitCalendarWidth">
+					<input 
+						id="MS_requestedShippingDate_90149" 
+						name="MS_requestedShippingDate_90149" 
+						size="6" 
+						onChange="JavaScript:setCurrentId(this.id);CheckoutHelperJS.updateRequestedShipDateForThisItem(this, '90149'); " 
+						dojoType="dijit.form.DateTextBox" 
+						invalidMessage="Invalid date. Use mm/dd/yyyy format" 
+						value="" 
+					/>
+					<script type="text/javascript">
+					dojo.addOnLoad(function() { 
+						var widgetText = "MS_requestedShippingDate_" + "90149";
+						parseWidget(widgetText);
+					});
+					</script>
+				</div>
+			</div>
+</div>
+</span>
+<!-- END ShippingMethodDetails.jsp -->
+
+				</div>
+			</td>  
+			<td id="WC_MSOrderItemDetails_td_3_1" class=" avail" headers="MultipleShipments_tableCell_availability MultipleShipping_rowHeader_product1">
+<!-- BEGIN CatalogEntryAvailabilityDisplay.jspf-->
+
+				<p>
+							[PROPERTIES;SHIP_IN_STOCK;In-Stock]
+				</p>
+<!-- END CatalogEntryAvailabilityDisplay.jspf-->
+
+			</td>
+			<td class=" QTY" id="WC_MSOrderItemDetails_td_4_1" class="QTY" headers="MultipleShipments_tableCell_quantity MultipleShipping_rowHeader_product1">
+				<p class="item-quantity">
+							<input type="hidden" value="1" id='qty_1' name='qty_1'/><span>1</span>
+				</p>
+			</td>
+			<td id="WC_MSOrderItemDetails_td_5_1" class=" each" headers="MultipleShipments_tableCell_unitPrice MultipleShipping_rowHeader_product1">
+				<span class="price">
+					$100.00
+				</span>				
+			</td>
+			<td id="WC_MSOrderItemDetails_td_6_1" class=" total" headers="MultipleShipments_tableCell_totalPrice MultipleShipping_rowHeader_product1">
+						<span class="price">
+							$100.00
+						</span>
+			</td>
+		</tr>
+	<input type="hidden" id = "totalNumberOfItems" name="totalNumberOfItems" value='1'/>
+<!-- We need this form in case of non-ajax checkout process... In Non-Ajax checkout process we will submit the entire form 
+	 All the required hidden fields are defined at the end of this page before closing form tag. Update Shopping Cart function will
+	 submit this form.. 
+ -->
+ </table>
+<div class="free_gifts_block">
+<!-- BEGIN PromotionPickYourFreeGift.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">PromotionPickYourFreeGift.jsp</div>
+<script type="text/javascript">
+	dojo.addOnLoad(function(){
+		CommonControllersDeclarationJS.setControllerURL('PromotionFreeGifts_Controller','');		
+	});
+</script>	
+		<div class="free_gift_container"> 
+				<p>
+				</p>
+			<div class="button_align">
+				<a  role="button" aria-labelledby="PickYourFreeGift_ACCE_Label" class="button_secondary" id="PickYourFreeGift" onclick="javascript: document.getElementById('free_gifts_popup').style.display='block';">
+					<div class="left_border"></div>
+					<div class="button_text">
+								[PROPERTIES;PROMOTION_PICK_FREE_GIFT;Select your free gift]	
+						<span id="PickYourFreeGift_ACCE_Label" class="spanacce">[PROPERTIES;Checkout_ACCE_promo_free_gifts_pick;select to view the free gift choices]</span>
+					</div>
+					<div class="right_border"></div>
+				</a>
+			</div>
+		</div>							
+</span>
+<!-- END PromotionPickYourFreeGift.jsp -->
+
+</div>	
+</span>
+<!-- END MSOrderItemDetails.jsp -->
+
+				</div> 
+				<script type="text/javascript">
+					dojo.addOnLoad(function() { 
+					parseWidget("WC_MultipleShipmentDisplay_div_18"); 
+					});
+				</script>
+		<span id="singleShipmentOrderTotalsDetail_ACCE_Label" class="spanacce">[PROPERTIES;ACCE_Region_Order_Total;Order Total]</span>
+		<div dojoType="wc.widget.RefreshArea" widgetId="singleShipmentOrderTotalsDetail"  controllerId="currentOrderTotalsAreaController" id="WC_ShipmentDisplay_div_18" ariaMessage="[PROPERTIES;ACCE_Status_Order_Total_Updated;Order Total Updated]" ariaLiveId="ariaMessage" role="region" aria-labelledby="singleShipmentOrderTotalsDetail_ACCE_Label">
+<!-- BEGIN SingleShipmentOrderTotalsSummary.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">SingleShipmentOrderTotalsSummary.jsp</div>
+<script type="text/javascript">
+	dojo.addOnLoad(initDiscountDetails);
+	function initDiscountDetails(){	
+		if(document.getElementById("discountDetailsSection")!=null )  {
+			document.getElementById("discountDetailsSection").style.display = "block";
+		}
+	}
+</script>
+<div id="total_breakdown">
+			<div id="promotions">
+<!-- BEGIN PromotionCodeDisplay.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">PromotionCodeDisplay.jsp</div>
+<script type="text/javascript">
+	dojo.addOnLoad(function() {
+		MessageHelper.setMessage("PROMOTION_CODE_EMPTY", "Please enter the promotional code");
+	});
+</script>
+<script type="text/javascript">
+	dojo.addOnLoad(initPromotionAssets); 
+	function initPromotionAssets(){
+	}
+</script>
+<form name="PromotionCodeForm" id="PromotionCodeForm" method="post" action="https:///webapp/wcs/stores/servlet/PromotionCodeManage?catalogId=10001&amp;langId=-1&amp;storeId=10152" onsubmit="javascript: return false;">
+	<input type="hidden" name="orderId" value="17087" id="WC_PromotionCodeDisplay_FormInput_orderId_In_PromotionCodeForm_1"/>
+	<input type="hidden" name="taskType" value="A" id="WC_PromotionCodeDisplay_FormInput_page_In_PromotionCodeForm_1"/>
+	<input type="hidden" name="URL" value="" id="WC_PromotionCodeDisplay_FormInput_URL_In_PromotionCodeForm_1"/>
+	<input type="hidden" name="storeId" value="10152" id="WC_PromotionCodeDisplay_FormInput_storeId_In_PromotionCodeForm_1"/>
+	<input type="hidden" name="catalogId" value="10001" id="WC_PromotionCodeDisplay_FormInput_catalogId_In_PromotionCodeForm_1"/>
+	<input type="hidden" name="langId" value="-1" id="WC_PromotionCodeDisplay_FormInput_langId_In_PromotionCodeForm_1"/>
+	<input type="hidden" name="finalView" value="AjaxOrderItemDisplayView" id="WC_PromotionCodeDisplay_FormInput_finalView_In_PromotionCodeForm_1"/>
+	<div class="promotion_code" id="WC_PromotionCodeDisplay_div_1">
+		<label for="promoCode">Promotional code:</label>
+	</div>
+	<div class="promotion_input" id="WC_PromotionCodeDisplay_div_2">
+		<input type="text" class="input" size="6" name="promoCode" id="promoCode" onkeypress="if(event.keyCode==13) JavaScript:CheckoutHelperJS.applyPromotionCode('PromotionCodeForm','OrderShippingBillingView')"/>
+	</div>
+	<div class="promotion_button" id="WC_PromotionCodeDisplay_div_3">
+		<div class="button_align" id="WC_PromotionCodeDisplay_div_4">
+				<a  role="button" class="button_primary" id="WC_PromotionCodeDisplay_links_1" aria-labelledby="WC_PromotionCodeDisplay_links_1_ACCE_Label" tabindex="0" onclick="JavaScript:setCurrentId('WC_PromotionCodeDisplay_links_1'); CheckoutHelperJS.applyPromotionCode('PromotionCodeForm','OrderShippingBillingView');return false;">
+				<div class="left_border"></div>
+					<div class="button_text">Apply<span id="WC_PromotionCodeDisplay_links_1_ACCE_Label" class="spanacce">apply promotional code</span></div>
+				<div class="right_border"></div>
+			</a>
+		</div>
+		<br clear="all"/>
+	</div>
+	<div id="appliedPromotionCodes" class="hover_underline">                                   
+		<!--  <input type="hidden" name="newPromoCode" id="newPromoCode" value=""/> -->
+
+	</div>
+	<br clear="left" />
+</form>
+</span>
+<!-- END PromotionCodeDisplay.jsp -->
+
+			</div>
+	<table id="order_total" cellpadding="0" cellspacing="0" border="0" role="presentation">
+		<tr> 
+			<td class="total_details" id="WC_SingleShipmentOrderTotalsSummary_td_1">Order Subtotal:</td>
+			<td class="total_figures" id="WC_SingleShipmentOrderTotalsSummary_td_2">$100.00</td>
+		</tr>
+		<tr>
+				<td></td>
+		</tr>
+		<tr>
+			<td class="total_details" id="WC_SingleShipmentOrderTotalsSummary_td_3">
+						Discount: 
+			</td>
+			<td class="total_figures" id="WC_SingleShipmentOrderTotalsSummary_td_4">$0.00</td>
+		</tr>
+					<tr>
+						<td class="total_details" id="WC_SingleShipmentOrderTotalsSummary_td_5">Tax:</td>
+						<td class="total_figures" id="WC_SingleShipmentOrderTotalsSummary_td_6">$0.00</td>
+					</tr>	
+			<tr>
+				<td class="total_details" id="WC_SingleShipmentOrderTotalsSummary_td_7">Shipping:</td>
+				<td class="total_figures" id="WC_SingleShipmentOrderTotalsSummary_td_8">$0.00</td>
+			</tr>				
+			<tr>
+				<td class="total_details" id="WC_SingleShipmentOrderTotalsSummary_td_14">Shipping Tax:</td>
+				<td class="total_figures" id="WC_SingleShipmentOrderTotalsSummary_td_15">$0.00</td>
+			</tr>
+		<tr>
+			<td class="total_details order_total" id="WC_SingleShipmentOrderTotalsSummary_td_9">Order Total:</td>
+					<td class="total_figures breadcrumb_current" id="WC_SingleShipmentOrderTotalsSummary_td_10">$100.00</td>
+		</tr>
+	</table>
+</div>
+<!-- BEGIN CouponWalletTable.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">CouponWalletTable.jsp</div>
+</span>
+<!-- END CouponWalletTable.jsp -->
+</span>
+<!-- END SingleShipmentOrderTotalsSummary.jsp -->
+
+		</div>
+		<script type="text/javascript">
+			dojo.addOnLoad(function() { 
+				parseWidget("WC_ShipmentDisplay_div_18"); 
+			});
+		</script>
+	</div>
+	<br clear="all" />
+</div>
+<!-- This button is required only for Non-Ajax Checkout.. -->
+
+</span>
+<!-- END ShippingDetailsDisplay.jsp -->
+
+												<br/>&nbsp;		
+												<div class="main_header" id="WC_ShipmentDisplay_div_22">
+													<div class="left_corner_straight" id="WC_ShipmentDisplay_div_23"></div>
+													<div class="left" id="WC_ShipmentDisplay_div_24"><span aria-level="1" class="main_header_text" role="heading">[PROPERTIES;BILL_BILLING_INFO;Billing Information]</span></div>
+													<div class="right_corner_straight" id="WC_ShipmentDisplay_div_25"></div>
+												</div>
+												<!-- Display drop down box to select number of payment options.. -->
+
+											   			<div class="checkout_subheader" id="WC_ShipmentDisplay_div_26">
+												<div class="left_corner" id="WC_ShipmentDisplay_div_27"></div>
+												<div class="left_drop_down_shipment" id="WC_ShipmentDisplay_div_28">
+													<span class="content_text"><label for="numberOfPaymentMethods">[PROPERTIES;BILL_MULTIPLE_BILLING_MESSAGE;Select the number of payment methods:]</label>
+														<select class="drop_down_billing" name="numberOfPaymentMethods" id="numberOfPaymentMethods" onchange="JavaScript:CheckoutPayments.setNumberOfPaymentMethods(3,this,'paymentSection');CheckoutPayments.reinitializePaymentObjects(this);">
+																<option value="1" selected="selected">
+																	[PROPERTIES;BILL_PAYMENT_OPTIONS;1 Payment method(s)]
+																</option>
+																<option value="2" >
+																	[PROPERTIES;BILL_PAYMENT_OPTIONS;2 Payment method(s)]
+																</option>
+																<option value="3" >
+																	[PROPERTIES;BILL_PAYMENT_OPTIONS;3 Payment method(s)]
+																</option>
+														</select>
+													</span>
+												</div> 
+												<div class="right_corner" id="WC_ShipmentDisplay_div_29"></div>
+												</div>
+												<div class="body shipping_billing_height" id="WC_ShipmentDisplay_div_30">
+<!-- BEGIN CheckoutPaymentsAndBillingAddress.jspf -->
+
+<script type="text/javascript" src="../StoreAssets/javascript/CheckoutArea/CheckoutPayments.js"></script>
+<script type="text/javascript" src="../StoreAssets/javascript/CheckoutArea/CheckoutHelper.js"></script>
+<script type="text/javascript">
+		analyticsJS.loadPaymentPageView(CheckoutPayments);
+	var paymentSnippetsURLMap = {};
+			paymentSnippetsURLMap['COD'] = 'StandardCOD';
+			paymentSnippetsURLMap['BillMeLater'] = 'StandardBillMeLater';
+			paymentSnippetsURLMap['Master Card'] = 'StandardMasterCard';
+			paymentSnippetsURLMap['PayLater'] = 'StandardPayLater';
+			paymentSnippetsURLMap['VISA'] = 'StandardVisa';
+			paymentSnippetsURLMap['Check'] = 'StandardCheck';
+			paymentSnippetsURLMap['AMEX'] = 'StandardAmex';
+	dojo.addOnLoad(function() { 
+		CheckoutPayments.setErrorMessage("EDPPaymentMethods_CANNOT_RECONCILE_PAYMENT_AMT", "[PROPERTIES;EDPPaymentMethods_CANNOT_RECONCILE_PAYMENT_AMT;The sum of your payment amount(s) is less than the order total. Please allocate payment amount(s) for the whole order total before proceeding.]");
+		CheckoutPayments.setErrorMessage("EDPPaymentMethods_PAYMENT_AMOUNT_LARGER_THAN_ORDER_AMOUNT", "[PROPERTIES;EDPPaymentMethods_PAYMENT_AMOUNT_LARGER_THAN_ORDER_AMOUNT;The payment amount is greater than the remaining amount.]");
+		CheckoutPayments.setErrorMessage("EDPPaymentMethods_NO_ACCOUNT_NUMBER", "[PROPERTIES;EDPPaymentMethods_NO_ACCOUNT_NUMBER;The credit card account number cannot be empty.]");
+		CheckoutPayments.setErrorMessage("EDPPaymentMethods_INVALID_EXPIRY_DATE", "[PROPERTIES;EDPPaymentMethods_INVALID_EXPIRY_DATE;Invalid expiration year and month]");
+		CheckoutPayments.setErrorMessage("EDPPaymentMethods_NO_AMOUNT", "[PROPERTIES;EDPPaymentMethods_NO_AMOUNT;The amount cannot be empty.]");
+		CheckoutPayments.setErrorMessage("EDPPaymentMethods_AMOUNT_NAN", "[PROPERTIES;EDPPaymentMethods_AMOUNT_NAN;The amount entered is not a valid amount. Please format the amount correctly.]");
+		CheckoutPayments.setErrorMessage("EDPPaymentMethods_AMOUNT_LT_ZERO", "[PROPERTIES;EDPPaymentMethods_AMOUNT_LT_ZERO;The amount entered cannot be less than zero.]");
+		CheckoutPayments.setErrorMessage("EDPPaymentMethods_NO_BILLING_ADDRESS", "[PROPERTIES;EDPPaymentMethods_NO_BILLING_ADDRESS;There is no billing address selected.]");
+		CheckoutPayments.setErrorMessage("EDPPaymentMethods_BILLING_ADDRESS_INVALID", "[PROPERTIES;EDPPaymentMethods_BILLING_ADDRESS_INVALID;The billing address information is incomplete. Complete the billing address by clicking Edit, before proceeding with the checkout process.]");
+		CheckoutPayments.setErrorMessage("EDPPaymentMethods_CVV_NOT_NUMERIC", "[PROPERTIES;EDPPaymentMethods_CVV_NOT_NUMERIC;CVV2 field must be numeric.]");
+		CheckoutPayments.setErrorMessage("EDPPaymentMethods_PAYMENT_AMOUNT_PROBLEM", "[PROPERTIES;EDPPaymentMethods_PAYMENT_AMOUNT_PROBLEM;There is a problem handling your payment amount(s). Contact your site administrator.]");
+		CheckoutPayments.setErrorMessage("EDPPaymentMethods_NO_PAYMENT_SELECTED", "[PROPERTIES;EDPPaymentMethods_NO_PAYMENT_SELECTED;You must select a payment method.]");
+		CheckoutPayments.setErrorMessage("EDPPaymentMethods_NO_ROUTING_NUMBER", "[PROPERTIES;EDPPaymentMethods_NO_ROUTING_NUMBER;No check routing number entered]");
+		CheckoutPayments.setErrorMessage("EDPPaymentMethods_NO_BANK_ACCOUNT_NO", "[PROPERTIES;EDPPaymentMethods_NO_BANK_ACCOUNT_NO;No Bank account number entered]");
+		CheckoutPayments.setErrorMessage("PROMOTION_CODE_EMPTY", "[PROPERTIES;PROMOTION_CODE_EMPTY;Please enter the promotional code]");
+		CheckoutPayments.setErrorMessage("PO_NUMBER", null);
+		CheckoutPayments.setErrorMessage("ERROR_PONumberEmpty", "???ERROR_PONumberEmpty???");
+		CheckoutPayments.setErrorMessage("ERROR_PONumberTooLong", "???ERROR_PONumberTooLong???");
+		CheckoutPayments.setLocale('en-us');
+		CheckoutPayments.initializeOverallPaymentObjects();
+		CheckoutPayments.initializePaymentAreaDataDirtyFlags();
+		wc.render.declareContext("paymentContext", {payment1: "empty", payment2: "empty", payment3: "empty", currentAreaNumber: "1", billingMode1: "none", billingMode2: "none", billingMode3: "none",currentTotal:"0"},	"");
+	});
+</script>
+<!-- Declare the payment area controller associated with the paymentContext.. when the context changes
+this controller will be used and the paymentArea div will be populated with the required JSP file, based on the
+selection made...ex: if Visa brand is selected in payment1, then paymentArea1 will get populated with contents of
+Visa.jsp -->
+<!-- There will be three controllers by default.. paymentAreaController1,paymentAreaController2 and paymentAreaController3
+When paymentAreaController1 changes, the payment1 property of the context will be updated... So in that case for paymentAreaController1,
+controller.testForChangedRC(["payment1"])) will return true..and then we check for payment1 type ..if its VISA, then we load
+Visa.jsp.. similarly it works for other controllers -->
+<script type="text/javascript">
+dojo.addOnLoad(function() { 
+	wc.render.declareRefreshController({
+		id: "paymentAreaController1",
+		renderContext: wc.render.getContextById("paymentContext"),
+		url: "",
+		formId: ""
+		,modelChangedHandler: function(message, widget) {
+			var controller = this;
+			var renderContext = this.renderContext;
+		}
+		,renderContextChangedHandler: function(message, widget) {
+			var controller = this;
+			var renderContext = this.renderContext;
+				if (renderContext.properties.currentPaymentArea == 1) {
+					if ((controller.testForChangedRC(["payment1"])  || controller.testForChangedRC(["paymentTCId1"])
+						|| (controller.testForChangedRC(["piAmount"])) && supportPaymentTypePromotions )
+					) {
+						if (renderContext.properties.payment1 == "empty") {
+							viewName = "EmptySnippetView";
+						} else {
+							viewName = paymentSnippetsURLMap[renderContext.properties.payment1];
+						}
+						controller.url = viewName + '?storeId=10152&catalogId=10001&langId=-1';
+						if (supportPaymentTypePromotions) {									
+							if (CheckoutPayments.numberOfPaymentMethods != 1) {
+								widget.refresh(renderContext.properties);
+							} else if (CheckoutPayments.numberOfPaymentMethods == 1 && 1 < 2) {
+								widget.refresh(renderContext.properties);
+							}
+						} else {
+							widget.refresh(renderContext.properties);
+						}
+				  }
+				}
+		}
+		,postRefreshHandler: function(widget) {
+			/**
+				if supportPaymentTypePromotions is true, CheckoutPayments.loadPaymentSnippet should have been called to 
+				reload the entire payment refresh area. This will also refresh the amount field. Hence, we don't need to
+				call update amount field again	(which will trigger a call to CheckoutPayments.loadPaymentSnippet ).
+			**/
+			if (!supportPaymentTypePromotions) { 
+				var orderTotal = dojo.byId("OrderTotalAmount").value;
+				CheckoutPayments.updateAmountFields(orderTotal);
+			}
+			cursor_clear();
+		}
+	});
+});
+</script>
+<script type="text/javascript">
+dojo.addOnLoad(function() { 
+	wc.render.declareRefreshController({
+		id: "paymentAreaController2",
+		renderContext: wc.render.getContextById("paymentContext"),
+		url: "",
+		formId: ""
+		,modelChangedHandler: function(message, widget) {
+			var controller = this;
+			var renderContext = this.renderContext;
+		}
+		,renderContextChangedHandler: function(message, widget) {
+			var controller = this;
+			var renderContext = this.renderContext;
+				if (renderContext.properties.currentPaymentArea == 2) {
+					if ((controller.testForChangedRC(["payment2"])  || controller.testForChangedRC(["paymentTCId2"])
+						|| (controller.testForChangedRC(["piAmount"])) && supportPaymentTypePromotions )
+					) {
+						if (renderContext.properties.payment2 == "empty") {
+							viewName = "EmptySnippetView";
+						} else {
+							viewName = paymentSnippetsURLMap[renderContext.properties.payment2];
+						}
+						controller.url = viewName + '?storeId=10152&catalogId=10001&langId=-1';
+						if (supportPaymentTypePromotions) {									
+							if (CheckoutPayments.numberOfPaymentMethods != 1) {
+								widget.refresh(renderContext.properties);
+							} else if (CheckoutPayments.numberOfPaymentMethods == 1 && 2 < 2) {
+								widget.refresh(renderContext.properties);
+							}
+						} else {
+							widget.refresh(renderContext.properties);
+						}
+				  }
+				}
+		}
+		,postRefreshHandler: function(widget) {
+			/**
+				if supportPaymentTypePromotions is true, CheckoutPayments.loadPaymentSnippet should have been called to 
+				reload the entire payment refresh area. This will also refresh the amount field. Hence, we don't need to
+				call update amount field again	(which will trigger a call to CheckoutPayments.loadPaymentSnippet ).
+			**/
+			if (!supportPaymentTypePromotions) { 
+				var orderTotal = dojo.byId("OrderTotalAmount").value;
+				CheckoutPayments.updateAmountFields(orderTotal);
+			}
+			cursor_clear();
+		}
+	});
+});
+</script>
+<script type="text/javascript">
+dojo.addOnLoad(function() { 
+	wc.render.declareRefreshController({
+		id: "paymentAreaController3",
+		renderContext: wc.render.getContextById("paymentContext"),
+		url: "",
+		formId: ""
+		,modelChangedHandler: function(message, widget) {
+			var controller = this;
+			var renderContext = this.renderContext;
+		}
+		,renderContextChangedHandler: function(message, widget) {
+			var controller = this;
+			var renderContext = this.renderContext;
+				if (renderContext.properties.currentPaymentArea == 3) {
+					if ((controller.testForChangedRC(["payment3"])  || controller.testForChangedRC(["paymentTCId3"])
+						|| (controller.testForChangedRC(["piAmount"])) && supportPaymentTypePromotions )
+					) {
+						if (renderContext.properties.payment3 == "empty") {
+							viewName = "EmptySnippetView";
+						} else {
+							viewName = paymentSnippetsURLMap[renderContext.properties.payment3];
+						}
+						controller.url = viewName + '?storeId=10152&catalogId=10001&langId=-1';
+						if (supportPaymentTypePromotions) {									
+							if (CheckoutPayments.numberOfPaymentMethods != 1) {
+								widget.refresh(renderContext.properties);
+							} else if (CheckoutPayments.numberOfPaymentMethods == 1 && 3 < 2) {
+								widget.refresh(renderContext.properties);
+							}
+						} else {
+							widget.refresh(renderContext.properties);
+						}
+				  }
+				}
+		}
+		,postRefreshHandler: function(widget) {
+			/**
+				if supportPaymentTypePromotions is true, CheckoutPayments.loadPaymentSnippet should have been called to 
+				reload the entire payment refresh area. This will also refresh the amount field. Hence, we don't need to
+				call update amount field again	(which will trigger a call to CheckoutPayments.loadPaymentSnippet ).
+			**/
+			if (!supportPaymentTypePromotions) { 
+				var orderTotal = dojo.byId("OrderTotalAmount").value;
+				CheckoutPayments.updateAmountFields(orderTotal);
+			}
+			cursor_clear();
+		}
+	});
+});
+</script>
+<script type="text/javascript">
+	wc.render.declareRefreshController({
+			id: "orderTotalController",
+			renderContext: wc.render.getContextById("paymentContext"),
+			url: "", //not used. see CheckoutPayments.getTotalInJSON()
+			formId: ""
+			,modelChangedHandler: function(message, widget) {
+				var controller = this;
+				var renderContext = this.renderContext;
+				if(message.actionId in order_updated || message.actionId == 'OrderItemAddressShipMethodUpdate' || message.actionId == 'AjaxPrepareOrderForShipChargeUpdate'
+					|| message.actionId == 'OrderItemAddressShipInstructionsUpdate' || message.actionId == 'OrderItemAddressShipInstructionsUpdate1' || message.actionId == 'AjaxUpdateOrderAfterAddressUpdate'
+					|| message.actionId == 'AjaxDeleteOrderItemForShippingBillingPage' || message.actionId == 'AjaxUpdateOrderItemsAddressId'){
+					//updating the total
+					CheckoutPayments.getTotalInJSON();
+				}
+			}
+		});
+</script>
+<!-- We will submit the order in the next page..For now prepare the order and then start the checkOut process..In checkOut process
+add all the payment instructions and then redirect user to Order Summary Page.. There we will submit the order and get back
+the final confirmation -->
+<!-- BillingAddressDropDownDisplay.jspf uses this URL and rendercontext and refreshController -->
+
+<script type="text/javascript">
+wc.render.declareRefreshController({
+	id: "billingAdddressDisplayAreaController",
+	renderContext: wc.render.getContextById("billingAddressDropDownBoxContext"),
+	url: "https:///webapp/wcs/stores/servlet/AjaxAddressDisplayView?catalogId=10001&langId=-1&storeId=10152",
+	formId: ""
+	,renderContextChangedHandler: function(message, widget) {
+		var controller = this;
+		var renderContext = this.renderContext;
+		var areaNumber = renderContext.properties["areaNumber"];	
+		var objectId = widget.objectId;
+		if (controller.testForChangedRC(["billingAddress"+areaNumber]) && objectId.charAt(objectId.length-1) == areaNumber) {
+				var addressId = renderContext.properties["billingAddress"+areaNumber];
+				widget.refresh({"addressId": addressId});
+			}
+		}
+	,postRefreshHandler: function(widget) {
+		var controller = this;
+		var renderContext = this.renderContext;
+		//clears the progress bar set from billingdropdowndisplay.jsp
+		cursor_clear();
+	}
+});
+</script>
+	<div dojoType="wc.widget.RefreshArea" id="orderTotalAmountArea" widgetId="orderTotalAmountArea" controllerId="orderTotalController" ></div>
+	<script type="text/javascript">dojo.addOnLoad(function() { 
+		parseWidget("orderTotalAmountArea"); 
+	});</script>
+<!-- BEGIN POSnippet.jspf -->
+
+<form name="purchaseOrderNumberInfo"  id="purchaseOrderNumberInfo">
+				<input type="hidden" name="purchase_order_number" id="purchase_order_number" value=""/>
+				<input type="hidden" name="purchaseOrderNumberRequired" id="purchaseOrderNumberRequired" value="false"/>
+</form>
+<!-- END POSnippet.jspf -->
+
+	<div id="paymentSection1" style="display:block" >
+		<div id="WC_CheckoutPaymentsAndBillingAddressf_div_1_1">
+			<div id="billing_1" class="billing">
+					<!-- Payment method number (payment1, payment2...) will be shown only if there are more than 1 payments..-->
+
+					<div id="paymentHeading1" class="payment_heading"> 
+						[PROPERTIES;PAYMENT_CAPS;PAYMENT]
+						<span id="numOfPaymentsIndicator1"> 1:</span>
+					</div>
+				<form name="PaymentForm1" id="PaymentForm1" method="post" action="" onsubmit="javascript: return false;">
+					<input type="hidden" value="" id="quickCheckoutProfileForPayment_1" name="quickCheckoutProfileForPayment"/>
+					<input type="hidden" value="" id="selectedAddressId_1" name="selectedAddressId_1" />
+					<input type="hidden" name="authToken" value="6564%2ciEHy%2bGBaq5UxrnUMsy1H07G3qpg%3d" id="WC_CheckoutPaymentsAndBillingAddressf_input_authToken_1"/>
+					<input type="hidden" name="piId" value="" id="WC_CheckoutPaymentsAndBillingAddressf_piId_1"/>
+					<input type="hidden" name="paymentDataEditable" value="" id="WC_CheckoutPaymentsAndBillingAddressf_paymentDataEditable_1"/>
+					<input type="hidden" name="orderId" value="17087" id="WC_CheckoutPaymentsAndBillingAddressf_orderId_1"/>
+					<div id="billingAddress1" class="billing_address_container">
+						<div dojoType="wc.widget.RefreshArea" id = "billingAddressSelectBoxArea_1" widgetId="billingAddressSelectBoxArea_1" objectId='1' controllerId="billingAddressSelectBoxAreaController" >	
+<!-- BEGIN BillingAddressDropDownDisplay.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">BillingAddressDropDownDisplay.jsp</div>
+<script type="text/javascript">
+	dojo.addOnLoad(function() { 
+		ServicesDeclarationJS.setCommonParameters('-1','10152','10001');
+		CheckoutPayments.setCommonParameters('-1','10152','10001');
+	});
+</script>
+<div class="billing_address" id="WC_BillingAddressDropDownDisplay_div_1">
+	<p class="title">
+	<label for="billing_address_id_1">
+	Billing Address:
+	</label>
+	</p>
+				<select class="drop_down_billing" name="billing_address_id" id="billing_address_id_1" onchange="JavaScript:MessageHelper.hideAndClearMessage();CheckoutPayments.displayBillingAddressDetails(this,1,'Billing'); CheckoutPayments.removeCreditCardNumberAndCVV(1, true, true);CheckoutPayments.updatePaymentObject(1, 'billing_address_id');">
+									<option selected="selected" value="15277">
+									TestUser</option>
+				</select>
+		<!-- Area where selected billing Address details is showed in short.. Needed only in case of web2.0 -->
+
+			<span class="spanacce" id="billingAddressDisplayArea_1_ACCE_Label">
+				[PROPERTIES;ACCE_Region_Billing;Billing Address 1]
+			</span>
+			<div dojoType="wc.widget.RefreshArea" role="region" objectId="billingAddressDisplayArea_1" aria-labelledby="billingAddressDisplayArea_1_ACCE_Label" id="billingAddressDisplayArea_1" widgetId="billingAddressDisplayArea_1" controllerId="billingAdddressDisplayAreaController" ariaMessage="[PROPERTIES;ACCE_Status_Billing_Updated;Billing Address Updated]" ariaLiveId="ariaMessage">
+				<!-- This value is equal to value in struts-config-ext.xml for view Name AjaxAddressDisplayView -->
+
+<!-- BEGIN AddressDisplay.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">AddressDisplay.jsp</div>
+	<script type="text/javascript">
+		dojo.addOnLoad(function() {
+			console.debug("addressId= " + "15277");
+			console.debug("mode= " + "");
+		});
+	</script>
+<!-- BEGIN AddressDisplay.jspf -->
+
+<!-- Set the country and state display name to the country and state codes respectively. This is in case the display name is not found. -->
+
+		<!-- Retrieve the country display name from the country code -->
+
+	<!-- Retrieve the state display name from the state code -->
+
+<!-- BEGIN Address.jspf -->
+
+	John Clark<br />
+	122 Fake St&nbsp;<br />
+	Toronto&nbsp;Ontario&nbsp;<br />
+	Canada&nbsp;H0H 0H0&nbsp;<br />
+	905-555-2000<br />
+	john@test.test<br />
+<!-- END Address.jspf -->
+
+<!-- END AddressDisplay.jspf -->
+
+		<input type="hidden" name="billing_address_isValid" id="billing_address_isValid_1" value="true"/>
+</span>
+<!-- END AddressDisplay.jsp -->
+
+			</div>
+			<script type="text/javascript">
+			dojo.addOnLoad(function() { 
+				var widgetText = "billingAddressDisplayArea_" + "1";
+				parseWidget(widgetText);
+				});
+			</script>
+		<!-- If its a non-ajax checkout page, then we should get all the address details during page load and use div show/hide logic -->
+
+			<br/>
+			<div id="editBillingAddressLink_1" class="editAddressLink hover_underline">
+					<a href="ShippingandBillingDisplay_1.html?source=3" id="editBillingAddressLink_a_edit_1">
+					<img src="../StoreAssets/images/edit_icon.png" alt="" />
+					Edit Address
+					</a>
+			</div>
+		<!--  create a new address  -->
+
+			<div id="createNewBillingAddress_1" class="newShippingAddressButton hover_underline">
+					<a href="ShippingandBillingDisplay_3.html?source=3" id="editBillingAddressLink_a_create_1">
+						<img src="../StoreAssets/images/colors/color1/table_plus_add.png" alt="" />
+						Create Address
+					</a>
+			</div>
+ </div>
+</span>
+<!-- END BillingAddressDropDownDisplay.jsp -->
+
+						</div>
+					</div>
+					<script type="text/javascript">
+						dojo.addOnLoad(function() { 
+							var widgetText = "billingAddressSelectBoxArea_" + "1";
+							parseWidget(widgetText);
+							CheckoutPayments.setNumPaymentIndicator();
+						});
+					</script>
+					<div class="billing_method" id="WC_CheckoutPaymentsAndBillingAddressf_div_2_1">
+						<p class="title">[PROPERTIES;BILL_BILLING_METHOD_COLON;Billing Method:]</p>
+						<label for="payMethodId_1"><span class="spanacce">[PROPERTIES;ACCE_BILLING_METHOD2;Billing Method.  Press the Up or Down Arrow keys to navigate through the billing methods for Payment 1. Press Enter key to select a billing method. The payment input field will be updated to match your selection. Then press the Tab key to get to the payment input field.]</span></label>
+						<p>
+							<input type="hidden" name="storeId" value="10152" id="WC_CheckoutPaymentsAndBillingAddressf_inputs_1_1"/>
+							<input type="hidden" name="catalogId" value="10001" id="WC_CheckoutPaymentsAndBillingAddressf_inputs_2_1"/>
+							<input type="hidden" name="langId" value="-1" id="WC_CheckoutPaymentsAndBillingAddressf_inputs_3_1"/>
+							<input type="hidden" name="existingPiId" value="" id="WC_CheckoutPaymentsAndBillingAddressf_inputs_4_1"/>
+							<input type="hidden" name="curr_year" value="2012" id="WC_CheckoutPaymentsAndBillingAddressf_inputs_5_1"/>
+							<input type="hidden" name="curr_month" value="7" id="WC_CheckoutPaymentsAndBillingAddressf_inputs_6_1"/>
+							<input type="hidden" name="curr_date" value="26" id="WC_CheckoutPaymentsAndBillingAddressf_inputs_7_1"/>
+							<!-- Payment type promotion: onchange call the function CheckoutPayments.updateUnboundPaymentToOrder(); -->
+
+							<select class="drop_down_billing" name="payMethodId" id="payMethodId_1" 
+								onchange="JavaScript:this.blur(); 
+								CheckoutHelperJS.setOrderId('17087');
+								if ( (typeof(supportPaymentTypePromotions) == 'undefined') || (typeof(supportPaymentTypePromotions) != 'undefined' && !supportPaymentTypePromotions) ) { 
+									CheckoutPayments.loadPaymentSnippet(this, 1); 
+									CheckoutPayments.updatePaymentObject(1, 'payMethodId');
+								}
+									if (typeof(supportPaymentTypePromotions) != 'undefined' && supportPaymentTypePromotions) {
+										if (CheckoutPayments.numberOfPaymentMethods == 1) {
+											CheckoutPayments.updateUnboundPaymentToOrder(1);
+										} else {
+											CheckoutPayments.loadPaymentSnippet(this, 1); 
+											CheckoutPayments.updatePaymentObject(1, 'payMethodId');
+										}
+									}
+			                   ">
+								<!--  Add one default Payment select option -->
+
+								<option value="empty" selected="selected">[PROPERTIES;BILL_BILLING_SELECT_BILLING_METHOD;Select billing method]</option>
+								<!-- Loop through available payment options and populate the select box -->
+
+										<option  value="COD">Cash on delivery </option>
+										<option  value="BillMeLater">Bill me later </option>
+										<option  value="Master Card">MasterCard Credit Card </option>
+										<option  value="PayLater">Pay later </option>
+										<option  value="VISA">VISA Credit Card </option>
+										<option  value="Check">Check </option>
+										<option  value="AMEX">American Express Credit Card </option>
+							</select>
+							<input type="hidden" name="buyerOrgDN" value=""/>
+							<!-- This div is for Web2.0 Style -->
+
+								<div dojoType="wc.widget.RefreshArea" widgetId="paymentArea1" controllerId="paymentAreaController1" id="paymentArea1">
+<!-- BEGIN Empty.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">Empty.jsp</div>
+<!-- Set the taglib -->
+<div class="card_info">
+	<span class="col1">
+<!-- BEGIN PaymentAmount.jspf -->
+
+<span class="payment_amount">
+	<label for="piAmount_1_display" class="nodisplay">
+		required information Amount
+	</label>
+	<span class="required-field">*</span>
+	Amount:	
+</span>
+<br/>
+<span> 	
+	<input aria-required="true" type="text" name="piAmount_display" value="100.00" id="piAmount_1_display" onchange="JavaScript:CheckoutPayments.validateAmount('PaymentForm','1');CheckoutPayments.updatePaymentObject(1, 'piAmount');"/>
+	<input type="hidden" name="piAmount" value="100.00000" id="piAmount_1" onchange="CheckoutPayments.formatAmountDisplayForLocale('1')" />	
+</span>
+<!-- END PaymentAmount.jspf -->
+
+	</span>
+</div>
+</span>
+<!-- END Empty.jsp -->
+
+								</div>
+								<script type="text/javascript">
+									dojo.addOnLoad(function() { 
+										var widgetText = "paymentArea" + "1";
+										parseWidget(widgetText);
+									});
+								</script>
+							<!-- This div is for Web1.0 style.. initially this div will be empty..when the form is submitted the innerHTML of the selected payment form div (defined below) will be set to this div's inner HTML .. bcs if all the divs are defined here and even if they are hidden, the fields inside this div will be submitted as part of the form submission.. we dont want to submit fields of all the payment options..so this workaround...-->
+
+						</p>
+					</div>
+					<!-- Payment Method Ends Here -->
+
+					<br clear="all" />
+				</form>
+			</div>
+		</div>
+	</div>
+	<div id="paymentSection2" style="display:none" >
+		<div id="WC_CheckoutPaymentsAndBillingAddressf_div_1_2">
+			<div id="billing_2" class="billing billing_border">
+					<!-- Payment method number (payment1, payment2...) will be shown only if there are more than 1 payments..-->
+
+					<div id="paymentHeading2" class="payment_heading"> 
+						[PROPERTIES;PAYMENT_CAPS;PAYMENT]
+						<span id="numOfPaymentsIndicator2"> 2:</span>
+					</div>
+				<form name="PaymentForm2" id="PaymentForm2" method="post" action="" onsubmit="javascript: return false;">
+					<input type="hidden" value="" id="quickCheckoutProfileForPayment_2" name="quickCheckoutProfileForPayment"/>
+					<input type="hidden" value="" id="selectedAddressId_2" name="selectedAddressId_2" />
+					<input type="hidden" name="authToken" value="6564%2ciEHy%2bGBaq5UxrnUMsy1H07G3qpg%3d" id="WC_CheckoutPaymentsAndBillingAddressf_input_authToken_2"/>
+					<input type="hidden" name="piId" value="" id="WC_CheckoutPaymentsAndBillingAddressf_piId_2"/>
+					<input type="hidden" name="paymentDataEditable" value="" id="WC_CheckoutPaymentsAndBillingAddressf_paymentDataEditable_2"/>
+					<input type="hidden" name="orderId" value="17087" id="WC_CheckoutPaymentsAndBillingAddressf_orderId_2"/>
+					<div id="billingAddress2" class="billing_address_container">
+						<div dojoType="wc.widget.RefreshArea" id = "billingAddressSelectBoxArea_2" widgetId="billingAddressSelectBoxArea_2" objectId='2' controllerId="billingAddressSelectBoxAreaController" >	
+<!-- BEGIN BillingAddressDropDownDisplay.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">BillingAddressDropDownDisplay.jsp</div>
+<script type="text/javascript">
+	dojo.addOnLoad(function() { 
+		ServicesDeclarationJS.setCommonParameters('-1','10152','10001');
+		CheckoutPayments.setCommonParameters('-1','10152','10001');
+	});
+</script>
+<div class="billing_address" id="WC_BillingAddressDropDownDisplay_div_2">
+	<p class="title">
+	<label for="billing_address_id_2">
+	Billing Address:
+	</label>
+	</p>
+				<select class="drop_down_billing" name="billing_address_id" id="billing_address_id_2" onchange="JavaScript:MessageHelper.hideAndClearMessage();CheckoutPayments.displayBillingAddressDetails(this,2,'Billing'); CheckoutPayments.removeCreditCardNumberAndCVV(2, true, true);CheckoutPayments.updatePaymentObject(2, 'billing_address_id');">
+									<option selected="selected" value="15277">
+									TestUser</option>
+				</select>
+		<!-- Area where selected billing Address details is showed in short.. Needed only in case of web2.0 -->
+
+			<span class="spanacce" id="billingAddressDisplayArea_2_ACCE_Label">
+				[PROPERTIES;ACCE_Region_Billing;Billing Address 2]
+			</span>
+			<div dojoType="wc.widget.RefreshArea" role="region" objectId="billingAddressDisplayArea_2" aria-labelledby="billingAddressDisplayArea_2_ACCE_Label" id="billingAddressDisplayArea_2" widgetId="billingAddressDisplayArea_2" controllerId="billingAdddressDisplayAreaController" ariaMessage="[PROPERTIES;ACCE_Status_Billing_Updated;Billing Address Updated]" ariaLiveId="ariaMessage">
+				<!-- This value is equal to value in struts-config-ext.xml for view Name AjaxAddressDisplayView -->
+
+<!-- BEGIN AddressDisplay.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">AddressDisplay.jsp</div>
+	<script type="text/javascript">
+		dojo.addOnLoad(function() {
+			console.debug("addressId= " + "15277");
+			console.debug("mode= " + "");
+		});
+	</script>
+<!-- BEGIN AddressDisplay.jspf -->
+
+<!-- Set the country and state display name to the country and state codes respectively. This is in case the display name is not found. -->
+
+		<!-- Retrieve the country display name from the country code -->
+
+	<!-- Retrieve the state display name from the state code -->
+
+<!-- BEGIN Address.jspf -->
+
+	John Clark<br />
+	122 Fake St&nbsp;<br />
+	Toronto&nbsp;Ontario&nbsp;<br />
+	Canada&nbsp;H0H 0H0&nbsp;<br />
+	905-555-2000<br />
+	john@test.test<br />
+<!-- END Address.jspf -->
+
+<!-- END AddressDisplay.jspf -->
+
+		<input type="hidden" name="billing_address_isValid" id="billing_address_isValid_2" value="true"/>
+</span>
+<!-- END AddressDisplay.jsp -->
+
+			</div>
+			<script type="text/javascript">
+			dojo.addOnLoad(function() { 
+				var widgetText = "billingAddressDisplayArea_" + "2";
+				parseWidget(widgetText);
+				});
+			</script>
+		<!-- If its a non-ajax checkout page, then we should get all the address details during page load and use div show/hide logic -->
+
+			<br/>
+			<div id="editBillingAddressLink_2" class="editAddressLink hover_underline">
+					<a href="ShippingandBillingDisplay_1.html?source=3" id="editBillingAddressLink_a_edit_2">
+					<img src="../StoreAssets/images/edit_icon.png" alt="" />
+					Edit Address
+					</a>
+			</div>
+		<!--  create a new address  -->
+
+			<div id="createNewBillingAddress_2" class="newShippingAddressButton hover_underline">
+					<a href="ShippingandBillingDisplay_3.html?source=3" id="editBillingAddressLink_a_create_2">
+						<img src="../StoreAssets/images/colors/color1/table_plus_add.png" alt="" />
+						Create Address
+					</a>
+			</div>
+ </div>
+</span>
+<!-- END BillingAddressDropDownDisplay.jsp -->
+
+						</div>
+					</div>
+					<script type="text/javascript">
+						dojo.addOnLoad(function() { 
+							var widgetText = "billingAddressSelectBoxArea_" + "2";
+							parseWidget(widgetText);
+							CheckoutPayments.setNumPaymentIndicator();
+						});
+					</script>
+					<div class="billing_method" id="WC_CheckoutPaymentsAndBillingAddressf_div_2_2">
+						<p class="title">[PROPERTIES;BILL_BILLING_METHOD_COLON;Billing Method:]</p>
+						<label for="payMethodId_2"><span class="spanacce">[PROPERTIES;ACCE_BILLING_METHOD2;Billing Method.  Press the Up or Down Arrow keys to navigate through the billing methods for Payment 2. Press Enter key to select a billing method. The payment input field will be updated to match your selection. Then press the Tab key to get to the payment input field.]</span></label>
+						<p>
+							<input type="hidden" name="storeId" value="10152" id="WC_CheckoutPaymentsAndBillingAddressf_inputs_1_2"/>
+							<input type="hidden" name="catalogId" value="10001" id="WC_CheckoutPaymentsAndBillingAddressf_inputs_2_2"/>
+							<input type="hidden" name="langId" value="-1" id="WC_CheckoutPaymentsAndBillingAddressf_inputs_3_2"/>
+							<input type="hidden" name="existingPiId" value="" id="WC_CheckoutPaymentsAndBillingAddressf_inputs_4_2"/>
+							<input type="hidden" name="curr_year" value="2012" id="WC_CheckoutPaymentsAndBillingAddressf_inputs_5_2"/>
+							<input type="hidden" name="curr_month" value="7" id="WC_CheckoutPaymentsAndBillingAddressf_inputs_6_2"/>
+							<input type="hidden" name="curr_date" value="26" id="WC_CheckoutPaymentsAndBillingAddressf_inputs_7_2"/>
+							<!-- Payment type promotion: onchange call the function CheckoutPayments.updateUnboundPaymentToOrder(); -->
+
+							<select class="drop_down_billing" name="payMethodId" id="payMethodId_2" 
+								onchange="JavaScript:this.blur(); 
+								CheckoutHelperJS.setOrderId('17087');
+								if ( (typeof(supportPaymentTypePromotions) == 'undefined') || (typeof(supportPaymentTypePromotions) != 'undefined' && !supportPaymentTypePromotions) ) { 
+									CheckoutPayments.loadPaymentSnippet(this, 2); 
+									CheckoutPayments.updatePaymentObject(2, 'payMethodId');
+								}
+									if (typeof(supportPaymentTypePromotions) != 'undefined' && supportPaymentTypePromotions) {
+										if (CheckoutPayments.numberOfPaymentMethods == 1) {
+											CheckoutPayments.updateUnboundPaymentToOrder(2);
+										} else {
+											CheckoutPayments.loadPaymentSnippet(this, 2); 
+											CheckoutPayments.updatePaymentObject(2, 'payMethodId');
+										}
+									}
+			                   ">
+								<!--  Add one default Payment select option -->
+
+								<option value="empty" selected="selected">[PROPERTIES;BILL_BILLING_SELECT_BILLING_METHOD;Select billing method]</option>
+								<!-- Loop through available payment options and populate the select box -->
+
+										<option  value="COD">Cash on delivery </option>
+										<option  value="BillMeLater">Bill me later </option>
+										<option  value="Master Card">MasterCard Credit Card </option>
+										<option  value="PayLater">Pay later </option>
+										<option  value="VISA">VISA Credit Card </option>
+										<option  value="Check">Check </option>
+										<option  value="AMEX">American Express Credit Card </option>
+							</select>
+							<input type="hidden" name="buyerOrgDN" value=""/>
+							<!-- This div is for Web2.0 Style -->
+
+								<div dojoType="wc.widget.RefreshArea" widgetId="paymentArea2" controllerId="paymentAreaController2" id="paymentArea2">
+<!-- BEGIN Empty.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">Empty.jsp</div>
+<!-- Set the taglib -->
+<div class="card_info">
+	<span class="col1">
+<!-- BEGIN PaymentAmount.jspf -->
+
+<span class="payment_amount">
+	<label for="piAmount_2_display" class="nodisplay">
+		required information Amount
+	</label>
+	<span class="required-field">*</span>
+	Amount:	
+</span>
+<br/>
+<span> 	
+	<input aria-required="true" type="text" name="piAmount_display" value="100.00" id="piAmount_2_display" onchange="JavaScript:CheckoutPayments.validateAmount('PaymentForm','2');CheckoutPayments.updatePaymentObject(2, 'piAmount');"/>
+	<input type="hidden" name="piAmount" value="100.00000" id="piAmount_2" onchange="CheckoutPayments.formatAmountDisplayForLocale('2')" />	
+</span>
+<!-- END PaymentAmount.jspf -->
+
+	</span>
+</div>
+</span>
+<!-- END Empty.jsp -->
+
+								</div>
+								<script type="text/javascript">
+									dojo.addOnLoad(function() { 
+										var widgetText = "paymentArea" + "2";
+										parseWidget(widgetText);
+									});
+								</script>
+							<!-- This div is for Web1.0 style.. initially this div will be empty..when the form is submitted the innerHTML of the selected payment form div (defined below) will be set to this div's inner HTML .. bcs if all the divs are defined here and even if they are hidden, the fields inside this div will be submitted as part of the form submission.. we dont want to submit fields of all the payment options..so this workaround...-->
+
+						</p>
+					</div>
+					<!-- Payment Method Ends Here -->
+
+					<br clear="all" />
+				</form>
+			</div>
+		</div>
+	</div>
+	<div id="paymentSection3" style="display:none" >
+		<div id="WC_CheckoutPaymentsAndBillingAddressf_div_1_3">
+			<div id="billing_3" class="billing billing_border">
+					<!-- Payment method number (payment1, payment2...) will be shown only if there are more than 1 payments..-->
+
+					<div id="paymentHeading3" class="payment_heading"> 
+						[PROPERTIES;PAYMENT_CAPS;PAYMENT]
+						<span id="numOfPaymentsIndicator3"> 3:</span>
+					</div>
+				<form name="PaymentForm3" id="PaymentForm3" method="post" action="" onsubmit="javascript: return false;">
+					<input type="hidden" value="" id="quickCheckoutProfileForPayment_3" name="quickCheckoutProfileForPayment"/>
+					<input type="hidden" value="" id="selectedAddressId_3" name="selectedAddressId_3" />
+					<input type="hidden" name="authToken" value="6564%2ciEHy%2bGBaq5UxrnUMsy1H07G3qpg%3d" id="WC_CheckoutPaymentsAndBillingAddressf_input_authToken_3"/>
+					<input type="hidden" name="piId" value="" id="WC_CheckoutPaymentsAndBillingAddressf_piId_3"/>
+					<input type="hidden" name="paymentDataEditable" value="" id="WC_CheckoutPaymentsAndBillingAddressf_paymentDataEditable_3"/>
+					<input type="hidden" name="orderId" value="17087" id="WC_CheckoutPaymentsAndBillingAddressf_orderId_3"/>
+					<div id="billingAddress3" class="billing_address_container">
+						<div dojoType="wc.widget.RefreshArea" id = "billingAddressSelectBoxArea_3" widgetId="billingAddressSelectBoxArea_3" objectId='3' controllerId="billingAddressSelectBoxAreaController" >	
+<!-- BEGIN BillingAddressDropDownDisplay.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">BillingAddressDropDownDisplay.jsp</div>
+<script type="text/javascript">
+	dojo.addOnLoad(function() { 
+		ServicesDeclarationJS.setCommonParameters('-1','10152','10001');
+		CheckoutPayments.setCommonParameters('-1','10152','10001');
+	});
+</script>
+<div class="billing_address" id="WC_BillingAddressDropDownDisplay_div_3">
+	<p class="title">
+	<label for="billing_address_id_3">
+	Billing Address:
+	</label>
+	</p>
+				<select class="drop_down_billing" name="billing_address_id" id="billing_address_id_3" onchange="JavaScript:MessageHelper.hideAndClearMessage();CheckoutPayments.displayBillingAddressDetails(this,3,'Billing'); CheckoutPayments.removeCreditCardNumberAndCVV(3, true, true);CheckoutPayments.updatePaymentObject(3, 'billing_address_id');">
+									<option selected="selected" value="15277">
+									TestUser</option>
+				</select>
+		<!-- Area where selected billing Address details is showed in short.. Needed only in case of web2.0 -->
+
+			<span class="spanacce" id="billingAddressDisplayArea_3_ACCE_Label">
+				[PROPERTIES;ACCE_Region_Billing;Billing Address 3]
+			</span>
+			<div dojoType="wc.widget.RefreshArea" role="region" objectId="billingAddressDisplayArea_3" aria-labelledby="billingAddressDisplayArea_3_ACCE_Label" id="billingAddressDisplayArea_3" widgetId="billingAddressDisplayArea_3" controllerId="billingAdddressDisplayAreaController" ariaMessage="[PROPERTIES;ACCE_Status_Billing_Updated;Billing Address Updated]" ariaLiveId="ariaMessage">
+				<!-- This value is equal to value in struts-config-ext.xml for view Name AjaxAddressDisplayView -->
+
+<!-- BEGIN AddressDisplay.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">AddressDisplay.jsp</div>
+	<script type="text/javascript">
+		dojo.addOnLoad(function() {
+			console.debug("addressId= " + "15277");
+			console.debug("mode= " + "");
+		});
+	</script>
+<!-- BEGIN AddressDisplay.jspf -->
+
+<!-- Set the country and state display name to the country and state codes respectively. This is in case the display name is not found. -->
+
+		<!-- Retrieve the country display name from the country code -->
+
+	<!-- Retrieve the state display name from the state code -->
+
+<!-- BEGIN Address.jspf -->
+
+	John Clark<br />
+	122 Fake St&nbsp;<br />
+	Toronto&nbsp;Ontario&nbsp;<br />
+	Canada&nbsp;H0H 0H0&nbsp;<br />
+	905-555-2000<br />
+	john@test.test<br />
+<!-- END Address.jspf -->
+
+<!-- END AddressDisplay.jspf -->
+
+		<input type="hidden" name="billing_address_isValid" id="billing_address_isValid_3" value="true"/>
+</span>
+<!-- END AddressDisplay.jsp -->
+
+			</div>
+			<script type="text/javascript">
+			dojo.addOnLoad(function() { 
+				var widgetText = "billingAddressDisplayArea_" + "3";
+				parseWidget(widgetText);
+				});
+			</script>
+		<!-- If its a non-ajax checkout page, then we should get all the address details during page load and use div show/hide logic -->
+
+			<br/>
+			<div id="editBillingAddressLink_3" class="editAddressLink hover_underline">
+					<a href="ShippingandBillingDisplay_1.html?source=3" id="editBillingAddressLink_a_edit_3">
+					<img src="../StoreAssets/images/edit_icon.png" alt="" />
+					Edit Address
+					</a>
+			</div>
+		<!--  create a new address  -->
+
+			<div id="createNewBillingAddress_3" class="newShippingAddressButton hover_underline">
+					<a href="ShippingandBillingDisplay_3.html?source=3" id="editBillingAddressLink_a_create_3">
+						<img src="../StoreAssets/images/colors/color1/table_plus_add.png" alt="" />
+						Create Address
+					</a>
+			</div>
+ </div>
+</span>
+<!-- END BillingAddressDropDownDisplay.jsp -->
+
+						</div>
+					</div>
+					<script type="text/javascript">
+						dojo.addOnLoad(function() { 
+							var widgetText = "billingAddressSelectBoxArea_" + "3";
+							parseWidget(widgetText);
+							CheckoutPayments.setNumPaymentIndicator();
+						});
+					</script>
+					<div class="billing_method" id="WC_CheckoutPaymentsAndBillingAddressf_div_2_3">
+						<p class="title">[PROPERTIES;BILL_BILLING_METHOD_COLON;Billing Method:]</p>
+						<label for="payMethodId_3"><span class="spanacce">[PROPERTIES;ACCE_BILLING_METHOD2;Billing Method.  Press the Up or Down Arrow keys to navigate through the billing methods for Payment 3. Press Enter key to select a billing method. The payment input field will be updated to match your selection. Then press the Tab key to get to the payment input field.]</span></label>
+						<p>
+							<input type="hidden" name="storeId" value="10152" id="WC_CheckoutPaymentsAndBillingAddressf_inputs_1_3"/>
+							<input type="hidden" name="catalogId" value="10001" id="WC_CheckoutPaymentsAndBillingAddressf_inputs_2_3"/>
+							<input type="hidden" name="langId" value="-1" id="WC_CheckoutPaymentsAndBillingAddressf_inputs_3_3"/>
+							<input type="hidden" name="existingPiId" value="" id="WC_CheckoutPaymentsAndBillingAddressf_inputs_4_3"/>
+							<input type="hidden" name="curr_year" value="2012" id="WC_CheckoutPaymentsAndBillingAddressf_inputs_5_3"/>
+							<input type="hidden" name="curr_month" value="7" id="WC_CheckoutPaymentsAndBillingAddressf_inputs_6_3"/>
+							<input type="hidden" name="curr_date" value="26" id="WC_CheckoutPaymentsAndBillingAddressf_inputs_7_3"/>
+							<!-- Payment type promotion: onchange call the function CheckoutPayments.updateUnboundPaymentToOrder(); -->
+
+							<select class="drop_down_billing" name="payMethodId" id="payMethodId_3" 
+								onchange="JavaScript:this.blur(); 
+								CheckoutHelperJS.setOrderId('17087');
+								if ( (typeof(supportPaymentTypePromotions) == 'undefined') || (typeof(supportPaymentTypePromotions) != 'undefined' && !supportPaymentTypePromotions) ) { 
+									CheckoutPayments.loadPaymentSnippet(this, 3); 
+									CheckoutPayments.updatePaymentObject(3, 'payMethodId');
+								}
+									if (typeof(supportPaymentTypePromotions) != 'undefined' && supportPaymentTypePromotions) {
+										if (CheckoutPayments.numberOfPaymentMethods == 1) {
+											CheckoutPayments.updateUnboundPaymentToOrder(3);
+										} else {
+											CheckoutPayments.loadPaymentSnippet(this, 3); 
+											CheckoutPayments.updatePaymentObject(3, 'payMethodId');
+										}
+									}
+			                   ">
+								<!--  Add one default Payment select option -->
+
+								<option value="empty" selected="selected">[PROPERTIES;BILL_BILLING_SELECT_BILLING_METHOD;Select billing method]</option>
+								<!-- Loop through available payment options and populate the select box -->
+
+										<option  value="COD">Cash on delivery </option>
+										<option  value="BillMeLater">Bill me later </option>
+										<option  value="Master Card">MasterCard Credit Card </option>
+										<option  value="PayLater">Pay later </option>
+										<option  value="VISA">VISA Credit Card </option>
+										<option  value="Check">Check </option>
+										<option  value="AMEX">American Express Credit Card </option>
+							</select>
+							<input type="hidden" name="buyerOrgDN" value=""/>
+							<!-- This div is for Web2.0 Style -->
+
+								<div dojoType="wc.widget.RefreshArea" widgetId="paymentArea3" controllerId="paymentAreaController3" id="paymentArea3">
+<!-- BEGIN Empty.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">Empty.jsp</div>
+<!-- Set the taglib -->
+<div class="card_info">
+	<span class="col1">
+<!-- BEGIN PaymentAmount.jspf -->
+
+<span class="payment_amount">
+	<label for="piAmount_3_display" class="nodisplay">
+		required information Amount
+	</label>
+	<span class="required-field">*</span>
+	Amount:	
+</span>
+<br/>
+<span> 	
+	<input aria-required="true" type="text" name="piAmount_display" value="100.00" id="piAmount_3_display" onchange="JavaScript:CheckoutPayments.validateAmount('PaymentForm','3');CheckoutPayments.updatePaymentObject(3, 'piAmount');"/>
+	<input type="hidden" name="piAmount" value="100.00000" id="piAmount_3" onchange="CheckoutPayments.formatAmountDisplayForLocale('3')" />	
+</span>
+<!-- END PaymentAmount.jspf -->
+
+	</span>
+</div>
+</span>
+<!-- END Empty.jsp -->
+
+								</div>
+								<script type="text/javascript">
+									dojo.addOnLoad(function() { 
+										var widgetText = "paymentArea" + "3";
+										parseWidget(widgetText);
+									});
+								</script>
+							<!-- This div is for Web1.0 style.. initially this div will be empty..when the form is submitted the innerHTML of the selected payment form div (defined below) will be set to this div's inner HTML .. bcs if all the divs are defined here and even if they are hidden, the fields inside this div will be submitted as part of the form submission.. we dont want to submit fields of all the payment options..so this workaround...-->
+
+						</p>
+					</div>
+					<!-- Payment Method Ends Here -->
+
+					<br clear="all" />
+				</form>
+			</div>
+		</div>
+	</div>
+<!-- END CheckoutPaymentsAndBillingAddress.jspf -->
+
+												</div>
+											<div class="button_footer_line" id="WC_ShipmentDisplay_div_32_1"> 
+												<a role="button" class="button_secondary" id="WC_ShipmentDisplay_links_5" tabindex="0" href="ShoppingCart.html">
+													<div class="left_border"></div>
+													<div class="button_text">[PROPERTIES;BACK;Back]<span class="spanacce">[PROPERTIES;Checkout_ACCE_back_shopping_cart;to shopping cart page]</span></div>
+													<div class="right_border"></div>
+												</a>
+												<a role="button" class="button_primary button_left_padding" id="shippingBillingPageNext" tabindex="0" href="OrderSummary.html">
+													<div class="left_border"></div>
+														<div class="button_text">[PROPERTIES;NEXT;Next]<span class="spanacce">[PROPERTIES;Checkout_ACCE_next_summary;to order summary page]</span></div>
+													<div class="right_border"></div>
+												</a>
+												<span class="button_right_side_message" id="WC_ShipmentDisplay_div_32_3">
+														[PROPERTIES;ORD_MESSAGE;Proceed to your Order Summary.]
+												</span>
+											</div>
+											<div class="espot_checkout_bottom" id="WC_ShipmentDisplay_div_38">
+<!-- BEGIN CheckoutBottomESpotDisplay.jspf -->
+
+<br clear="all" />
+<div id="WC_CheckoutBottomESpotDisplay_div_1" class="left">
+<!-- BEGIN ContentRecommendation.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">ContentRecommendation.jsp</div>
+</span>
+<!-- END ContentRecommendation.jsp -->
+</div>
+<div id="WC_CheckoutBottomESpotDisplay_div_2" class="espot_checkout_bottom_right">
+<!-- BEGIN ContentRecommendation.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">ContentRecommendation.jsp</div>
+</span>
+<!-- END ContentRecommendation.jsp -->
+</div>
+<br clear="all" />
+<!-- END CheckoutBottomESpotDisplay.jspf -->
+
+											</div>
+										</div>
+									</div>
+									<!-- Edit address div -->
+
+									<div id="editAddressContents" style="display:none">
+										<!-- Start of second div in this page -->
+
+										<span class="spanacce" id="editShippingAddressArea1_ACCE_Label">[PROPERTIES;Checkout_ACCE_edit_create_address;Edit/Create Address]</span>
+										<div dojoType="wc.widget.RefreshArea" id="editShippingAddressArea1" aria-labelledby="editShippingAddressArea1_ACCE_Label" widgetId="editShippingAddressArea1" controllerId="editShippingAdddressAreaController">
+										</div>
+										<script type="text/javascript">
+											dojo.addOnLoad(function() { 
+												parseWidget("editShippingAddressArea1");
+											});
+										</script>
+									</div>
+									<!-- Main Content End -->
+									
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Main Content End -->
+                           
+				</div>
+				<script type="text/javascript">
+					dojo.addOnLoad(function() { 
+						parseWidget("content_wrapper");
+					});
+				</script>
+	</div>
+	<!-- Footer Start -->
+
+	<div class="footer_wrapper_position">
+<!-- BEGIN Footer.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">Footer.jsp</div>
+<div class="footer_wrapper" role="contentinfo">
+	<!--For border customization -->
+
+	<div class="footer_top">
+		<div class="left_border"></div>
+		<div class="middle"></div>
+		<div class="right_border"></div>
+	</div>
+	<!--Main footer Area -->
+
+	<div class="footer_left_shadow">
+		<div class="footer_right_shadow">				
+			<div class="footer_content" id="footer_content">
+				<!--Start Footer Content -->
+
+				<div id="footer">
+					<div class="footer_element_container right_border large">
+						<h2>[PROPERTIES;FOOTER_CUSTOMER_SERVICE;Customer Service]</h2>
+						<ul>
+								<li><a id="FooterQuickOrder" href="QuickOrderView.html">[PROPERTIES;FOOTER_QUICK_ORDER;Quick Order]</a></li>
+							<li><a id="FooterHelpLink" href="HelpandContactUsatAuroraESite.html">[PROPERTIES;FOOTER_HELP;Help]</a></li>
+							<li><a id="FooterContactUsLink" href="HelpandContactUsatAuroraESite_6.html">[PROPERTIES;FOOTER_CONTACT_US;Contact Us]</a></li>
+							<li><a id="FooterReturnPolicyLink" href="ReturnPolicyforAuroraESite.html">[PROPERTIES;FOOTER_RETURN_POLICY;Return Policy]</a></li>
+							<li><a id="FooterPrivacyPolicyLink" href="WebsitePrivacyPolicyforAuroraESite.html">[PROPERTIES;FOOTER_PRIVACY_POLICY;Privacy Policy]</a></li>
+						</ul>
+					</div>
+					<div class="footer_element_container right_border large">
+						<h2>[PROPERTIES;FOOTER_CORPORATE_INFO;Corporate Info]</h2>
+						<ul>
+							<li><a id="FooterAboutUsLink" href="AboutUsforAuroraESite.html">[PROPERTIES;FOOTER_ABOUT_US;About Us]</a></li>
+							<li><a id="FooterCorporateContactUsLink" href="ContactUsforAuroraESite.html">[PROPERTIES;FOOTER_CONTACT_US;Contact Us]</a></li>
+								<li><a id="FooterStoreLocatorLink" href="StoreLocator.html">[PROPERTIES;FOOTER_STORE_LOCATOR;Store Locator]</a></li>
+						</ul>							
+					</div>
+					<div class="footer_element_container right_border large" id="WC_Footer_UI_Links_3">
+						<h2>[PROPERTIES;FOOTER_EXPLORE;Explore]</h2>
+						<ul>
+							<li><a id="FooterSiteMapLink" href="SiteMapforAuroraESite.html">[PROPERTIES;FOOTER_SITE_MAP;Site Map]</a></li><li><a href="AdvancedSearch.html" id="AdvancedSearchDisplayLink">[PROPERTIES;FOOTER_ADVANCED_SEARCH;Advanced Search]</a></li>
+						</ul>
+					</div>
+						<div class="footer_element_container large" id="FooterSocialLinks">
+							<h2>[PROPERTIES;FOOTER_FOLLOW_US;Follow Us]</h2>
+							<ul>
+								<li><a id="FacebookLink" >[PROPERTIES;FOOTER_FACEBOOK;Facebook]</a></li>
+							</ul>
+						</div>
+					<div class="footer_element_container large" id="FooterRightContentESpot">					
+<!-- BEGIN ContentRecommendation.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">ContentRecommendation.jsp</div>
+</span>
+<!-- END ContentRecommendation.jsp -->
+					</div>					
+				</div>
+				<!--End Footer Content -->
+
+			</div>
+		</div>				
+	</div>
+	<!--For border customization -->
+
+	<div class="footer_bottom">
+		<div class="left_border"></div>
+		<div class="middle">
+		</div>
+		<div class="right_border"></div>
+	</div>
+	<!--
+ =================================================================
+  Licensed Materials - Property of IBM
+  WebSphere Commerce
+  (C) Copyright IBM Corp. 2011 All Rights Reserved.
+  US Government Users Restricted Rights - Use, duplication or
+  disclosure restricted by GSA ADP Schedule Contract with
+  IBM Corp.
+ =================================================================
+-->
+<script type="text/javascript">
+	dojo.addOnLoad(function() { 
+		//Make sure page is loaded at this point
+		//Set requestedSubmitted to false
+		requestSubmitted = false;
+		// All div's whose id attribute contains dojoWidget subString -- dojo.query('div[id*="dojoWidget"]')
+		// All div's which contains dojoType attribute -- dojo.query(div[dojoType])
+		dojo.query('div[dojoType]').forEach(function(node, index, arr){
+			console.debug("Parse "+node.id);
+			addToWidgetsList(node.id);
+		});
+		parseAllWidgets();
+	}); 	
+</script>
+</div>
+		
+</span>
+<!-- END Footer.jsp -->
+
+	</div>
+	<!-- Footer End -->
+
+	</span>
+<!-- END OrderShippingBillingDetails.jsp -->
+
+<script type="text/javascript"> function displayHighlightFeatureInHTML(){var all = document.getElementsByTagName('*'); for (var i = 0; i < all.length; i++) { if (all[i].className == 'jspcaption') {all[i].style.display='block';} if (all[i].className == 'highlight') {all[i].style.border='2px dashed red';all[i].style.display='block';} if (all[i].className == 'product') {all[i].style.border='2px dashed red';} if (all[i].className == 'product_price') {all[i].style.border='2px dashed red';} if (all[i].className == 'widget_quick_info_popup') {all[i].style.border='2px dashed red';} if (all[i].className == 'item' && (all[i].id.indexOf('compare') == -1) && (all[i].id.indexOf('sub') == -1) ) {all[i].style.border='2px dashed red';} if (all[i].className == 'item_price') {all[i].style.border='2px dashed red';}} } function activateHighlight (event){ if(event.ctrlKey){ if(event.altKey){ if(event.keyCode == '72'){ displayHighlightFeatureInHTML(); } } } } </script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,3024 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<html class="dj_gecko dj_contentbox ext-strict"><head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="webapp-context" content="/sic">
+        <!--
+        <script language=JavaScript src="../js/genericUtil.js" type="text/javascript">
+            document.body.style.cursor="wait";
+        </script>
+        -->
+        <title>
+            Sterling Configurator
+        </title>
+        <!-- base library -->
+        <!--
+        <link rel="stylesheet" type="text/css" href="../ext/resources/css/ext-all.css" />
+        <link media="all" type="text/css" rel="stylesheet" href="/sic/swc/css/theme/theme-1.css?scCSRFToken=IVF-zpYrhQ_H244yACCPQTE&scFlag=Y&scGuestUser=Y" />
+        <link media="all" type="text/css" rel="stylesheet" href="/sic/sic/css/configurator/configurator.css" />
+        <link media="all" type="text/css" rel="stylesheet" href="/sic/sic/css/configurator/configurator-stepped.css" />
+        -->
+        
+	        <link media="all" type="text/css" rel="stylesheet" href="../StoreAssets/LaunchConfiguratorView_data/common1_1_configurator.css">
+
+        <!-- ** Javascript ** -->
+        <!-- base library -->
+        <script type="text/javascript" src="../StoreAssets/LaunchConfiguratorView_data/ext-base.js"></script>
+        <script type="text/javascript" src="../StoreAssets/LaunchConfiguratorView_data/ext-all.js"></script>
+        <script type="text/javascript" src="../StoreAssets/LaunchConfiguratorView_data/OIWidget.js"></script>
+        <script type="text/javascript" src="../StoreAssets/LaunchConfiguratorView_data/svg-classhandlers.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="../StoreAssets/LaunchConfiguratorView_data/claro.css">
+        <script language="JavaScript" type="text/javascript" src="../StoreAssets/LaunchConfiguratorView_data/dojo.js"></script>
+        <script language="JavaScript" type="text/javascript" src="../StoreAssets/LaunchConfiguratorView_data/configUI.js"></script>
+
+        <script type="text/javascript" src="../StoreAssets/LaunchConfiguratorView_data/theme.js"></script>
+        <!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<script type="text/javascript" language="JavaScript">
+var autoSubmit = true;
+var messagesWindow;
+var traceWindow;
+var propertiesWindow;
+
+function Property(propName, propType, propValue)
+{
+    this.propName = propName;
+    if ( propType == '0' )
+        this.propType = 'STRING';
+    else if ( propType == '1' )
+        this.propType = 'NUMERIC';
+    else if ( propType == '2' )
+        this.propType = 'LIST';
+    else if ( propType == '3' )
+        this.propType = 'INTEGER';
+    this.propValue = propValue;
+}
+
+function writeJavascript(doc)
+{
+    doc.writeln('<head>\n');
+    doc.writeln('<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>\n');
+    doc.writeln('<title>Configurator Messages</title>\n');
+    doc.writeln("<link rel='stylesheet' href='../sic/css/configurator/configurator.css' type='text/css'/>");
+    doc.writeln('<script type="text/javascript" language="JavaScript">\n');
+    doc.writeln('function resetFlag()');
+    doc.writeln('{');
+    doc.writeln('window.opener.resetMessagesWindow();');
+    doc.writeln('}\n');
+    doc.writeln('function goToItem(itemPath, itemId)');
+    doc.writeln('{');
+    doc.writeln('window.opener.goToItem(itemPath, itemId);');
+    doc.writeln('}\n');
+    doc.writeln('</' + 'script>\n');
+    doc.writeln('</head>\n');
+}
+
+function writeHeader(doc, modelDescription)
+{
+    doc.write('<h1>Messages for model:&nbsp;' + modelDescription + '</h1>');
+}
+
+function writeMessages(doc, messages, modelDescription)
+{
+    var len = messages.length;
+    var msg;
+    var str;
+    writeHeader(doc, modelDescription);
+    if ( len == 0 )
+    {
+        doc.writeln('<p>There are no messages to display</p>');
+    }
+    for ( var i = 0; i < len; i++ )
+    {
+        msg = messages[i];
+        str =  msg.imgStr + "&nbsp;[<a href='javascript:goToItem(" + '"' + msg.itemPath + '", "' + msg.itemId + '" ' +
+            ")'>" + " <b>" + msg.itemDescription + "</b></a>]" + msg.msgText;
+        doc.writeln("<nobr>"+str + "</nobr><br />\n");
+    }
+    doc.writeln('<p style="text-align:center;margin:1em;padding:1em;" ><a href="javascript:window.opener.closeMessagesWindow();"><span class="submitBtnBg2">Close</span></a></p>');
+}
+
+function openMessagesWindow(messages, modelDescription)
+{
+    messagesWindow = window.open("", "Messages", "directories=no,toolbar=yes,menubar=yes,location=yes,scrollbars=yes,resizable=yes,height=600,width=900");
+    var messagesDoc = messagesWindow.document;
+
+    messagesDoc.open("text/html", "replace");
+    messagesDoc.writeln('<html>\n');
+    writeJavascript(messagesDoc);
+    messagesDoc.writeln('<body onUnload="resetFlag()">\n');
+    messagesDoc.writeln('<div id="sic-main">\n');
+    writeMessages(messagesDoc, messages, modelDescription);
+    //messagesDic.writeln(elem.innerHtml);
+    messagesDoc.writeln('</div>\n');
+    messagesDoc.writeln('</body>\n');
+    messagesDoc.writeln('</html>\n');
+    messagesDoc.close();
+}
+
+function closeMessagesWindow()
+{
+    messagesWindow.close();
+}
+
+function formatMessage(message)
+{
+   var hdrArray = message.match(/^  */);
+   if ((hdrArray != null) && (hdrArray[0] != null)) {
+        var hdr = hdrArray[0].replace(/ /g,"&nbsp;&nbsp;&nbsp;&nbsp;")
+        var tail = message.replace(/^  */,"");
+        var msg = hdr+tail;
+   }
+   else msg = message;
+   return msg;
+}
+
+// providing a few no ops for promotion pop up window
+//  AddToCart should be written to do an Add to list from this page
+function setAddToCartSku(addToCartSku)
+{
+    // do nothing
+}
+function setAddToCartQty(addToCartQty)
+{
+    // do nothing
+}
+function setAddToCartKey(addToCartKey)
+{
+    // do nothing
+}
+function setAddToCartEvent()
+{
+    // do nothing
+}
+function submitAddToCart()
+{
+    // do nothing
+}
+
+function doSummary()
+{
+	if(typeof validateDijitWidgets == 'function' && !validateDijitWidgets())
+	{
+		return false;
+	}
+
+   document.configForm.action='/sic/configurator/summary.action;jsessionid=IVF-zpYrhQ_H244yACCPQTE?cmd=summary&scCSRFToken=IVF-zpYrhQ_H244yACCPQTE&scFlag=Y&scGuestUser=Y';
+   document.configForm.usage.value = 1;
+   document.configForm.usage.namevalue = 1;
+   document.configForm.cmd.value="summary";
+   document.configForm.submit();
+}
+function doCart()
+{
+	if(typeof validateDijitWidgets == 'function' && !validateDijitWidgets())
+	{
+		return false;
+	}
+   document.configForm.action='/sic/configurator/addToCart.action;jsessionid=IVF-zpYrhQ_H244yACCPQTE?cmd=addToCart&scCSRFToken=IVF-zpYrhQ_H244yACCPQTE&scFlag=Y&scGuestUser=Y';
+   document.configForm.usage.value = 2;
+   document.configForm.submit();
+}
+
+function doResize()
+{
+}
+
+function doIgnore()
+{
+    document.ignoreErrorsForm.submit();
+}
+function doGoBack()
+{
+    window.history.back();
+}
+
+function isInteger(aNumber)
+{
+    var s = new String(aNumber);
+    var n = s.indexOf("e");
+    if(n >= 0 && n < s.length-1)
+        return false;
+    n = s.indexOf("E");
+    if(n >= 0 && n < s.length-1)
+        return false;
+    n = s.indexOf(".");
+    if( n >= 0 )
+        return false;
+
+    // catch the trailing non-digit
+    if (isNaN(aNumber))
+        return false;
+
+    // note: this function return NaN if aNumber is empty.
+    var n = parseInt(aNumber);
+    return !isNaN(n);
+}
+
+function validateInt(field)
+{
+    if ((trim(field.value) == "")) {
+        return true;
+    }
+
+    if ( (!isInteger(field.value)) || (field.value.charAt(0) == '-') ||(field.value.charAt(0) == '+'))
+    {
+           alert("Invalid Entry");
+            field.focus();
+            field.select();
+            return false;
+            //break;
+    }
+
+    return true;
+}
+
+function ltrim ( s )
+{
+    return s.replace( /^\s*/, "" )
+}
+
+function rtrim ( s )
+{
+    return s.replace( /\s*$/, "" );
+}
+
+function trim ( s )
+{
+    return rtrim(ltrim(s));
+}
+
+function validateDouble(number)
+{
+    //alert('Validating double' + number.value);
+        if(!isFloat(number.value)) {
+            alert("Invalid Entry");
+            number.focus();
+            number.value="";
+            number.select();
+        }
+}
+
+function isFloat(aNumber)
+{
+    if (trim(aNumber)=="") {
+        return true;
+    }
+
+    // catch the trailing non-digit
+    if (isNaN(aNumber))
+        return false;
+
+    // note: this function return NaN if aNumber is empty.
+    var n = parseFloat(aNumber);
+    return !isNaN(n);
+}
+
+function doReset()
+{
+    document.resetForm.submit();
+}
+
+function doReturn()
+{
+    document.returnForm.submit();
+}
+
+function doNothing()
+{
+    return false;
+}
+
+function saveConfig(usergivenname)
+{
+        this.document.saveConfig.userGivenName.value=usergivenname;
+         document.saveConfig.submit();
+}
+</script>
+
+        <!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+        <script type="text/javascript" language="JavaScript">
+            var autoSubmit = true;
+            var messages = new Array();
+            var traceMessages = new Array();
+            var properties = new Array();
+            var modelName = 'The Aurora AXABC-E3062 All-In-One PC.';
+            var parentProperties = new Array();
+            var itemToTabMap = new Array();
+            var defaultConfigWin;
+            var xOffset = 0;
+            var yOffset = 0;
+
+            function getElementByID(id)
+            {
+                return document.getElementById(id);
+            }
+
+            function Message()
+            {
+                this.msgId = "";
+                this.msgText = "";
+                this.msgType = "";
+                this.itemId = "";
+                this.itemDescPath = "";
+                this.itemPath = "";
+                this.itemDescription = "";
+                this.imgStr = "";
+            }
+
+            function resetMessagesWindow()
+            {
+                this.document.configForm.messagesFlag.value = '0';
+            }
+
+            function goToItem(itemPath, itemId)
+            {
+                if (itemToTabMap[itemPath] != null )
+                {
+                    document.configForm.action = document.configForm.action + "#body" + itemPath;
+                    document.configForm.activeTab.value = itemToTabMap[itemPath];
+                    document.configForm.usage.value = 0;
+                    document.configForm.submit();
+                }
+            }
+
+            function goToOffendingItem(prefix, path)
+            {
+                if (itemToTabMap[path] != null )
+                {
+                    document.configForm.action = document.configForm.action + "#" + prefix + path;
+                    document.configForm.activeTab.value = itemToTabMap[path];
+                    document.configForm.usage.value = 0;
+                    document.configForm.submit();
+                }
+            }
+
+            function doShowMessages()
+            {
+                this.document.configForm.messagesFlag.value = "1";
+                openMessagesWindow(messages, 'The Aurora AXABC-E3062 All-In-One PC.');
+            }
+
+            function processTabClicked(tabName)
+            {
+                this.document.configForm.activeTab.value = tabName;
+                this.document.configForm.usage.value = 0;
+                this.document.configForm.submit();
+            }
+            function centerWindow() {
+                if (document.all)
+                    var xMax = screen.width, yMax = screen.height;
+                else
+                    if (document.layers)
+                        var xMax = window.outerWidth, yMax = window.outerHeight;
+                    else
+                        var xMax = 640, yMax=480;
+
+                xOffset = (xMax - 350)/2;
+                yOffset = (yMax - 200)/2;
+            }
+
+            function doDebug()
+            {
+                this.document.configForm.action='/sic/configurator/showRuleTrace.action;jsessionid=IVF-zpYrhQ_H244yACCPQTE?cmd=showRuleTrace&scCSRFToken=IVF-zpYrhQ_H244yACCPQTE&scFlag=Y&scGuestUser=Y';
+                this.document.configForm.usage.value=7;
+                this.document.configForm.target="CmgtConfigDebugMessages";
+                document.configForm.submit();
+                this.document.configForm.action='/sic/configurator/configure.action;jsessionid=IVF-zpYrhQ_H244yACCPQTE?cmd=configure&scCSRFToken=IVF-zpYrhQ_H244yACCPQTE&scFlag=Y&scGuestUser=Y';
+                this.document.configForm.target="_self";
+                // debugWindow = window.open("", "Trace Log", "directories=no,toolbar=yes,menubar=yes,location=yes,scrollbars=yes,resizable=yes,height=600,width=900");
+                // var debugDoc = debugWindow.document;
+                // debugDoc.open("text/html", "replace");
+                // debugDoc.writeln(this.document.debug.data.value);
+                // debugDoc.close();
+            }
+            function saveConfig(usergivenname, doneConfig)
+            {
+                this.document.configForm.userGivenName.value=usergivenname;
+                this.document.configForm.DoneConfig.value=doneConfig;
+                this.document.configForm.usage.value=3;
+                document.configForm.submit();
+            }
+            function doCancel()
+            {
+                this.document.location.href =  this.document.configForm.CancelURL.value.replace(/amp;/g,"&").replace(/&&/g,"&");
+            }
+            function init()
+            {
+
+                document.body.style.cursor="auto";
+            }
+            function doSubConfigSummary(model,caller,modelReturn)
+            {
+                this.document.configForm.SubModel.value=model;
+                this.document.configForm.CallerId.value=caller;
+                this.document.configForm.SubModelReturn.value=modelReturn;
+                this.document.configForm.usage.value=4;
+                this.document.configForm.subconfigusage.value=1;
+                this.document.configForm.target="CmgtConfigSubConfigDisplay";
+                this.document.configForm.submit();
+                this.document.configForm.target="_self";
+            }
+            function doSubConfig(model,caller,modelReturn)
+            {
+                this.document.configForm.action='/sic/configurator/subModelConfig.action;jsessionid=IVF-zpYrhQ_H244yACCPQTE?cmd=subModelConfig&scCSRFToken=IVF-zpYrhQ_H244yACCPQTE&scFlag=Y&scGuestUser=Y';
+                this.document.configForm.SubModel.value=model;
+                this.document.configForm.CallerId.value=caller;
+                this.document.configForm.SubModelReturn.value=modelReturn;
+                this.document.configForm.usage.value=4;
+                this.document.configForm.subconfigusage.value=0;
+                this.document.configForm.submit();
+            }
+            function doNestedReturn()
+            {
+                this.document.configForm.action='/sic/configurator/subModelReturn.action;jsessionid=IVF-zpYrhQ_H244yACCPQTE?cmd=subModelReturn&scCSRFToken=IVF-zpYrhQ_H244yACCPQTE&scFlag=Y&scGuestUser=Y';
+                this.document.configForm.usage.value=6;
+                this.document.configForm.submit();
+            }
+            function clearControl(controlId, controlName)
+            {
+                this.document.configForm.clearcontrol.value=controlId;
+                return doChange(controlId, controlName, 'none', 0, true);
+            }
+            function resolveControl(controlName, path, itemId)
+            {
+                // controlName and path parameters are only used for the stepwise configurator and are ignored here
+
+                this.document.configForm.action='/sic/configurator/resolveConflict.action;jsessionid=IVF-zpYrhQ_H244yACCPQTE?cmd=resolveConflict&scCSRFToken=IVF-zpYrhQ_H244yACCPQTE&scFlag=Y&scGuestUser=Y';
+                this.document.configForm.resolveitem.value=itemId;
+                this.document.configForm.usage.value=8;
+                this.document.configForm.submit();
+            }
+            function performResolution(controlName, controlIndex, path, itemId)
+            {
+                // controlName and path parameters are only used for the stepwise configurator and are ignored here
+
+                this.document.configForm.action='/sic/configurator/conflictResolution.action;jsessionid=IVF-zpYrhQ_H244yACCPQTE?cmd=conflictResolution&scCSRFToken=IVF-zpYrhQ_H244yACCPQTE&scFlag=Y&scGuestUser=Y';
+                this.document.configForm.resolveitem.value=itemId;
+                this.document.configForm.usage.value=9;
+                this.document.configForm.submit();
+            }
+            function undoResolution(controlName, controlIndex, path, itemId,removeId)
+            {
+                // controlName and path parameters are only used for the stepwise configurator and are ignored here
+
+                this.document.configForm.resolveitem.value="";
+                this.document.configForm.usage.value=0;
+                this.document.configForm.ConfigXML.value=this.document.configForm.SaveXML.value
+                this.document.configForm.submit();
+            }
+            function doUpgrade()
+            {
+               document.configForm.usage.value =12;
+               document.configForm.submit();
+            }
+            function addConfig(itemId)
+            {
+                this.document.configForm.addConfigId.value=itemId
+                this.document.configForm.usage.value=0;
+                this.document.configForm.submit();
+            }
+            function doCopySubConfig(itemPath)
+            {
+                this.document.configForm.copyConfigId.value=itemPath;
+                this.document.configForm.usage.value=0;
+                this.document.configForm.submit();
+            }
+            function doDeleteSubConfig(itemPath)
+            {
+                this.document.configForm.removeConfigId.value=itemPath;
+                this.document.configForm.usage.value=0;
+                this.document.configForm.submit();
+            }
+
+            function doConfigCache() {
+                this.document.configForm.action='/sic/configurator/configstatus.action;jsessionid=IVF-zpYrhQ_H244yACCPQTE?cmd=configstatus&scCSRFToken=IVF-zpYrhQ_H244yACCPQTE&scFlag=Y&scGuestUser=Y&standAlone=true';
+                this.document.configForm.target="CmgtConfigCache";
+                document.configForm.submit();
+                this.document.configForm.action='/sic/configurator/configure.action;jsessionid=IVF-zpYrhQ_H244yACCPQTE?cmd=configure&scCSRFToken=IVF-zpYrhQ_H244yACCPQTE&scFlag=Y&scGuestUser=Y';
+                this.document.configForm.target="_self";
+            }
+
+            Ext.onReady(function() {
+                applySVGStyles();
+            });
+
+            function applySVGStyles() {
+                svg_classhandlers_decoratePage();
+                //SVGAnnotator.mkTopRoundedBackground("#tabPanel li", {curve: 5});
+                SVGAnnotator.mk3QRoundedBackground(".configcontrols_container", {curve:6, outsideOpacity:0});
+                SVGAnnotator.mkRoundedBackground(".configcontrols_nontabbed_container", {curve:6, borderWidth:1, dropShadowOffset:0});
+                SVGAnnotator.mkRoundedBackground(".messagePanelContainerStyle", {curve:6, borderWidth:1, dropShadowOffset:0});
+                SVGAnnotator.mkRoundedBackground(".testcart_table", {curve:6, borderWidth:1, dropShadowOffset:0});
+            }
+   </script>
+
+        <!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<script type="text/javascript" language="JavaScript">
+
+var OIContainer = new Array();
+
+Ext.onReady(function() {
+}); //end onReady
+
+function doUpdate(autoSubmit)
+{
+	if(typeof validateDijitWidgets == 'function' && !validateDijitWidgets())
+	{
+		return false;
+	}
+    if ( autoSubmit )
+    {
+        document.configForm.action='/sic/configurator/configure.action;jsessionid=IVF-zpYrhQ_H244yACCPQTE?cmd=configure&scCSRFToken=IVF-zpYrhQ_H244yACCPQTE&scFlag=Y&scGuestUser=Y';
+        document.configForm.usage.value = 0;
+        document.configForm.submit();
+    }
+}
+
+function doChange(i, ocName, path, itemIdx, autoSubmit)
+{
+	if(typeof validateDijitWidgets == 'function' && !validateDijitWidgets())
+	{
+		return false;
+	}
+    if ( autoSubmit )
+    {
+        document.configForm.action='/sic/configurator/configure.action;jsessionid=IVF-zpYrhQ_H244yACCPQTE?cmd=configure&scCSRFToken=IVF-zpYrhQ_H244yACCPQTE&scFlag=Y&scGuestUser=Y';
+        document.configForm.action=document.configForm.action;
+        document.configForm.usage.value = 0;
+        document.configForm.submit();
+    }
+}
+
+function submitOnEnter(control, controlName, itemPath, itemIdx, e)
+{
+    var keycode;
+    if (window.event)
+        keycode = window.event.keyCode;
+    else if (e)
+        keycode = e.which;
+    else return true;
+
+    if (keycode == 13)
+        return doChange(control, controlName, itemPath, itemIdx, true);
+    else return true;
+}
+
+function validateIntAndSubmitOnEnter(control, controlName, itemPath, itemIdx, e, fieldToValidate)
+{
+    var keycode;
+    if (window.event)
+        keycode = window.event.keyCode;
+    else if (e)
+        keycode = e.which;
+    else return true;
+
+    if (keycode == 13)
+    {
+        // validateInt potentially does an alert, so temporarily disable any existing onblur handler
+        //(in case that handler also calls validateInt; we don't want a double alert happening)
+        var origOnBlurHandler = fieldToValidate.onblur;
+        fieldToValidate.onblur = null;
+        
+        var isValidInt = validateInt(fieldToValidate);
+        
+        // restore the original onblur handler, in case we don't leave the page.
+        fieldToValidate.onblur = origOnBlurHandler;
+        
+        if(isValidInt)
+        {
+            return doChange(control, controlName, itemPath, itemIdx, true);
+        }
+        else
+        {
+            return false;
+        }
+    }
+    else return true;
+}
+
+function doHoverOver(imageName, controlIndex) {
+    OIContainer[controlIndex].hoverOverOI(imageName, controlIndex);
+}
+
+function doHoverOff(controlIndex) {
+    OIContainer[controlIndex].hoverOffOI(controlIndex);
+}
+
+function doSetCurrentImage(imageName, controlIndex) {
+    OIContainer[controlIndex].setCurrentImage(imageName, controlIndex);    
+}
+
+function doUseStack(controlName, imageName, controlId) {
+    OIContainer[controlId].useStack(controlName, imageName, controlId);
+}
+
+function doSetImageOnSelect(controlId) {
+    var controlEl = document.getElementsByName("control" + controlId);
+
+    for(var i = 0; i < controlEl.length; i++) {
+        // get the item for this control
+        var optionName = controlEl[i].value;
+        if (optionName != null && optionName != "none") {
+            var items = document.getElementsByName(optionName);
+            imgSrc = items[0].src;
+            if (imgSrc != null) {
+                doSetCurrentImage(imgSrc, controlId);
+            }
+        }
+        else {
+            imgSrc = "../sic/images/noimage150x150.png";
+            if (imgSrc != null) {
+                doSetCurrentImage(imgSrc, controlId);
+            }
+        }
+    }
+}
+
+</script>
+
+    <style id="backgrounds-stylesheet" type="text/css">
+
+</style></head>
+    <body style="cursor: auto;" onload="init()" class="claro  ext-gecko ext-gecko3">
+
+        <form name="resetForm" method="post" action="/sic/configurator/configure.action;jsessionid=IVF-zpYrhQ_H244yACCPQTE?cmd=configure&amp;scCSRFToken=IVF-zpYrhQ_H244yACCPQTE&amp;scFlag=Y&amp;scGuestUser=Y">
+            <input name="cmd" value="configure" type="hidden">
+            <input name="displayHeader" value="" type="hidden">
+            <input name="displayFooter" value="0" type="hidden">
+            <input name="displayNavBar" value="" type="hidden">
+            <input name="Model" value="Aurora2/Aurora/AuroraPC_002D001" type="hidden">
+            <input name="ConfigurationID" value="-1" type="hidden">
+            <input name="FiringPhase" value="" type="hidden">
+            <input name="first" value="true" type="hidden">
+            <input name="CancelURL" value="" type="hidden">
+            <input name="ProductID" value="null" type="hidden">
+            <input name="ReturnURL" value="https://wcscfg02.torolab.ibm.com/webapp/wcs/stores/servlet/OrderChangeServiceAddConfigurationToCart?catalogId=10151&amp;fromURL=AjaxOrderItemDisplayView&amp;catEntryId=14018&amp;errorViewName=LaunchConfiguratorView&amp;giftListId=&amp;langId=-1&amp;submitted=true&amp;quantity=1&amp;storeId=10801&amp;contractId=4000000000000001001&amp;URL=LaunchConfiguratorRedirectView%3FConfigXML*%3D%26ReturnURL*%3D%26configCacheId*%3D%26organizationCode*%3D%26configurationXML*%3D" type="hidden">
+            <input name="doneButton" value="Add to Cart" type="hidden">
+            <input name="activeTab" value="null" type="hidden">
+            <input name="customerType" value="null" type="hidden">
+            <input name="currency" value="USD" type="hidden">
+            <input name="enterpriseCode" value="" type="hidden">
+            <input name="organizationCode" value="Aurora2" type="hidden">
+            <input name="customerId" value="" type="hidden">
+            <input name="modelName4OL" value="null" type="hidden">
+            <input name="hasErrors" value="false" type="hidden">
+            <input name="modeldepth" value="0" type="hidden">
+            <input name="container" value="null" type="hidden">
+            <input name="parentbom" value="null" type="hidden">
+            <input name="subconfigusage" value="" type="hidden">
+            <input name="nested" value="null" type="hidden">
+            <input name="returnToConfig" value="null" type="hidden">
+            <input name="returnPage" value="null" type="hidden">
+            <input name="upgrade" value="" type="hidden">
+            <input name="auxGroupCodesToSuppress" value="" type="hidden">
+            <input name="ModelReadOnly" value="" type="hidden">
+            <input name="pageTitle" value=" " type="hidden">
+            
+            	<input name="css" value="https://wcscfg02.torolab.ibm.com/wcsstore/Aurora/css/common1_1_configurator.css" type="hidden">
+            
+            	<input name="storeId" value="10801" type="hidden">
+            
+            	<input name="buyerUserId" value="" type="hidden">
+            
+            	<input name="contractId" value="4000000000000001001" type="hidden">
+            
+            <input name="sfId" value="Aurora2" type="hidden">
+
+<input name="ReturnURL" value="https://wcscfg02.torolab.ibm.com/webapp/wcs/stores/servlet/OrderChangeServiceAddConfigurationToCart?catalogId=10151&amp;fromURL=AjaxOrderItemDisplayView&amp;catEntryId=14018&amp;errorViewName=LaunchConfiguratorView&amp;giftListId=&amp;langId=-1&amp;submitted=true&amp;quantity=1&amp;storeId=10801&amp;contractId=4000000000000001001&amp;URL=LaunchConfiguratorRedirectView%3FConfigXML*%3D%26ReturnURL*%3D%26configCacheId*%3D%26organizationCode*%3D%26configurationXML*%3D" type="hidden">
+
+			<input name="ecStateString" value="" type="hidden">
+        </form>
+
+        <div id="main">
+        
+            <div class="containerNoHeader">
+        
+            <div id="mainContentContainer" class="t2-mainContent">
+            <table class="configHeader" style="width:100%">
+                <tbody><tr>
+                    <td width="100%">
+
+                        <!--
+ =================================================================
+  Licensed Materials - Property of IBM
+
+  WebSphere Commerce
+
+  (C) Copyright IBM Corp. 2011, 2012 All Rights Reserved.
+
+  US Government Users Restricted Rights - Use, duplication or
+  disclosure restricted by GSA ADP Schedule Contract with
+  IBM Corp.
+ =================================================================
+ ---------------------------------------------------------------------
+  The sample contained herein is provided to you "AS IS".
+ 
+  It is furnished by IBM as a simple example and has not been thoroughly
+  tested under all conditions.  IBM, therefore, cannot guarantee its
+  reliability, serviceability or functionality.
+ 
+  This sample may include the names of individuals, companies, brands
+  and products in order to illustrate concepts as completely as possible.
+  All of these names are fictitious and any similarity to the names and
+  addresses used by actual persons or business enterprises is entirely
+  coincidental.
+ --------------------------------------------------------------------- 
+-->
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+	<table class="configHeaderTable" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr valign="bottom">
+            <td rowspan="3" class="modelImageTd">
+                
+                <img class="modelImage" src="../StoreAssets/LaunchConfiguratorView_data/cde021_2101.jpg" alt="Model Icon" border="0">
+                
+            </td>
+            <td valign="top" align="left">
+                
+                <h1 class="headerText">
+                      
+                    <br>
+                </h1>
+               
+            </td>
+            
+        </tr>
+            <!-- remove buttons
+            <tr>
+                <td width='100%' colspan="3">
+                    
+                </td>
+            </tr>
+            <tr>
+                <td width='100%' colspan="3">
+                    
+                </td>
+            </tr>
+            -->
+    </tbody></table>
+
+    <table class="configButtonBarTable" border="0" cellpadding="0" cellspacing="0">
+    	<tbody><tr>
+	        <td colspan="3" width="100%">
+
+            <table id="configbuttons" class="configButtonBar" border="0" cellpadding="0" cellspacing="0">
+                <tbody><tr>
+                    <td>
+                    	<div class="topright">
+				<h2>Price as configured:
+				<span class="bold">$986.13</span></h2>
+				
+			</div>
+                    </td>
+                 </tr>
+                 <tr>
+                  <td align="right">
+                        <table border="0" cellpadding="0" cellspacing="0">
+                            <tbody><tr>
+
+                                                <td>
+													<a onclick="javascript:doCart()" class="button_primary">
+														
+															<div class="left_border"></div>
+															<div class="button_text">Add to Cart</div>
+															<div class="right_border"></div>
+														
+													</a>
+													<div class="clear_float"></div>
+                                                </td>
+
+                            </tr>
+                        </tbody></table>
+                    </td>
+                </tr>
+           </tbody></table>
+           <br>
+
+		</td>
+	</tr>
+    </tbody></table>
+    <table class="configErrorMsgTable" border="0" cellpadding="0" cellspacing="0">
+    	<tbody><tr>
+    		<td width="100%">
+    			<!--
+ =================================================================
+  Licensed Materials - Property of IBM
+
+  WebSphere Commerce
+
+  (C) Copyright IBM Corp. 2011, 2012 All Rights Reserved.
+
+  US Government Users Restricted Rights - Use, duplication or
+  disclosure restricted by GSA ADP Schedule Contract with
+  IBM Corp.
+ =================================================================
+ ---------------------------------------------------------------------
+  The sample contained herein is provided to you "AS IS".
+ 
+  It is furnished by IBM as a simple example and has not been thoroughly
+  tested under all conditions.  IBM, therefore, cannot guarantee its
+  reliability, serviceability or functionality.
+ 
+  This sample may include the names of individuals, companies, brands
+  and products in order to illustrate concepts as completely as possible.
+  All of these names are fictitious and any similarity to the names and
+  addresses used by actual persons or business enterprises is entirely
+  coincidental.
+ --------------------------------------------------------------------- 
+-->
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+        <div id="MessageDisplayDiv" class="configMessageDisplay">
+
+                <table>
+
+                        <tbody><tr valign="middle">
+                            <td class="tinyBody themeColorText">
+                                <!--No errors-->
+                            </td>
+                        </tr>
+
+                    </tbody></table>
+        </div>
+
+    		</td>
+    	</tr>
+    </tbody></table>
+
+                    </td>
+                </tr>
+             </tbody></table>
+
+            <form name="configForm" method="post" action="/sic/configurator/configure.action;jsessionid=IVF-zpYrhQ_H244yACCPQTE?cmd=configure&amp;scCSRFToken=IVF-zpYrhQ_H244yACCPQTE&amp;scFlag=Y&amp;scGuestUser=Y" onsubmit="return doNothing();">
+                <input name="SaveConfig" value="SaveConfig" type="hidden">
+                <input name="userGivenName" value="temp" type="hidden"> <!-- default list name -->
+                <input name="DoneConfig" value="temp" type="hidden"> <!-- default list name -->
+
+                <input name="cmd" value="configure" type="hidden">
+                <input name="clearcontrol" value="" type="hidden">
+                <input name="resolveitem" value="" type="hidden">
+                <input name="displayHeader" value="" type="hidden">
+                <input name="displayFooter" value="0" type="hidden">
+                <input name="displayNavBar" value="" type="hidden">
+                <input name="usage" value="0" type="hidden">
+                <input name="Model" value="Aurora2/Aurora/AuroraPC_002D001" type="hidden">
+                <input name="ConfigurationID" value="-1" type="hidden">
+                <input name="FiringPhase" value="" type="hidden">
+                <input name="SubModel" value="" type="hidden"> <!-- filled in by doSubConfig js function -->
+                <input name="CallerId" value="" type="hidden"> <!-- filled in by doSubConfig js function -->
+                <input name="SubModelReturn" value="false" type="hidden">
+                <input name="first" value="false" type="hidden">
+                <input name="CancelURL" value="" type="hidden">
+                <input name="ProductID" value="null" type="hidden">
+                <input name="ReturnURL" value="https://wcscfg02.torolab.ibm.com/webapp/wcs/stores/servlet/OrderChangeServiceAddConfigurationToCart?catalogId=10151&amp;fromURL=AjaxOrderItemDisplayView&amp;catEntryId=14018&amp;errorViewName=LaunchConfiguratorView&amp;giftListId=&amp;langId=-1&amp;submitted=true&amp;quantity=1&amp;storeId=10801&amp;contractId=4000000000000001001&amp;URL=LaunchConfiguratorRedirectView%3FConfigXML*%3D%26ReturnURL*%3D%26configCacheId*%3D%26organizationCode*%3D%26configurationXML*%3D" type="hidden">
+                <input name="doneButton" value="Add to Cart" type="hidden">
+                <input name="activeTab" value="null" type="hidden">
+                <input name="messagesFlag" value="0" type="hidden">
+                <input name="customerType" value="null" type="hidden">
+                <input name="currency" value="USD" type="hidden">
+                <input name="enterpriseCode" value="" type="hidden">
+                <input name="organizationCode" value="Aurora2" type="hidden">
+                <input name="customerId" value="" type="hidden">
+                <input name="modelName4OL" value="null" type="hidden">
+                <input name="hasErrors" value="false" type="hidden">
+                <input name="errors" value="false" type="hidden">
+
+                <input name="modeldepth" value="0" type="hidden">
+                <input name="container" value="null" type="hidden">
+                <input name="parentbom" value="null" type="hidden">
+                <input name="nested" value="null" type="hidden">
+                <input name="returnToConfig" value="null" type="hidden">
+                <input name="returnPage" value="null" type="hidden">
+                <input name="subconfigusage" value="" type="hidden">
+                <input name="upgrade" value="" type="hidden">
+                <input name="addConfigId" value="" type="hidden">
+                <input name="copyConfigId" value="" type="hidden">
+                <input name="removeConfigId" value="" type="hidden">
+                <input name="auxGroupCodesToSuppress" value="" type="hidden">
+                <input name="ModelReadOnly" value="" type="hidden">
+                <input name="pageTitle" value=" " type="hidden">
+                
+                	<input name="css" value="https://wcscfg02.torolab.ibm.com/wcsstore/Aurora/css/common1_1_configurator.css" type="hidden">
+                
+                	<input name="storeId" value="10801" type="hidden">
+                
+                	<input name="buyerUserId" value="" type="hidden">
+                
+            		<input name="contractId" value="4000000000000001001" type="hidden">
+            	
+                <input name="sfId" value="Aurora2" type="hidden">
+
+				<input name="ecStateString" value="" type="hidden">
+
+                <!-- Configuration Key for COM: start -->
+
+                <!-- Configuration Key for COM: end -->
+
+                <input name="modelID" value="null" type="hidden">
+                
+<input name="ReturnURL" value="https://wcscfg02.torolab.ibm.com/webapp/wcs/stores/servlet/OrderChangeServiceAddConfigurationToCart?catalogId=10151&amp;fromURL=AjaxOrderItemDisplayView&amp;catEntryId=14018&amp;errorViewName=LaunchConfiguratorView&amp;giftListId=&amp;langId=-1&amp;submitted=true&amp;quantity=1&amp;storeId=10801&amp;contractId=4000000000000001001&amp;URL=LaunchConfiguratorRedirectView%3FConfigXML*%3D%26ReturnURL*%3D%26configCacheId*%3D%26organizationCode*%3D%26configurationXML*%3D" type="hidden">
+
+                <div class="ad">
+
+										<div id="ecc_1">
+
+										<div class="config_option_element"><a name="oc1">
+											<div class="indent controlsDisplay">
+                                        <!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!-- NOTE: will we need to add a different control name for stepwise, or will we replace and use the name -->
+
+   <!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!-- create the table layout to include a large image if can show images and have vertical alignment -->
+<table id="radioLayout">
+    <tbody><tr>
+        <td id="optionItemImageContainer">
+            
+        </td>
+        <td>
+        <!-- draw OC description and image -->
+
+    <!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+    <table border="0" height="1" cellpadding="0" cellspacing="0" width="1">
+        <tbody><tr height="1">
+            <td width="1">
+                <a name="oc1">
+            </a></td>
+        </tr>
+    </tbody></table>
+
+        <table border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr class="optionItemHeader">
+            
+            <td colspan="2">
+                <img class="optionItemHeaderImage" src="../StoreAssets/LaunchConfiguratorView_data/ccm039_3902.jpg" alt="Option Item Header Icon" border="0">
+            </td>
+            <td colspan="2">
+
+        <table border="0" cellpadding="0" cellspacing="0">
+            <tbody><tr>
+                
+                <td class="smallBody" colspan="2">
+
+                        Processor 
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                </td>
+            </tr>
+        </tbody></table>
+
+            </td>
+        </tr>
+        </tbody></table>
+
+<!-- draw children -->
+
+        <table border="0" cellpadding="0" cellspacing="0">
+
+        <!-- vertical presentation -->
+
+        <tbody><tr valign="center">
+
+            <td align="center" width="20">&nbsp;</td>
+
+            <td align="center" width="20">
+                &nbsp;
+            </td>
+            
+            <td align="center">
+
+                    <input id="AuroraPC-001.Processor.CCM039_390201" class="control" name="control1" src="../StoreAssets/LaunchConfiguratorView_data/noimage.jpg" value="item2" onclick="doChange(1,'AuroraPC-001.Processor','AuroraPC-001.Processor.CCM039_390201',2,true); javascript:doSetCurrentImage('../sic/images/models/noimage.jpg', 1);" onmouseover="javascript:doHoverOver('../sic/images/models/noimage.jpg', 1);" onmouseout="javascript:doHoverOff(1);" type="radio">
+
+            </td>
+            
+            <td class="configTableCell tinyBody" onmouseover="javascript:doHoverOver('../sic/images/models/noimage.jpg', 1);" onmouseout="javascript:doHoverOff(1);">
+                4-Core CPU
+                
+            </td>
+
+                <td>&nbsp;</td>
+            
+            <td>
+                
+            </td>
+            <td class="tinyBody" align="right">
+                &nbsp;$324.99&nbsp;
+            </td>
+            <td class="tinyBody">
+                &nbsp;&nbsp;
+            </td>
+        </tr>
+        
+        <tr valign="center">
+
+            <td align="center" width="20">&nbsp;</td>
+
+            <td align="center" width="20">
+                &nbsp;
+            </td>
+            
+            <td align="center">
+
+                    <input id="AuroraPC-001.Processor.CCM039_390202" class="control" name="control1" src="../StoreAssets/LaunchConfiguratorView_data/noimage.jpg" value="item3" checked="checked" onclick="doChange(1,'AuroraPC-001.Processor','AuroraPC-001.Processor.CCM039_390202',3,true); javascript:doSetCurrentImage('../sic/images/models/noimage.jpg', 1);" onmouseover="javascript:doHoverOver('../sic/images/models/noimage.jpg', 1);" onmouseout="javascript:doHoverOff(1);" type="radio">
+
+            </td>
+            
+            <td class="configTableCell tinyBody" onmouseover="javascript:doHoverOver('../sic/images/models/noimage.jpg', 1);" onmouseout="javascript:doHoverOff(1);">
+                6-Core CPU
+                
+            </td>
+
+                <td>&nbsp;</td>
+            
+            <td>
+                
+            </td>
+            <td class="tinyBody" align="right">
+                &nbsp;$634.50&nbsp;
+            </td>
+            <td class="tinyBody">
+                &nbsp;&nbsp;
+            </td>
+        </tr>
+        
+        <tr valign="center">
+
+            <td align="center" width="20">&nbsp;</td>
+
+            <td align="center" width="20">
+                &nbsp;
+            </td>
+            
+            <td align="center">
+
+                    <input id="AuroraPC-001.Processor.CCM039_390203" class="control" name="control1" src="../StoreAssets/LaunchConfiguratorView_data/noimage.jpg" value="item4" onclick="doChange(1,'AuroraPC-001.Processor','AuroraPC-001.Processor.CCM039_390203',4,true); javascript:doSetCurrentImage('../sic/images/models/noimage.jpg', 1);" onmouseover="javascript:doHoverOver('../sic/images/models/noimage.jpg', 1);" onmouseout="javascript:doHoverOff(1);" type="radio">
+
+            </td>
+            
+            <td class="configTableCell tinyBody" onmouseover="javascript:doHoverOver('../sic/images/models/noimage.jpg', 1);" onmouseout="javascript:doHoverOff(1);">
+                8-Core CPU
+                
+            </td>
+
+                <td>&nbsp;</td>
+            
+            <td>
+                
+            </td>
+            <td class="tinyBody" align="right">
+                &nbsp;$1,099.99&nbsp;
+            </td>
+            <td class="tinyBody">
+                &nbsp;&nbsp;
+            </td>
+        </tr>
+
+</tbody></table>
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+            <table class="optionItemChoices">
+
+            </table>
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+        <!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+            <table class="tinyBody themeColorText" width="80%">
+                <tbody><tr>
+                    <td colspan="1">&nbsp;</td>
+                    <td id="ext-gen4" align="right">
+                        &nbsp;&nbsp;<button id="ext-gen3" onclick="javascript:clearControl(1, 'AuroraPC-001.Processor')" class="submitBtnBg1">Reset</button>
+                    </td>
+                </tr>
+            </tbody></table>
+
+</td>
+</tr>
+</tbody></table>
+
+   <!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!-- draw OC description and image -->
+
+<script type="text/javascript" language="JavaScript">
+    OIContainer[1]= new OIWidget();
+    //OIContainer[1].registerWithFramework();
+    OIContainer[1].setControlId(1);
+    OIContainer[1].clearImages(1);
+</script>
+
+											</div>
+										</a></div><a name="oc1">
+
+                                        <!-- %@ include file="messageDisplay.jspf" % -->
+
+										</a><div id="ecc_5"><a name="oc1">
+
+										</a><div class="config_option_element"><a name="oc1"></a><a name="oc5">
+											<div class="indent controlsDisplay">
+                                        <!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!-- NOTE: will we need to add a different control name for stepwise, or will we replace and use the name -->
+
+   <!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!-- create the table layout to include a large image if can show images and have vertical alignment -->
+<table id="radioLayout">
+    <tbody><tr>
+        <td id="optionItemImageContainer">
+            
+        </td>
+        <td>
+        <!-- draw OC description and image -->
+
+    <!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+    <table border="0" height="1" cellpadding="0" cellspacing="0" width="1">
+        <tbody><tr height="1">
+            <td width="1">
+                <a name="oc5">
+            </a></td>
+        </tr>
+    </tbody></table>
+
+        <table border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr class="optionItemHeader">
+            
+            <td colspan="2">
+                <img class="optionItemHeaderImage" src="../StoreAssets/LaunchConfiguratorView_data/ccm039_3906.jpg" alt="Option Item Header Icon" border="0">
+            </td>
+            <td colspan="2">
+
+        <table border="0" cellpadding="0" cellspacing="0">
+            <tbody><tr>
+                
+                <td class="smallBody" colspan="2">
+
+                        Memory 
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                </td>
+            </tr>
+        </tbody></table>
+
+            </td>
+        </tr>
+        </tbody></table>
+
+<!-- draw children -->
+
+        <table border="0" cellpadding="0" cellspacing="0">
+
+        <!-- vertical presentation -->
+
+        <tbody><tr valign="center">
+
+            <td align="center" width="20">&nbsp;</td>
+
+            <td align="center" width="20">
+                &nbsp;
+            </td>
+            
+            <td align="center">
+
+                    <input id="AuroraPC-001.Memory.CCM039_390601" class="control" name="control5" src="../StoreAssets/LaunchConfiguratorView_data/noimage.jpg" value="item6" checked="checked" onclick="doChange(5,'AuroraPC-001.Memory','AuroraPC-001.Memory.CCM039_390601',6,true); javascript:doSetCurrentImage('../sic/images/models/noimage.jpg', 5);" onmouseover="javascript:doHoverOver('../sic/images/models/noimage.jpg', 5);" onmouseout="javascript:doHoverOff(5);" type="radio">
+
+            </td>
+            
+            <td class="configTableCell tinyBody" onmouseover="javascript:doHoverOver('../sic/images/models/noimage.jpg', 5);" onmouseout="javascript:doHoverOff(5);">
+                2 GB of RAM
+                
+            </td>
+
+                <td>&nbsp;</td>
+            
+            <td>
+                
+            </td>
+            <td class="tinyBody" align="right">
+                &nbsp;$16.99&nbsp;
+            </td>
+            <td class="tinyBody">
+                &nbsp;&nbsp;
+            </td>
+        </tr>
+        
+        <tr valign="center">
+
+            <td align="center" width="20">&nbsp;</td>
+
+            <td align="center" width="20">
+                &nbsp;
+            </td>
+            
+            <td align="center">
+
+                    <input id="AuroraPC-001.Memory.CCM039_390602" class="control" name="control5" src="../StoreAssets/LaunchConfiguratorView_data/noimage.jpg" value="item7" onclick="doChange(5,'AuroraPC-001.Memory','AuroraPC-001.Memory.CCM039_390602',7,true); javascript:doSetCurrentImage('../sic/images/models/noimage.jpg', 5);" onmouseover="javascript:doHoverOver('../sic/images/models/noimage.jpg', 5);" onmouseout="javascript:doHoverOff(5);" type="radio">
+
+            </td>
+            
+            <td class="configTableCell tinyBody" onmouseover="javascript:doHoverOver('../sic/images/models/noimage.jpg', 5);" onmouseout="javascript:doHoverOff(5);">
+                4 GB of RAM
+                
+            </td>
+
+                <td>&nbsp;</td>
+            
+            <td>
+                
+            </td>
+            <td class="tinyBody" align="right">
+                &nbsp;$32.99&nbsp;
+            </td>
+            <td class="tinyBody">
+                &nbsp;&nbsp;
+            </td>
+        </tr>
+        
+        <tr valign="center">
+
+            <td align="center" width="20">&nbsp;</td>
+
+            <td align="center" width="20">
+                &nbsp;
+            </td>
+            
+            <td align="center">
+
+                    <input id="AuroraPC-001.Memory.CCM039_390603" class="control" name="control5" src="../StoreAssets/LaunchConfiguratorView_data/noimage.jpg" value="item8" onclick="doChange(5,'AuroraPC-001.Memory','AuroraPC-001.Memory.CCM039_390603',8,true); javascript:doSetCurrentImage('../sic/images/models/noimage.jpg', 5);" onmouseover="javascript:doHoverOver('../sic/images/models/noimage.jpg', 5);" onmouseout="javascript:doHoverOff(5);" type="radio">
+
+            </td>
+            
+            <td class="configTableCell tinyBody" onmouseover="javascript:doHoverOver('../sic/images/models/noimage.jpg', 5);" onmouseout="javascript:doHoverOff(5);">
+                8 GB of RAM
+                
+            </td>
+
+                <td>&nbsp;</td>
+            
+            <td>
+                
+            </td>
+            <td class="tinyBody" align="right">
+                &nbsp;$64.99&nbsp;
+            </td>
+            <td class="tinyBody">
+                &nbsp;&nbsp;
+            </td>
+        </tr>
+
+</tbody></table>
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+            <table class="optionItemChoices">
+
+            </table>
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+        <!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+            <table class="tinyBody themeColorText" width="80%">
+                <tbody><tr>
+                    <td colspan="1">&nbsp;</td>
+                    <td id="ext-gen6" align="right">
+                        &nbsp;&nbsp;<button id="ext-gen5" onclick="javascript:clearControl(5, 'AuroraPC-001.Memory')" class="submitBtnBg1">Reset</button>
+                    </td>
+                </tr>
+            </tbody></table>
+
+</td>
+</tr>
+</tbody></table>
+
+   <!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!-- draw OC description and image -->
+
+<script type="text/javascript" language="JavaScript">
+    OIContainer[5]= new OIWidget();
+    //OIContainer[5].registerWithFramework();
+    OIContainer[5].setControlId(5);
+    OIContainer[5].clearImages(5);
+</script>
+
+											</div>
+										</a></div><a name="oc5">
+
+                                        <!-- %@ include file="messageDisplay.jspf" % -->
+
+										</a><div id="ecc_9"><a name="oc5">
+
+										</a><div class="config_option_element"><a name="oc5"></a><a name="oc9">
+											<div class="indent controlsDisplay">
+                                        <!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!-- NOTE: will we need to add a different control name for stepwise, or will we replace and use the name -->
+
+   <!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!-- create the table layout to include a large image if can show images and have vertical alignment -->
+<table id="radioLayout">
+    <tbody><tr>
+        <td id="optionItemImageContainer">
+            
+        </td>
+        <td>
+        <!-- draw OC description and image -->
+
+    <!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+    <table border="0" height="1" cellpadding="0" cellspacing="0" width="1">
+        <tbody><tr height="1">
+            <td width="1">
+                <a name="oc9">
+            </a></td>
+        </tr>
+    </tbody></table>
+
+        <table border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr class="optionItemHeader">
+            
+            <td colspan="2">
+                <img class="optionItemHeaderImage" src="../StoreAssets/LaunchConfiguratorView_data/ccm039_3905.jpg" alt="Option Item Header Icon" border="0">
+            </td>
+            <td colspan="2">
+
+        <table border="0" cellpadding="0" cellspacing="0">
+            <tbody><tr>
+                
+                <td class="smallBody" colspan="2">
+
+                        Video Card 
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                </td>
+            </tr>
+        </tbody></table>
+
+            </td>
+        </tr>
+        </tbody></table>
+
+<!-- draw children -->
+
+        <table border="0" cellpadding="0" cellspacing="0">
+
+        <!-- vertical presentation -->
+
+        <tbody><tr valign="center">
+
+            <td align="center" width="20">&nbsp;</td>
+
+            <td align="center" width="20">
+                &nbsp;
+            </td>
+            
+            <td align="center">
+
+                    <input id="AuroraPC-001.VideoCard.CCM039_390501" class="control" name="control9" src="../StoreAssets/LaunchConfiguratorView_data/noimage.jpg" value="item10" checked="checked" onclick="doChange(9,'AuroraPC-001.VideoCard','AuroraPC-001.VideoCard.CCM039_390501',10,true); javascript:doSetCurrentImage('../sic/images/models/noimage.jpg', 9);" onmouseover="javascript:doHoverOver('../sic/images/models/noimage.jpg', 9);" onmouseout="javascript:doHoverOff(9);" type="radio">
+
+            </td>
+            
+            <td class="configTableCell tinyBody" onmouseover="javascript:doHoverOver('../sic/images/models/noimage.jpg', 9);" onmouseout="javascript:doHoverOff(9);">
+                1 GB of VRAM
+                
+            </td>
+
+                <td>&nbsp;</td>
+            
+            <td>
+                
+            </td>
+            <td class="tinyBody" align="right">
+                &nbsp;$229.65&nbsp;
+            </td>
+            <td class="tinyBody">
+                &nbsp;&nbsp;
+            </td>
+        </tr>
+        
+        <tr valign="center">
+
+            <td align="center" width="20">&nbsp;</td>
+
+            <td align="center" width="20">
+                &nbsp;
+            </td>
+            
+            <td align="center">
+
+                    <input id="AuroraPC-001.VideoCard.CCM039_390502" class="control" name="control9" src="../StoreAssets/LaunchConfiguratorView_data/noimage.jpg" value="item11" onclick="doChange(9,'AuroraPC-001.VideoCard','AuroraPC-001.VideoCard.CCM039_390502',11,true); javascript:doSetCurrentImage('../sic/images/models/noimage.jpg', 9);" onmouseover="javascript:doHoverOver('../sic/images/models/noimage.jpg', 9);" onmouseout="javascript:doHoverOff(9);" type="radio">
+
+            </td>
+            
+            <td class="configTableCell tinyBody" onmouseover="javascript:doHoverOver('../sic/images/models/noimage.jpg', 9);" onmouseout="javascript:doHoverOff(9);">
+                3 GB of VRAM
+                
+            </td>
+
+                <td>&nbsp;</td>
+            
+            <td>
+                
+            </td>
+            <td class="tinyBody" align="right">
+                &nbsp;$479.99&nbsp;
+            </td>
+            <td class="tinyBody">
+                &nbsp;&nbsp;
+            </td>
+        </tr>
+
+</tbody></table>
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+            <table class="optionItemChoices">
+
+            </table>
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+        <!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+            <table class="tinyBody themeColorText" width="80%">
+                <tbody><tr>
+                    <td colspan="1">&nbsp;</td>
+                    <td id="ext-gen8" align="right">
+                        &nbsp;&nbsp;<button id="ext-gen7" onclick="javascript:clearControl(9, 'AuroraPC-001.VideoCard')" class="submitBtnBg1">Reset</button>
+                    </td>
+                </tr>
+            </tbody></table>
+
+</td>
+</tr>
+</tbody></table>
+
+   <!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!-- draw OC description and image -->
+
+<script type="text/javascript" language="JavaScript">
+    OIContainer[9]= new OIWidget();
+    //OIContainer[9].registerWithFramework();
+    OIContainer[9].setControlId(9);
+    OIContainer[9].clearImages(9);
+</script>
+
+											</div>
+										</a></div><a name="oc9">
+
+                                        <!-- %@ include file="messageDisplay.jspf" % -->
+
+										</a><div id="ecc_12"><a name="oc9">
+
+										</a><div class="config_option_element"><a name="oc9"></a><a name="oc12">
+											<div class="indent controlsDisplay">
+                                        <!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!-- NOTE: will we need to add a different control name for stepwise, or will we replace and use the name -->
+
+   <!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!-- create the table layout to include a large image if can show images and have vertical alignment -->
+<table id="radioLayout">
+    <tbody><tr>
+        <td id="optionItemImageContainer">
+            
+        </td>
+        <td>
+        <!-- draw OC description and image -->
+
+    <!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+    <table border="0" height="1" cellpadding="0" cellspacing="0" width="1">
+        <tbody><tr height="1">
+            <td width="1">
+                <a name="oc12">
+            </a></td>
+        </tr>
+    </tbody></table>
+
+        <table border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr class="optionItemHeader">
+            
+            <td colspan="2">
+                <img class="optionItemHeaderImage" src="../StoreAssets/LaunchConfiguratorView_data/ccm039_3904.jpg" alt="Option Item Header Icon" border="0">
+            </td>
+            <td colspan="2">
+
+        <table border="0" cellpadding="0" cellspacing="0">
+            <tbody><tr>
+                
+                <td class="smallBody" colspan="2">
+
+                        Hard Drive 
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                </td>
+            </tr>
+        </tbody></table>
+
+            </td>
+        </tr>
+        </tbody></table>
+
+<!-- draw children -->
+
+        <table border="0" cellpadding="0" cellspacing="0">
+
+        <!-- vertical presentation -->
+
+        <tbody><tr valign="center">
+
+            <td align="center" width="20">&nbsp;</td>
+
+            <td align="center" width="20">
+                &nbsp;
+            </td>
+            
+            <td align="center">
+
+                    <input id="AuroraPC-001.HardDrive.CCM039_390401" class="control" name="control12" src="../StoreAssets/LaunchConfiguratorView_data/noimage.jpg" value="item13" onclick="doChange(12,'AuroraPC-001.HardDrive','AuroraPC-001.HardDrive.CCM039_390401',13,true); javascript:doSetCurrentImage('../sic/images/models/noimage.jpg', 12);" onmouseover="javascript:doHoverOver('../sic/images/models/noimage.jpg', 12);" onmouseout="javascript:doHoverOff(12);" type="radio">
+
+            </td>
+            
+            <td class="configTableCell tinyBody" onmouseover="javascript:doHoverOver('../sic/images/models/noimage.jpg', 12);" onmouseout="javascript:doHoverOff(12);">
+                500 GB Hard Drive
+                
+            </td>
+
+                <td>&nbsp;</td>
+            
+            <td>
+                
+            </td>
+            <td class="tinyBody" align="right">
+                &nbsp;$84.99&nbsp;
+            </td>
+            <td class="tinyBody">
+                &nbsp;&nbsp;
+            </td>
+        </tr>
+        
+        <tr valign="center">
+
+            <td align="center" width="20">&nbsp;</td>
+
+            <td align="center" width="20">
+                &nbsp;
+            </td>
+            
+            <td align="center">
+
+                    <input id="AuroraPC-001.HardDrive.CCM039_390402" class="control" name="control12" src="../StoreAssets/LaunchConfiguratorView_data/noimage.jpg" value="item14" checked="checked" onclick="doChange(12,'AuroraPC-001.HardDrive','AuroraPC-001.HardDrive.CCM039_390402',14,true); javascript:doSetCurrentImage('../sic/images/models/noimage.jpg', 12);" onmouseover="javascript:doHoverOver('../sic/images/models/noimage.jpg', 12);" onmouseout="javascript:doHoverOff(12);" type="radio">
+
+            </td>
+            
+            <td class="configTableCell tinyBody" onmouseover="javascript:doHoverOver('../sic/images/models/noimage.jpg', 12);" onmouseout="javascript:doHoverOff(12);">
+                1000 GB Hard Drive
+                
+            </td>
+
+                <td>&nbsp;</td>
+            
+            <td>
+                
+            </td>
+            <td class="tinyBody" align="right">
+                &nbsp;$104.99&nbsp;
+            </td>
+            <td class="tinyBody">
+                &nbsp;&nbsp;
+            </td>
+        </tr>
+        
+        <tr valign="center">
+
+            <td align="center" width="20">&nbsp;</td>
+
+            <td align="center" width="20">
+                &nbsp;
+            </td>
+            
+            <td align="center">
+
+                    <input id="AuroraPC-001.HardDrive.CCM039_390403" class="control" name="control12" src="../StoreAssets/LaunchConfiguratorView_data/noimage.jpg" value="item15" onclick="doChange(12,'AuroraPC-001.HardDrive','AuroraPC-001.HardDrive.CCM039_390403',15,true); javascript:doSetCurrentImage('../sic/images/models/noimage.jpg', 12);" onmouseover="javascript:doHoverOver('../sic/images/models/noimage.jpg', 12);" onmouseout="javascript:doHoverOff(12);" type="radio">
+
+            </td>
+            
+            <td class="configTableCell tinyBody" onmouseover="javascript:doHoverOver('../sic/images/models/noimage.jpg', 12);" onmouseout="javascript:doHoverOff(12);">
+                2000 GB Hard Drive
+                
+            </td>
+
+                <td>&nbsp;</td>
+            
+            <td>
+                
+            </td>
+            <td class="tinyBody" align="right">
+                &nbsp;$134.99&nbsp;
+            </td>
+            <td class="tinyBody">
+                &nbsp;&nbsp;
+            </td>
+        </tr>
+
+</tbody></table>
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+            <table class="optionItemChoices">
+
+            </table>
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+        <!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+            <table class="tinyBody themeColorText" width="80%">
+                <tbody><tr>
+                    <td colspan="1">&nbsp;</td>
+                    <td id="ext-gen10" align="right">
+                        &nbsp;&nbsp;<button id="ext-gen9" onclick="javascript:clearControl(12, 'AuroraPC-001.HardDrive')" class="submitBtnBg1">Reset</button>
+                    </td>
+                </tr>
+            </tbody></table>
+
+</td>
+</tr>
+</tbody></table>
+
+   <!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!-- draw OC description and image -->
+
+<script type="text/javascript" language="JavaScript">
+    OIContainer[12]= new OIWidget();
+    //OIContainer[12].registerWithFramework();
+    OIContainer[12].setControlId(12);
+    OIContainer[12].clearImages(12);
+</script>
+
+											</div>
+										</a></div><a name="oc12">
+
+                                        <!-- %@ include file="messageDisplay.jspf" % -->
+
+										</a><div id="ecc_16"><a name="oc12">
+
+										</a><div class="config_option_element"><a name="oc12"></a><a name="oc16">
+											<div class="indent controlsDisplay">
+                                        <!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!-- NOTE: will we need to add a different control name for stepwise, or will we replace and use the name -->
+
+   <!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!-- create the table layout to include a large image if can show images and have vertical alignment -->
+<table id="radioLayout">
+    <tbody><tr>
+        <td id="optionItemImageContainer">
+            
+        </td>
+        <td>
+        <!-- draw OC description and image -->
+
+    <!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+    <table border="0" height="1" cellpadding="0" cellspacing="0" width="1">
+        <tbody><tr height="1">
+            <td width="1">
+                <a name="oc16">
+            </a></td>
+        </tr>
+    </tbody></table>
+
+        <table border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr class="optionItemHeader">
+            
+            <td colspan="2">
+                <img class="optionItemHeaderImage" src="../StoreAssets/LaunchConfiguratorView_data/ccm039_3901.jpg" alt="Option Item Header Icon" border="0">
+            </td>
+            <td colspan="2">
+
+        <table border="0" cellpadding="0" cellspacing="0">
+            <tbody><tr>
+                
+                <td class="smallBody" colspan="2">
+
+                        Operating System 
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                </td>
+            </tr>
+        </tbody></table>
+
+            </td>
+        </tr>
+        </tbody></table>
+
+<!-- draw children -->
+
+        <table border="0" cellpadding="0" cellspacing="0">
+
+        <!-- vertical presentation -->
+
+        <tbody><tr valign="center">
+
+            <td align="center" width="20">&nbsp;</td>
+
+            <td align="center" width="20">
+                &nbsp;
+            </td>
+            
+            <td align="center">
+
+                    <input id="AuroraPC-001.OS.CCM039_390101" class="control" name="control16" src="../StoreAssets/LaunchConfiguratorView_data/noimage.jpg" value="item17" onclick="doChange(16,'AuroraPC-001.OS','AuroraPC-001.OS.CCM039_390101',17,true); javascript:doSetCurrentImage('../sic/images/models/noimage.jpg', 16);" onmouseover="javascript:doHoverOver('../sic/images/models/noimage.jpg', 16);" onmouseout="javascript:doHoverOff(16);" type="radio">
+
+            </td>
+            
+            <td class="configTableCell tinyBody" onmouseover="javascript:doHoverOver('../sic/images/models/noimage.jpg', 16);" onmouseout="javascript:doHoverOff(16);">
+                64-Bit Server Operating System
+                
+            </td>
+
+                <td>&nbsp;</td>
+            
+            <td>
+                
+            </td>
+            <td class="tinyBody" align="right">
+                &nbsp;$109.95&nbsp;
+            </td>
+            <td class="tinyBody">
+                &nbsp;&nbsp;
+            </td>
+        </tr>
+        
+        <tr valign="center">
+
+            <td align="center" width="20">&nbsp;</td>
+
+            <td align="center" width="20">
+                &nbsp;
+            </td>
+            
+            <td align="center">
+
+                    <input id="AuroraPC-001.OS.CCM039_390102" class="control" name="control16" src="../StoreAssets/LaunchConfiguratorView_data/noimage.jpg" value="item18" onclick="doChange(16,'AuroraPC-001.OS','AuroraPC-001.OS.CCM039_390102',18,true); javascript:doSetCurrentImage('../sic/images/models/noimage.jpg', 16);" onmouseover="javascript:doHoverOver('../sic/images/models/noimage.jpg', 16);" onmouseout="javascript:doHoverOff(16);" type="radio">
+
+            </td>
+            
+            <td class="configTableCell tinyBody" onmouseover="javascript:doHoverOver('../sic/images/models/noimage.jpg', 16);" onmouseout="javascript:doHoverOff(16);">
+                64-Bit Workstation Operating System
+                
+            </td>
+
+                <td>&nbsp;</td>
+            
+            <td>
+                
+            </td>
+            <td class="tinyBody" align="right">
+                &nbsp;$149.95&nbsp;
+            </td>
+            <td class="tinyBody">
+                &nbsp;&nbsp;
+            </td>
+        </tr>
+
+</tbody></table>
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+            <table class="optionItemChoices">
+
+            </table>
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+        <!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+</td>
+</tr>
+</tbody></table>
+
+   <!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!-- draw OC description and image -->
+
+<script type="text/javascript" language="JavaScript">
+    OIContainer[16]= new OIWidget();
+    //OIContainer[16].registerWithFramework();
+    OIContainer[16].setControlId(16);
+    OIContainer[16].clearImages(16);
+</script>
+
+											</div>
+										</a></div><a name="oc16">
+
+                                        <!-- %@ include file="messageDisplay.jspf" % -->
+
+										</a><div id="ecc_19"><a name="oc16">
+
+										</a><div class="config_option_element"><a name="oc16"></a><a name="oc19">
+											<div class="indent controlsDisplay">
+                                        <!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!-- NOTE: will we need to add a different control name for stepwise, or will we replace and use the name -->
+
+   <!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!-- draw OC description and image -->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+    <table border="0" height="1" cellpadding="0" cellspacing="0" width="1">
+        <tbody><tr height="1">
+            <td width="1">
+                <a name="oc19">
+            </a></td>
+        </tr>
+    </tbody></table>
+
+        <table border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr class="optionItemHeader">
+            
+            <td colspan="2">
+                <img class="optionItemHeaderImage" src="../StoreAssets/LaunchConfiguratorView_data/ccm039_3903.jpg" alt="Option Item Header Icon" border="0">
+            </td>
+            <td colspan="2">
+
+        <table border="0" cellpadding="0" cellspacing="0">
+            <tbody><tr>
+                
+                <td class="smallBody" colspan="2">
+
+                        Blank DVDs 
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                </td>
+            </tr>
+        </tbody></table>
+
+            </td>
+        </tr>
+        </tbody></table>
+
+        <table class="configgrid" width="100%">
+            <tbody><tr class="configgrid_headerrow">
+                <th class="configgrid_headercell">Name</th>
+
+                <th class="configgrid_headercell">Quantity</th>
+            </tr>
+
+                <tr class="configgrid">
+                    <td class="configgrid">
+                        <input name="qtyselect" value="20" type="hidden">
+
+                        4.7 GB 16x Blank DVD
+                    </td>
+
+                    <td style="padding: 0px" class="configgrid" width="20">
+                        <!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+                    <select class="tinyBody" name="quantity20" size="1" onchange="doChange(19,'AuroraPC-001.BlankDVD','AuroraPC-001.BlankDVD.CCM039_390301',20,true)">
+
+                                <option value="0" selected="selected">0</option>
+
+                        <option value="5">5</option>
+
+                        <option value="10">10</option>
+
+                        <option value="25">25</option>
+
+                        <option value="50">50</option>
+
+                </select>
+
+                    </td>
+                </tr>
+
+                <tr class="configgrid">
+                    <td class="configgrid">
+                        <input name="qtyselect" value="21" type="hidden">
+
+                        8.5 GB 8x Blank DVD
+                    </td>
+
+                    <td style="padding: 0px" class="configgrid" width="20">
+                        <!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+                    <select class="tinyBody" name="quantity21" size="1" onchange="doChange(19,'AuroraPC-001.BlankDVD','AuroraPC-001.BlankDVD.CCM039_390302',21,true)">
+
+                                <option value="0" selected="selected">0</option>
+
+                        <option value="5">5</option>
+
+                        <option value="10">10</option>
+
+                        <option value="25">25</option>
+
+                        <option value="50">50</option>
+
+                </select>
+
+                    </td>
+                </tr>
+
+        </tbody></table>
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+            <table class="optionItemChoices">
+
+            </table>
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+   <!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!--
+  Licensed Materials - Property of IBM 
+
+  IBM Sterling Selling and Fullfillment Suite 9.1 
+
+  (c) Copyright IBM Corp 2001, 2010 All Rights Reserved
+
+  US Government Users Restricted Rights - Use, duplication or disclosure
+  restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!-- draw OC description and image -->
+
+<script type="text/javascript" language="JavaScript">
+    OIContainer[19]= new OIWidget();
+    //OIContainer[19].registerWithFramework();
+    OIContainer[19].setControlId(19);
+    OIContainer[19].clearImages(19);
+</script>
+
+											</div>
+										</a></div><a name="oc19">
+
+                                        <!-- %@ include file="messageDisplay.jspf" % -->
+
+				</a></div><a name="oc19">
+
+            </a></div><a name="oc19">
+            </a></div><a name="oc19">
+                
+                <!-- %@ include file="ConfiguratorFooter.jspf"% -->
+                <div class="t2-footer commonFooter" id="t2-footer">
+                    
+                </div>
+
+    </a></div><a name="oc19">
+
+</a></div></div></div></form></div></div></div></body></html>

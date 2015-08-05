@@ -1,0 +1,3010 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<!--
+Licensed Materials - Property of IBMWebSphere Commerce(c) Copyright International Business Machines Corporation 1996,2010.All rights reservedUS Government Users Restricted Rights - Use, duplication ordisclosure restricted by GSA ADP Schedule Contract with IBM Corp.-->
+<html  xmlns:wairole='http://www.w3.org/2005/01/wai-rdf/GUIRoleTaxonomy#' xmlns:waistate='http://www.w3.org/2005/07/aaa' lang='en' xml:lang='en' onkeydown='javascript:activateHighlight(event);'>
+ <head>
+ <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>My Orders - [MO_MYORDERS]</title>
+	<link rel="stylesheet" href="../StoreAssets/css/common1_1.css" type="text/css">
+
+	<script type="text/javascript" src="../dojo18/dojo/dojo.js" djconfig="parseOnLoad: false, isDebug: false,  modulePaths: {storetext: '../../StoreAssets'}, useCommentedJson: true,locale: 'en-us' "></script>
+	
+<!-- BEGIN CommonJSToInclude.jspf -->
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0;">
+<meta name="CommerceSearch" content="storeId_10152">
+
+<link rel="shortcut icon" href="../StoreAssets/images/favicon.ico" mce_href="../StoreAssets/images/favicon.ico">
+
+<script type="text/javascript">
+	// Convert the WCParam object which contains request properties into javascript object
+	var WCParamJS = {
+		"storeId":'10152',
+		"catalogId":'10001',
+		"langId":'-1',
+		"pageView":'',
+		"orderBy":'',
+		"orderByContent":'',
+		"searchTerm":''
+	};
+	var absoluteURL = document.location.href.split("/");
+	absoluteURL.pop();
+	absoluteURL = absoluteURL.join("/") + "/";
+	var imageDirectoryPath = "../StoreAssets/";
+	var styleDirectoryPath = "images/colors/color1/";
+	var supportPaymentTypePromotions = false;
+	
+	var subsFulfillmentFrequencyAttrName = "fulfillmentFrequency";
+	var subsPaymentFrequencyAttrName = "paymentFrequency";
+	var subsTimePeriodAttrName = "timePeriod";
+	
+	var storeNLS = null;
+	
+	//Summary: Returns the absolute URL to use for prefixing any Ajax URL call.
+	//Description: Dojo does not handle the case where the parameters in the URL are delimeted by the "/" forward slash. Therefore, in order to
+	//             workaround the issue, all AJAX requests must be done using absolute URLs rather than relative.
+	//Returns: The absolute URL to use for prefixing any Ajax URL call.
+	function getAbsoluteURL() {
+		if (absoluteURL != "") {
+			var currentURL = document.URL;
+			var currentProtocol = "";
+		
+			if (currentURL.indexOf("://") != -1) {
+				currentProtocol = currentURL.substring(0, currentURL.indexOf("://"));
+			}
+			
+			var savedProtocol = "";
+			if (absoluteURL.indexOf("://") != -1) {
+				savedProtocol = absoluteURL.substring(0, absoluteURL.indexOf("://"));
+			}
+			
+			if (currentProtocol != savedProtocol) {
+				absoluteURL = currentProtocol + absoluteURL.substring(absoluteURL.indexOf("://"));
+			}
+		}
+		
+		return absoluteURL;
+	}
+	//Summary: Returns the path pointing to the shared image directory.
+	//Description: In order to get the image directory path in any javascript file, this function can be used.
+	//Returns: The path to reference images.
+	function getImageDirectoryPath() {
+		return imageDirectoryPath;
+	}
+	//Summary: Returns the path pointing to the directory containing color-dependant image files.
+	//Description: In order to get the directory containing color-dependant image files in any javascript file, this function can be used.
+	//Returns: The path to reference color-dependant image files.
+	function getStyleDirectoryPath() {
+		return styleDirectoryPath;
+	}
+</script>
+
+<script type="text/javascript" src="../StoreAssets/javascript/MessageHelper.js"></script>
+<script type="text/javascript" src="../StoreAssets/javascript/StoreCommonUtilities.js"></script>
+<script>
+	dojo.require("wc.service.common");
+	dojo.require("dojo.number");
+</script>
+
+<script type="text/javascript">
+ //Set the default NLS to use in the store.
+ if(storeNLS == null) {
+	 dojo.requireLocalization("storetext", "StoreText");
+	 storeNLS = dojo.i18n.getLocalization("storetext","StoreText");
+ }
+</script>
+
+<!-- END CommonJSToInclude.jspf -->
+
+	
+	<script type="text/javascript" src="../StoreAssets//javascript/Widgets/Search.js"></script>
+	<script type="text/javascript" src="../StoreAssets//javascript/Widgets/MiniShopCartDisplay/MiniShopCartDisplay.js"></script>
+	<script type="text/javascript" src="../StoreAssets//javascript/Widgets/Department/Department.js"></script>
+	
+	<script type="text/javascript" src="../StoreAssets/javascript/Common/ShoppingActions.js"></script>
+	
+	<script type="text/javascript" src="../StoreAssets/javascript/CommonContextsDeclarations.js"></script>
+	<script type="text/javascript" src="../StoreAssets/javascript/CommonControllersDeclaration.js"></script>
+			
+	<script type="text/javascript" src="../StoreAssets/javascript/UserArea/AddressHelper.js"></script>
+	<script type="text/javascript" src="../StoreAssets/javascript/UserArea/MyAccountDisplay.js"></script>
+	<script type="text/javascript" src="../StoreAssets/javascript/UserArea/MyAccountServicesDeclaration.js"></script>
+	<script type="text/javascript" src="../StoreAssets/javascript/UserArea/MyAccountControllersDeclaration.js"></script>
+
+<!-- BEGIN CommonJSPFToInclude.jspf -->
+
+
+<!-- BEGIN ProgressBar.jspf -->
+
+<link href="../StoreAssets/css/SocialIntegration.css" type="text/css" rel="stylesheet"></head><body>
+<!-- END ProgressBar.jspf -->
+
+
+<!-- BEGIN MessageDisplay.jspf -->
+
+
+<span class="spanacce" id="MessageArea_ACCE_Title"><span>Message Dialog<span title="DIALOG_TITLE_MESSAGE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIALOG_TITLE_MESSAGE"></span></span></span>
+<div id="MessageArea" class="store_message" role="alert" aria-labelledby="MessageArea_ACCE_Title">
+	<div id="msgpopup_content_wrapper" class="content">
+		<a id="clickableErrorMessageImg" role="button" class="close right" href="JavaScript:MessageHelper.hideMessageArea();" title="Close">
+			<div class="close_text left"><span>Close<span title="CLOSE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="CLOSE"></span></span></div>
+			<div class="close_icon left"></div>
+			<div class="clear_float"></div>
+		</a>
+		
+		<div class="clear_float"></div>
+		
+		<div class="message">
+			<div class="message_icon left">
+				<img id="error_icon" style="display:none;" class="error_icon" src="../StoreAssets/images/colors/color1/error_icon.png" alt="">
+				<img id="success_icon" style="display:none;" class="error_icon" src="../StoreAssets/images/colors/color1/success_icon.png" alt="">
+			</div>
+			<div class="message_text left" role="region" aria-required="true" aria-labelledby="MessageArea">
+				<span id="ErrorMessageText">
+					
+				</span>
+			</div>
+			<div class="clear_float"></div>
+		</div>		
+	<span class="elementKeyIcon" title="CLOSE=Close"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+</div>
+<span class="spanacce" id="ariaMessage_ACCE_Label"><span>Display Update Message<span title="ACCE_Display_Update_Message" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="ACCE_Display_Update_Message"></span></span></span>
+<span class="spanacce" role="region" aria-labelledby="ariaMessage_ACCE_Label" id="ariaMessage" aria-live="assertive" aria-atomic="true" aria-relevant="additions"></span>
+<!-- END MessageDisplay.jspf -->
+
+
+<span id="widget_product_comparison_ACCE_Label" class="spanacce"><span>Product Compare Dialog<span title="DIALOG_TITLE_PRODUCT_COMPARE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIALOG_TITLE_PRODUCT_COMPARE"></span></span></span>
+<div id="widget_product_comparison" style="display:none;" role="dialog" aria-labelledby="widget_product_comparison_ACCE_Label" title="Product Compare Dialog">
+	
+</div>
+	
+<!-- END CommonJSPFToInclude.jspf -->
+
+	
+	<script type="text/javascript">
+		dojo.addOnLoad(function() {
+			MyAccountServicesDeclarationJS.setCommonParameters('-1','10152','10001');
+
+			MessageHelper.setMessage("MO_ORDER_CANCELED_MSG", "The order has been canceled.");	
+			MessageHelper.setMessage("SCHEDULE_ORDER_CANCEL_MSG", "The order has been successfully cancelled.");
+			MessageHelper.setMessage("SCHEDULE_ORDER_PENDING_CANCEL_MSG", "The order has been successfully submitted for cancellation.");
+			MessageHelper.setMessage("SUBSCRIPTION_CANCEL_MSG", "The subscription has been successfully cancelled.");
+			MessageHelper.setMessage("SUBSCRIPTION_PENDING_CANCEL_MSG", "The subscription has been successfully submitted for cancellation.");
+			MessageHelper.setMessage("CANNOT_RENEW_NOW_MSG", "The expiry date of the subscription is too far in the future for renewal.");
+			MyAccountControllersDeclarationJS.setControllerURL("ScheduledOrdersStatusDisplayController", "https:///webapp/wcs/stores/servlet/OrderStatusTableDetailsDisplay?catalogId=10001&amp;langId=-1&amp;storeId=10152");
+			MyAccountControllersDeclarationJS.setControllerURL("ProcessedOrdersStatusDisplayController", "https:///webapp/wcs/stores/servlet/OrderStatusTableDetailsDisplay?catalogId=10001&amp;langId=-1&amp;storeId=10152");
+			MyAccountControllersDeclarationJS.setControllerURL("WaitingForApprovalOrdersStatusDisplayController", "https:///webapp/wcs/stores/servlet/OrderStatusTableDetailsDisplay?catalogId=10001&amp;langId=-1&amp;storeId=10152");
+			if(document.getElementById("RecurringOrderDisplay")){
+				parseWidget("RecurringOrderDisplay");
+			}
+			if(document.getElementById("SubscriptionDisplay")){
+				parseWidget("SubscriptionDisplay");
+			}
+			MyAccountControllersDeclarationJS.setControllerURL("RecurringOrderDisplayController", "https:///webapp/wcs/stores/servlet/RecurringOrderTableDetailsDisplay?catalogId=10001&amp;langId=-1&amp;storeId=10152");
+			MyAccountControllersDeclarationJS.setControllerURL("SubscriptionDisplayController", "https:///webapp/wcs/stores/servlet/SubscriptionTableDetailsDisplay?catalogId=10001&amp;langId=-1&amp;storeId=10152");
+		});
+	</script>
+
+			<script type="text/javascript">
+				dojo.addOnLoad(function() {
+					if(document.getElementById("RecurringOrderBreadcrumb")){
+						document.getElementById("MyAccountBreadcrumbLink").style.display = "none";
+						document.getElementById("RecurringOrderBreadcrumb1").style.display = "inline";
+					}
+				});
+			</script>
+
+<!-- Page Start -->
+
+<div id="page">
+	<!-- Import Header Widget -->
+
+	<div class="header_wrapper_position" id="headerWidget">
+
+<!-- BEGIN Header.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">Header.jsp</div>
+<div id="text_highlight"><div class="details" id="detailsSection"><div class="details_container"><div class="content"><span class="bold">Click the button below to highlight text strings on the current page that you can customize in properties files during onboarding.</span><br></div><div class="marketing_btn"><div id="showProperties" style="display:block"><a class="light_button" onclick="showProperties()"><div id="showSpots" class="button_text">Show Properties</div><div class="button_right"></div></a></div><div id="hideProperties" style="display:none"><a class="light_button" onclick="hideProperties()"><div id="showSpots" class="button_text">Hide Properties</div><div class="button_right"></div></a></div></div><div class="content"><div id="messages" style="display:none"></div></div></div></div></div>
+<script type="text/javascript" src="../StoreAssets/javascript/Properties.js"></script>
+
+	<script type="text/javascript" src="../StoreAssets/javascript/Analytics.js"></script>
+	<script type="text/javascript">
+	dojo.addOnLoad(function() {
+		analyticsJS.storeId=10152;
+		analyticsJS.catalogId=10001;
+		analyticsJS.loadShopCartHandler();
+		analyticsJS.loadPagingHandler();
+		analyticsJS.loadProductQuickInfoHandler('productIdQuickInfo');
+		analyticsJS.loadStoreLocatorPageViews();
+		analyticsJS.loadWishlistHandler();
+		dojo.require("wc.analytics.CoremetricsEventListener");		
+			(new wc.analytics.CoremetricsEventListener()).load(true);
+			});
+	</script>
+
+<script>
+	var isGuest = false;
+</script>
+<div class="header_wrapper" role="banner">
+	<!--For border customization -->
+
+	<div class="header_top">
+		<div class="left_border"></div>
+		<div class="middle"></div>
+		<div class="right_border"></div>
+	</div>
+	<!-- Main Header Area -->
+
+	<div class="header_left_shadow">
+		<div class="header_right_shadow">				
+			<div class="header">
+				<!-- Start Header Content -->
+
+				
+				<!-- Start Masthead -->
+
+				<div id="masthead">
+					<div class="top"></div>
+					<div class="content">
+						<!-- Masthead Logo Widget -->
+
+						<div class="widget_masthead_logo_position">
+							<div id="widget_masthead_logo1">
+
+<!-- BEGIN ContentRecommendation.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">ContentRecommendation.jsp</div>
+	<div class="widget_height" tabindex="0">
+
+							<div class="left_espot">
+								
+									<a id="ContentAreaESpotInfoImgLink_10073_1" href="WelcometoAuroraESite.html" title="StoreAssets">
+								
+										<img id="ContentAreaESpotImg_HeaderStoreLogo_Content_1" src="../StoreAssets/images/logo.png" alt="StoreAssets">
+								
+									</a>
+								
+							</div>
+
+	</div>
+
+</span>
+<!-- END ContentRecommendation.jsp -->
+
+								
+							</div>
+						</div>
+						<!-- End Masthead Logo Widget -->
+
+						
+						<!-- Masthead Links Widget -->
+
+						<div class="widget_masthead_links_position" role="navigation">
+							<div id="widget_masthead_links">
+								<div class="left">
+									<div id="masthead_espot">
+
+<!-- BEGIN ContentRecommendation.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">ContentRecommendation.jsp</div>
+</span>
+<!-- END ContentRecommendation.jsp -->
+																			
+									</div>																		
+									<div class="masthead_links">
+										<div class="content">
+											<span class="masthead_links_container">
+												
+													<span class="masthead_links_item"><a id="MyAccountLink" href="MyAccount.html"><span>My Account<span title="HEADER_MY_ACCOUNT" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="HEADER_MY_ACCOUNT"></span></span></a></span><span> |<span title="DIVIDING_BAR" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIVIDING_BAR"></span>
+
+													</span><span class="masthead_links_item"><a id="ShoppingListDisplayLink" href="Wishlist.html"><span>Wish List<span title="HEADER_SHOPPING_LIST" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="HEADER_SHOPPING_LIST"></span></span></a></span><span> |<span title="DIVIDING_BAR" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIVIDING_BAR"></span>
+
+</span><!-- BEGIN LanguageCurrency.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">LanguageCurrency.jsp</div>
+<div id="widget_language_and_currency" style="display:none;">
+	
+</div>
+
+<span class="masthead_links_item"><a id="LanguageCurrencyChangeLink" href="javaScript: shoppingActionsJS.showWCDialogPopup('widget_language_and_currency_popup');"><span>Language/Currency<span title="LC_LANGUAGE_CURRENCY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="LC_LANGUAGE_CURRENCY"></span></span></a></span> |
+
+</span>
+<!-- END LanguageCurrency.jsp -->
+
+												
+												<span class="masthead_links_item"><a id="SignOutLink" href="SignIn.html"><span>Sign Out<span title="HEADER_SIGN_OUT" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="HEADER_SIGN_OUT"></span></span></a></span>
+											</span>
+										</div>
+									</div>
+									<div class="masthead_social">
+										<div class="content">
+											<span class="masthead_links_container">
+
+													<span class="masthead_links_item">		
+
+<!-- BEGIN FacebookConnect.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">FacebookConnect.jsp</div>
+<!-- BEGIN FacebookConnect_UI.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">FacebookConnect_UI.jsp</div>
+ 
+
+<span id="SocialIntegrationArea">
+	<span style="display: inline;" id="header-fb-login-button-span"> 
+		<a tabindex="0" onclick="" id="headerFBlogin"><span>
+		    Connect to Facebook<span title="HEADER_CONNECT_TO_FACEBOOK" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="HEADER_CONNECT_TO_FACEBOOK"></span>
+			</span><img class="img_align" id="WC_FacebookConnectDisconnectDisplayImg_1" src="../StoreAssets/images/socialIntegration/social_networking.png" alt=""></a>
+	</span> 
+	
+	<span style="display: none;" id="header-fb-logout-button-span" class="nodisplay"> 
+		<span id="header_menu_facebook_loaded" style="display:none;">
+			<span id="menu_DropDown_Facebook" class="headerMenu_DropDown_Facebook" onmouseover="javascript:fbIntegrationJS.openDropDown();" onmouseleave="javascript:fbIntegrationJS.closeDropDown();" dojotype="wc.widget.WCDropDownButton" title="Use shift plus enter key then press the down arrow key to disconnect from Facebook." alt="Use shift plus enter key then press the down arrow key to disconnect from Facebook.">
+			    <span id="WC_CachedHeaderDisplayFacebook_div" class="dropdown" onitemhover="javascript:fbIntegrationJS.menuItemHover();" dojotype="wc.widget.WCMenu" onmouseleave="javascript:fbIntegrationJS.closeDropDown();" maxitemspercolumn="6" forcedisplayshowall="false" showalltext="Show All Facebook options">
+			        <span id="WC_CachedHeaderDisplayFacebook_div_2" dojotype="dijit.MenuItem" onclick="javascript:fbIntegrationJS.onClickFacebookLogout();return false;">
+			            <span>
+			                <a href="javascript:void(0);" tabindex="0" class="h_tnav_but" id="headerFBlogout"><span>
+								Disconnect from Facebook<span title="HEADER_DISCONNECT_FROM_FACEBOOK" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="HEADER_DISCONNECT_FROM_FACEBOOK"></span>
+							</span></a>
+			            </span>
+			        </span>
+			    </span>
+			<span class="elementKeyIcon" title="SHOW_ALL_FACEBOOK_OPTIONS=Show All Facebook options"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></span>
+		<span class="elementKeyIcon" title="FACEBOOK_DROPDOWN_ACTIVATE=Use shift plus enter key then press the down arrow key to disconnect from Facebook."><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></span>		
+	</span>
+	
+</span>	
+
+</span>
+<!-- END FacebookConnect_UI.jsp -->
+
+
+</span>
+<!-- END FacebookConnect.jsp -->
+
+														
+													</span><span>|<span title="DIVIDING_BAR" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIVIDING_BAR"></span>
+	                                	        
+												</span><span class="masthead_links_item">1-800-555-1234</span><span>
+												
+													|<span title="DIVIDING_BAR" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIVIDING_BAR"></span>
+													</span><span class="masthead_links_item"><a id="StoreLocatorLink" href="StoreLocator.html"><span>Store Locator<span title="HEADER_STORE_LOCATOR" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="HEADER_STORE_LOCATOR"></span></span></a></span>
+												
+											</span>
+										</div>
+									</div>												
+								</div>
+								<div class="right" style="display:none;">
+									<div class="social_avatar">
+									</div>
+								</div>
+								<div class="clear_float"></div>
+							</div>
+						</div>
+						<!-- End Masthead Links Widget -->
+
+
+						<!-- MiniShopCart Widget -->
+
+						<div class="widget_minishopcart_position">
+
+<span id="MiniShoppingCart_Label" class="spanacce"><span>Shopping Cart<span title="ACCE_Region_Shopping_Cart_Content" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="ACCE_Region_Shopping_Cart_Content"></span></span></span>
+<div class="dijitContentPane" title="" dojotype="wc.widget.RefreshArea" id="MiniShoppingCart" widgetid="MiniShoppingCart" controllerid="MiniShoppingCartController" ariamessage="Shopping Cart Display Updated" arialiveid="ariaMessage" role="region" aria-labelledby="MiniShoppingCart_Label">
+
+<script type="text/javascript">
+  dojo.addOnLoad(function() {
+		setMiniShopCartControllerURL(getAbsoluteURL()+'MiniShopCartDisplayView?storeId=10152&catalogId=10001&langId=-1');
+	});
+</script>
+
+<div id="widget_minishopcart" role="button" tabindex="0" onclick="javascript:showMiniShopCartDropDown('widget_minishopcart','quick_cart_container','orderItemsList');" onkeypress="javascript:showMiniShopCartDropDownEvent(event,'widget_minishopcart','quick_cart_container','orderItemsList');" onmouseover="javascript:showMiniShopCartDropDown('widget_minishopcart','quick_cart_container','orderItemsListAutoClose');">
+	<div id="miniShopCartLeftCorner" class="left_border"></div>
+	<div id="miniShopCartBody" class="content">
+		<div class="info">
+			<div class="subtotal"><span>Subtotal:<span title="MSC_SUBTOTAL" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MSC_SUBTOTAL"></span> </span><span id="minishopcart_subtotal">$6,497.76</span></div>
+			<div class="cart"><span>Cart:<span title="MSC_SHOPPING_CART" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MSC_SHOPPING_CART"></span> 
+				</span><span id="minishopcart_total"><span>
+					40 item(s)<span title="MSC_ITEMS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MSC_ITEMS"></span>
+				</span></span>
+			</div>
+		</div>
+		<div class="cart_icon"></div>
+		<div class="arrow"></div>
+	</div>
+	<div id="miniShopCartRightCorner" class="right_border"></div>
+	<div class="clear_float"></div>												
+</div>
+
+<div id="placeHolder"></div>
+
+<div id="quick_cart_container">
+	<span class="spanacce" id="quick_cart_container_ACCE_Label"><span>Shopping Cart Popup<span title="ACCE_MSC_SHOPPING_CART_POPUP_REGION" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="ACCE_MSC_SHOPPING_CART_POPUP_REGION"></span></span></span>
+	<div id="quick_cart">
+		<div id="MiniShopCartProductsList" style="display:none">
+			<div id="widget_minishopcart_popup">
+				<div class="top">
+					<div class="left_border"></div>
+					<div class="middle_tile"></div>
+					<div class="right_border"></div>
+				</div>
+				<div class="middle">
+					<div class="left_border">
+						<div class="right_border">
+							<div class="content">
+							<a id="MiniShopCartCloseButton_1" href="javascript:dijit.byId('quick_cart_container').hide();" class="close_control">
+								<div class="icon"></div>
+								<span class="close"><span>Close<span title="CLOSE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="CLOSE"></span></span></span>
+							</a>
+								<div class="notification"><span>Items in your cart:<span title="MSC_ITEMS_IN_CART" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MSC_ITEMS_IN_CART"></span></span></div>
+
+											<div class="products">
+												
+													<div class="product">
+														<div class="product_image">
+
+															<a id="MiniShopCartProdImg_95064" href="HermitageRuchedBodiceCocktailDressAuroraESite.html">
+																<img src="../StoreAssets/images/catalog/apparel/women/wbg006_handbags/70x70/wbg006_0601.jpg" alt="Albini Fashionable Black Leather Bag">
+															</a>
+														</div>
+														<div class="product_name">
+															<a id="MiniShopCartProdName_95064" href="HermitageRuchedBodiceCocktailDressAuroraESite.html">Albini Fashionable Black Leather Bag</a>
+														</div>
+														<div class="item_spacer_3px"></div>
+														<span class="product_quantity"><span>QTY:<span title="MSC_QTY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MSC_QTY"></span> 1</span></span>
+														<span class="product_price">$90.00</span>
+													</div>
+												
+													<div class="product">
+														<div class="product_image">
+
+															<a id="MiniShopCartProdImg_95065" href="HermitageRuchedBodiceCocktailDressAuroraESite.html">
+																<img src="../StoreAssets/images/catalog/apparel/women/wbg006_handbags/70x70/wbg006_0602.jpg" alt="Versatil Classic White Bag">
+															</a>
+														</div>
+														<div class="product_name">
+															<a id="MiniShopCartProdName_95065" href="HermitageRuchedBodiceCocktailDressAuroraESite.html">Versatil Classic White Bag</a>
+														</div>
+														<div class="item_spacer_3px"></div>
+														<span class="product_quantity"><span>QTY:<span title="MSC_QTY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MSC_QTY"></span> 1</span></span>
+														<span class="product_price">$60.00</span>
+													</div>
+												
+													<div class="product">
+														<div class="product_image">
+
+															<a id="MiniShopCartProdImg_95067" href="HermitageRuchedBodiceCocktailDressAuroraESite.html">
+																<img src="../StoreAssets/images/catalog/apparel/women/wbg006_handbags/70x70/wbg006_0606.jpg" alt="Borsati Red Shiny Bag">
+															</a>
+														</div>
+														<div class="product_name">
+															<a id="MiniShopCartProdName_95067" href="HermitageRuchedBodiceCocktailDressAuroraESite.html">Borsati Red Shiny Bag</a>
+														</div>
+														<div class="item_spacer_3px"></div>
+														<span class="product_quantity"><span>QTY:<span title="MSC_QTY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MSC_QTY"></span> 1</span></span>
+														<span class="product_price">$70.00</span>
+													</div>
+												
+													<div class="product">
+														<div class="product_image">
+
+															<a id="MiniShopCartProdImg_95068" href="HermitageRuchedBodiceCocktailDressAuroraESite.html">
+																<img src="../StoreAssets/images/catalog/apparel/women/wbg006_handbags/70x70/wbg006_0609.jpg" alt="Albini Hawaiin Satchel Bag">
+															</a>
+														</div>
+														<div class="product_name">
+															<a id="MiniShopCartProdName_95068" href="HermitageRuchedBodiceCocktailDressAuroraESite.html">Albini Hawaiin Satchel Bag</a>
+														</div>
+														<div class="item_spacer_3px"></div>
+														<span class="product_quantity"><span>QTY:<span title="MSC_QTY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MSC_QTY"></span> 1</span></span>
+														<span class="product_price">$75.00</span>
+													</div>
+												
+											</div>
+											
+												<div class="view_more">
+													<span class="view_more_items"><a id="MiniShopCartMoreLink" href="ShoppingCart.html"><span>view more items<span title="MSC_VIEW_MORE_ITEMS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MSC_VIEW_MORE_ITEMS"></span></span></a></span>
+												</div>
+
+												<div class="subtotal adjustment_price">
+													<span class="product_price">
+														($219.80)
+																											
+													</span>
+													<a class="hover_underline"href="DiscountDetails.html" >
+														Save 20% on Furniture!
+													</a>
+												</div>
+
+											<div class="subtotal">
+												<span class="product_price">$6,497.76</span>
+												<span><span>
+													Subtotal for 40 item(s)<span title="MSC_SUBTOTAL_FOR_ITEMS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MSC_SUBTOTAL_FOR_ITEMS"></span>
+												</span></span>
+											</div>
+
+								<div class="go_to_cart">
+									<a id="GotoCartButton1" href="ShoppingCart.html" class="button_primary" tabindex="0">
+										<div class="left_border"></div>
+										<div class="button_text"><span>Go to Cart<span title="MSC_GO_TO_CART" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MSC_GO_TO_CART"></span></span></div>
+										<div class="right_border"></div>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="bottom">
+					<div class="left_border"></div>
+					<div class="middle_tile"></div>
+					<div class="right_border"></div>
+				</div>
+			</div>
+		</div>
+
+		<div id="MiniShopCartProductAdded" style="display:none">
+			<div id="widget_minishopcart_popup_1">
+				<div class="top">
+					<div class="left_border"></div>
+					<div class="middle_tile"></div>
+					<div class="right_border"></div>
+				</div>
+				<div class="middle">
+					<div class="left_border">
+						<div class="right_border">
+							<div class="content">
+								<a id="MiniShopCartCloseButton_2" href="javascript:dijit.byId('quick_cart_container').hide();" class="close_control">
+									<div class="icon"></div>
+									<span class="close"><span>Close<span title="CLOSE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="CLOSE"></span></span></span>
+								</a>
+								<div class="notification"><span>This item has been successfully added:<span title="MSC_ITEM_ADDED" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MSC_ITEM_ADDED"></span></span></div>
+								<div class="products added">
+									
+								</div>
+								<div class="go_to_cart">
+									<a id="GotoCartButton2" href="ShoppingCart.html" class="button_primary" tabindex="0">
+										<div class="left_border"></div>
+										<div class="button_text"><span>Go to Cart<span title="MSC_GO_TO_CART" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MSC_GO_TO_CART"></span></span></div>
+										<div class="right_border"></div>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="bottom">
+					<div class="left_border"></div>
+					<div class="middle_tile"></div>
+					<div class="right_border"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</div>
+
+						<span class="elementKeyIcon" title="ACCE_Status_Shopping_Cart_Content_Updated=Shopping Cart Display Updated"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+						<!-- End MiniShopCart Widget -->
+
+
+					</div>
+					<div class="navigation">
+						<!-- Department Selection Widget -->
+
+						<div class="widget_departments_position" role="navigation" aria-label="Departments">
+
+<script type="text/javascript">
+	dojo.addOnLoad(function() {
+		if(document.getElementById("widget_departments")){
+			document.getElementById("widget_departments").style.display = "block";
+		}
+		DepartmentJS.init();
+		wc.render.getRefreshControllerById("DepartmentDropdownController").url = getAbsoluteURL()+"DepartmentDropdownView.html";
+	});
+
+	dojo.addOnUnload(function() {
+		if(document.getElementById("drop_down")){
+			document.getElementById("drop_down").style.display = "none";
+		}
+	});
+</script>
+
+<div id="widget_departments" tabindex="0" title="Departments" style="display: block;">
+		<div class="left_border"></div>
+		<div class="content">
+			<span class="label"><span>Departments<span title="DEPARTMENTS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DEPARTMENTS"></span></span></span>
+			<div class="arrow"></div>
+		</div>
+		<div class="right_border"></div>
+		<div class="clear_float"></div>
+
+		<div role="group" title="" class="drop_down dijitContentPane" id="drop_down" dojotype="wc.widget.RefreshArea" widgetid="drop_down" controllerid="DepartmentDropdownController" style="display: none;">
+
+<!-- BEGIN Department.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">Department.jsp</div>
+</span>
+<!-- END Department.jsp -->
+
+		</div>
+</div>
+
+						<span class="elementKeyIcon" title="DEPARTMENT_MENU_ACCE=Departments"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+						<!-- End Department Selection Widget -->
+
+
+						<!-- Search Widget -->
+
+						<div id="searchComponent">
+
+<!-- BEGIN Search.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">Search.jsp</div>
+		<meta name="CommerceSearch" content="storeId_10152">
+
+		<!-- Begin Search Widget -->
+
+		<script type="text/javascript">
+				dojo.addOnLoad(function(){
+					SearchJS.init();
+					SearchJS.setCachedSuggestionsURL('');
+					SearchJS.setAutoSuggestURL('');
+				});
+
+				// The primary Array to hold all static search suggestions
+				var staticContent = new Array();
+
+				// The titles of each search grouping
+				var staticContentHeaders = new Array();
+		</script>	
+
+<form name="CatalogSearchForm" action="SearchResults.html" method="get" id="CatalogSearchForm">
+	
+	<!-- Search Widget -->
+
+	<div class="widget_search_position" role="search">
+		<div id="widget_search">
+			<div class="left_border"></div>
+			<div class="content">
+	
+				<label for="SimpleSearchForm_SearchTerm" class="nodisplay"><span>Search<span title="SEARCH_CATALOG" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SEARCH_CATALOG"></span></span></label>
+				<input class="search_input gray_color" placeholder="Search" name="searchTerm" id="SimpleSearchForm_SearchTerm" autocomplete="off" maxlength="65" tabindex="0" title="Press the Up or Down Arrow keys to navigate through the search suggestions. Suggested site content and search history, if any, are included after the suggestions.  Press the Enter key for all search results." onkeypress="return SearchJS._onKeyPress(event);" value="Search" type="text">
+
+				<div role="button" aria-labelledby="searchDepartmentList_ACCE_Label" onclick="$('searchDepartmentList').style.display='block'" onfocus="$('searchDepartmentList').style.display='block'; dojo.byId('searchDepartmentList_0').focus();" tabindex="0" class="all_departments">
+					<span id="searchDepartmentLabel"><span>All Departments<span title="SEARCH_ALL_DEPARTMENTS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SEARCH_ALL_DEPARTMENTS"></span></span></span>
+				</div>
+				<input id="search_categoryId" name="categoryId" value="" type="hidden">
+				<span class="spanacce" id="searchDepartmentList_ACCE_Label"><span>Search in<span title="SEARCH_IN" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SEARCH_IN"></span></span></span>
+				<div class="widget_search_departments_dropdown_position" role="menu" aria-labelledby="searchDepartmentList_ACCE_Label" onblur="clearTimeout(SearchJS.searchDepartmentHoverTimeout);SearchJS.searchDepartmentHoverTimeout=setTimeout('SearchJS.hideSearchDepartmentList()',300)" onmouseout="clearTimeout(SearchJS.searchDepartmentHoverTimeout);SearchJS.searchDepartmentHoverTimeout=setTimeout('SearchJS.hideSearchDepartmentList()',300)" onmouseover="clearTimeout(SearchJS.searchDepartmentHoverTimeout);" id="searchDepartmentList">
+					<div class="widget_search_departments_dropdown">
+						<div class="top">
+							<div class="left_border"></div>
+							<div class="middle"></div>
+							<div class="right_border"></div>
+						</div>
+
+						<div class="clear_float"></div>
+						<div class="content_left_border">
+							<div class="content_right_border">
+								<ul id="searchDepartmentList_root">
+									<li><a  id="searchDepartmentList_0" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 0, 6, '', this);" onmousedown="SearchJS.searchDepartmentSelect('', this)" onmouseover="this.className='enabled'" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseout="this.className='disabled'"><span>All Departments<span title="SEARCH_ALL_DEPARTMENTS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SEARCH_ALL_DEPARTMENTS"></span></span></a></li>
+									
+										<li><a  id="searchDepartmentList_1" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 1, 6, '10001', this);" onmousedown="SearchJS.searchDepartmentSelect('10001', this)" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseover="this.className='enabled'" onmouseout="this.className='disabled'">Apparel</a></li>
+									
+										<li><a  id="searchDepartmentList_2" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 2, 6, '10027', this);" onmousedown="SearchJS.searchDepartmentSelect('10027', this)" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseover="this.className='enabled'" onmouseout="this.className='disabled'">Electronics</a></li>
+									
+										<li><a  id="searchDepartmentList_3" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 3, 6, '10033', this);" onmousedown="SearchJS.searchDepartmentSelect('10033', this)" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseover="this.className='enabled'" onmouseout="this.className='disabled'">Grocery</a></li>
+									
+										<li><a  id="searchDepartmentList_4" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 4, 6, '10038', this);" onmousedown="SearchJS.searchDepartmentSelect('10038', this)" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseover="this.className='enabled'" onmouseout="this.className='disabled'">Health</a></li>
+									
+										<li><a  id="searchDepartmentList_5" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 5, 6, '10041', this);" onmousedown="SearchJS.searchDepartmentSelect('10041', this)" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseover="this.className='enabled'" onmouseout="this.className='disabled'">Home &amp; Furnishing</a></li>
+									
+										<li><a  id="searchDepartmentList_6" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 6, 6, '10048', this);" onmousedown="SearchJS.searchDepartmentSelect('10048', this)" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseover="this.className='enabled'" onmouseout="this.className='disabled'">Newsletters &amp; Magazines</a></li>
+									
+								</ul>
+							</div>
+						</div>
+						<div class="clear_float"></div>
+
+						<div class="bottom">																
+							<div class="left_border"></div>
+							<div class="middle"></div>
+							<div class="right_border"></div>
+						</div>
+
+						<div class="clear_float"></div>	
+					</div>
+				</div>
+				
+				<input id="search_submit" class="search_submit" onmouseout="javascript: this.src='../StoreAssets/images/colors/color1/widget_search/search_submit.png'" onmouseover="javascript: this.src='../StoreAssets/images/colors/color1/widget_search/search_submit_hover.png'" onblur="javascript: this.src='../StoreAssets/images/colors/color1/widget_search/search_submit.png'" onfocus="javascript: this.src='../StoreAssets/images/colors/color1/widget_search/search_submit_hover.png'" alt="Search" src="../StoreAssets/images/colors/color1/widget_search/search_submit.png" value="Search" type="image">
+
+			<span class="elementKeyIcon" title="SEARCH_CATALOG=Search, SEARCH_SUGGESTION=Press the Up or Down Arrow keys to navigate through the search suggestions. Suggested site content and search history, if any, are included after the suggestions.  Press the Enter key for all search results."><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div> <!-- content -->
+
+			<div class="right_border"></div>
+			<div class="clear_float"></div>
+		</div> <!-- widget_search -->
+
+	</div> <!-- widget_search_position -->
+
+
+	<!-- Start SearchDropdownWidget -->
+
+	<div id="autoSuggest_Result_div" style="display:none;">
+
+		<div id="widget_search_dropdown" class="widget_search_dropdown_position">
+			<div class="widget_search_dropdown">
+		
+				<!-- Top Border Styling -->
+
+				<div class="top">
+					<div class="left_border"></div>
+					<div class="middle"></div>
+					<div class="right_border"></div>
+				</div>
+				<div class="clear_float"></div>
+				
+				<!-- Main Content Area -->
+
+				<div class="content_left_border">
+					<div class="content_right_border">
+		
+						<div id="AutoSuggestDiv" class="content" role="region" aria-required="true" aria-labelledby="AutoSuggestDiv" onmouseover="SearchJS.autoSuggestHover = true;" onmouseout="SearchJS.autoSuggestHover = false; document.getElementById('SimpleSearchForm_SearchTerm').focus();">
+							
+								<span id="autoSuggestDynamic_Result_div_ACCE_Label" class="spanacce"><span>Suggested keywords menu<span title="SEARCH_AUTO_SUGGEST_ACCE_REGION" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SEARCH_AUTO_SUGGEST_ACCE_REGION"></span></span></span>  
+								<div class="dijitContentPane" title="" dojotype="wc.widget.RefreshArea" widgetid="autoSuggestDynamic_Result_div" controllerid="AutoSuggestDisplayController" id="autoSuggestDynamic_Result_div" role="region" aria-live="polite" aria-atomic="true" aria-relevant="all" aria-labelledby="autoSuggestDynamic_Result_div_ACCE_Label">
+									
+								</div>
+		
+								<div id="autoSuggestStatic_1"></div>
+								<div id="autoSuggestStatic_2"></div>
+								<div id="autoSuggestStatic_3"></div>
+								<div id="autoSuggestHistory"></div>
+								<div class="heading"> <a id="advancedSearch" onclick="" href="AdvancedSearch.html"><div>Advanced Search</div></a> </div>
+		
+						<!-- End content Section -->
+
+						</div>
+		
+					<!-- End content_right_border -->
+
+					</div>
+				<!-- End content_left_border -->
+
+				</div>
+				
+				<!-- Bottom Border Styling -->
+
+				<div class="bottom">
+					<div class="left_border"></div>
+					<div class="middle"></div>
+					<div class="right_border"></div>
+				</div>
+				
+			</div>
+		</div>
+	<!-- End SearchDropdownWidget -->
+
+	</div>
+	
+	<!-- Refresh area to retrieve cached suggestions -->
+
+	<span id="autoSuggestCachedSuggestions_div_ACCE_Label" class="spanacce"><span>Suggested site content and search history menu<span title="SEARCH_AUTO_SUGGEST_CACHED_ACCE_REGION" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SEARCH_AUTO_SUGGEST_CACHED_ACCE_REGION"></span></span></span>
+	<div class="dijitContentPane" title="" dojotype="wc.widget.RefreshArea" widgetid="autoSuggestCachedSuggestions_div" controllerid="AutoSuggestCachedSuggestionsController" id="autoSuggestCachedSuggestions_div" role="region" aria-live="polite" aria-atomic="true" aria-relevant="all" style="display: none;" aria-labelledby="autoSuggestCachedSuggestions_div_ACCE_Label">
+	</div>
+
+	<input name="storeId" value="10152" type="hidden">
+	<input name="catalogId" value="10001" type="hidden">
+	<input name="langId" value="-1" type="hidden">
+	<input name="pageSize" value="12" type="hidden">
+	<input name="beginIndex" value="0" type="hidden">
+	<input name="sType" value="SimpleSearch" type="hidden">
+	<input name="resultCatEntryType" value="2" type="hidden">
+	<input name="showResultsPage" value="true" type="hidden">
+	<input name="searchSource" value="Q" type="hidden">
+	<input name="pageView" value="" type="hidden">
+	<span id="searchTextHolder" class="nodisplay"><span>Search<span title="SEARCH_CATALOG" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SEARCH_CATALOG"></span></span></span>
+
+</form>
+
+	<!-- End Search Widget -->
+
+
+</span>
+<!-- END Search.jsp -->
+
+							
+						</div>
+						<!-- End Search Widget -->
+
+					<span class="elementKeyIcon" title="DEPARTMENTS=Departments"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>			
+					<div class="header_espot_container">		
+
+<!-- BEGIN ContentRecommendation.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">ContentRecommendation.jsp</div>
+</span>
+<!-- END ContentRecommendation.jsp -->
+						
+					</div>					
+				</div>
+				<!-- End Masthead -->
+
+				
+				<!-- End Header Content -->
+
+			</div>
+		</div>				
+	</div>
+	<!--For border customization -->
+
+	<div class="header_bottom">
+		<div class="left_border"></div>
+		<div class="middle"></div>
+		<div class="right_border"></div>
+	</div>
+</div>
+<div id="productIdQuickInfo" style="display:none"></div>
+
+</span>
+<!-- END Header.jsp -->
+
+		
+	</div>
+	<!-- Header Nav End -->
+
+
+<div id="Cancel_recurring_order" class="cancel_subscription_popups_div">
+	
+</div>
+
+<script type="text/javascript">dojo.addOnLoad(function() { parseWidget("Cancel_recurring_order_popup"); } );</script>
+
+    <!-- Main Content Start -->
+
+
+	<div class="content_wrapper_position" role="main">
+		<div class="content_wrapper">
+			<div class="content_left_shadow">
+				<div class="content_right_shadow">
+					<div class="main_content">
+
+<!-- BEGIN BreadCrumbTrailDisplay.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">BreadCrumbTrailDisplay.jsp</div>
+		<div id="breadcrumb">
+			<div class="title" id="WC_MyAccountDisplay_div_1">
+				<h1 class="myaccount_title">
+					<a style="display: none;" id="MyAccountBreadcrumbLink" class="landingpage_link" href="MyAccount.html"><span> My Account<span title="MA_MYACCOUNT" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_MYACCOUNT"></span></span></a>
+					<span id="OrderHistoryBreadcrumb1" class="myaccount_breadcrumb" style="display:none;">
+						<a id="OrderHistoryMyAccountBreadcrumbLink1" class="landingpage_link" href="MyAccount.html"><span> My Account<span title="MA_MYACCOUNT" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_MYACCOUNT"></span></span></a>
+						<span class="divider"><span>|<span title="DIVIDING_BAR" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIVIDING_BAR"></span></span></span>
+						<a id="OrderHistoryBreadcrumbLink1" class="current_breadcrumb" ><span>Order History<span title="MA_ORDER_HISTORY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_ORDER_HISTORY"></span></span></a>
+					</span>
+					<span id="OrderHistoryBreadcrumb" class="myaccount_breadcrumb" style="display:none;">
+						<a id="OrderHistoryMyAccountBreadcrumbLink" class="landingpage_link" href="MyAccount.html"><span> My Account<span title="MA_MYACCOUNT" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_MYACCOUNT"></span></span></a>
+						<span class="divider"><span>|<span title="DIVIDING_BAR" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIVIDING_BAR"></span></span></span>
+						<a id="OrderHistoryBreadcrumbLink" class="sub_breadcrumb" href="OrderHistory.html"><span>Order History<span title="MA_ORDER_HISTORY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_ORDER_HISTORY"></span></span></a>
+						<span class="divider"><span>|<span title="DIVIDING_BAR" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIVIDING_BAR"></span></span></span>
+						<a id="OrderHistoryDetailBreadcrumbLink" title="Order History Details Link" class="current_breadcrumb" ></a>
+					</span>
+					
+						<span id="RecurringOrderBreadcrumb1" class="myaccount_breadcrumb" style="display: inline;">
+							<a id="RecurringOrderMyAccountBreadcrumbLink1" class="landingpage_link" href="MyAccount.html"><span> My Account<span title="MA_MYACCOUNT" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_MYACCOUNT"></span></span></a>
+							<span class="divider"><span>|<span title="DIVIDING_BAR" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIVIDING_BAR"></span></span></span>
+							<a id="RecurringOrderBreadcrumbLink1" class="current_breadcrumb" ><span>Recurring Orders<span title="MA_SCHEDULEDORDERS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_SCHEDULEDORDERS"></span></span></a>
+						</span>
+						<span id="RecurringOrderBreadcrumb" class="myaccount_breadcrumb" style="display:none;">
+							<a id="RecurringOrderMyAccountBreadcrumbLink" class="landingpage_link" href="MyAccount.html"><span> My Account<span title="MA_MYACCOUNT" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_MYACCOUNT"></span></span></a>
+							<span class="divider"><span>|<span title="DIVIDING_BAR" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIVIDING_BAR"></span></span></span>
+							<a id="RecurringOrderBreadcrumbLink" class="sub_breadcrumb" href="RecurringOrders.html"><span>Recurring Orders<span title="MA_SCHEDULEDORDERS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_SCHEDULEDORDERS"></span></span></a>
+							<span class="divider"><span>|<span title="DIVIDING_BAR" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIVIDING_BAR"></span></span></span>
+							<a id="RecurringOrderDetailBreadcrumbLink" class="current_breadcrumb" ></a>
+						</span>
+
+						<span id="SubscriptionBreadcrumb1" class="myaccount_breadcrumb" style="display:none;">
+							<a id="SubscriptionMyAccountBreadcrumbLink1" class="landingpage_link" href="MyAccount.html"><span> My Account<span title="MA_MYACCOUNT" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_MYACCOUNT"></span></span></a>
+							<span class="divider"><span>|<span title="DIVIDING_BAR" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIVIDING_BAR"></span></span></span>
+							<a id="SubscriptionBreadcrumbLink1" class="current_breadcrumb" ><span>Subscriptions<span title="MA_SUBSCRIPTIONS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_SUBSCRIPTIONS"></span></span></a>
+						</span>
+						<span id="SubscriptionBreadcrumb" class="myaccount_breadcrumb" style="display:none;">
+							<a id="SubscriptionMyAccountBreadcrumbLink" class="landingpage_link" href="MyAccount.html"><span> My Account<span title="MA_MYACCOUNT" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_MYACCOUNT"></span></span></a>
+							<span class="divider"><span>|<span title="DIVIDING_BAR" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIVIDING_BAR"></span></span></span>
+							<a id="SubscriptionBreadcrumbLink" class="sub_breadcrumb" href="Subscriptions.html"><span>Subscriptions<span title="MA_SUBSCRIPTIONS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_SUBSCRIPTIONS"></span></span></a>
+							<span class="divider"><span>|<span title="DIVIDING_BAR" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIVIDING_BAR"></span></span></span>
+							<a id="SubscriptionDetailBreadcrumbLink" class="current_breadcrumb" ></a>
+						</span>
+					
+				</h1>
+			</div>
+		</div>
+
+</span>
+<!-- END BreadCrumbTrailDisplay.jsp -->
+
+
+						<div class="container_content_leftsidebar">													
+						  	<div class="left_column">
+
+<!-- BEGIN LeftSidebarDisplay.jspf -->
+
+
+<!-- BEGIN CachedLeftSidebarDisplay.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">CachedLeftSidebarDisplay.jsp</div>
+<script type="text/javascript">
+	dojo.addOnLoad(function() {
+		CommonControllersDeclarationJS.setControllerURL('BrowsingHistoryController','');
+	});
+</script>
+
+			<div class="widget_left_nav_position" id="WC_LeftSidebarDisplay_div_1" role="navigation">
+				<div class="widget_left_nav" id="WC_LeftSidebarDisplay_div_2">
+
+<!-- BEGIN MyAccountNavDisplay.jspf-->
+
+
+<script type="text/javascript" src="../StoreAssets/javascript/Analytics.js"></script>
+	<script type="text/javascript">
+		dojo.addOnLoad(function() {
+		analyticsJS.loadMyAccountPageHandlers();
+					  });
+	</script>
+
+<div class="top">
+	<div class="left_border"></div>
+	<div class="middle"></div>
+	<div class="right_border"></div>
+</div>
+<div class="clear_float"></div>
+<div class="content_left_border">
+	<div class="content_right_border">
+		<div class="content">
+			<div class="content_section">
+				<div class="header bottom_border">
+					<span class="header_title left"><span>SETTINGS<span title="MA_SETTINGS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_SETTINGS"></span></span></span>
+				</div>
+				<div class="section_list bottom_border">
+					<ul>
+						<li>
+							<a href="PersonalInformation.html" id="WC_MyAccountSidebarDisplayf_links_1"><span>Personal Information<span title="MA_PERSONAL_INFO" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_PERSONAL_INFO"></span></span></a>
+						</li>
+						<li>
+							<a href="AddressBook.html" id="WC_MyAccountSidebarDisplayf_links_2"><span>My Address Book<span title="MA_ADDRESS_BOOK" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_ADDRESS_BOOK"></span></span></a>
+						</li>					
+						
+							<li>
+								<a href="QuickCheckoutProfile.html" id="WC_MyAccountSidebarDisplayf_links_3"><span>Quick Checkout Profile<span title="MA_QUICK_CHECKOUT" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_QUICK_CHECKOUT"></span></span></a>
+							</li>								
+						
+					</ul>
+				</div>
+				
+					<div class="header bottom_border">
+						<span class="header_title left"><span>WISH LISTS<span title="MA_WISHLISTS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_WISHLISTS"></span></span></span>
+					</div>
+					<div class="section_list bottom_border">
+						<ul>
+							<li>
+								<a href="Wishlist.html" id="WC_MyAccountSidebarDisplayf_links_4"><span>Personal Wish List<span title="MA_PERSONAL_WL" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_PERSONAL_WL"></span></span></a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="header bottom_border">
+						<span class="header_title left"><span>MY ORDERS<span title="MA_MYORDERS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_MYORDERS"></span></span></span>
+					</div>
+					<div class="section_list bottom_border">
+						<ul>
+							<li>
+								<a href="OrderHistory.html" id="WC_MyAccountSidebarDisplayf_links_5"><span>Order History<span title="MA_ORDER_HISTORY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_ORDER_HISTORY"></span></span></a>
+							</li>
+							
+								<li>
+									<a href="RecurringOrders.html" id="WC_MyAccountSidebarDisplayf_links_5a"><span>Recurring Orders<span title="MA_SCHEDULEDORDERS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_SCHEDULEDORDERS"></span></span></a>
+								</li>
+
+								<li>
+									<a href="OrderHistory.html" id="WC_MyAccountSidebarDisplayf_links_5b"><span>Subscriptions<span title="MA_SUBSCRIPTIONS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_SUBSCRIPTIONS"></span></span></a>
+								</li>
+							
+						</ul>
+					</div>
+
+					<div class="header bottom_border">
+						<span class="header_title left"><span>MY COUPONS<span title="MA_MYCOUPONS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_MYCOUPONS"></span></span></span>
+					</div>
+					<div class="section_list bottom_border">
+						<ul>
+							<li>
+								<a href="MyCoupons.html" id="WC_MyAccountSidebarDisplayf_links_10"><span>My Coupons<span title="MYACCOUNT_MY_COUPONS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MYACCOUNT_MY_COUPONS"></span></span></a>
+							</li>
+						</ul>
+					</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+<div class="bottom">
+	<div class="left_border"></div>
+	<div class="middle"></div>
+	<div class="right_border"></div>
+</div>
+
+<!-- END MyAccountNavDisplay.jspf-->
+
+
+			</div>
+			</div>
+
+</span>
+<!-- END CachedLeftSidebarDisplay.jsp -->
+
+
+<!-- END LeftSidebarDisplay.jspf -->
+
+
+						  	</div>
+
+							<div class="right_column">
+								<div id="box">
+									<div class="my_account" id="WC_OrderStatusDisplay_div_1">		
+
+										<div class="myaccount_header bottom_line" id="WC_OrderStatusCommonPage_div_2">
+											<div class="left_corner" id="WC_OrderStatusCommonPage_div_3"></div>
+											<div class="left" id="WC_OrderStatusCommonPage_div_4">
+												<span class="main_header_text"><span>
+
+															Recurring Orders<span title="MA_SCHEDULEDORDERS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_SCHEDULEDORDERS"></span>
+
+												</span></span>
+											</div>
+											<div class="right_corner" id="WC_OrderStatusCommonPage_div_5"></div>
+										</div>
+					
+										<div class="body" id="WC_OrderStatusCommonPage_div_6">						
+
+<!-- BEGIN RecurringOrderTableDisplay.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">RecurringOrderTableDisplay.jsp</div>
+<div role="grid" id="WC_RecurringOrderTableDisplay_div_1" class="order_status_table scheduled_orders" aria-describedby="RecurringOrderPage" aria-readonly="true">
+	<div id="RecurringOrderPage" class="hidden_summary">
+		This table displays all the recurring orders. Each recurring order can be canceled by clicking the 'Cancel' button in the same row.
+	</div>
+
+			<div class="dijitContentPane" role="group" title="" dojotype="wc.widget.RefreshArea" widgetid="RecurringOrderDisplay" id="RecurringOrderDisplay" controllerid="RecurringOrderDisplayController">
+
+<!-- BEGIN RecurringOrderTableDetailsDisplay.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">RecurringOrderTableDetailsDisplay.jsp</div>
+		<div id="RecurringOrderPagination_1">
+			<span id="RecurringOrderDetailPagination_span_1a" class="text">
+				Showing 1 to 20 of 21
+				<span id="RecurringOrderDetailPagination_span_2a" class="paging">
+					
+					<img src="../StoreAssets/images/colors/color1/paging_back.png" alt="Go to previous page">
+					
+					1 - 2
+					
+						<a id="RecurringOrderDetailPagination_next_link_1" href="RecurringOrders_2.html">
+					
+					<img src="../StoreAssets/images/colors/color1/paging_next.png" alt="Go to next page">
+					
+						</a>
+					
+				</span>
+			</span>
+		</div>
+
+<div role="row" id="RecurringOrderDetailsDisplayExt_ul_1" class="ul column_heading">
+<div role="columnheader" id="RecurringOrderDetailsDisplayExt_li_header_1" class="li order_number_column">
+	
+Order Number
+</div>
+<div role="columnheader" id="RecurringOrderDetailsDisplayExt_li_header_2" class="li order_scheduled_column">Order is Scheduled</div>
+<div role="columnheader" id="RecurringOrderDetailsDisplayExt_li_header_3" class="li next_order_column">Next Order</div>
+<div role="columnheader" id="RecurringOrderDetailsDisplayExt_li_header_4" class="li order_status_column">Status</div>
+<div role="columnheader" id="RecurringOrderDetailsDisplayExt_li_header_5" class="li total_price_column">Total Price</div>
+<div role="columnheader" id="RecurringOrderDetailsDisplayExt_li_header_6" class="li options_column"><span class="spanacce">action button</span></div>
+<div id="RecurringOrderDetailsDisplayExt_li_header_7" class="li clear_float"></div>
+</div>
+
+	<div role="row" id="RecurringOrderDisplay_ul_2_1" class="ul row">
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_number_1" class="li order_number_column">
+				<span>
+
+								14060
+
+				</span>
+				<br>
+				
+				<a href="RecurringOrders_3.html" class="myaccount_link hover_underline" id="OrderDetailLink_NonAjax_1">Details</a>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_scheduled_1" class="li order_scheduled_column">
+				<span>
+
+									Every 3 weeks	
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_next_order_date_1" class="li next_order_column">
+
+						<span>October 24, 2012</span>
+
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_status_1" class="li order_status_column">
+				<span>
+
+									Active
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_total_price_1" class="li total_price_column">					
+				<span class="price">
+
+									$9.00
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_option_1" class="li options_column">
+				<div class="option_button"> 
+					<div id="showOptions_1" class="option_button">
+						<a href="javascript:void(0);" class="button_primary" onkeypress="javaScript:MyAccountDisplay.showActionsPopup(event,'showOptions_1','actions_popup_1', 'actions_popup_widget_recurring_order');" onclick="javaScript:MyAccountDisplay.showActionsPopup(null,'showOptions_1','actions_popup_1', 'actions_popup_widget_recurring_order');" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_3b_1" tabindex="0">
+							<div class="left_border"></div>
+							<div class="button_text">Actions<img class="actions_down_arrow" src="../StoreAssets/images/colors/color1/transparent.gif" alt="Down Arrow"></div>
+							<div class="right_border"></div>
+						</a>
+					</div>
+				</div>
+			</div>
+
+		<div id="actions_popup_1" style="display:none">
+			<div id="actions_popup_div1_1" class="actions_popup hover_underline">
+				<div id="actions_popup_reorder_1" class="reorder">
+
+								<a href="ShoppingCart.html" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_link_3_1" class="link">Re-Order</a>
+
+				</div>
+				<input id="recurringOrderCancelMessage_1" name="recurringOrderCancelMessage_1" value="All future shipments for this order will be cancelled." type="hidden">
+				<div id="actions_popup_cancel_1" class="cancel">
+					<a href="javaScript:setCurrentId('RecurringOrder_CancelButton_Ajax_1'); dijit.byId('actions_popup_widget_recurring_order').hide(); MyAccountDisplay.showPopup('recurring_order',1021,'recurringOrderCancelMessage_1');" width="100%" id="RecurringOrder_CancelButton_Ajax_1" class="link">Cancel Recurring Order</a>
+				</div>
+			</div>
+		</div>
+
+		<div role="gridcell" id="RecurringOrderDetailsDisplayExt_clear_float_1" class="li clear_float"></div>
+	</div>
+
+	<div role="row" id="RecurringOrderDisplay_ul_2_2" class="ul row">
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_number_2" class="li order_number_column">
+				<span>
+
+								14059
+
+				</span>
+				<br>
+				
+				<a href="RecurringOrders_3.html" class="myaccount_link hover_underline" id="OrderDetailLink_NonAjax_2">Details</a>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_scheduled_2" class="li order_scheduled_column">
+				<span>
+
+									Every week	
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_next_order_date_2" class="li next_order_column">
+
+						<span>September 6, 2012</span>
+
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_status_2" class="li order_status_column">
+				<span>
+
+									Active
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_total_price_2" class="li total_price_column">					
+				<span class="price">
+
+									$45.85
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_option_2" class="li options_column">
+				<div class="option_button"> 
+					<div id="showOptions_2" class="option_button">
+						<a href="javascript:void(0);" class="button_primary" onkeypress="javaScript:MyAccountDisplay.showActionsPopup(event,'showOptions_2','actions_popup_2', 'actions_popup_widget_recurring_order');" onclick="javaScript:MyAccountDisplay.showActionsPopup(null,'showOptions_2','actions_popup_2', 'actions_popup_widget_recurring_order');" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_3b_2" tabindex="0">
+							<div class="left_border"></div>
+							<div class="button_text">Actions<img class="actions_down_arrow" src="../StoreAssets/images/colors/color1/transparent.gif" alt="Down Arrow"></div>
+							<div class="right_border"></div>
+						</a>
+					</div>
+				</div>
+			</div>
+
+		<div id="actions_popup_2" style="display:none">
+			<div id="actions_popup_div1_2" class="actions_popup hover_underline">
+				<div id="actions_popup_reorder_2" class="reorder">
+
+								<a href="ShoppingCart.html" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_link_3_2" class="link">Re-Order</a>
+
+				</div>
+				<input id="recurringOrderCancelMessage_2" name="recurringOrderCancelMessage_2" value="All future shipments for this order will be cancelled." type="hidden">
+				<div id="actions_popup_cancel_2" class="cancel">
+					<a href="javaScript:setCurrentId('RecurringOrder_CancelButton_Ajax_2'); dijit.byId('actions_popup_widget_recurring_order').hide(); MyAccountDisplay.showPopup('recurring_order',1020,'recurringOrderCancelMessage_2');" width="100%" id="RecurringOrder_CancelButton_Ajax_2" class="link">Cancel Recurring Order</a>
+				</div>
+			</div>
+		</div>
+
+		<div role="gridcell" id="RecurringOrderDetailsDisplayExt_clear_float_2" class="li clear_float"></div>
+	</div>
+
+	<div role="row" id="RecurringOrderDisplay_ul_2_3" class="ul row">
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_number_3" class="li order_number_column">
+				<span>
+
+								14058
+
+				</span>
+				<br>
+				
+				<a href="RecurringOrders_3.html" class="myaccount_link hover_underline" id="OrderDetailLink_NonAjax_3">Details</a>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_scheduled_3" class="li order_scheduled_column">
+				<span>
+
+									Every 3 weeks	
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_next_order_date_3" class="li next_order_column">
+
+						<span>October 4, 2012</span>
+
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_status_3" class="li order_status_column">
+				<span>
+
+									Active
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_total_price_3" class="li total_price_column">					
+				<span class="price">
+
+									$76.41
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_option_3" class="li options_column">
+				<div class="option_button"> 
+					<div id="showOptions_3" class="option_button">
+						<a href="javascript:void(0);" class="button_primary" onkeypress="javaScript:MyAccountDisplay.showActionsPopup(event,'showOptions_3','actions_popup_3', 'actions_popup_widget_recurring_order');" onclick="javaScript:MyAccountDisplay.showActionsPopup(null,'showOptions_3','actions_popup_3', 'actions_popup_widget_recurring_order');" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_3b_3" tabindex="0">
+							<div class="left_border"></div>
+							<div class="button_text">Actions<img class="actions_down_arrow" src="../StoreAssets/images/colors/color1/transparent.gif" alt="Down Arrow"></div>
+							<div class="right_border"></div>
+						</a>
+					</div>
+				</div>
+			</div>
+
+		<div id="actions_popup_3" style="display:none">
+			<div id="actions_popup_div1_3" class="actions_popup hover_underline">
+				<div id="actions_popup_reorder_3" class="reorder">
+
+								<a href="ShoppingCart.html" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_link_3_3" class="link">Re-Order</a>
+
+				</div>
+				<input id="recurringOrderCancelMessage_3" name="recurringOrderCancelMessage_3" value="All future shipments for this order will be cancelled." type="hidden">
+				<div id="actions_popup_cancel_3" class="cancel">
+					<a href="javaScript:setCurrentId('RecurringOrder_CancelButton_Ajax_3'); dijit.byId('actions_popup_widget_recurring_order').hide(); MyAccountDisplay.showPopup('recurring_order',1019,'recurringOrderCancelMessage_3');" width="100%" id="RecurringOrder_CancelButton_Ajax_3" class="link">Cancel Recurring Order</a>
+				</div>
+			</div>
+		</div>
+
+		<div role="gridcell" id="RecurringOrderDetailsDisplayExt_clear_float_3" class="li clear_float"></div>
+	</div>
+
+	<div role="row" id="RecurringOrderDisplay_ul_2_4" class="ul row">
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_number_4" class="li order_number_column">
+				<span>
+
+								14057
+
+				</span>
+				<br>
+				
+				<a href="RecurringOrders_3.html" class="myaccount_link hover_underline" id="OrderDetailLink_NonAjax_4">Details</a>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_scheduled_4" class="li order_scheduled_column">
+				<span>
+
+									Every 3 weeks	
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_next_order_date_4" class="li next_order_column">
+
+						<span>November 5, 2012</span>
+
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_status_4" class="li order_status_column">
+				<span>
+
+									Active
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_total_price_4" class="li total_price_column">					
+				<span class="price">
+
+									$6.74
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_option_4" class="li options_column">
+				<div class="option_button"> 
+					<div id="showOptions_4" class="option_button">
+						<a href="javascript:void(0);" class="button_primary" onkeypress="javaScript:MyAccountDisplay.showActionsPopup(event,'showOptions_4','actions_popup_4', 'actions_popup_widget_recurring_order');" onclick="javaScript:MyAccountDisplay.showActionsPopup(null,'showOptions_4','actions_popup_4', 'actions_popup_widget_recurring_order');" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_3b_4" tabindex="0">
+							<div class="left_border"></div>
+							<div class="button_text">Actions<img class="actions_down_arrow" src="../StoreAssets/images/colors/color1/transparent.gif" alt="Down Arrow"></div>
+							<div class="right_border"></div>
+						</a>
+					</div>
+				</div>
+			</div>
+
+		<div id="actions_popup_4" style="display:none">
+			<div id="actions_popup_div1_4" class="actions_popup hover_underline">
+				<div id="actions_popup_reorder_4" class="reorder">
+
+								<a href="ShoppingCart.html" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_link_3_4" class="link">Re-Order</a>
+
+				</div>
+				<input id="recurringOrderCancelMessage_4" name="recurringOrderCancelMessage_4" value="All future shipments for this order will be cancelled." type="hidden">
+				<div id="actions_popup_cancel_4" class="cancel">
+					<a href="javaScript:setCurrentId('RecurringOrder_CancelButton_Ajax_4'); dijit.byId('actions_popup_widget_recurring_order').hide(); MyAccountDisplay.showPopup('recurring_order',1018,'recurringOrderCancelMessage_4');" width="100%" id="RecurringOrder_CancelButton_Ajax_4" class="link">Cancel Recurring Order</a>
+				</div>
+			</div>
+		</div>
+
+		<div role="gridcell" id="RecurringOrderDetailsDisplayExt_clear_float_4" class="li clear_float"></div>
+	</div>
+
+	<div role="row" id="RecurringOrderDisplay_ul_2_5" class="ul row">
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_number_5" class="li order_number_column">
+				<span>
+
+								14056
+
+				</span>
+				<br>
+				
+				<a href="RecurringOrders_3.html" class="myaccount_link hover_underline" id="OrderDetailLink_NonAjax_5">Details</a>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_scheduled_5" class="li order_scheduled_column">
+				<span>
+
+									Every week	
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_next_order_date_5" class="li next_order_column">
+
+						<span>November 15, 2012</span>
+
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_status_5" class="li order_status_column">
+				<span>
+
+									Active
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_total_price_5" class="li total_price_column">					
+				<span class="price">
+
+									$13.04
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_option_5" class="li options_column">
+				<div class="option_button"> 
+					<div id="showOptions_5" class="option_button">
+						<a href="javascript:void(0);" class="button_primary" onkeypress="javaScript:MyAccountDisplay.showActionsPopup(event,'showOptions_5','actions_popup_5', 'actions_popup_widget_recurring_order');" onclick="javaScript:MyAccountDisplay.showActionsPopup(null,'showOptions_5','actions_popup_5', 'actions_popup_widget_recurring_order');" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_3b_5" tabindex="0">
+							<div class="left_border"></div>
+							<div class="button_text">Actions<img class="actions_down_arrow" src="../StoreAssets/images/colors/color1/transparent.gif" alt="Down Arrow"></div>
+							<div class="right_border"></div>
+						</a>
+					</div>
+				</div>
+			</div>
+
+		<div id="actions_popup_5" style="display:none">
+			<div id="actions_popup_div1_5" class="actions_popup hover_underline">
+				<div id="actions_popup_reorder_5" class="reorder">
+
+								<a href="ShoppingCart.html" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_link_3_5" class="link">Re-Order</a>
+
+				</div>
+				<input id="recurringOrderCancelMessage_5" name="recurringOrderCancelMessage_5" value="All future shipments for this order will be cancelled." type="hidden">
+				<div id="actions_popup_cancel_5" class="cancel">
+					<a href="javaScript:setCurrentId('RecurringOrder_CancelButton_Ajax_5'); dijit.byId('actions_popup_widget_recurring_order').hide(); MyAccountDisplay.showPopup('recurring_order',1017,'recurringOrderCancelMessage_5');" width="100%" id="RecurringOrder_CancelButton_Ajax_5" class="link">Cancel Recurring Order</a>
+				</div>
+			</div>
+		</div>
+
+		<div role="gridcell" id="RecurringOrderDetailsDisplayExt_clear_float_5" class="li clear_float"></div>
+	</div>
+
+	<div role="row" id="RecurringOrderDisplay_ul_2_6" class="ul row">
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_number_6" class="li order_number_column">
+				<span>
+
+								14055
+
+				</span>
+				<br>
+				
+				<a href="RecurringOrders_3.html" class="myaccount_link hover_underline" id="OrderDetailLink_NonAjax_6">Details</a>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_scheduled_6" class="li order_scheduled_column">
+				<span>
+
+									Every week	
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_next_order_date_6" class="li next_order_column">
+
+						<span>November 14, 2012</span>
+
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_status_6" class="li order_status_column">
+				<span>
+
+									Active
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_total_price_6" class="li total_price_column">					
+				<span class="price">
+
+									$7.64
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_option_6" class="li options_column">
+				<div class="option_button"> 
+					<div id="showOptions_6" class="option_button">
+						<a href="javascript:void(0);" class="button_primary" onkeypress="javaScript:MyAccountDisplay.showActionsPopup(event,'showOptions_6','actions_popup_6', 'actions_popup_widget_recurring_order');" onclick="javaScript:MyAccountDisplay.showActionsPopup(null,'showOptions_6','actions_popup_6', 'actions_popup_widget_recurring_order');" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_3b_6" tabindex="0">
+							<div class="left_border"></div>
+							<div class="button_text">Actions<img class="actions_down_arrow" src="../StoreAssets/images/colors/color1/transparent.gif" alt="Down Arrow"></div>
+							<div class="right_border"></div>
+						</a>
+					</div>
+				</div>
+			</div>
+
+		<div id="actions_popup_6" style="display:none">
+			<div id="actions_popup_div1_6" class="actions_popup hover_underline">
+				<div id="actions_popup_reorder_6" class="reorder">
+
+								<a href="ShoppingCart.html" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_link_3_6" class="link">Re-Order</a>
+
+				</div>
+				<input id="recurringOrderCancelMessage_6" name="recurringOrderCancelMessage_6" value="All future shipments for this order will be cancelled." type="hidden">
+				<div id="actions_popup_cancel_6" class="cancel">
+					<a href="javaScript:setCurrentId('RecurringOrder_CancelButton_Ajax_6'); dijit.byId('actions_popup_widget_recurring_order').hide(); MyAccountDisplay.showPopup('recurring_order',1016,'recurringOrderCancelMessage_6');" width="100%" id="RecurringOrder_CancelButton_Ajax_6" class="link">Cancel Recurring Order</a>
+				</div>
+			</div>
+		</div>
+
+		<div role="gridcell" id="RecurringOrderDetailsDisplayExt_clear_float_6" class="li clear_float"></div>
+	</div>
+
+	<div role="row" id="RecurringOrderDisplay_ul_2_7" class="ul row">
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_number_7" class="li order_number_column">
+				<span>
+
+								14054
+
+				</span>
+				<br>
+				
+				<a href="RecurringOrders_3.html" class="myaccount_link hover_underline" id="OrderDetailLink_NonAjax_7">Details</a>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_scheduled_7" class="li order_scheduled_column">
+				<span>
+
+									Every week	
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_next_order_date_7" class="li next_order_column">
+
+						<span>January 4, 2013</span>
+
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_status_7" class="li order_status_column">
+				<span>
+
+									Active
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_total_price_7" class="li total_price_column">					
+				<span class="price">
+
+									$7.64
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_option_7" class="li options_column">
+				<div class="option_button"> 
+					<div id="showOptions_7" class="option_button">
+						<a href="javascript:void(0);" class="button_primary" onkeypress="javaScript:MyAccountDisplay.showActionsPopup(event,'showOptions_7','actions_popup_7', 'actions_popup_widget_recurring_order');" onclick="javaScript:MyAccountDisplay.showActionsPopup(null,'showOptions_7','actions_popup_7', 'actions_popup_widget_recurring_order');" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_3b_7" tabindex="0">
+							<div class="left_border"></div>
+							<div class="button_text">Actions<img class="actions_down_arrow" src="../StoreAssets/images/colors/color1/transparent.gif" alt="Down Arrow"></div>
+							<div class="right_border"></div>
+						</a>
+					</div>
+				</div>
+			</div>
+
+		<div id="actions_popup_7" style="display:none">
+			<div id="actions_popup_div1_7" class="actions_popup hover_underline">
+				<div id="actions_popup_reorder_7" class="reorder">
+
+								<a href="ShoppingCart.html" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_link_3_7" class="link">Re-Order</a>
+
+				</div>
+				<input id="recurringOrderCancelMessage_7" name="recurringOrderCancelMessage_7" value="Order cancellation requires 12 hours notice. All future orders will be cancelled except the order for January 4, 2013 which will ship as scheduled. Are you sure you want to cancel?" type="hidden">
+				<div id="actions_popup_cancel_7" class="cancel">
+					<a href="javaScript:setCurrentId('RecurringOrder_CancelButton_Ajax_7'); dijit.byId('actions_popup_widget_recurring_order').hide(); MyAccountDisplay.showPopup('recurring_order',1015,'recurringOrderCancelMessage_7');" width="100%" id="RecurringOrder_CancelButton_Ajax_7" class="link">Cancel Recurring Order</a>
+				</div>
+			</div>
+		</div>
+
+		<div role="gridcell" id="RecurringOrderDetailsDisplayExt_clear_float_7" class="li clear_float"></div>
+	</div>
+
+	<div role="row" id="RecurringOrderDisplay_ul_2_8" class="ul row">
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_number_8" class="li order_number_column">
+				<span>
+
+								14053
+
+				</span>
+				<br>
+				
+				<a href="RecurringOrders_3.html" class="myaccount_link hover_underline" id="OrderDetailLink_NonAjax_8">Details</a>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_scheduled_8" class="li order_scheduled_column">
+				<span>
+
+									Every 2 weeks	
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_next_order_date_8" class="li next_order_column">
+
+						<span>September 7, 2012</span>
+
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_status_8" class="li order_status_column">
+				<span>
+
+									Active
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_total_price_8" class="li total_price_column">					
+				<span class="price">
+
+									$7.64
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_option_8" class="li options_column">
+				<div class="option_button"> 
+					<div id="showOptions_8" class="option_button">
+						<a href="javascript:void(0);" class="button_primary" onkeypress="javaScript:MyAccountDisplay.showActionsPopup(event,'showOptions_8','actions_popup_8', 'actions_popup_widget_recurring_order');" onclick="javaScript:MyAccountDisplay.showActionsPopup(null,'showOptions_8','actions_popup_8', 'actions_popup_widget_recurring_order');" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_3b_8" tabindex="0">
+							<div class="left_border"></div>
+							<div class="button_text">Actions<img class="actions_down_arrow" src="../StoreAssets/images/colors/color1/transparent.gif" alt="Down Arrow"></div>
+							<div class="right_border"></div>
+						</a>
+					</div>
+				</div>
+			</div>
+
+		<div id="actions_popup_8" style="display:none">
+			<div id="actions_popup_div1_8" class="actions_popup hover_underline">
+				<div id="actions_popup_reorder_8" class="reorder">
+
+								<a href="ShoppingCart.html" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_link_3_8" class="link">Re-Order</a>
+
+				</div>
+				<input id="recurringOrderCancelMessage_8" name="recurringOrderCancelMessage_8" value="All future shipments for this order will be cancelled." type="hidden">
+				<div id="actions_popup_cancel_8" class="cancel">
+					<a href="javaScript:setCurrentId('RecurringOrder_CancelButton_Ajax_8'); dijit.byId('actions_popup_widget_recurring_order').hide(); MyAccountDisplay.showPopup('recurring_order',1014,'recurringOrderCancelMessage_8');" width="100%" id="RecurringOrder_CancelButton_Ajax_8" class="link">Cancel Recurring Order</a>
+				</div>
+			</div>
+		</div>
+
+		<div role="gridcell" id="RecurringOrderDetailsDisplayExt_clear_float_8" class="li clear_float"></div>
+	</div>
+
+	<div role="row" id="RecurringOrderDisplay_ul_2_9" class="ul row">
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_number_9" class="li order_number_column">
+				<span>
+
+								14052
+
+				</span>
+				<br>
+				
+				<a href="RecurringOrders_3.html" class="myaccount_link hover_underline" id="OrderDetailLink_NonAjax_9">Details</a>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_scheduled_9" class="li order_scheduled_column">
+				<span>
+
+									Every 2 weeks	
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_next_order_date_9" class="li next_order_column">
+
+						<span>December 11, 2012</span>
+
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_status_9" class="li order_status_column">
+				<span>
+
+									Active
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_total_price_9" class="li total_price_column">					
+				<span class="price">
+
+									$8.36
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_option_9" class="li options_column">
+				<div class="option_button"> 
+					<div id="showOptions_9" class="option_button">
+						<a href="javascript:void(0);" class="button_primary" onkeypress="javaScript:MyAccountDisplay.showActionsPopup(event,'showOptions_9','actions_popup_9', 'actions_popup_widget_recurring_order');" onclick="javaScript:MyAccountDisplay.showActionsPopup(null,'showOptions_9','actions_popup_9', 'actions_popup_widget_recurring_order');" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_3b_9" tabindex="0">
+							<div class="left_border"></div>
+							<div class="button_text">Actions<img class="actions_down_arrow" src="../StoreAssets/images/colors/color1/transparent.gif" alt="Down Arrow"></div>
+							<div class="right_border"></div>
+						</a>
+					</div>
+				</div>
+			</div>
+
+		<div id="actions_popup_9" style="display:none">
+			<div id="actions_popup_div1_9" class="actions_popup hover_underline">
+				<div id="actions_popup_reorder_9" class="reorder">
+
+								<a href="ShoppingCart.html" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_link_3_9" class="link">Re-Order</a>
+
+				</div>
+				<input id="recurringOrderCancelMessage_9" name="recurringOrderCancelMessage_9" value="All future shipments for this order will be cancelled." type="hidden">
+				<div id="actions_popup_cancel_9" class="cancel">
+					<a href="javaScript:setCurrentId('RecurringOrder_CancelButton_Ajax_9'); dijit.byId('actions_popup_widget_recurring_order').hide(); MyAccountDisplay.showPopup('recurring_order',1013,'recurringOrderCancelMessage_9');" width="100%" id="RecurringOrder_CancelButton_Ajax_9" class="link">Cancel Recurring Order</a>
+				</div>
+			</div>
+		</div>
+
+		<div role="gridcell" id="RecurringOrderDetailsDisplayExt_clear_float_9" class="li clear_float"></div>
+	</div>
+
+	<div role="row" id="RecurringOrderDisplay_ul_2_10" class="ul row">
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_number_10" class="li order_number_column">
+				<span>
+
+								14051
+
+				</span>
+				<br>
+				
+				<a href="RecurringOrders_3.html" class="myaccount_link hover_underline" id="OrderDetailLink_NonAjax_10">Details</a>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_scheduled_10" class="li order_scheduled_column">
+				<span>
+
+									Every day	
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_next_order_date_10" class="li next_order_column">
+
+						<span>February 12, 2013</span>
+
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_status_10" class="li order_status_column">
+				<span>
+
+									Active
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_total_price_10" class="li total_price_column">					
+				<span class="price">
+
+									$7.64
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_option_10" class="li options_column">
+				<div class="option_button"> 
+					<div id="showOptions_10" class="option_button">
+						<a href="javascript:void(0);" class="button_primary" onkeypress="javaScript:MyAccountDisplay.showActionsPopup(event,'showOptions_10','actions_popup_10', 'actions_popup_widget_recurring_order');" onclick="javaScript:MyAccountDisplay.showActionsPopup(null,'showOptions_10','actions_popup_10', 'actions_popup_widget_recurring_order');" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_3b_10" tabindex="0">
+							<div class="left_border"></div>
+							<div class="button_text">Actions<img class="actions_down_arrow" src="../StoreAssets/images/colors/color1/transparent.gif" alt="Down Arrow"></div>
+							<div class="right_border"></div>
+						</a>
+					</div>
+				</div>
+			</div>
+
+		<div id="actions_popup_10" style="display:none">
+			<div id="actions_popup_div1_10" class="actions_popup hover_underline">
+				<div id="actions_popup_reorder_10" class="reorder">
+
+								<a href="ShoppingCart.html" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_link_3_10" class="link">Re-Order</a>
+
+				</div>
+				<input id="recurringOrderCancelMessage_10" name="recurringOrderCancelMessage_10" value="Order cancellation requires 12 hours notice. All future orders will be cancelled except the order for February 12, 2013 which will ship as scheduled. Are you sure you want to cancel?" type="hidden">
+				<div id="actions_popup_cancel_10" class="cancel">
+					<a href="javaScript:setCurrentId('RecurringOrder_CancelButton_Ajax_10'); dijit.byId('actions_popup_widget_recurring_order').hide(); MyAccountDisplay.showPopup('recurring_order',1012,'recurringOrderCancelMessage_10');" width="100%" id="RecurringOrder_CancelButton_Ajax_10" class="link">Cancel Recurring Order</a>
+				</div>
+			</div>
+		</div>
+
+		<div role="gridcell" id="RecurringOrderDetailsDisplayExt_clear_float_10" class="li clear_float"></div>
+	</div>
+
+	<div role="row" id="RecurringOrderDisplay_ul_2_11" class="ul row">
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_number_11" class="li order_number_column">
+				<span>
+
+								14050
+
+				</span>
+				<br>
+				
+				<a href="RecurringOrders_3.html" class="myaccount_link hover_underline" id="OrderDetailLink_NonAjax_11">Details</a>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_scheduled_11" class="li order_scheduled_column">
+				<span>
+
+									Every 2 weeks	
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_next_order_date_11" class="li next_order_column">
+
+						<span>November 23, 2012</span>
+
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_status_11" class="li order_status_column">
+				<span>
+
+									Active
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_total_price_11" class="li total_price_column">					
+				<span class="price">
+
+									$7.01
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_option_11" class="li options_column">
+				<div class="option_button"> 
+					<div id="showOptions_11" class="option_button">
+						<a href="javascript:void(0);" class="button_primary" onkeypress="javaScript:MyAccountDisplay.showActionsPopup(event,'showOptions_11','actions_popup_11', 'actions_popup_widget_recurring_order');" onclick="javaScript:MyAccountDisplay.showActionsPopup(null,'showOptions_11','actions_popup_11', 'actions_popup_widget_recurring_order');" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_3b_11" tabindex="0">
+							<div class="left_border"></div>
+							<div class="button_text">Actions<img class="actions_down_arrow" src="../StoreAssets/images/colors/color1/transparent.gif" alt="Down Arrow"></div>
+							<div class="right_border"></div>
+						</a>
+					</div>
+				</div>
+			</div>
+
+		<div id="actions_popup_11" style="display:none">
+			<div id="actions_popup_div1_11" class="actions_popup hover_underline">
+				<div id="actions_popup_reorder_11" class="reorder">
+
+								<a href="ShoppingCart.html" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_link_3_11" class="link">Re-Order</a>
+
+				</div>
+				<input id="recurringOrderCancelMessage_11" name="recurringOrderCancelMessage_11" value="All future shipments for this order will be cancelled." type="hidden">
+				<div id="actions_popup_cancel_11" class="cancel">
+					<a href="javaScript:setCurrentId('RecurringOrder_CancelButton_Ajax_11'); dijit.byId('actions_popup_widget_recurring_order').hide(); MyAccountDisplay.showPopup('recurring_order',1011,'recurringOrderCancelMessage_11');" width="100%" id="RecurringOrder_CancelButton_Ajax_11" class="link">Cancel Recurring Order</a>
+				</div>
+			</div>
+		</div>
+
+		<div role="gridcell" id="RecurringOrderDetailsDisplayExt_clear_float_11" class="li clear_float"></div>
+	</div>
+
+	<div role="row" id="RecurringOrderDisplay_ul_2_12" class="ul row">
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_number_12" class="li order_number_column">
+				<span>
+
+								14049
+
+				</span>
+				<br>
+				
+				<a href="RecurringOrders_3.html" class="myaccount_link hover_underline" id="OrderDetailLink_NonAjax_12">Details</a>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_scheduled_12" class="li order_scheduled_column">
+				<span>
+
+									Every day	
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_next_order_date_12" class="li next_order_column">
+
+						<span>January 25, 2013</span>
+
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_status_12" class="li order_status_column">
+				<span>
+
+									Active
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_total_price_12" class="li total_price_column">					
+				<span class="price">
+
+									$15.28
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_option_12" class="li options_column">
+				<div class="option_button"> 
+					<div id="showOptions_12" class="option_button">
+						<a href="javascript:void(0);" class="button_primary" onkeypress="javaScript:MyAccountDisplay.showActionsPopup(event,'showOptions_12','actions_popup_12', 'actions_popup_widget_recurring_order');" onclick="javaScript:MyAccountDisplay.showActionsPopup(null,'showOptions_12','actions_popup_12', 'actions_popup_widget_recurring_order');" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_3b_12" tabindex="0">
+							<div class="left_border"></div>
+							<div class="button_text">Actions<img class="actions_down_arrow" src="../StoreAssets/images/colors/color1/transparent.gif" alt="Down Arrow"></div>
+							<div class="right_border"></div>
+						</a>
+					</div>
+				</div>
+			</div>
+
+		<div id="actions_popup_12" style="display:none">
+			<div id="actions_popup_div1_12" class="actions_popup hover_underline">
+				<div id="actions_popup_reorder_12" class="reorder">
+
+								<a href="ShoppingCart.html" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_link_3_12" class="link">Re-Order</a>
+
+				</div>
+				<input id="recurringOrderCancelMessage_12" name="recurringOrderCancelMessage_12" value="Order cancellation requires 12 hours notice. All future orders will be cancelled except the order for January 25, 2013 which will ship as scheduled. Are you sure you want to cancel?" type="hidden">
+				<div id="actions_popup_cancel_12" class="cancel">
+					<a href="javaScript:setCurrentId('RecurringOrder_CancelButton_Ajax_12'); dijit.byId('actions_popup_widget_recurring_order').hide(); MyAccountDisplay.showPopup('recurring_order',1010,'recurringOrderCancelMessage_12');" width="100%" id="RecurringOrder_CancelButton_Ajax_12" class="link">Cancel Recurring Order</a>
+				</div>
+			</div>
+		</div>
+
+		<div role="gridcell" id="RecurringOrderDetailsDisplayExt_clear_float_12" class="li clear_float"></div>
+	</div>
+
+	<div role="row" id="RecurringOrderDisplay_ul_2_13" class="ul row">
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_number_13" class="li order_number_column">
+				<span>
+
+								14048
+
+				</span>
+				<br>
+				
+				<a href="RecurringOrders_3.html" class="myaccount_link hover_underline" id="OrderDetailLink_NonAjax_13">Details</a>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_scheduled_13" class="li order_scheduled_column">
+				<span>
+
+									Every 4 weeks	
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_next_order_date_13" class="li next_order_column">
+
+						<span>December 25, 2012</span>
+
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_status_13" class="li order_status_column">
+				<span>
+
+									Active
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_total_price_13" class="li total_price_column">					
+				<span class="price">
+
+									$35.07
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_option_13" class="li options_column">
+				<div class="option_button"> 
+					<div id="showOptions_13" class="option_button">
+						<a href="javascript:void(0);" class="button_primary" onkeypress="javaScript:MyAccountDisplay.showActionsPopup(event,'showOptions_13','actions_popup_13', 'actions_popup_widget_recurring_order');" onclick="javaScript:MyAccountDisplay.showActionsPopup(null,'showOptions_13','actions_popup_13', 'actions_popup_widget_recurring_order');" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_3b_13" tabindex="0">
+							<div class="left_border"></div>
+							<div class="button_text">Actions<img class="actions_down_arrow" src="../StoreAssets/images/colors/color1/transparent.gif" alt="Down Arrow"></div>
+							<div class="right_border"></div>
+						</a>
+					</div>
+				</div>
+			</div>
+
+		<div id="actions_popup_13" style="display:none">
+			<div id="actions_popup_div1_13" class="actions_popup hover_underline">
+				<div id="actions_popup_reorder_13" class="reorder">
+
+								<a href="ShoppingCart.html" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_link_3_13" class="link">Re-Order</a>
+
+				</div>
+				<input id="recurringOrderCancelMessage_13" name="recurringOrderCancelMessage_13" value="Order cancellation requires 12 hours notice. All future orders will be cancelled except the order for December 25, 2012 which will ship as scheduled. Are you sure you want to cancel?" type="hidden">
+				<div id="actions_popup_cancel_13" class="cancel">
+					<a href="javaScript:setCurrentId('RecurringOrder_CancelButton_Ajax_13'); dijit.byId('actions_popup_widget_recurring_order').hide(); MyAccountDisplay.showPopup('recurring_order',1009,'recurringOrderCancelMessage_13');" width="100%" id="RecurringOrder_CancelButton_Ajax_13" class="link">Cancel Recurring Order</a>
+				</div>
+			</div>
+		</div>
+
+		<div role="gridcell" id="RecurringOrderDetailsDisplayExt_clear_float_13" class="li clear_float"></div>
+	</div>
+
+	<div role="row" id="RecurringOrderDisplay_ul_2_14" class="ul row">
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_number_14" class="li order_number_column">
+				<span>
+
+								14047
+
+				</span>
+				<br>
+				
+				<a href="RecurringOrders_3.html" class="myaccount_link hover_underline" id="OrderDetailLink_NonAjax_14">Details</a>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_scheduled_14" class="li order_scheduled_column">
+				<span>
+
+									Every week	
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_next_order_date_14" class="li next_order_column">
+
+						<span>November 30, 2012</span>
+
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_status_14" class="li order_status_column">
+				<span>
+
+									Active
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_total_price_14" class="li total_price_column">					
+				<span class="price">
+
+									$13.75
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_option_14" class="li options_column">
+				<div class="option_button"> 
+					<div id="showOptions_14" class="option_button">
+						<a href="javascript:void(0);" class="button_primary" onkeypress="javaScript:MyAccountDisplay.showActionsPopup(event,'showOptions_14','actions_popup_14', 'actions_popup_widget_recurring_order');" onclick="javaScript:MyAccountDisplay.showActionsPopup(null,'showOptions_14','actions_popup_14', 'actions_popup_widget_recurring_order');" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_3b_14" tabindex="0">
+							<div class="left_border"></div>
+							<div class="button_text">Actions<img class="actions_down_arrow" src="../StoreAssets/images/colors/color1/transparent.gif" alt="Down Arrow"></div>
+							<div class="right_border"></div>
+						</a>
+					</div>
+				</div>
+			</div>
+
+		<div id="actions_popup_14" style="display:none">
+			<div id="actions_popup_div1_14" class="actions_popup hover_underline">
+				<div id="actions_popup_reorder_14" class="reorder">
+
+								<a href="ShoppingCart.html" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_link_3_14" class="link">Re-Order</a>
+
+				</div>
+				<input id="recurringOrderCancelMessage_14" name="recurringOrderCancelMessage_14" value="All future shipments for this order will be cancelled." type="hidden">
+				<div id="actions_popup_cancel_14" class="cancel">
+					<a href="javaScript:setCurrentId('RecurringOrder_CancelButton_Ajax_14'); dijit.byId('actions_popup_widget_recurring_order').hide(); MyAccountDisplay.showPopup('recurring_order',1008,'recurringOrderCancelMessage_14');" width="100%" id="RecurringOrder_CancelButton_Ajax_14" class="link">Cancel Recurring Order</a>
+				</div>
+			</div>
+		</div>
+
+		<div role="gridcell" id="RecurringOrderDetailsDisplayExt_clear_float_14" class="li clear_float"></div>
+	</div>
+
+	<div role="row" id="RecurringOrderDisplay_ul_2_15" class="ul row">
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_number_15" class="li order_number_column">
+				<span>
+
+								14046
+
+				</span>
+				<br>
+				
+				<a href="RecurringOrders_3.html" class="myaccount_link hover_underline" id="OrderDetailLink_NonAjax_15">Details</a>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_scheduled_15" class="li order_scheduled_column">
+				<span>
+
+									Every 2 weeks	
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_next_order_date_15" class="li next_order_column">
+
+						<span>October 19, 2012</span>
+
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_status_15" class="li order_status_column">
+				<span>
+
+									Active
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_total_price_15" class="li total_price_column">					
+				<span class="price">
+
+									$45.85
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_option_15" class="li options_column">
+				<div class="option_button"> 
+					<div id="showOptions_15" class="option_button">
+						<a href="javascript:void(0);" class="button_primary" onkeypress="javaScript:MyAccountDisplay.showActionsPopup(event,'showOptions_15','actions_popup_15', 'actions_popup_widget_recurring_order');" onclick="javaScript:MyAccountDisplay.showActionsPopup(null,'showOptions_15','actions_popup_15', 'actions_popup_widget_recurring_order');" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_3b_15" tabindex="0">
+							<div class="left_border"></div>
+							<div class="button_text">Actions<img class="actions_down_arrow" src="../StoreAssets/images/colors/color1/transparent.gif" alt="Down Arrow"></div>
+							<div class="right_border"></div>
+						</a>
+					</div>
+				</div>
+			</div>
+
+		<div id="actions_popup_15" style="display:none">
+			<div id="actions_popup_div1_15" class="actions_popup hover_underline">
+				<div id="actions_popup_reorder_15" class="reorder">
+
+								<a href="ShoppingCart.html" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_link_3_15" class="link">Re-Order</a>
+
+				</div>
+				<input id="recurringOrderCancelMessage_15" name="recurringOrderCancelMessage_15" value="All future shipments for this order will be cancelled." type="hidden">
+				<div id="actions_popup_cancel_15" class="cancel">
+					<a href="javaScript:setCurrentId('RecurringOrder_CancelButton_Ajax_15'); dijit.byId('actions_popup_widget_recurring_order').hide(); MyAccountDisplay.showPopup('recurring_order',1007,'recurringOrderCancelMessage_15');" width="100%" id="RecurringOrder_CancelButton_Ajax_15" class="link">Cancel Recurring Order</a>
+				</div>
+			</div>
+		</div>
+
+		<div role="gridcell" id="RecurringOrderDetailsDisplayExt_clear_float_15" class="li clear_float"></div>
+	</div>
+
+	<div role="row" id="RecurringOrderDisplay_ul_2_16" class="ul row">
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_number_16" class="li order_number_column">
+				<span>
+
+								14045
+
+				</span>
+				<br>
+				
+				<a href="RecurringOrders_3.html" class="myaccount_link hover_underline" id="OrderDetailLink_NonAjax_16">Details</a>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_scheduled_16" class="li order_scheduled_column">
+				<span>
+
+									Every 4 weeks	
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_next_order_date_16" class="li next_order_column">
+
+						<span>September 14, 2012</span>
+
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_status_16" class="li order_status_column">
+				<span>
+
+									Active
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_total_price_16" class="li total_price_column">					
+				<span class="price">
+
+									$35.07
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_option_16" class="li options_column">
+				<div class="option_button"> 
+					<div id="showOptions_16" class="option_button">
+						<a href="javascript:void(0);" class="button_primary" onkeypress="javaScript:MyAccountDisplay.showActionsPopup(event,'showOptions_16','actions_popup_16', 'actions_popup_widget_recurring_order');" onclick="javaScript:MyAccountDisplay.showActionsPopup(null,'showOptions_16','actions_popup_16', 'actions_popup_widget_recurring_order');" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_3b_16" tabindex="0">
+							<div class="left_border"></div>
+							<div class="button_text">Actions<img class="actions_down_arrow" src="../StoreAssets/images/colors/color1/transparent.gif" alt="Down Arrow"></div>
+							<div class="right_border"></div>
+						</a>
+					</div>
+				</div>
+			</div>
+
+		<div id="actions_popup_16" style="display:none">
+			<div id="actions_popup_div1_16" class="actions_popup hover_underline">
+				<div id="actions_popup_reorder_16" class="reorder">
+
+								<a href="ShoppingCart.html" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_link_3_16" class="link">Re-Order</a>
+
+				</div>
+				<input id="recurringOrderCancelMessage_16" name="recurringOrderCancelMessage_16" value="All future shipments for this order will be cancelled." type="hidden">
+				<div id="actions_popup_cancel_16" class="cancel">
+					<a href="javaScript:setCurrentId('RecurringOrder_CancelButton_Ajax_16'); dijit.byId('actions_popup_widget_recurring_order').hide(); MyAccountDisplay.showPopup('recurring_order',1006,'recurringOrderCancelMessage_16');" width="100%" id="RecurringOrder_CancelButton_Ajax_16" class="link">Cancel Recurring Order</a>
+				</div>
+			</div>
+		</div>
+
+		<div role="gridcell" id="RecurringOrderDetailsDisplayExt_clear_float_16" class="li clear_float"></div>
+	</div>
+
+	<div role="row" id="RecurringOrderDisplay_ul_2_17" class="ul row">
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_number_17" class="li order_number_column">
+				<span>
+
+								14044
+
+				</span>
+				<br>
+				
+				<a href="RecurringOrders_3.html" class="myaccount_link hover_underline" id="OrderDetailLink_NonAjax_17">Details</a>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_scheduled_17" class="li order_scheduled_column">
+				<span>
+
+									Every day	
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_next_order_date_17" class="li next_order_column">
+
+						<span>September 8, 2012</span>
+
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_status_17" class="li order_status_column">
+				<span>
+
+									Active
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_total_price_17" class="li total_price_column">					
+				<span class="price">
+
+									$13.04
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_option_17" class="li options_column">
+				<div class="option_button"> 
+					<div id="showOptions_17" class="option_button">
+						<a href="javascript:void(0);" class="button_primary" onkeypress="javaScript:MyAccountDisplay.showActionsPopup(event,'showOptions_17','actions_popup_17', 'actions_popup_widget_recurring_order');" onclick="javaScript:MyAccountDisplay.showActionsPopup(null,'showOptions_17','actions_popup_17', 'actions_popup_widget_recurring_order');" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_3b_17" tabindex="0">
+							<div class="left_border"></div>
+							<div class="button_text">Actions<img class="actions_down_arrow" src="../StoreAssets/images/colors/color1/transparent.gif" alt="Down Arrow"></div>
+							<div class="right_border"></div>
+						</a>
+					</div>
+				</div>
+			</div>
+
+		<div id="actions_popup_17" style="display:none">
+			<div id="actions_popup_div1_17" class="actions_popup hover_underline">
+				<div id="actions_popup_reorder_17" class="reorder">
+
+								<a href="ShoppingCart.html" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_link_3_17" class="link">Re-Order</a>
+
+				</div>
+				<input id="recurringOrderCancelMessage_17" name="recurringOrderCancelMessage_17" value="All future shipments for this order will be cancelled." type="hidden">
+				<div id="actions_popup_cancel_17" class="cancel">
+					<a href="javaScript:setCurrentId('RecurringOrder_CancelButton_Ajax_17'); dijit.byId('actions_popup_widget_recurring_order').hide(); MyAccountDisplay.showPopup('recurring_order',1005,'recurringOrderCancelMessage_17');" width="100%" id="RecurringOrder_CancelButton_Ajax_17" class="link">Cancel Recurring Order</a>
+				</div>
+			</div>
+		</div>
+
+		<div role="gridcell" id="RecurringOrderDetailsDisplayExt_clear_float_17" class="li clear_float"></div>
+	</div>
+
+	<div role="row" id="RecurringOrderDisplay_ul_2_18" class="ul row">
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_number_18" class="li order_number_column">
+				<span>
+
+								14043
+
+				</span>
+				<br>
+				
+				<a href="RecurringOrders_3.html" class="myaccount_link hover_underline" id="OrderDetailLink_NonAjax_18">Details</a>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_scheduled_18" class="li order_scheduled_column">
+				<span>
+
+									Every day	
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_next_order_date_18" class="li next_order_column">
+
+						<span>September 8, 2012</span>
+
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_status_18" class="li order_status_column">
+				<span>
+
+									Active
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_total_price_18" class="li total_price_column">					
+				<span class="price">
+
+									$21.19
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_option_18" class="li options_column">
+				<div class="option_button"> 
+					<div id="showOptions_18" class="option_button">
+						<a href="javascript:void(0);" class="button_primary" onkeypress="javaScript:MyAccountDisplay.showActionsPopup(event,'showOptions_18','actions_popup_18', 'actions_popup_widget_recurring_order');" onclick="javaScript:MyAccountDisplay.showActionsPopup(null,'showOptions_18','actions_popup_18', 'actions_popup_widget_recurring_order');" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_3b_18" tabindex="0">
+							<div class="left_border"></div>
+							<div class="button_text">Actions<img class="actions_down_arrow" src="../StoreAssets/images/colors/color1/transparent.gif" alt="Down Arrow"></div>
+							<div class="right_border"></div>
+						</a>
+					</div>
+				</div>
+			</div>
+
+		<div id="actions_popup_18" style="display:none">
+			<div id="actions_popup_div1_18" class="actions_popup hover_underline">
+				<div id="actions_popup_reorder_18" class="reorder">
+
+								<a href="ShoppingCart.html" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_link_3_18" class="link">Re-Order</a>
+
+				</div>
+				<input id="recurringOrderCancelMessage_18" name="recurringOrderCancelMessage_18" value="All future shipments for this order will be cancelled." type="hidden">
+				<div id="actions_popup_cancel_18" class="cancel">
+					<a href="javaScript:setCurrentId('RecurringOrder_CancelButton_Ajax_18'); dijit.byId('actions_popup_widget_recurring_order').hide(); MyAccountDisplay.showPopup('recurring_order',1004,'recurringOrderCancelMessage_18');" width="100%" id="RecurringOrder_CancelButton_Ajax_18" class="link">Cancel Recurring Order</a>
+				</div>
+			</div>
+		</div>
+
+		<div role="gridcell" id="RecurringOrderDetailsDisplayExt_clear_float_18" class="li clear_float"></div>
+	</div>
+
+	<div role="row" id="RecurringOrderDisplay_ul_2_19" class="ul row">
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_number_19" class="li order_number_column">
+				<span>
+
+								14042
+
+				</span>
+				<br>
+				
+				<a href="RecurringOrders_3.html" class="myaccount_link hover_underline" id="OrderDetailLink_NonAjax_19">Details</a>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_scheduled_19" class="li order_scheduled_column">
+				<span>
+
+									Every day	
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_next_order_date_19" class="li next_order_column">
+
+						<span>November 16, 2012</span>
+
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_status_19" class="li order_status_column">
+				<span>
+
+									Active
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_total_price_19" class="li total_price_column">					
+				<span class="price">
+
+									$16.72
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_option_19" class="li options_column">
+				<div class="option_button"> 
+					<div id="showOptions_19" class="option_button">
+						<a href="javascript:void(0);" class="button_primary" onkeypress="javaScript:MyAccountDisplay.showActionsPopup(event,'showOptions_19','actions_popup_19', 'actions_popup_widget_recurring_order');" onclick="javaScript:MyAccountDisplay.showActionsPopup(null,'showOptions_19','actions_popup_19', 'actions_popup_widget_recurring_order');" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_3b_19" tabindex="0">
+							<div class="left_border"></div>
+							<div class="button_text">Actions<img class="actions_down_arrow" src="../StoreAssets/images/colors/color1/transparent.gif" alt="Down Arrow"></div>
+							<div class="right_border"></div>
+						</a>
+					</div>
+				</div>
+			</div>
+
+		<div id="actions_popup_19" style="display:none">
+			<div id="actions_popup_div1_19" class="actions_popup hover_underline">
+				<div id="actions_popup_reorder_19" class="reorder">
+
+								<a href="ShoppingCart.html" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_link_3_19" class="link">Re-Order</a>
+
+				</div>
+				<input id="recurringOrderCancelMessage_19" name="recurringOrderCancelMessage_19" value="All future shipments for this order will be cancelled." type="hidden">
+				<div id="actions_popup_cancel_19" class="cancel">
+					<a href="javaScript:setCurrentId('RecurringOrder_CancelButton_Ajax_19'); dijit.byId('actions_popup_widget_recurring_order').hide(); MyAccountDisplay.showPopup('recurring_order',1003,'recurringOrderCancelMessage_19');" width="100%" id="RecurringOrder_CancelButton_Ajax_19" class="link">Cancel Recurring Order</a>
+				</div>
+			</div>
+		</div>
+
+		<div role="gridcell" id="RecurringOrderDetailsDisplayExt_clear_float_19" class="li clear_float"></div>
+	</div>
+
+	<div role="row" id="RecurringOrderDisplay_ul_2_20" class="ul row">
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_number_20" class="li order_number_column">
+				<span>
+
+								14041
+
+				</span>
+				<br>
+				
+				<a href="RecurringOrders_3.html" class="myaccount_link hover_underline" id="OrderDetailLink_NonAjax_20">Details</a>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_scheduled_20" class="li order_scheduled_column">
+				<span>
+
+									Every 2 weeks	
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_next_order_date_20" class="li next_order_column">
+
+						<span>October 26, 2012</span>
+
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_order_status_20" class="li order_status_column">
+				<span>
+
+									Active
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_total_price_20" class="li total_price_column">					
+				<span class="price">
+
+									$13.04
+
+				</span>
+			</div>
+
+			<div role="gridcell" id="RecurringOrderDetailsDisplayExt_option_20" class="li options_column">
+				<div class="option_button"> 
+					<div id="showOptions_20" class="option_button">
+						<a href="javascript:void(0);" class="button_primary" onkeypress="javaScript:MyAccountDisplay.showActionsPopup(event,'showOptions_20','actions_popup_20', 'actions_popup_widget_recurring_order');" onclick="javaScript:MyAccountDisplay.showActionsPopup(null,'showOptions_20','actions_popup_20', 'actions_popup_widget_recurring_order');" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_3b_20" tabindex="0">
+							<div class="left_border"></div>
+							<div class="button_text">Actions<img class="actions_down_arrow" src="../StoreAssets/images/colors/color1/transparent.gif" alt="Down Arrow"></div>
+							<div class="right_border"></div>
+						</a>
+					</div>
+				</div>
+			</div>
+
+		<div id="actions_popup_20" style="display:none">
+			<div id="actions_popup_div1_20" class="actions_popup hover_underline">
+				<div id="actions_popup_reorder_20" class="reorder">
+
+								<a href="ShoppingCart.html" width="100%" id="RecurringOrderDetailsDisplayExt_option_button_link_3_20" class="link">Re-Order</a>
+
+				</div>
+				<input id="recurringOrderCancelMessage_20" name="recurringOrderCancelMessage_20" value="All future shipments for this order will be cancelled." type="hidden">
+				<div id="actions_popup_cancel_20" class="cancel">
+					<a href="javaScript:setCurrentId('RecurringOrder_CancelButton_Ajax_20'); dijit.byId('actions_popup_widget_recurring_order').hide(); MyAccountDisplay.showPopup('recurring_order',1002,'recurringOrderCancelMessage_20');" width="100%" id="RecurringOrder_CancelButton_Ajax_20" class="link">Cancel Recurring Order</a>
+				</div>
+			</div>
+		</div>
+
+		<div role="gridcell" id="RecurringOrderDetailsDisplayExt_clear_float_20" class="li clear_float"></div>
+	</div>
+
+		<div id="RecurringOrderPagination_2">
+			<span id="RecurringOrderDetailPagination_span_1b" class="text">
+				Showing 1 to 20 of 21
+				<span id="RecurringOrderDetailPagination_span_2b" class="paging">
+					
+					<img src="../StoreAssets/images/colors/color1/paging_back.png" alt="Go to previous page">
+					
+					1 - 2
+					
+						<a id="RecurringOrderDetailPagination_next_link_2" href="RecurringOrders_2.html">
+					
+					<img src="../StoreAssets/images/colors/color1/paging_next.png" alt="Go to next page">
+					
+						</a>
+					
+				</span>
+			</span>
+		</div>
+
+<div id="actions_popup_widget_recurring_order" style="display:none"></div>
+
+</span>
+<!-- END RecurringOrderTableDetailsDisplay.jsp -->
+
+
+	</div>
+</div>
+
+</span>
+<!-- END RecurringOrderTableDisplay.jsp -->
+
+
+											<br>								
+											<br clear="all">					
+										</div>
+									</div>
+									<div class="footer" id="WC_OrderStatusCommonPage_div_7">
+										<div class="left_corner" id="WC_OrderStatusCommonPage_div_8"></div>
+										<div class="tile" id="WC_OrderStatusCommonPage_div_9"></div>
+										<div class="right_corner" id="WC_OrderStatusCommonPage_div_10"></div>
+									</div>				
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer Start -->
+
+	<div class="footer_wrapper_position">
+
+<!-- BEGIN Footer.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">Footer.jsp</div>
+<div class="footer_wrapper" role="contentinfo">
+	<!--For border customization -->
+
+	<div class="footer_top">
+		<div class="left_border"></div>
+		<div class="middle"></div>
+		<div class="right_border"></div>
+	</div>
+	<!--Main footer Area -->
+
+	<div class="footer_left_shadow">
+		<div class="footer_right_shadow">				
+			<div class="footer_content" id="footer_content">
+				
+				<!--Start Footer Content -->
+
+				<div id="footer">
+					<div class="footer_element_container right_border large">
+						<h2><span>Customer Service<span title="FOOTER_CUSTOMER_SERVICE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_CUSTOMER_SERVICE"></span></span></h2>
+						<ul>
+							
+							<li><a id="FooterHelpLink" href="HelpandContactUsatAuroraESite.html"><span>Help<span title="FOOTER_HELP" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_HELP"></span></span></a></li>
+							<li><a id="FooterContactUsLink" href="HelpandContactUsatAuroraESite_6.html"><span>Contact Us<span title="FOOTER_CONTACT_US" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_CONTACT_US"></span></span></a></li>
+							<li><a id="FooterReturnPolicyLink" href="ReturnPolicyforAuroraESite.html"><span>Return Policy<span title="FOOTER_RETURN_POLICY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_RETURN_POLICY"></span></span></a></li>
+							<li><a id="FooterPrivacyPolicyLink" href="WebsitePrivacyPolicyforAuroraESite.html"><span>Privacy Policy<span title="FOOTER_PRIVACY_POLICY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_PRIVACY_POLICY"></span></span></a></li>
+						</ul>
+							
+					</div>
+					<div class="footer_element_container right_border large">
+						<h2><span>Corporate Info<span title="FOOTER_CORPORATE_INFO" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_CORPORATE_INFO"></span></span></h2>
+						<ul>
+							<li><a id="FooterAboutUsLink" href="AboutUsforAuroraESite.html"><span>About Us<span title="FOOTER_ABOUT_US" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_ABOUT_US"></span></span></a></li>
+							<li><a id="FooterCorporateContactUsLink" href="ContactUsforAuroraESite.html"><span>Contact Us<span title="FOOTER_CONTACT_US" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_CONTACT_US"></span></span></a></li>
+							
+								<li><a id="FooterStoreLocatorLink" href="StoreLocator.html"><span>Store Locator<span title="FOOTER_STORE_LOCATOR" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_STORE_LOCATOR"></span></span></a></li>
+							
+						</ul>							
+					</div>
+					
+					<div class="footer_element_container right_border large" id="WC_Footer_UI_Links_3">
+						<h2><span>Explore<span title="FOOTER_EXPLORE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_EXPLORE"></span></span></h2>
+						<ul>
+							<li><a id="FooterSiteMapLink" href="SiteMapforAuroraESite.html"><span>Site Map<span title="FOOTER_SITE_MAP" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_SITE_MAP"></span></span></a></li><li><a href="AdvancedSearch.html" id="AdvancedSearchDisplayLink">[PROPERTIES;FOOTER_ADVANCED_SEARCH;Advanced Search]</a></li>
+
+						</ul>
+					</div>
+
+						<div class="footer_element_container large" id="FooterSocialLinks">
+							<h2><span>Follow Us<span title="FOOTER_FOLLOW_US" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_FOLLOW_US"></span></span></h2>
+							<ul>
+								<li><a id="FacebookLink" ><span>Facebook<span title="FOOTER_FACEBOOK" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_FACEBOOK"></span></span></a></li>
+							</ul>
+						</div>
+
+					<div class="footer_element_container large" id="FooterRightContentESpot">					
+
+<!-- BEGIN ContentRecommendation.jsp -->
+
+<span class="highlight">
+<div class="jspcaption" style="display:none">ContentRecommendation.jsp</div>
+</span>
+<!-- END ContentRecommendation.jsp -->
+							
+					</div>					
+												
+				</div>
+				<!--End Footer Content -->
+
+				
+			</div>
+		</div>				
+	</div>
+	<!--For border customization -->
+
+	<div class="footer_bottom">
+		<div class="left_border"></div>
+		<div class="middle">
+		</div>
+		<div class="right_border"></div>
+	</div>
+	<!--
+ =================================================================
+  Licensed Materials - Property of IBM
+
+  WebSphere Commerce
+
+  (C) Copyright IBM Corp. 2011 All Rights Reserved.
+
+  US Government Users Restricted Rights - Use, duplication or
+  disclosure restricted by GSA ADP Schedule Contract with
+  IBM Corp.
+ =================================================================
+-->
+
+<script type="text/javascript">
+	dojo.addOnLoad(function() { 
+		//Make sure page is loaded at this point
+		//Set requestedSubmitted to false
+		requestSubmitted = false;
+
+		// All div's whose id attribute contains dojoWidget subString -- dojo.query('div[id*="dojoWidget"]')
+		// All div's which contains dojoType attribute -- dojo.query(div[dojoType])
+		dojo.query('div[dojoType]').forEach(function(node, index, arr){
+			console.debug("Parse "+node.id);
+			addToWidgetsList(node.id);
+		});
+		parseAllWidgets();
+	}); 	
+</script>
+</div>
+
+
+</span>
+<!-- END Footer.jsp -->
+
+		
+	</div>
+	<!-- Footer End -->
+ 
+</div>
+
+
+<div title="" widgetid="Cancel_recurring_order_popup" style="display: none; position: absolute;" id="Cancel_recurring_order_popup" aria-labelledby="Cancel_recurring_order_popup_title" role="dialog" class="dijitDialog cancel_subscription_popup" tabindex="-1" wairole="dialog" waistate="labelledby-Cancel_recurring_order_popup_title">
+	<div dojoattachpoint="titleBar" class="dijitDialogTitleBar">
+	<span dojoattachpoint="titleNode" class="dijitDialogTitle" id="Cancel_recurring_order_popup_title"></span>
+	<span dojoattachpoint="closeButtonNode" class="dijitDialogCloseIcon" dojoattachevent="onclick: onCancel" title="Cancel">
+		<span dojoattachpoint="closeText" class="closeText" title="Cancel">x</span>
+	</span>
+	</div>
+		<div dojoattachpoint="containerNode" class="dijitDialogPaneContent">
+	<div class="top_left" id="WC_Cancel_recurring_order_div_1"><img alt="" src="../StoreAssets/images/trasparent.gif"></div>
+	  <div class="top_right" id="WC_Cancel_recurring_order_div_2"><img alt="" src="../StoreAssets/images/trasparent.gif"></div>
+		<div class="header" id="popupHeader_recurring_order"> 
+			<div class="close" id="WC_Cancel_recurring_order_div_3">
+			    <a id="closeLink_recurring_order" href="javascript:dijit.byId('Cancel_recurring_order_popup').hide();">
+			        <img class="icon" role="button" alt="Close the window" src="../StoreAssets/images/colors/color1/popup_close.png" onclick="javascript:dijit.byId('Cancel_recurring_order_popup').hide();"><span>
+			        close<span title="QuickInfo_Close" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="QuickInfo_Close"></span>
+			    </span><span class="elementKeyIcon" title="QUICKINFO_ACCE_CLOSE=Close the window"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></a>
+			</div>
+		</div>
+		
+	    <div id="WC_Cancel_recurring_order_div_4" class="bodycontent">
+			<h2 id="cancel_heading_recurring_order"><span>
+				
+					Cancel Recurring Order<span title="SCHEDULE_ORDER_CANCEL" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SCHEDULE_ORDER_CANCEL"></span>
+
+			</span></h2>			
+			<div id="cancel_discription_recurring_order">
+				<span id="cancel_notice_recurring_order"></span>
+			</div>
+			<div class="cancel_subscription_actions_border">
+				<a  role="button" class="button_primary" id="Cancel_yes_recurring_order">
+					<div class="left_border"></div>
+					<div class="button_text"><span>Yes<span title="YES" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="YES"></span></span></div>												
+					<div class="right_border"></div>
+				</a>
+				<a  role="button" class="button_secondary" id="Cancel_no_recurring_order" onclick="javascript:dijit.byId('Cancel_recurring_order_popup').hide();">
+					<div class="left_border"></div>
+					<div class="button_text"><span>No<span title="NO" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="NO"></span></span></div>												
+					<div class="right_border"></div>
+				</a>
+			</div>
+		</div>
+		
+		<div class="footer" id="WC_Cancel_recurring_order_div_5">
+		    <div class="bot_left" id="WC_Cancel_recurring_order_div_6"></div>
+		    <div class="bot_right" id="WC_Cancel_recurring_order_div_7"></div>
+		</div>
+	</div>
+</div><div title="" widgetid="progress_bar_dialog" style="display: none; position: absolute;" id="progress_bar_dialog" aria-labelledby="progress_bar_dialog_title" role="dialog" class="dijitDialog" tabindex="-1" wairole="dialog" waistate="labelledby-progress_bar_dialog_title">
+	<div dojoattachpoint="titleBar" class="dijitDialogTitleBar">
+	<span dojoattachpoint="titleNode" class="dijitDialogTitle" id="progress_bar_dialog_title"></span>
+	<span dojoattachpoint="closeButtonNode" class="dijitDialogCloseIcon" dojoattachevent="onclick: onCancel" title="Cancel">
+		<span dojoattachpoint="closeText" class="closeText" title="Cancel">x</span>
+	</span>
+	</div>
+		<div dojoattachpoint="containerNode" class="dijitDialogPaneContent">
+	<div id="progress_bar">
+		<div id="loading_popup">
+			<div class="top_left" id="WC_StoreCommonUtilities_div_1"><img src="../StoreAssets/images/colors/color1/transparent.gif" alt="No image available"><span class="elementKeyIcon" title="No_Image=No image available"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+		        <div class="top_right" id="WC_StoreCommonUtilities_div_2"><img src="../StoreAssets/images/colors/color1/transparent.gif" alt="No image available"><span class="elementKeyIcon" title="No_Image=No image available"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+		        <div class="header" id="WC_StoreCommonUtilities_div_3"></div>
+		        <div class="bodyarea" id="WC_StoreCommonUtilities_div_4">
+				<div class="bodycontent" id="WC_StoreCommonUtilities_div_5">
+					<img src="../StoreAssets/images/colors/color1/loading.gif" alt="Your request is being processed." height="44" border="0" width="44">
+			        <span class="elementKeyIcon" title="PROGRESS_BAR_REQUEST_PROCESSED=Your request is being processed."><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+			</div>
+			<div class="footer" id="WC_StoreCommonUtilities_div_6">
+				 <div class="bot_left" id="WC_StoreCommonUtilities_div_7"></div>
+				 <div class="bot_right" id="WC_StoreCommonUtilities_div_8"></div>
+			</div>
+		</div>
+	</div>
+</div>
+</div><div title="" style="display: none; position: absolute;" widgetid="widget_product_comparison_popup" id="widget_product_comparison_popup" aria-labelledby="widget_product_comparison_popup_title" role="dialog" class="dijitDialog" tabindex="-1" wairole="dialog" waistate="labelledby-widget_product_comparison_popup_title">
+	<div dojoattachpoint="titleBar" class="dijitDialogTitleBar">
+	<span dojoattachpoint="titleNode" class="dijitDialogTitle" id="widget_product_comparison_popup_title"></span>
+	<span dojoattachpoint="closeButtonNode" class="dijitDialogCloseIcon" dojoattachevent="onclick: onCancel" title="Cancel">
+		<span dojoattachpoint="closeText" class="closeText" title="Cancel">x</span>
+	</span>
+	</div>
+		<div dojoattachpoint="containerNode" class="dijitDialogPaneContent">
+		<div class="widget_product_comparison_popup widget_site_popup">													
+			<!-- Top Border Styling -->
+
+			<div class="top">
+				<div class="left_border"></div>
+				<div class="middle"></div>
+				<div class="right_border"></div>
+			</div>
+			<div class="clear_float"></div>
+			<!-- Main Content Area -->
+
+			<div class="middle">
+				<div class="content_left_border">
+					<div class="content_right_border">
+						<div class="content">
+							<div class="header">
+								<span><span>Product Comparison<span title="CP_HEADING" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="CP_HEADING"></span></span></span>
+								<a id="ComparePopupClose" class="close" href="javascript:dijit.byId('widget_product_comparison_popup').hide();" title="CLOSE"></a>
+								<div class="clear_float"></div>
+							<span class="elementKeyIcon" title="CP_CLOSE=CLOSE"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+							<div class="body"><span>
+								The maximum number of products that can be compared is 4. Please refine your selection.<span title="CP_MESSAGE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="CP_MESSAGE"></span>
+							</span></div>
+							
+							<div class="footer">
+								<div class="button_container ">
+									<a id="ComparePopupOK" class="button_primary" tabindex="0" href="javascript: dijit.byId('widget_product_comparison_popup').hide();" title="OK">
+										<div class="left_border"></div>
+										<div class="button_text"><span>OK<span title="CP_OK" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="CP_OK"></span></span></div>
+										<div class="right_border"></div>
+									</a>
+									<div class="clear_float"></div>
+								<span class="elementKeyIcon" title="CP_OK=OK"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+								
+							</div>
+							<div class="clear_float"></div>
+						<!-- End content Section -->
+
+						</div>
+					<!-- End content_right_border -->
+
+					</div>
+				<!-- End content_left_border -->
+
+				</div>
+			</div>
+			<div class="clear_float"></div>
+			<!-- Bottom Border Styling -->
+
+			<div class="bottom">
+				<div class="left_border"></div>
+				<div class="middle"></div>
+				<div class="right_border"></div>
+			</div>
+			<div class="clear_float"></div>
+		</div>
+	</div>
+</div><div title="" style="display: none; position: absolute;" widgetid="widget_language_and_currency_popup" dojoType="wc.widget.WCDialog" id="widget_language_and_currency_popup" dojoType="wc.widget.WCDialog" aria-labelledby="widget_language_and_currency_popup_title" role="dialog" class="dijitDialog" tabindex="-1" wairole="dialog" waistate="labelledby-widget_language_and_currency_popup_title">
+	<div title="Language and Currency Dialog" dojoattachpoint="titleBar" class="dijitDialogTitleBar">
+	<span dojoattachpoint="titleNode" class="dijitDialogTitle" id="widget_language_and_currency_popup_title"><span>Language and Currency Dialog<span title="DIALOG_TITLE_LANGUAGE_AND_CURRENCY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIALOG_TITLE_LANGUAGE_AND_CURRENCY"></span></span></span>
+	<span dojoattachpoint="closeButtonNode" class="dijitDialogCloseIcon" dojoattachevent="onclick: onCancel" title="Cancel">
+		<span dojoattachpoint="closeText" class="closeText" title="Cancel">x</span>
+	</span>
+	</div>
+		<div dojoattachpoint="containerNode" class="dijitDialogPaneContent">
+		<div class="widget_language_and_currency_popup widget_site_popup">										
+			<!-- Top Border Styling -->
+
+			<div class="top">
+				<div class="left_border"></div>
+				<div class="middle"></div>
+				<div class="right_border"></div>
+			</div>
+			<div class="clear_float"></div>
+			<!-- Main Content Area -->
+
+			<div class="middle">
+				<div class="content_left_border">
+					<div class="content_right_border">
+						<div class="content">
+							<div class="header">
+								<span><span>Please select a language and currency<span title="LC_LANGUAGE_CURRENCY_SELECTION" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="LC_LANGUAGE_CURRENCY_SELECTION"></span></span></span>
+								<a id="close" class="close_acce" title="CLOSE" href="javascript:dijit.byId('widget_language_and_currency_popup').hide();"><img role="button" onmouseover="this.src='../StoreAssets/images/colors/color1/close_hover.png'" onmouseout="this.src='../StoreAssets/images/colors/color1/close_normal.png'" src="../StoreAssets/images/colors/color1/close_normal.png" class="closeImg" alt="CLOSE"><span class="elementKeyIcon" title="LC_CLOSE=CLOSE"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></a>
+								<div class="clear_float"></div>
+							<span class="elementKeyIcon" title="LC_CLOSE=CLOSE"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+							<div class="selectors">
+								<div class="selector">
+									<span class="option_name"><span>Language:<span title="LC_LANGUAGE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="LC_LANGUAGE"></span>&nbsp;</span></span>
+									<label for="languageSelection" class="nodisplay"><span>Language:<span title="LC_LANGUAGE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="LC_LANGUAGE"></span></span></label>
+									<select class="left" id="languageSelection" name="langId" onchange="javascript:document.getElementById('languageSelectionHidden').value=this.value">
+
+													<option value="-1" selected="selected">United States English</option>
+
+													<option value="-7">简体中文</option>
+
+													<option value="-2">Français</option>
+
+									</select>
+									<div class="clear_float"></div>
+								</div>
+								<div class="selector">
+									<span class="option_name"><span>Currency:<span title="LC_CURRENCY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="LC_CURRENCY"></span>&nbsp;</span></span>
+									<label for="currencySelection" class="nodisplay"><span>Currency:<span title="LC_CURRENCY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="LC_CURRENCY"></span></span></label>
+									<select class="left" id="currencySelection" name="currency" onchange="javascript:document.getElementById('currencySelectionHidden').value=this.value">
+
+													<option value="USD" selected="selected">US Dollar</option>
+
+													<option value="BRL">Brazilian Real</option>
+
+													<option value="CAD">Canadian Dollar</option>
+
+													<option value="CNY">Chinese Yuan</option>
+
+													<option value="EUR">Euro</option>
+
+													<option value="GBP">British Pound</option>
+
+													<option value="JPY">Japanese Yen</option>
+
+													<option value="KRW">South Korean Won</option>
+
+													<option value="PLN">Polish Zloty</option>
+
+													<option value="RON">Romanian Leu</option>
+
+													<option value="RUB">Russian Ruble</option>
+
+													<option value="TWD">Taiwan Dollar</option>
+
+									</select>
+									<div class="clear_float"></div>
+								</div>
+								<form id="SetLanguageCurrencyPreferenceForm" action="/webapp/wcs/stores/servlet/SetCurrencyPreference" method="post">
+									<input name="storeId" value="10152" type="hidden">
+									<input name="catalogId" value="10001" type="hidden">
+									<input id="languageSelectionHidden" name="langId" value="-1" type="hidden">
+									<input id="currencySelectionHidden" name="currency" value="USD" type="hidden">									
+
+											<input name="URL" value="/webapp/wcs/stores/servlet/TrackOrderStatus?currency*=" id="WC_SidebarDisplay_FormInput_URL_2" type="hidden">
+
+												<input name="isRecurringOrder" value="true" id="WC_SidebarDisplay_FormInput_parm_3_1" type="hidden">
+
+												<input name="recurringOrderStatusStyle" value="strong" id="WC_SidebarDisplay_FormInput_parm_5_1" type="hidden">
+
+								</form>
+							</div>
+							<div class="footer">
+								<div class="button_container ">
+									<a id="LangCurrencyApplyBtn" class="button_primary" tabindex="0" href="javascript:dijit.byId('widget_language_and_currency_popup').hide();">
+										<div class="left_border"></div>
+										<div id="LangCurrencyApplyBtnText" class="button_text"><span>Apply<span title="LC_APPLY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="LC_APPLY"></span></span></div>
+										<div class="right_border"></div>
+									</a>
+									<div class="clear_float"></div>
+								</div>
+								
+							</div>
+							<div class="clear_float"></div>
+						<!-- End content Section -->
+
+						</div>
+					<!-- End content_right_border -->
+
+					</div>
+				<!-- End content_left_border -->
+
+				</div>
+			</div>
+			<div class="clear_float"></div>
+			<!-- Bottom Border Styling -->
+
+			<div class="bottom">
+				<div class="left_border"></div>
+				<div class="middle"></div>
+				<div class="right_border"></div>
+			</div>
+			<div class="clear_float"></div>
+		</div>
+	</div>
+<span class="elementKeyIcon" title="DIALOG_TITLE_LANGUAGE_AND_CURRENCY=Language and Currency Dialog"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div><span class="elementKeyIcon" title="DIALOG_TITLE_PRODUCT_COMPARE=Product Compare Dialog"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span><style>.keyIcon {padding:2px;z-index:998;display:none !important;}.elementKeyIcon {position:absolute;top:0px;z-index:999;display:none;}#text_highlight {width:100%;font-family:Verdana, Arial, Helvetica, sans-serif;font-size:11px;color:#2c2c2c;}#text_highlight .bold{font-weight:bold;color:#2c2c2c;}#text_highlight .header {height:1px;width:100%;padding-top:3px;}.details {padding:0px 0px 2px 0px;}.details_container {background-color:#dfe8fb;border:solid 1px #bcd0fb;padding:5px;}.details_container .content {padding-left:3px;}a.light_button {color: #27629C;cursor: pointer;display: -moz-inline-box;display: inline-block;font-size: 11px;height: 17px;padding: 2px;text-decoration: none;line-height: 16px;}a.light_button div.button_text {background: transparent url('../images/preview/b_main_bg.png') top left repeat-x;float: left;height: 17px;padding: 1px 2px 2px 9px;}a.light_button div.button_right {background: transparent url('../images/preview/b_right.png') no-repeat;float: left;height: 20px;width: 6px;}</style>
+<script type="text/javascript"> function displayHighlightFeatureInHTML(){var all = document.getElementsByTagName('*'); for (var i = 0; i < all.length; i++) { if (all[i].className == 'jspcaption') {all[i].style.display='block';} if (all[i].className == 'highlight') {all[i].style.border='2px dashed red';all[i].style.display='block';} if (all[i].className == 'product') {all[i].style.border='2px dashed red';} if (all[i].className == 'product_price') {all[i].style.border='2px dashed red';} if (all[i].className == 'widget_quick_info_popup') {all[i].style.border='2px dashed red';} if (all[i].className == 'item' && (all[i].id.indexOf('compare') == -1) && (all[i].id.indexOf('sub') == -1) ) {all[i].style.border='2px dashed red';} if (all[i].className == 'item_price') {all[i].style.border='2px dashed red';}} } function activateHighlight (event){ if(event.ctrlKey){ if(event.altKey){ if(event.keyCode == '72'){ displayHighlightFeatureInHTML(); } } } } </script>
+</body></html>
+
+

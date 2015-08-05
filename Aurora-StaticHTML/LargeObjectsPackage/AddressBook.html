@@ -1,0 +1,4402 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<!--
+Licensed Materials - Property of IBMWebSphere Commerce(c) Copyright International Business Machines Corporation 1996,2010.All rights reservedUS Government Users Restricted Rights - Use, duplication ordisclosure restricted by GSA ADP Schedule Contract with IBM Corp.-->
+<html  xmlns:wairole='http://www.w3.org/2005/01/wai-rdf/GUIRoleTaxonomy#' xmlns:waistate='http://www.w3.org/2005/07/aaa' lang='en' xml:lang='en' onkeydown='javascript:activateHighlight(event);'>
+ <head>
+ <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Address Book - [ADDRESSBOOK_TITLE]</title>
+	<link rel="stylesheet" href="../StoreAssets/css/common1_1.css" type="text/css">
+	<script type="text/javascript" src="../dojo18/dojo/dojo.js" djconfig="parseOnLoad: false, isDebug: false,  modulePaths: {storetext: '../../StoreAssets'}, useCommentedJson: true,locale: 'en-us' "></script>
+<!-- BEGIN CommonJSToInclude.jspf -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0;">
+<meta name="CommerceSearch" content="storeId_10152">
+<link rel="shortcut icon" href="../StoreAssets/images/favicon.ico" mce_href="../StoreAssets/images/favicon.ico">
+<script type="text/javascript">
+	// Convert the WCParam object which contains request properties into javascript object
+	var WCParamJS = {
+		"storeId":'10152',
+		"catalogId":'10001',
+		"langId":'-1',
+		"pageView":'',
+		"orderBy":'',
+		"orderByContent":'',
+		"searchTerm":''
+	};
+	var absoluteURL = document.location.href.split("/");
+	absoluteURL.pop();
+	absoluteURL = absoluteURL.join("/") + "/";
+	var imageDirectoryPath = "../StoreAssets/";
+	var styleDirectoryPath = "images/colors/color1/";
+	var supportPaymentTypePromotions = false;
+	var subsFulfillmentFrequencyAttrName = "fulfillmentFrequency";
+	var subsPaymentFrequencyAttrName = "paymentFrequency";
+	var subsTimePeriodAttrName = "timePeriod";
+	var storeNLS = null;
+	//Summary: Returns the absolute URL to use for prefixing any Ajax URL call.
+	//Description: Dojo does not handle the case where the parameters in the URL are delimeted by the "/" forward slash. Therefore, in order to
+	//             workaround the issue, all AJAX requests must be done using absolute URLs rather than relative.
+	//Returns: The absolute URL to use for prefixing any Ajax URL call.
+	function getAbsoluteURL() {
+		if (absoluteURL != "") {
+			var currentURL = document.URL;
+			var currentProtocol = "";
+			if (currentURL.indexOf("://") != -1) {
+				currentProtocol = currentURL.substring(0, currentURL.indexOf("://"));
+			}
+			var savedProtocol = "";
+			if (absoluteURL.indexOf("://") != -1) {
+				savedProtocol = absoluteURL.substring(0, absoluteURL.indexOf("://"));
+			}
+			if (currentProtocol != savedProtocol) {
+				absoluteURL = currentProtocol + absoluteURL.substring(absoluteURL.indexOf("://"));
+			}
+		}
+		return absoluteURL;
+	}
+	//Summary: Returns the path pointing to the shared image directory.
+	//Description: In order to get the image directory path in any javascript file, this function can be used.
+	//Returns: The path to reference images.
+	function getImageDirectoryPath() {
+		return imageDirectoryPath;
+	}
+	//Summary: Returns the path pointing to the directory containing color-dependant image files.
+	//Description: In order to get the directory containing color-dependant image files in any javascript file, this function can be used.
+	//Returns: The path to reference color-dependant image files.
+	function getStyleDirectoryPath() {
+		return styleDirectoryPath;
+	}
+</script>
+<script type="text/javascript" src="../StoreAssets/javascript/MessageHelper.js"></script>
+<script type="text/javascript" src="../StoreAssets/javascript/StoreCommonUtilities.js"></script>
+<script>
+	dojo.require("wc.service.common");
+	dojo.require("dojo.number");
+</script>
+<script type="text/javascript">
+ //Set the default NLS to use in the store.
+ if(storeNLS == null) {
+	 dojo.requireLocalization("storetext", "StoreText");
+	 storeNLS = dojo.i18n.getLocalization("storetext","StoreText");
+ }
+</script>
+<!-- END CommonJSToInclude.jspf -->
+
+	<script type="text/javascript" src="../StoreAssets//javascript/Widgets/Search.js"></script>
+	<script type="text/javascript" src="../StoreAssets//javascript/Widgets/MiniShopCartDisplay/MiniShopCartDisplay.js"></script>
+	<script type="text/javascript" src="../StoreAssets//javascript/Widgets/Department/Department.js"></script>
+	<script type="text/javascript" src="../StoreAssets/javascript/Common/ShoppingActions.js"></script>
+	<script type="text/javascript" src="../StoreAssets/javascript/CommonContextsDeclarations.js"></script>
+	<script type="text/javascript" src="../StoreAssets/javascript/CommonControllersDeclaration.js"></script>
+	<script type="text/javascript" src="../StoreAssets/javascript/UserArea/AddressHelper.js"></script>
+	<script type="text/javascript" src="../StoreAssets/javascript/UserArea/AddressBookForm.js"></script>
+	<script type="text/javascript" src="../StoreAssets/javascript/UserArea/MyAccountDisplay.js"></script>
+	<script type="text/javascript" src="../StoreAssets/javascript/UserArea/AccountWishListDisplay.js"></script>
+	<script type="text/javascript" src="../StoreAssets/javascript/UserArea/QuickCheckoutProfile.js"></script>
+<!-- BEGIN CommonJSPFToInclude.jspf -->
+
+<!-- BEGIN ProgressBar.jspf -->
+
+<link href="../StoreAssets/css/SocialIntegration.css" type="text/css" rel="stylesheet"></head><body>
+<!-- END ProgressBar.jspf -->
+
+<!-- BEGIN MessageDisplay.jspf -->
+
+<span class="spanacce" id="MessageArea_ACCE_Title"><span>Message Dialog<span title="DIALOG_TITLE_MESSAGE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIALOG_TITLE_MESSAGE"></span></span></span>
+<div id="MessageArea" class="store_message" role="alert" aria-labelledby="MessageArea_ACCE_Title">
+	<div id="msgpopup_content_wrapper" class="content">
+		<a id="clickableErrorMessageImg" role="button" class="close right" href="JavaScript:MessageHelper.hideMessageArea();" title="Close">
+			<div class="close_text left"><span>Close<span title="CLOSE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="CLOSE"></span></span></div>
+			<div class="close_icon left"></div>
+			<div class="clear_float"></div>
+		</a>
+		<div class="clear_float"></div>
+		<div class="message">
+			<div class="message_icon left">
+				<img id="error_icon" style="display:none;" class="error_icon" src="../StoreAssets/images/colors/color1/error_icon.png" alt="">
+				<img id="success_icon" style="display:none;" class="error_icon" src="../StoreAssets/images/colors/color1/success_icon.png" alt="">
+			</div>
+			<div class="message_text left" role="region" aria-required="true" aria-labelledby="MessageArea">
+				<span id="ErrorMessageText">
+				</span>
+			</div>
+			<div class="clear_float"></div>
+		</div>		
+	<span class="elementKeyIcon" title="CLOSE=Close"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+</div>
+<span class="spanacce" id="ariaMessage_ACCE_Label"><span>Display Update Message<span title="ACCE_Display_Update_Message" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="ACCE_Display_Update_Message"></span></span></span>
+<span class="spanacce" role="region" aria-labelledby="ariaMessage_ACCE_Label" id="ariaMessage" aria-live="assertive" aria-atomic="true" aria-relevant="additions"></span>
+<!-- END MessageDisplay.jspf -->
+
+<span id="widget_product_comparison_ACCE_Label" class="spanacce"><span>Product Compare Dialog<span title="DIALOG_TITLE_PRODUCT_COMPARE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIALOG_TITLE_PRODUCT_COMPARE"></span></span></span>
+<div id="widget_product_comparison" style="display:none;" role="dialog" aria-labelledby="widget_product_comparison_ACCE_Label" title="Product Compare Dialog">
+</div>
+<!-- END CommonJSPFToInclude.jspf -->
+
+	<script type="text/javascript">
+		dojo.require("wc.render.common");
+		wc.render.declareContext("addressBookContext",{addressId: "0", type: "0"},"");
+		wc.render.declareRefreshController({
+			id: "addressBookController",
+			renderContext: wc.render.getContextById("addressBookContext"),
+			url: "",
+			formId: ""
+			,renderContextChangedHandler: function(message, widget) {
+				var controller = this;
+				var renderContext = this.renderContext;
+				if (controller.testForChangedRC(["addressId"])) {
+					widget.refresh(renderContext.properties);
+				} else if (controller.renderContext.properties["type"] == "add") {
+					widget.refresh(renderContext.properties);
+				}	 
+			}
+			,postRefreshHandler: function(widget) {
+				var controller = this;
+				var renderContext = this.renderContext;
+				controller.renderContext.properties["addressId"] = "0";
+				controller.renderContext.properties["type"] = "0";
+			}
+		});
+		wc.render.declareRefreshController({
+			id: "addressBookMainController",
+			renderContext: wc.render.getContextById("addressBookContext"),
+			url: "",
+			formId: ""
+			,modelChangedHandler: function(message, widget) {
+				var controller = this;
+				var renderContext = this.renderContext;
+				if (message.actionId == "updateAddress" || message.actionId == "AddressDelete" || message.actionId == "updateAddressBook" ) {
+					widget.refresh(renderContext.properties);
+				}
+			}
+		});
+		//messages used by AddressBookForm.js
+		dojo.addOnLoad(function() { 
+			MessageHelper.setMessage("ERROR_RecipientTooLong", "[PROPERTIES;ERROR_RecipientTooLong;The value entered in the recipient field is too long.]");
+			MessageHelper.setMessage("ERROR_FirstNameTooLong", "[PROPERTIES;ERROR_FirstNameTooLong;The value entered in the first name field is too long.]");
+			MessageHelper.setMessage("ERROR_LastNameTooLong", "[PROPERTIES;ERROR_LastNameTooLong;The value entered in the last name field is too long.]");
+			MessageHelper.setMessage("ERROR_MiddleNameTooLong", "[PROPERTIES;ERROR_MiddleNameTooLong;The value entered in the middle name field is too long.]");
+			MessageHelper.setMessage("ERROR_AddressTooLong", "[PROPERTIES;ERROR_AddressTooLong;The value entered in the street address field is too long.]");
+			MessageHelper.setMessage("ERROR_CityTooLong", "[PROPERTIES;ERROR_CityTooLong;The value entered in the city field is too long.]");
+			MessageHelper.setMessage("ERROR_StateTooLong", "[PROPERTIES;ERROR_StateTooLong;The value entered in the state/province field is too long.]");
+			MessageHelper.setMessage("ERROR_CountryTooLong", "[PROPERTIES;ERROR_CountryTooLong;The value entered in the country/region field is too long.]");
+			MessageHelper.setMessage("ERROR_ZipCodeTooLong", "[PROPERTIES;ERROR_ZipCodeTooLong;The value entered in the ZIP code/postal code field is too long.]");
+			MessageHelper.setMessage("ERROR_PhoneTooLong", "[PROPERTIES;ERROR_PhoneTooLong;The value entered in the phone number field is too long.]");
+			MessageHelper.setMessage("ERROR_RecipientEmpty", "[PROPERTIES;ERROR_RecipientEmpty;The recipient field cannot be empty.]");
+			/*Although for English, firstname is not mandatory. But it is mandatory for other languages.*/
+			MessageHelper.setMessage("ERROR_FirstNameEmpty", "[PROPERTIES;ERROR_FirstNameEmpty;The first name field cannot be empty.]");
+			MessageHelper.setMessage("ERROR_LastNameEmpty", "[PROPERTIES;ERROR_LastNameEmpty;The last name field cannot be empty.]");
+			MessageHelper.setMessage("ERROR_MiddleNameEmpty", "[PROPERTIES;ERROR_MiddleNameEmpty;The middle name field cannot be empty.]");
+			MessageHelper.setMessage("ERROR_AddressEmpty", "[PROPERTIES;ERROR_AddressEmpty;The street address field cannot be empty.]");
+			MessageHelper.setMessage("ERROR_CityEmpty", "[PROPERTIES;ERROR_CityEmpty;The city field cannot be empty.]");
+			MessageHelper.setMessage("ERROR_StateEmpty", "[PROPERTIES;ERROR_StateEmpty;The state/province field cannot be empty.]");
+			MessageHelper.setMessage("ERROR_CountryEmpty", "[PROPERTIES;ERROR_CountryEmpty;The country/region field cannot be empty.]");
+			MessageHelper.setMessage("ERROR_ZipCodeEmpty", "[PROPERTIES;ERROR_ZipCodeEmpty;The ZIP code/postal code field cannot be empty.]");
+			MessageHelper.setMessage("ERROR_PhonenumberEmpty", "[PROPERTIES;ERROR_PhonenumberEmpty;The phone number field cannot be empty.]");
+			MessageHelper.setMessage("ERROR_EmailEmpty", "[PROPERTIES;ERROR_EmailEmpty;The Email address field cannot be empty.]");
+			MessageHelper.setMessage("PWDREENTER_DO_NOT_MATCH", "[PROPERTIES;PWDREENTER_DO_NOT_MATCH;The passwords entered do not match.]");
+			MessageHelper.setMessage("REQUIRED_FIELD_ENTER", "[PROPERTIES;REQUIRED_FIELD_ENTER;This is required field. Please enter the value.]");
+			MessageHelper.setMessage("AB_UPDATE_SUCCESS", "[PROPERTIES;AB_UPDATE_SUCCESS;The address has been updated successfully]");
+			MessageHelper.setMessage("AB_DELETE_SUCCESS", "[PROPERTIES;AB_DELETE_SUCCESS;The selected address has been removed from the address list]");
+			MessageHelper.setMessage("AB_ADDNEW_SUCCESS", "[PROPERTIES;AB_ADDNEW_SUCCESS;The new address has been successfully added to the address book.]");
+			MessageHelper.setMessage("WISHLIST_INVALIDEMAILFORMAT", "[PROPERTIES;WISHLIST_INVALIDEMAILFORMAT;Invalid E-mail address format.]");
+			MessageHelper.setMessage("ERROR_INVALIDPHONE", "[PROPERTIES;ERROR_INVALIDPHONE;The phone number entered is not in a valid format.]");
+			MessageHelper.setMessage("AB_SELECT_ADDRTYPE", "[PROPERTIES;AB_SELECT_ADDRTYPE;Please select an address type.]");
+			MessageHelper.setMessage("ERROR_DEFAULTADDRESS", "[PROPERTIES;ERROR_DEFAULTADDRESS;Your address cannot be removed. Your address book must contain at least one address.]");
+			MessageHelper.setMessage("ERROR_INVALIDEMAILFORMAT", "[PROPERTIES;ERROR_INVALIDEMAILFORMAT;The email entered is not in a valid format.]");
+			AddressBookFormJS.setCommonParameters("-1", "10152","10001");
+		});
+	</script>
+<div id="page">
+	<!-- Import Header Widget -->
+
+	<div class="header_wrapper_position" id="headerWidget">
+<!-- BEGIN Header.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">Header.jsp</div>
+<div id="text_highlight"><div class="details" id="detailsSection"><div class="details_container"><div class="content"><span class="bold">Click the button below to highlight text strings on the current page that you can customize in properties files during onboarding.</span><br></div><div class="marketing_btn"><div id="showProperties" style="display:block"><a class="light_button" onclick="showProperties()"><div id="showSpots" class="button_text">Show Properties</div><div class="button_right"></div></a></div><div id="hideProperties" style="display:none"><a class="light_button" onclick="hideProperties()"><div id="showSpots" class="button_text">Hide Properties</div><div class="button_right"></div></a></div></div><div class="content"><div id="messages" style="display:none"></div></div></div></div></div>
+<script type="text/javascript" src="../StoreAssets/javascript/Properties.js"></script>
+	<script type="text/javascript" src="../StoreAssets/javascript/Analytics.js"></script>
+	<script type="text/javascript">
+	dojo.addOnLoad(function() {
+		analyticsJS.storeId=10152;
+		analyticsJS.catalogId=10001;
+		analyticsJS.loadShopCartHandler();
+		analyticsJS.loadPagingHandler();
+		analyticsJS.loadProductQuickInfoHandler('productIdQuickInfo');
+		analyticsJS.loadStoreLocatorPageViews();
+		analyticsJS.loadWishlistHandler();
+		dojo.require("wc.analytics.CoremetricsEventListener");		
+			(new wc.analytics.CoremetricsEventListener()).load(true);
+			});
+	</script>
+<script>
+	var isGuest = false;
+</script>
+<div class="header_wrapper" role="banner">
+	<!--For border customization -->
+
+	<div class="header_top">
+		<div class="left_border"></div>
+		<div class="middle"></div>
+		<div class="right_border"></div>
+	</div>
+	<!-- Main Header Area -->
+
+	<div class="header_left_shadow">
+		<div class="header_right_shadow">				
+			<div class="header">
+				<!-- Start Header Content -->
+
+				<!-- Start Masthead -->
+
+				<div id="masthead">
+					<div class="top"></div>
+					<div class="content">
+						<!-- Masthead Logo Widget -->
+
+						<div class="widget_masthead_logo_position">
+							<div id="widget_masthead_logo1">
+<!-- BEGIN ContentRecommendation.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">ContentRecommendation.jsp</div>
+	<div class="widget_height" tabindex="0">
+							<div class="left_espot">
+									<a id="ContentAreaESpotInfoImgLink_10073_1" href="WelcometoAuroraESite.html" title="StoreAssets">
+										<img id="ContentAreaESpotImg_HeaderStoreLogo_Content_1" src="../StoreAssets/images/logo.png" alt="StoreAssets">
+									</a>
+							</div>
+	</div>
+</span>
+<!-- END ContentRecommendation.jsp -->
+
+							</div>
+						</div>
+						<!-- End Masthead Logo Widget -->
+
+						<!-- Masthead Links Widget -->
+
+						<div class="widget_masthead_links_position" role="navigation">
+							<div id="widget_masthead_links">
+								<div class="left">
+									<div id="masthead_espot">
+<!-- BEGIN ContentRecommendation.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">ContentRecommendation.jsp</div>
+</span>
+<!-- END ContentRecommendation.jsp -->
+									</div>																		
+									<div class="masthead_links">
+										<div class="content">
+											<span class="masthead_links_container">
+													<span class="masthead_links_item"><a id="MyAccountLink" href="MyAccount.html"><span>My Account<span title="HEADER_MY_ACCOUNT" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="HEADER_MY_ACCOUNT"></span></span></a></span><span> |<span title="DIVIDING_BAR" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIVIDING_BAR"></span>
+													</span><span class="masthead_links_item"><a id="ShoppingListDisplayLink" href="Wishlist.html"><span>Wish List<span title="HEADER_SHOPPING_LIST" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="HEADER_SHOPPING_LIST"></span></span></a></span><span> |<span title="DIVIDING_BAR" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIVIDING_BAR"></span>
+</span><!-- BEGIN LanguageCurrency.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">LanguageCurrency.jsp</div>
+<div id="widget_language_and_currency" style="display:none;">
+</div>
+<span class="masthead_links_item"><a id="LanguageCurrencyChangeLink" href="javaScript: shoppingActionsJS.showWCDialogPopup('widget_language_and_currency_popup');"><span>Language/Currency<span title="LC_LANGUAGE_CURRENCY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="LC_LANGUAGE_CURRENCY"></span></span></a></span> |
+</span>
+<!-- END LanguageCurrency.jsp -->
+
+												<span class="masthead_links_item"><a id="SignOutLink" href="SignIn.html"><span>Sign Out<span title="HEADER_SIGN_OUT" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="HEADER_SIGN_OUT"></span></span></a></span>
+											</span>
+										</div>
+									</div>
+									<div class="masthead_social">
+										<div class="content">
+											<span class="masthead_links_container">
+													<span class="masthead_links_item">		
+<!-- BEGIN FacebookConnect.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">FacebookConnect.jsp</div>
+<!-- BEGIN FacebookConnect_UI.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">FacebookConnect_UI.jsp</div>
+ 
+<span id="SocialIntegrationArea">
+	<span style="display: inline;" id="header-fb-login-button-span"> 
+		<a tabindex="0" onclick="" id="headerFBlogin"><span>
+		    Connect to Facebook<span title="HEADER_CONNECT_TO_FACEBOOK" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="HEADER_CONNECT_TO_FACEBOOK"></span>
+			</span><img class="img_align" id="WC_FacebookConnectDisconnectDisplayImg_1" src="../StoreAssets/images/socialIntegration/social_networking.png" alt=""></a>
+	</span> 
+	<span style="display: none;" id="header-fb-logout-button-span" class="nodisplay"> 
+		<span id="header_menu_facebook_loaded" style="display:none;">
+			<span id="menu_DropDown_Facebook" class="headerMenu_DropDown_Facebook" onmouseover="javascript:fbIntegrationJS.openDropDown();" onmouseleave="javascript:fbIntegrationJS.closeDropDown();" dojotype="wc.widget.WCDropDownButton" title="Use shift plus enter key then press the down arrow key to disconnect from Facebook." alt="Use shift plus enter key then press the down arrow key to disconnect from Facebook.">
+			    <span id="WC_CachedHeaderDisplayFacebook_div" class="dropdown" onitemhover="javascript:fbIntegrationJS.menuItemHover();" dojotype="wc.widget.WCMenu" onmouseleave="javascript:fbIntegrationJS.closeDropDown();" maxitemspercolumn="6" forcedisplayshowall="false" showalltext="Show All Facebook options">
+			        <span id="WC_CachedHeaderDisplayFacebook_div_2" dojotype="dijit.MenuItem" onclick="javascript:fbIntegrationJS.onClickFacebookLogout();return false;">
+			            <span>
+			                <a href="javascript:void(0);" tabindex="0" class="h_tnav_but" id="headerFBlogout"><span>
+								Disconnect from Facebook<span title="HEADER_DISCONNECT_FROM_FACEBOOK" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="HEADER_DISCONNECT_FROM_FACEBOOK"></span>
+							</span></a>
+			            </span>
+			        </span>
+			    </span>
+			<span class="elementKeyIcon" title="SHOW_ALL_FACEBOOK_OPTIONS=Show All Facebook options"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></span>
+		<span class="elementKeyIcon" title="FACEBOOK_DROPDOWN_ACTIVATE=Use shift plus enter key then press the down arrow key to disconnect from Facebook."><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></span>		
+	</span>
+</span>	
+</span>
+<!-- END FacebookConnect_UI.jsp -->
+
+</span>
+<!-- END FacebookConnect.jsp -->
+
+													</span><span>|<span title="DIVIDING_BAR" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIVIDING_BAR"></span>
+												</span><span class="masthead_links_item">1-800-555-1234</span><span>
+													|<span title="DIVIDING_BAR" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIVIDING_BAR"></span>
+													</span><span class="masthead_links_item"><a id="StoreLocatorLink" href="StoreLocator.html"><span>Store Locator<span title="HEADER_STORE_LOCATOR" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="HEADER_STORE_LOCATOR"></span></span></a></span>
+											</span>
+										</div>
+									</div>												
+								</div>
+								<div class="right" style="display:none;">
+									<div class="social_avatar">
+									</div>
+								</div>
+								<div class="clear_float"></div>
+							</div>
+						</div>
+						<!-- End Masthead Links Widget -->
+
+						<!-- MiniShopCart Widget -->
+
+						<div class="widget_minishopcart_position">
+<span id="MiniShoppingCart_Label" class="spanacce"><span>Shopping Cart<span title="ACCE_Region_Shopping_Cart_Content" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="ACCE_Region_Shopping_Cart_Content"></span></span></span>
+<div class="dijitContentPane" title="" dojotype="wc.widget.RefreshArea" id="MiniShoppingCart" widgetid="MiniShoppingCart" controllerid="MiniShoppingCartController" ariamessage="Shopping Cart Display Updated" arialiveid="ariaMessage" role="region" aria-labelledby="MiniShoppingCart_Label">
+<script type="text/javascript">
+  dojo.addOnLoad(function() {
+		setMiniShopCartControllerURL(getAbsoluteURL()+'MiniShopCartDisplayView?storeId=10152&catalogId=10001&langId=-1');
+	});
+</script>
+<div id="widget_minishopcart" role="button" tabindex="0" onclick="javascript:showMiniShopCartDropDown('widget_minishopcart','quick_cart_container','orderItemsList');" onkeypress="javascript:showMiniShopCartDropDownEvent(event,'widget_minishopcart','quick_cart_container','orderItemsList');" onmouseover="javascript:showMiniShopCartDropDown('widget_minishopcart','quick_cart_container','orderItemsListAutoClose');">
+	<div id="miniShopCartLeftCorner" class="left_border"></div>
+	<div id="miniShopCartBody" class="content">
+		<div class="info">
+			<div class="subtotal"><span>Subtotal:<span title="MSC_SUBTOTAL" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MSC_SUBTOTAL"></span> </span><span id="minishopcart_subtotal">$6,497.76</span></div>
+			<div class="cart"><span>Cart:<span title="MSC_SHOPPING_CART" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MSC_SHOPPING_CART"></span> 
+				</span><span id="minishopcart_total"><span>
+					40 item(s)<span title="MSC_ITEMS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MSC_ITEMS"></span>
+				</span></span>
+			</div>
+		</div>
+		<div class="cart_icon"></div>
+		<div class="arrow"></div>
+	</div>
+	<div id="miniShopCartRightCorner" class="right_border"></div>
+	<div class="clear_float"></div>												
+</div>
+<div id="placeHolder"></div>
+<div id="quick_cart_container">
+	<span class="spanacce" id="quick_cart_container_ACCE_Label"><span>Shopping Cart Popup<span title="ACCE_MSC_SHOPPING_CART_POPUP_REGION" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="ACCE_MSC_SHOPPING_CART_POPUP_REGION"></span></span></span>
+	<div id="quick_cart">
+		<div id="MiniShopCartProductsList" style="display:none">
+			<div id="widget_minishopcart_popup">
+				<div class="top">
+					<div class="left_border"></div>
+					<div class="middle_tile"></div>
+					<div class="right_border"></div>
+				</div>
+				<div class="middle">
+					<div class="left_border">
+						<div class="right_border">
+							<div class="content">
+							<a id="MiniShopCartCloseButton_1" href="javascript:dijit.byId('quick_cart_container').hide();" class="close_control">
+								<div class="icon"></div>
+								<span class="close"><span>Close<span title="CLOSE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="CLOSE"></span></span></span>
+							</a>
+								<div class="notification"><span>Items in your cart:<span title="MSC_ITEMS_IN_CART" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MSC_ITEMS_IN_CART"></span></span></div>
+											<div class="products">
+												
+													<div class="product">
+														<div class="product_image">
+
+															<a id="MiniShopCartProdImg_95064" href="HermitageRuchedBodiceCocktailDressAuroraESite.html">
+																<img src="../StoreAssets/images/catalog/apparel/women/wbg006_handbags/70x70/wbg006_0601.jpg" alt="Albini Fashionable Black Leather Bag">
+															</a>
+														</div>
+														<div class="product_name">
+															<a id="MiniShopCartProdName_95064" href="HermitageRuchedBodiceCocktailDressAuroraESite.html">Albini Fashionable Black Leather Bag</a>
+														</div>
+														<div class="item_spacer_3px"></div>
+														<span class="product_quantity"><span>QTY:<span title="MSC_QTY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MSC_QTY"></span> 1</span></span>
+														<span class="product_price">$90.00</span>
+													</div>
+												
+													<div class="product">
+														<div class="product_image">
+
+															<a id="MiniShopCartProdImg_95065" href="HermitageRuchedBodiceCocktailDressAuroraESite.html">
+																<img src="../StoreAssets/images/catalog/apparel/women/wbg006_handbags/70x70/wbg006_0602.jpg" alt="Versatil Classic White Bag">
+															</a>
+														</div>
+														<div class="product_name">
+															<a id="MiniShopCartProdName_95065" href="HermitageRuchedBodiceCocktailDressAuroraESite.html">Versatil Classic White Bag</a>
+														</div>
+														<div class="item_spacer_3px"></div>
+														<span class="product_quantity"><span>QTY:<span title="MSC_QTY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MSC_QTY"></span> 1</span></span>
+														<span class="product_price">$60.00</span>
+													</div>
+												
+													<div class="product">
+														<div class="product_image">
+
+															<a id="MiniShopCartProdImg_95067" href="HermitageRuchedBodiceCocktailDressAuroraESite.html">
+																<img src="../StoreAssets/images/catalog/apparel/women/wbg006_handbags/70x70/wbg006_0606.jpg" alt="Borsati Red Shiny Bag">
+															</a>
+														</div>
+														<div class="product_name">
+															<a id="MiniShopCartProdName_95067" href="HermitageRuchedBodiceCocktailDressAuroraESite.html">Borsati Red Shiny Bag</a>
+														</div>
+														<div class="item_spacer_3px"></div>
+														<span class="product_quantity"><span>QTY:<span title="MSC_QTY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MSC_QTY"></span> 1</span></span>
+														<span class="product_price">$70.00</span>
+													</div>
+												
+													<div class="product">
+														<div class="product_image">
+
+															<a id="MiniShopCartProdImg_95068" href="HermitageRuchedBodiceCocktailDressAuroraESite.html">
+																<img src="../StoreAssets/images/catalog/apparel/women/wbg006_handbags/70x70/wbg006_0609.jpg" alt="Albini Hawaiin Satchel Bag">
+															</a>
+														</div>
+														<div class="product_name">
+															<a id="MiniShopCartProdName_95068" href="HermitageRuchedBodiceCocktailDressAuroraESite.html">Albini Hawaiin Satchel Bag</a>
+														</div>
+														<div class="item_spacer_3px"></div>
+														<span class="product_quantity"><span>QTY:<span title="MSC_QTY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MSC_QTY"></span> 1</span></span>
+														<span class="product_price">$75.00</span>
+													</div>
+												
+											</div>
+											
+												<div class="view_more">
+													<span class="view_more_items"><a id="MiniShopCartMoreLink" href="ShoppingCart.html"><span>view more items<span title="MSC_VIEW_MORE_ITEMS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MSC_VIEW_MORE_ITEMS"></span></span></a></span>
+												</div>
+
+												<div class="subtotal adjustment_price">
+													<span class="product_price">
+														($219.80)
+																											
+													</span>
+													<a class="hover_underline"href="DiscountDetails.html" >
+														Save 20% on Furniture!
+													</a>
+												</div>
+
+											<div class="subtotal">
+												<span class="product_price">$6,497.76</span>
+												<span><span>
+													Subtotal for 40 item(s)<span title="MSC_SUBTOTAL_FOR_ITEMS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MSC_SUBTOTAL_FOR_ITEMS"></span>
+												</span></span>
+											</div>
+								<div class="go_to_cart">
+									<a id="GotoCartButton1" href="ShoppingCart.html" class="button_primary" tabindex="0">
+										<div class="left_border"></div>
+										<div class="button_text"><span>Go to Cart<span title="MSC_GO_TO_CART" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MSC_GO_TO_CART"></span></span></div>
+										<div class="right_border"></div>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="bottom">
+					<div class="left_border"></div>
+					<div class="middle_tile"></div>
+					<div class="right_border"></div>
+				</div>
+			</div>
+		</div>
+		<div id="MiniShopCartProductAdded" style="display:none">
+			<div id="widget_minishopcart_popup_1">
+				<div class="top">
+					<div class="left_border"></div>
+					<div class="middle_tile"></div>
+					<div class="right_border"></div>
+				</div>
+				<div class="middle">
+					<div class="left_border">
+						<div class="right_border">
+							<div class="content">
+								<a id="MiniShopCartCloseButton_2" href="javascript:dijit.byId('quick_cart_container').hide();" class="close_control">
+									<div class="icon"></div>
+									<span class="close"><span>Close<span title="CLOSE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="CLOSE"></span></span></span>
+								</a>
+								<div class="notification"><span>This item has been successfully added:<span title="MSC_ITEM_ADDED" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MSC_ITEM_ADDED"></span></span></div>
+								<div class="products added">
+								</div>
+								<div class="go_to_cart">
+									<a id="GotoCartButton2" href="ShoppingCart.html" class="button_primary" tabindex="0">
+										<div class="left_border"></div>
+										<div class="button_text"><span>Go to Cart<span title="MSC_GO_TO_CART" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MSC_GO_TO_CART"></span></span></div>
+										<div class="right_border"></div>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="bottom">
+					<div class="left_border"></div>
+					<div class="middle_tile"></div>
+					<div class="right_border"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+						<span class="elementKeyIcon" title="ACCE_Status_Shopping_Cart_Content_Updated=Shopping Cart Display Updated"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+						<!-- End MiniShopCart Widget -->
+
+					</div>
+					<div class="navigation">
+						<!-- Department Selection Widget -->
+
+						<div class="widget_departments_position" role="navigation" aria-label="Departments">
+<script type="text/javascript">
+	dojo.addOnLoad(function() {
+		if(document.getElementById("widget_departments")){
+			document.getElementById("widget_departments").style.display = "block";
+		}
+		DepartmentJS.init();
+		wc.render.getRefreshControllerById("DepartmentDropdownController").url = getAbsoluteURL()+"DepartmentDropdownView.html";
+	});
+	dojo.addOnUnload(function() {
+		if(document.getElementById("drop_down")){
+			document.getElementById("drop_down").style.display = "none";
+		}
+	});
+</script>
+<div id="widget_departments" tabindex="0" title="Departments" style="display: block;">
+		<div class="left_border"></div>
+		<div class="content">
+			<span class="label"><span>Departments<span title="DEPARTMENTS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DEPARTMENTS"></span></span></span>
+			<div class="arrow"></div>
+		</div>
+		<div class="right_border"></div>
+		<div class="clear_float"></div>
+		<div role="group" title="" class="drop_down dijitContentPane" id="drop_down" dojotype="wc.widget.RefreshArea" widgetid="drop_down" controllerid="DepartmentDropdownController" style="display: none;">
+<!-- BEGIN Department.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">Department.jsp</div>
+</span>
+<!-- END Department.jsp -->
+		</div>
+</div>
+						<span class="elementKeyIcon" title="DEPARTMENT_MENU_ACCE=Departments"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+						<!-- End Department Selection Widget -->
+
+						<!-- Search Widget -->
+
+						<div id="searchComponent">
+<!-- BEGIN Search.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">Search.jsp</div>
+		<meta name="CommerceSearch" content="storeId_10152">
+		<!-- Begin Search Widget -->
+
+		<script type="text/javascript">
+				dojo.addOnLoad(function(){
+					SearchJS.init();
+					SearchJS.setCachedSuggestionsURL('');
+					SearchJS.setAutoSuggestURL('');
+				});
+
+				// The primary Array to hold all static search suggestions
+				var staticContent = new Array();
+
+				// The titles of each search grouping
+				var staticContentHeaders = new Array();
+		</script>
+<form name="CatalogSearchForm" action="SearchResults.html" method="get" id="CatalogSearchForm">
+	<!-- Search Widget -->
+
+	<div class="widget_search_position" role="search">
+		<div id="widget_search">
+			<div class="left_border"></div>
+			<div class="content">
+				<label for="SimpleSearchForm_SearchTerm" class="nodisplay"><span>Search<span title="SEARCH_CATALOG" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SEARCH_CATALOG"></span></span></label>
+				<input class="search_input gray_color" placeholder="Search" name="searchTerm" id="SimpleSearchForm_SearchTerm" autocomplete="off" maxlength="65" tabindex="0" title="Press the Up or Down Arrow keys to navigate through the search suggestions. Suggested site content and search history, if any, are included after the suggestions.  Press the Enter key for all search results." onkeypress="return SearchJS._onKeyPress(event);" value="Search" type="text">
+				<div role="button" aria-labelledby="searchDepartmentList_ACCE_Label" onclick="$('searchDepartmentList').style.display='block'" onfocus="$('searchDepartmentList').style.display='block'; dojo.byId('searchDepartmentList_0').focus();" tabindex="0" class="all_departments">
+					<span id="searchDepartmentLabel"><span>All Departments<span title="SEARCH_ALL_DEPARTMENTS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SEARCH_ALL_DEPARTMENTS"></span></span></span>
+				</div>
+				<input id="search_categoryId" name="categoryId" value="" type="hidden">
+				<span class="spanacce" id="searchDepartmentList_ACCE_Label"><span>Search in<span title="SEARCH_IN" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SEARCH_IN"></span></span></span>
+				<div class="widget_search_departments_dropdown_position" role="menu" aria-labelledby="searchDepartmentList_ACCE_Label" onblur="clearTimeout(SearchJS.searchDepartmentHoverTimeout);SearchJS.searchDepartmentHoverTimeout=setTimeout('SearchJS.hideSearchDepartmentList()',300)" onmouseout="clearTimeout(SearchJS.searchDepartmentHoverTimeout);SearchJS.searchDepartmentHoverTimeout=setTimeout('SearchJS.hideSearchDepartmentList()',300)" onmouseover="clearTimeout(SearchJS.searchDepartmentHoverTimeout);" id="searchDepartmentList">
+					<div class="widget_search_departments_dropdown">
+						<div class="top">
+							<div class="left_border"></div>
+							<div class="middle"></div>
+							<div class="right_border"></div>
+						</div>
+						<div class="clear_float"></div>
+						<div class="content_left_border">
+							<div class="content_right_border">
+								<ul id="searchDepartmentList_root">
+									<li><a  id="searchDepartmentList_0" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 0, 6, '', this);" onmousedown="SearchJS.searchDepartmentSelect('', this)" onmouseover="this.className='enabled'" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseout="this.className='disabled'"><span>All Departments<span title="SEARCH_ALL_DEPARTMENTS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SEARCH_ALL_DEPARTMENTS"></span></span></a></li>
+										<li><a  id="searchDepartmentList_1" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 1, 6, '10001', this);" onmousedown="SearchJS.searchDepartmentSelect('10001', this)" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseover="this.className='enabled'" onmouseout="this.className='disabled'">Apparel</a></li>
+										<li><a  id="searchDepartmentList_2" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 2, 6, '10027', this);" onmousedown="SearchJS.searchDepartmentSelect('10027', this)" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseover="this.className='enabled'" onmouseout="this.className='disabled'">Electronics</a></li>
+										<li><a  id="searchDepartmentList_3" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 3, 6, '10033', this);" onmousedown="SearchJS.searchDepartmentSelect('10033', this)" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseover="this.className='enabled'" onmouseout="this.className='disabled'">Grocery</a></li>
+										<li><a  id="searchDepartmentList_4" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 4, 6, '10038', this);" onmousedown="SearchJS.searchDepartmentSelect('10038', this)" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseover="this.className='enabled'" onmouseout="this.className='disabled'">Health</a></li>
+										<li><a  id="searchDepartmentList_5" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 5, 6, '10041', this);" onmousedown="SearchJS.searchDepartmentSelect('10041', this)" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseover="this.className='enabled'" onmouseout="this.className='disabled'">Home &amp; Furnishing</a></li>
+										<li><a  id="searchDepartmentList_6" role="menuitem" onkeypress="SearchJS.searchDepartmentKeyPressed(event, 6, 6, '10048', this);" onmousedown="SearchJS.searchDepartmentSelect('10048', this)" onfocus="this.className='enabled'" onblur="this.className='disabled'" onmouseover="this.className='enabled'" onmouseout="this.className='disabled'">Newsletters &amp; Magazines</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="clear_float"></div>
+						<div class="bottom">																
+							<div class="left_border"></div>
+							<div class="middle"></div>
+							<div class="right_border"></div>
+						</div>
+						<div class="clear_float"></div>	
+					</div>
+				</div>
+				<input id="search_submit" class="search_submit" onmouseout="javascript: this.src='../StoreAssets/images/colors/color1/widget_search/search_submit.png'" onmouseover="javascript: this.src='../StoreAssets/images/colors/color1/widget_search/search_submit_hover.png'" onblur="javascript: this.src='../StoreAssets/images/colors/color1/widget_search/search_submit.png'" onfocus="javascript: this.src='../StoreAssets/images/colors/color1/widget_search/search_submit_hover.png'" alt="Search" src="../StoreAssets/images/colors/color1/widget_search/search_submit.png" value="Search" type="image">
+			<span class="elementKeyIcon" title="SEARCH_CATALOG=Search, SEARCH_SUGGESTION=Press the Up or Down Arrow keys to navigate through the search suggestions. Suggested site content and search history, if any, are included after the suggestions.  Press the Enter key for all search results."><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div> <!-- content -->
+
+			<div class="right_border"></div>
+			<div class="clear_float"></div>
+		</div> <!-- widget_search -->
+
+	</div> <!-- widget_search_position -->
+
+	<!-- Start SearchDropdownWidget -->
+
+	<div id="autoSuggest_Result_div" style="display:none;">
+		<div id="widget_search_dropdown" class="widget_search_dropdown_position">
+			<div class="widget_search_dropdown">
+				<!-- Top Border Styling -->
+
+				<div class="top">
+					<div class="left_border"></div>
+					<div class="middle"></div>
+					<div class="right_border"></div>
+				</div>
+				<div class="clear_float"></div>
+				<!-- Main Content Area -->
+
+				<div class="content_left_border">
+					<div class="content_right_border">
+						<div id="AutoSuggestDiv" class="content" role="region" aria-required="true" aria-labelledby="AutoSuggestDiv" onmouseover="SearchJS.autoSuggestHover = true;" onmouseout="SearchJS.autoSuggestHover = false; document.getElementById('SimpleSearchForm_SearchTerm').focus();">
+								<span id="autoSuggestDynamic_Result_div_ACCE_Label" class="spanacce"><span>Suggested keywords menu<span title="SEARCH_AUTO_SUGGEST_ACCE_REGION" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SEARCH_AUTO_SUGGEST_ACCE_REGION"></span></span></span>  
+								<div class="dijitContentPane" title="" dojotype="wc.widget.RefreshArea" widgetid="autoSuggestDynamic_Result_div" controllerid="AutoSuggestDisplayController" id="autoSuggestDynamic_Result_div" role="region" aria-live="polite" aria-atomic="true" aria-relevant="all" aria-labelledby="autoSuggestDynamic_Result_div_ACCE_Label">
+								</div>
+								<div id="autoSuggestStatic_1"></div>
+								<div id="autoSuggestStatic_2"></div>
+								<div id="autoSuggestStatic_3"></div>
+								<div id="autoSuggestHistory"></div>
+								<div class="heading"> <a id="advancedSearch" onclick="" href="AdvancedSearch.html"><div>Advanced Search</div></a> </div>
+						<!-- End content Section -->
+
+						</div>
+					<!-- End content_right_border -->
+
+					</div>
+				<!-- End content_left_border -->
+
+				</div>
+				<!-- Bottom Border Styling -->
+
+				<div class="bottom">
+					<div class="left_border"></div>
+					<div class="middle"></div>
+					<div class="right_border"></div>
+				</div>
+			</div>
+		</div>
+	<!-- End SearchDropdownWidget -->
+
+	</div>
+	<!-- Refresh area to retrieve cached suggestions -->
+
+	<span id="autoSuggestCachedSuggestions_div_ACCE_Label" class="spanacce"><span>Suggested site content and search history menu<span title="SEARCH_AUTO_SUGGEST_CACHED_ACCE_REGION" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SEARCH_AUTO_SUGGEST_CACHED_ACCE_REGION"></span></span></span>
+	<div class="dijitContentPane" title="" dojotype="wc.widget.RefreshArea" widgetid="autoSuggestCachedSuggestions_div" controllerid="AutoSuggestCachedSuggestionsController" id="autoSuggestCachedSuggestions_div" role="region" aria-live="polite" aria-atomic="true" aria-relevant="all" style="display: none;" aria-labelledby="autoSuggestCachedSuggestions_div_ACCE_Label">
+	</div>
+	<input name="storeId" value="10152" type="hidden">
+	<input name="catalogId" value="10001" type="hidden">
+	<input name="langId" value="-1" type="hidden">
+	<input name="pageSize" value="12" type="hidden">
+	<input name="beginIndex" value="0" type="hidden">
+	<input name="sType" value="SimpleSearch" type="hidden">
+	<input name="resultCatEntryType" value="2" type="hidden">
+	<input name="showResultsPage" value="true" type="hidden">
+	<input name="searchSource" value="Q" type="hidden">
+	<input name="pageView" value="" type="hidden">
+	<span id="searchTextHolder" class="nodisplay"><span>Search<span title="SEARCH_CATALOG" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SEARCH_CATALOG"></span></span></span>
+</form>
+	<!-- End Search Widget -->
+
+</span>
+<!-- END Search.jsp -->
+
+						</div>
+						<!-- End Search Widget -->
+
+					<span class="elementKeyIcon" title="DEPARTMENTS=Departments"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>			
+					<div class="header_espot_container">		
+<!-- BEGIN ContentRecommendation.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">ContentRecommendation.jsp</div>
+</span>
+<!-- END ContentRecommendation.jsp -->
+					</div>					
+				</div>
+				<!-- End Masthead -->
+
+				<!-- End Header Content -->
+
+			</div>
+		</div>				
+	</div>
+	<!--For border customization -->
+
+	<div class="header_bottom">
+		<div class="left_border"></div>
+		<div class="middle"></div>
+		<div class="right_border"></div>
+	</div>
+</div>
+<div id="productIdQuickInfo" style="display:none"></div>
+</span>
+<!-- END Header.jsp -->
+
+	</div>
+	<!-- Header Nav End -->
+
+	<!-- Main Content Start -->
+
+	<div class="content_wrapper_position" role="main">
+		<div class="content_wrapper">
+			<div class="content_left_shadow">
+				<div class="content_right_shadow">
+					<div class="main_content">
+<!-- BEGIN BreadCrumbTrailDisplay.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">BreadCrumbTrailDisplay.jsp</div>
+		<div id="breadcrumb">
+			<div class="title" id="WC_MyAccountDisplay_div_1">
+				<h1 class="myaccount_title">
+					<a id="MyAccountBreadcrumbLink" class="landingpage_link" href="MyAccount.html"><span> My Account<span title="MA_MYACCOUNT" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_MYACCOUNT"></span></span></a>
+					<span id="OrderHistoryBreadcrumb1" class="myaccount_breadcrumb" style="display:none;">
+						<a id="OrderHistoryMyAccountBreadcrumbLink1" class="landingpage_link" href="MyAccount.html"><span> My Account<span title="MA_MYACCOUNT" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_MYACCOUNT"></span></span></a>
+						<span class="divider"><span>|<span title="DIVIDING_BAR" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIVIDING_BAR"></span></span></span>
+						<a id="OrderHistoryBreadcrumbLink1" class="current_breadcrumb" ><span>Order History<span title="MA_ORDER_HISTORY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_ORDER_HISTORY"></span></span></a>
+					</span>
+					<span id="OrderHistoryBreadcrumb" class="myaccount_breadcrumb" style="display:none;">
+						<a id="OrderHistoryMyAccountBreadcrumbLink" class="landingpage_link" href="MyAccount.html"><span> My Account<span title="MA_MYACCOUNT" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_MYACCOUNT"></span></span></a>
+						<span class="divider"><span>|<span title="DIVIDING_BAR" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIVIDING_BAR"></span></span></span>
+						<a id="OrderHistoryBreadcrumbLink" class="sub_breadcrumb" href="OrderHistory.html"><span>Order History<span title="MA_ORDER_HISTORY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_ORDER_HISTORY"></span></span></a>
+						<span class="divider"><span>|<span title="DIVIDING_BAR" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIVIDING_BAR"></span></span></span>
+						<a id="OrderHistoryDetailBreadcrumbLink" title="Order History Details Link" class="current_breadcrumb" ></a>
+					</span>
+						<span id="RecurringOrderBreadcrumb1" class="myaccount_breadcrumb" style="display:none;">
+							<a id="RecurringOrderMyAccountBreadcrumbLink1" class="landingpage_link" href="MyAccount.html"><span> My Account<span title="MA_MYACCOUNT" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_MYACCOUNT"></span></span></a>
+							<span class="divider"><span>|<span title="DIVIDING_BAR" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIVIDING_BAR"></span></span></span>
+							<a id="RecurringOrderBreadcrumbLink1" class="current_breadcrumb" ><span>Recurring Orders<span title="MA_SCHEDULEDORDERS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_SCHEDULEDORDERS"></span></span></a>
+						</span>
+						<span id="RecurringOrderBreadcrumb" class="myaccount_breadcrumb" style="display:none;">
+							<a id="RecurringOrderMyAccountBreadcrumbLink" class="landingpage_link" href="MyAccount.html"><span> My Account<span title="MA_MYACCOUNT" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_MYACCOUNT"></span></span></a>
+							<span class="divider"><span>|<span title="DIVIDING_BAR" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIVIDING_BAR"></span></span></span>
+							<a id="RecurringOrderBreadcrumbLink" class="sub_breadcrumb" href="RecurringOrders.html"><span>Recurring Orders<span title="MA_SCHEDULEDORDERS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_SCHEDULEDORDERS"></span></span></a>
+							<span class="divider"><span>|<span title="DIVIDING_BAR" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIVIDING_BAR"></span></span></span>
+							<a id="RecurringOrderDetailBreadcrumbLink" class="current_breadcrumb" ></a>
+						</span>
+						<span id="SubscriptionBreadcrumb1" class="myaccount_breadcrumb" style="display:none;">
+							<a id="SubscriptionMyAccountBreadcrumbLink1" class="landingpage_link" href="MyAccount.html"><span> My Account<span title="MA_MYACCOUNT" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_MYACCOUNT"></span></span></a>
+							<span class="divider"><span>|<span title="DIVIDING_BAR" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIVIDING_BAR"></span></span></span>
+							<a id="SubscriptionBreadcrumbLink1" class="current_breadcrumb" ><span>Subscriptions<span title="MA_SUBSCRIPTIONS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_SUBSCRIPTIONS"></span></span></a>
+						</span>
+						<span id="SubscriptionBreadcrumb" class="myaccount_breadcrumb" style="display:none;">
+							<a id="SubscriptionMyAccountBreadcrumbLink" class="landingpage_link" href="MyAccount.html"><span> My Account<span title="MA_MYACCOUNT" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_MYACCOUNT"></span></span></a>
+							<span class="divider"><span>|<span title="DIVIDING_BAR" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIVIDING_BAR"></span></span></span>
+							<a id="SubscriptionBreadcrumbLink" class="sub_breadcrumb" href="Subscriptions.html"><span>Subscriptions<span title="MA_SUBSCRIPTIONS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_SUBSCRIPTIONS"></span></span></a>
+							<span class="divider"><span>|<span title="DIVIDING_BAR" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIVIDING_BAR"></span></span></span>
+							<a id="SubscriptionDetailBreadcrumbLink" class="current_breadcrumb" ></a>
+						</span>
+				</h1>
+			</div>
+		</div>
+</span>
+<!-- END BreadCrumbTrailDisplay.jsp -->
+
+						<div class="container_content_leftsidebar">													
+						  	<div class="left_column">
+<!-- BEGIN LeftSidebarDisplay.jspf -->
+
+<!-- BEGIN CachedLeftSidebarDisplay.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">CachedLeftSidebarDisplay.jsp</div>
+<script type="text/javascript">
+	dojo.addOnLoad(function() {
+		CommonControllersDeclarationJS.setControllerURL('BrowsingHistoryController','');
+	});
+</script>
+			<div class="widget_left_nav_position" id="WC_LeftSidebarDisplay_div_1" role="navigation">
+				<div class="widget_left_nav" id="WC_LeftSidebarDisplay_div_2">
+<!-- BEGIN MyAccountNavDisplay.jspf-->
+
+<script type="text/javascript" src="../StoreAssets/javascript/Analytics.js"></script>
+	<script type="text/javascript">
+		dojo.addOnLoad(function() {
+		analyticsJS.loadMyAccountPageHandlers();
+					  });
+	</script>
+<div class="top">
+	<div class="left_border"></div>
+	<div class="middle"></div>
+	<div class="right_border"></div>
+</div>
+<div class="clear_float"></div>
+<div class="content_left_border">
+	<div class="content_right_border">
+		<div class="content">
+			<div class="content_section">
+				<div class="header bottom_border">
+					<span class="header_title left"><span>SETTINGS<span title="MA_SETTINGS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_SETTINGS"></span></span></span>
+				</div>
+				<div class="section_list bottom_border">
+					<ul>
+						<li>
+							<a href="PersonalInformation.html" id="WC_MyAccountSidebarDisplayf_links_1"><span>Personal Information<span title="MA_PERSONAL_INFO" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_PERSONAL_INFO"></span></span></a>
+						</li>
+						<li>
+							<a href="AddressBook.html" id="WC_MyAccountSidebarDisplayf_links_2"><span>My Address Book<span title="MA_ADDRESS_BOOK" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_ADDRESS_BOOK"></span></span></a>
+						</li>					
+							<li>
+								<a href="QuickCheckoutProfile.html" id="WC_MyAccountSidebarDisplayf_links_3"><span>Quick Checkout Profile<span title="MA_QUICK_CHECKOUT" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_QUICK_CHECKOUT"></span></span></a>
+							</li>								
+					</ul>
+				</div>
+					<div class="header bottom_border">
+						<span class="header_title left"><span>WISH LISTS<span title="MA_WISHLISTS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_WISHLISTS"></span></span></span>
+					</div>
+					<div class="section_list bottom_border">
+						<ul>
+							<li>
+								<a href="Wishlist.html" id="WC_MyAccountSidebarDisplayf_links_4"><span>Personal Wish List<span title="MA_PERSONAL_WL" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_PERSONAL_WL"></span></span></a>
+							</li>
+						</ul>
+					</div>
+					<div class="header bottom_border">
+						<span class="header_title left"><span>MY ORDERS<span title="MA_MYORDERS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_MYORDERS"></span></span></span>
+					</div>
+					<div class="section_list bottom_border">
+						<ul>
+							<li>
+								<a href="OrderHistory.html" id="WC_MyAccountSidebarDisplayf_links_5"><span>Order History<span title="MA_ORDER_HISTORY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_ORDER_HISTORY"></span></span></a>
+							</li>
+								<li>
+									<a href="RecurringOrders.html" id="WC_MyAccountSidebarDisplayf_links_5a"><span>Recurring Orders<span title="MA_SCHEDULEDORDERS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_SCHEDULEDORDERS"></span></span></a>
+								</li>
+								<li>
+									<a href="Subscriptions.html" id="WC_MyAccountSidebarDisplayf_links_5b"><span>Subscriptions<span title="MA_SUBSCRIPTIONS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_SUBSCRIPTIONS"></span></span></a>
+								</li>
+						</ul>
+					</div>
+					<div class="header bottom_border">
+						<span class="header_title left"><span>MY COUPONS<span title="MA_MYCOUPONS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MA_MYCOUPONS"></span></span></span>
+					</div>
+					<div class="section_list bottom_border">
+						<ul>
+							<li>
+								<a href="MyCoupons.html" id="WC_MyAccountSidebarDisplayf_links_10"><span>My Coupons<span title="MYACCOUNT_MY_COUPONS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="MYACCOUNT_MY_COUPONS"></span></span></a>
+							</li>
+						</ul>
+					</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="bottom">
+	<div class="left_border"></div>
+	<div class="middle"></div>
+	<div class="right_border"></div>
+</div>
+<!-- END MyAccountNavDisplay.jspf-->
+
+			</div>
+			</div>
+</span>
+<!-- END CachedLeftSidebarDisplay.jsp -->
+
+<!-- END LeftSidebarDisplay.jspf -->
+
+						  	</div>
+							<div class="right_column">
+								<!-- Main Content Start -->
+
+								<span id="addressBookMainDiv_ACCE_Label" class="spanacce"><span>Address Book List<span title="ACCE_Region_Address_List" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="ACCE_Region_Address_List"></span></span></span>
+								<div class="dijitContentPane" title="" id="addressBookMainDiv" dojotype="wc.widget.RefreshArea" widgetid="addressBookMainDiv" objectid="addressBookMain" controllerid="addressBookMainController" ariamessage="Address Book List Updated" arialiveid="ariaMessage" role="region" aria-labelledby="addressBookMainDiv_ACCE_Label">
+<!-- BEGIN AjaxAddressBookForm.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">AjaxAddressBookForm.jsp</div>
+<div id="box">
+	<div class="my_account" id="WC_AjaxAddressBookForm_div_1">
+		<h2 class="myaccount_header">Address Book</h2>
+		<div class="myaccount_subheader" id="WC_AjaxAddressBookForm_div_6">
+			<div class="addrbook_header" id="WC_AjaxAddressBookForm_div_8">
+				<span class="spanacce">
+					<label for="addressId">Address nickname</label>
+				</span>
+				<select width="10" class="drop_down_address_book" name="addressId" id="addressId" onchange="JavaScript:MessageHelper.hideAndClearMessage();AddressBookFormJS.showFooter();
+				wc.render.updateContext('addressBookContext', {'addressId':this.options[this.selectedIndex].value,'type':'edit'});" style="width:180px">
+							<option selected="selected" value="15255">
+								TestUser
+							</option>
+				</select>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</div>
+			<script>
+				var addrData = [];
+			</script>
+			<div class="addrbook_header" id="WC_AjaxAddressBookForm_div_22">
+				<div class="left" id="WC_AjaxAddressBookForm_div_23">
+					<a  role="button" class="button_secondary" id="WC_AjaxAddressBookForm_links_1" onclick="JavaScript:MessageHelper.hideAndClearMessage();AddressBookFormJS.showFooterNew(); dojo.query('#WC_AccountForm_div_9 input').forEach(function(node, index, array) { addrData.push(node.value); node.value=''; });">
+						<div class="left_border"></div>
+						<div class="button_text">Add New</div>												
+						<div class="right_border"></div>
+					</a>
+				</div>
+				<a  role="button" class="button_secondary button_left_padding" id="WC_AjaxAddressBookForm_links_2" onclick="javascript:setCurrentId('WC_AjaxAddressBookForm_links_2'); AddressBookFormJS.newDeleteAddress('addressId','',''); return false;" waistate:controls="addressId">
+					<div class="left_border"></div>
+					<div class="button_text">Remove</div>												
+					<div class="right_border"></div>
+				</a>
+			</div>
+			<br>
+		</div>					
+		<span id="addressIdRefreshArea_ACCE_Label" class="spanacce"><span>Address Book Content<span title="ACCE_Region_Address_Book" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="ACCE_Region_Address_Book"></span></span></span>  
+		<div title="" dojotype="wc.widget.RefreshArea" widgetid="addressIdRefreshArea" objectid="addressId" controllerid="addressBookController" class="body dijitContentPane" id="addressIdRefreshArea2" ariamessage="Address Book Content Display Updated" arialiveid="ariaMessage" role="region" aria-labelledby="addressIdRefreshArea_ACCE_Label">
+<!-- BEGIN AccountForm.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">AccountForm.jsp</div>
+	<form name="AddressForm" method="post" action="PersonChangeServiceAddressAdd" id="AddressForm">
+		<input name="storeId" value="10152" id="WC_AccountForm_inputs_4" type="hidden">
+		<input name="catalogId" value="10001" id="WC_AccountForm_inputs_5" type="hidden">
+		<input name="langId" value="-1" id="WC_AccountForm_inputs_6" type="hidden">
+		<input name="status" value="ShippingAndBilling" id="WC_AccountForm_inputs_7" type="hidden">
+		<input name="addressType" value="" id="WC_AccountForm_inputs_8" type="hidden">
+		<input name="authToken" value="504%2caQrC%2f%2bex%2fomRFNIis88i3fRuoSw%3d" id="WC_AccountForm_inputs_authToken_1" type="hidden">
+		<div class="left" id="WC_AccountForm_div_1">
+		</div>
+		<div class="left" id="WC_AccountForm_div_2">
+			<div class="form_2column" id="WC_AccountForm_div_3">
+			<div class="align" id="WC_AccountForm_div_4">
+			<div id="addr_title"><h2 class="status_msg">TestUser</h2></div>
+				<input var="addresstype" value="ShippingAndBilling" id="WC_AccountForm_inputs_1" type="hidden">
+				<fieldset>
+				<div class="label_spacer" id="WC_AccountForm_div_5">
+					<legend><span>Select if you want this address to be your shipping address, billing address, or both.<span title="AB_CHOOSE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="AB_CHOOSE"></span></span></legend>
+				</div>
+				<div id="WC_AccountForm_div_6">
+					<input name="sbAddress" id="WC_AccountForm_sbAddress_1" class="radio" value="Shipping" type="radio">&nbsp;<label for="WC_AccountForm_sbAddress_1"><span>Shipping address<span title="SHIPPING_ADDRESS2" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="SHIPPING_ADDRESS2"></span></span></label>
+				</div>
+				<div id="WC_AccountForm_div_7">
+					<input name="sbAddress" id="WC_AccountForm_sbAddress_2" class="radio" value="Billing" type="radio">&nbsp;<label for="WC_AccountForm_sbAddress_2"><span>Billing address<span title="BILLINGADDRESS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="BILLINGADDRESS"></span></span></label>
+				</div>
+				<div id="WC_AccountForm_div_8">
+					<input name="sbAddress" id="WC_AccountForm_sbAddress_3" class="radio" value="ShippingAndBilling" checked="checked" type="radio">&nbsp;<label for="WC_AccountForm_sbAddress_3"><span>Shipping and Billing Address<span title="AB_SBADDR" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="AB_SBADDR"></span></span></label>
+				</div>
+				</fieldset>
+			</div>
+				<div id="WC_AccountForm_div_9">	
+					<div class="column" id="WC_AccountForm_div_10">
+						<span class="required-field" id="WC_AccountForm_div_11"> * </span><span>denotes required fields<span title="REQUIRED_FIELDS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="REQUIRED_FIELDS"></span>
+					</span></div>
+					<br clear="all">
+					<div class="column" id="WC_AccountForm_div_12">
+								<div id="WC_AccountForm_div_16">
+									<input name="addressId" value="15255" id="WC_AccountForm_inputs_2" type="hidden">
+									<input name="nickName" value="TestUser" id="WC_AccountForm_inputs_3" type="hidden">
+								</div>
+					</div>
+					<br clear="all">
+<!-- BEGIN AddressBookAddressEntryFormDisplay.jspf -->
+
+<!-- BEGIN AddressBookAddressEntryForm.jspf-->
+
+<!-- BEGIN AddressHelperCountrySelection.jspf-->
+
+<div id="countryListSelectionHelper" style="display: none">
+{ "countries" : [ 
+	{ 
+		"code" : "AF",
+		"displayName" : "Afghanistan",
+		"callingCode" : "+93",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "AL",
+		"displayName" : "Albania",
+		"callingCode" : "+355",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "DZ",
+		"displayName" : "Algeria",
+		"callingCode" : "+213",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "AS",
+		"displayName" : "American Samoa",
+		"callingCode" : "+684",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "AD",
+		"displayName" : "Andorra",
+		"callingCode" : "+376",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "AO",
+		"displayName" : "Angola",
+		"callingCode" : "+244",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "AI",
+		"displayName" : "Anguilla",
+		"callingCode" : "+1-264",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "AQ",
+		"displayName" : "Antarctica",
+		"callingCode" : "+672",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "AG",
+		"displayName" : "Antigua and Barbuda",
+		"callingCode" : "+1-268",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "AR",
+		"displayName" : "Argentina",
+		"callingCode" : "+54",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "AM",
+		"displayName" : "Armenia",
+		"callingCode" : "+374",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "AW",
+		"displayName" : "Aruba",
+		"callingCode" : "+297",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "AU",
+		"displayName" : "Australia",
+		"callingCode" : "+61",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "AT",
+		"displayName" : "Austria",
+		"callingCode" : "+43",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "AZ",
+		"displayName" : "Azerbaijan",
+		"callingCode" : "+994",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "BS",
+		"displayName" : "Bahamas",
+		"callingCode" : "+1-242",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "BH",
+		"displayName" : "Bahrain",
+		"callingCode" : "+973",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "BD",
+		"displayName" : "Bangladesh",
+		"callingCode" : "+880",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "BB",
+		"displayName" : "Barbados",
+		"callingCode" : "+1-246",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "BY",
+		"displayName" : "Belarus",
+		"callingCode" : "+375",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "BE",
+		"displayName" : "Belgium",
+		"callingCode" : "+32",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "BZ",
+		"displayName" : "Belize",
+		"callingCode" : "+501",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "BJ",
+		"displayName" : "Benin",
+		"callingCode" : "+229",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "BM",
+		"displayName" : "Bermuda",
+		"callingCode" : "+1-441",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "BT",
+		"displayName" : "Bhutan",
+		"callingCode" : "+975",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "BO",
+		"displayName" : "Bolivia",
+		"callingCode" : "+591",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "BA",
+		"displayName" : "Bosnia and Herzegovina",
+		"callingCode" : "+387",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "BW",
+		"displayName" : "Botswana",
+		"callingCode" : "+267",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "BV",
+		"displayName" : "Bouvet Island",
+		"callingCode" : "",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "BR",
+		"displayName" : "Brazil",
+		"callingCode" : "+55",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "IO",
+		"displayName" : "British Indian Ocean Territory",
+		"callingCode" : "+246",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "BN",
+		"displayName" : "Brunei",
+		"callingCode" : "+673",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "BG",
+		"displayName" : "Bulgaria",
+		"callingCode" : "+359",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "BF",
+		"displayName" : "Burkina Faso",
+		"callingCode" : "+226",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "BI",
+		"displayName" : "Burundi",
+		"callingCode" : "+257",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "KH",
+		"displayName" : "Cambodia",
+		"callingCode" : "+855",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "CM",
+		"displayName" : "Cameroon",
+		"callingCode" : "+237",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "CA",
+		"displayName" : "Canada",
+		"callingCode" : "+1",
+		"states" : [
+		  			 { "code" : "AB",
+		  			   "displayName" : "Alberta"
+		  			 }
+		  			 , 
+		  			 { "code" : "BC",
+		  			   "displayName" : "British Columbia"
+		  			 }
+		  			 , 
+		  			 { "code" : "MB",
+		  			   "displayName" : "Manitoba"
+		  			 }
+		  			 , 
+		  			 { "code" : "NB",
+		  			   "displayName" : "New Brunswick"
+		  			 }
+		  			 , 
+		  			 { "code" : "NL",
+		  			   "displayName" : "Newfoundland"
+		  			 }
+		  			 , 
+		  			 { "code" : "NT",
+		  			   "displayName" : "Northwest Territory"
+		  			 }
+		  			 , 
+		  			 { "code" : "NS",
+		  			   "displayName" : "Nova Scotia"
+		  			 }
+		  			 , 
+		  			 { "code" : "NU",
+		  			   "displayName" : "Nunavut"
+		  			 }
+		  			 , 
+		  			 { "code" : "ON",
+		  			   "displayName" : "Ontario"
+		  			 }
+		  			 , 
+		  			 { "code" : "PE",
+		  			   "displayName" : "Prince Edward Island"
+		  			 }
+		  			 , 
+		  			 { "code" : "QC",
+		  			   "displayName" : "Quebec"
+		  			 }
+		  			 , 
+		  			 { "code" : "SK",
+		  			   "displayName" : "Saskatchewan"
+		  			 }
+		  			 , 
+		  			 { "code" : "YT",
+		  			   "displayName" : "Yukon"
+		  			 }
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "CV",
+		"displayName" : "Cape Verde",
+		"callingCode" : "+238",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "KY",
+		"displayName" : "Cayman Islands",
+		"callingCode" : "+1-345",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "CF",
+		"displayName" : "Central African Republic",
+		"callingCode" : "+236",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "TD",
+		"displayName" : "Chad",
+		"callingCode" : "+235",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "CL",
+		"displayName" : "Chile",
+		"callingCode" : "+56",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "CN",
+		"displayName" : "China",
+		"callingCode" : "+86",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "CX",
+		"displayName" : "Christmas Island",
+		"callingCode" : "+61-8",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "CC",
+		"displayName" : "Cocos Islands",
+		"callingCode" : "+61",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "CO",
+		"displayName" : "Colombia",
+		"callingCode" : "+57",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "KM",
+		"displayName" : "Comoros",
+		"callingCode" : "+269",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "CG",
+		"displayName" : "Congo",
+		"callingCode" : "+242",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "CD",
+		"displayName" : "Congo, Democratic Republic of the",
+		"callingCode" : "+243",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "CK",
+		"displayName" : "Cook Islands",
+		"callingCode" : "+682",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "CR",
+		"displayName" : "Costa Rica",
+		"callingCode" : "+506",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "CI",
+		"displayName" : "Cote d'Ivoire",
+		"callingCode" : "+225",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "HR",
+		"displayName" : "Croatia",
+		"callingCode" : "+385",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "CU",
+		"displayName" : "Cuba",
+		"callingCode" : "+53",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "CY",
+		"displayName" : "Cyprus",
+		"callingCode" : "+357",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "CZ",
+		"displayName" : "Czech Republic",
+		"callingCode" : "+420",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "DK",
+		"displayName" : "Denmark",
+		"callingCode" : "+45",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "DJ",
+		"displayName" : "Djibouti",
+		"callingCode" : "+253",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "DM",
+		"displayName" : "Dominica",
+		"callingCode" : "+1-767",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "DO",
+		"displayName" : "Dominican Republic",
+		"callingCode" : "+1-809",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "TP",
+		"displayName" : "East Timor",
+		"callingCode" : "+670",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "EC",
+		"displayName" : "Ecuador",
+		"callingCode" : "+593",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "EG",
+		"displayName" : "Egypt",
+		"callingCode" : "+20",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "SV",
+		"displayName" : "El Salvador",
+		"callingCode" : "+503",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "GQ",
+		"displayName" : "Equatorial Guinea",
+		"callingCode" : "+240",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "ER",
+		"displayName" : "Eritrea",
+		"callingCode" : "+291",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "EE",
+		"displayName" : "Estonia",
+		"callingCode" : "+372",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "ET",
+		"displayName" : "Ethiopia",
+		"callingCode" : "+251",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "FK",
+		"displayName" : "Falkland Islands",
+		"callingCode" : "+500",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "FO",
+		"displayName" : "Faroe Islands",
+		"callingCode" : "+298",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "FJ",
+		"displayName" : "Fiji",
+		"callingCode" : "+679",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "FI",
+		"displayName" : "Finland",
+		"callingCode" : "+358",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "FR",
+		"displayName" : "France",
+		"callingCode" : "+33",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "GF",
+		"displayName" : "French Guiana",
+		"callingCode" : "+594",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "PF",
+		"displayName" : "French Polynesia",
+		"callingCode" : "+689",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "TF",
+		"displayName" : "French Southern Territories",
+		"callingCode" : "",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "GA",
+		"displayName" : "Gabon",
+		"callingCode" : "+241",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "GM",
+		"displayName" : "Gambia",
+		"callingCode" : "+220",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "GE",
+		"displayName" : "Georgia",
+		"callingCode" : "+995",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "DE",
+		"displayName" : "Germany",
+		"callingCode" : "+49",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "GH",
+		"displayName" : "Ghana",
+		"callingCode" : "+233",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "GI",
+		"displayName" : "Gibraltar",
+		"callingCode" : "+350",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "GR",
+		"displayName" : "Greece",
+		"callingCode" : "+30",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "GL",
+		"displayName" : "Greenland",
+		"callingCode" : "+299",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "GD",
+		"displayName" : "Grenada",
+		"callingCode" : "+1-473",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "GP",
+		"displayName" : "Guadeloupe",
+		"callingCode" : "+590",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "GU",
+		"displayName" : "Guam",
+		"callingCode" : "+1-671",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "GT",
+		"displayName" : "Guatemala",
+		"callingCode" : "+502",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "GN",
+		"displayName" : "Guinea",
+		"callingCode" : "+224",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "GW",
+		"displayName" : "Guinea-Bissau",
+		"callingCode" : "+245",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "GY",
+		"displayName" : "Guyana",
+		"callingCode" : "+592",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "HT",
+		"displayName" : "Haiti",
+		"callingCode" : "+509",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "HM",
+		"displayName" : "Heard Island and Mcdonald Islands",
+		"callingCode" : "",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "VA",
+		"displayName" : "Holy See",
+		"callingCode" : "+379",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "HN",
+		"displayName" : "Honduras",
+		"callingCode" : "+504",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "HK",
+		"displayName" : "Hong Kong S.A.R. of China",
+		"callingCode" : "+852",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "HU",
+		"displayName" : "Hungary",
+		"callingCode" : "+36",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "IS",
+		"displayName" : "Iceland",
+		"callingCode" : "+354",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "IN",
+		"displayName" : "India",
+		"callingCode" : "+91",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "ID",
+		"displayName" : "Indonesia",
+		"callingCode" : "+62",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "IR",
+		"displayName" : "Iran",
+		"callingCode" : "+98",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "IQ",
+		"displayName" : "Iraq",
+		"callingCode" : "+964",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "IE",
+		"displayName" : "Ireland",
+		"callingCode" : "+353",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "IL",
+		"displayName" : "Israel",
+		"callingCode" : "+972",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "IT",
+		"displayName" : "Italy",
+		"callingCode" : "+39",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "JM",
+		"displayName" : "Jamaica",
+		"callingCode" : "+1-876",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "JP",
+		"displayName" : "Japan",
+		"callingCode" : "+81",
+		"states" : [
+		  			 { "code" : "Aichi",
+		  			   "displayName" : "Aichi"
+		  			 }
+		  			 , 
+		  			 { "code" : "Akita",
+		  			   "displayName" : "Akita"
+		  			 }
+		  			 , 
+		  			 { "code" : "Aomori",
+		  			   "displayName" : "Aomori"
+		  			 }
+		  			 , 
+		  			 { "code" : "Chiba",
+		  			   "displayName" : "Chiba"
+		  			 }
+		  			 , 
+		  			 { "code" : "Ehime",
+		  			   "displayName" : "Ehime"
+		  			 }
+		  			 , 
+		  			 { "code" : "Fukui",
+		  			   "displayName" : "Fukui"
+		  			 }
+		  			 , 
+		  			 { "code" : "Fukuoka",
+		  			   "displayName" : "Fukuoka"
+		  			 }
+		  			 , 
+		  			 { "code" : "Fukushima",
+		  			   "displayName" : "Fukushima"
+		  			 }
+		  			 , 
+		  			 { "code" : "Gifu",
+		  			   "displayName" : "Gifu"
+		  			 }
+		  			 , 
+		  			 { "code" : "Gunma",
+		  			   "displayName" : "Gunma"
+		  			 }
+		  			 , 
+		  			 { "code" : "Hiroshima",
+		  			   "displayName" : "Hiroshima"
+		  			 }
+		  			 , 
+		  			 { "code" : "Hokkaido",
+		  			   "displayName" : "Hokkaido"
+		  			 }
+		  			 , 
+		  			 { "code" : "Hyogo",
+		  			   "displayName" : "Hyogo"
+		  			 }
+		  			 , 
+		  			 { "code" : "Ibaraki",
+		  			   "displayName" : "Ibaraki"
+		  			 }
+		  			 , 
+		  			 { "code" : "Ishikawa",
+		  			   "displayName" : "Ishikawa"
+		  			 }
+		  			 , 
+		  			 { "code" : "Iwate",
+		  			   "displayName" : "Iwate"
+		  			 }
+		  			 , 
+		  			 { "code" : "Kagawa",
+		  			   "displayName" : "Kagawa"
+		  			 }
+		  			 , 
+		  			 { "code" : "Kagoshima",
+		  			   "displayName" : "Kagoshima"
+		  			 }
+		  			 , 
+		  			 { "code" : "Kanagawa",
+		  			   "displayName" : "Kanagawa"
+		  			 }
+		  			 , 
+		  			 { "code" : "Kochi",
+		  			   "displayName" : "Kochi"
+		  			 }
+		  			 , 
+		  			 { "code" : "Kumamoto",
+		  			   "displayName" : "Kumamoto"
+		  			 }
+		  			 , 
+		  			 { "code" : "Kyoto",
+		  			   "displayName" : "Kyoto"
+		  			 }
+		  			 , 
+		  			 { "code" : "Mie",
+		  			   "displayName" : "Mie"
+		  			 }
+		  			 , 
+		  			 { "code" : "Miyagi",
+		  			   "displayName" : "Miyagi"
+		  			 }
+		  			 , 
+		  			 { "code" : "Miyazaki",
+		  			   "displayName" : "Miyazaki"
+		  			 }
+		  			 , 
+		  			 { "code" : "Nagano",
+		  			   "displayName" : "Nagano"
+		  			 }
+		  			 , 
+		  			 { "code" : "Nagasaki",
+		  			   "displayName" : "Nagasaki"
+		  			 }
+		  			 , 
+		  			 { "code" : "Nara",
+		  			   "displayName" : "Nara"
+		  			 }
+		  			 , 
+		  			 { "code" : "Niigata",
+		  			   "displayName" : "Niigata"
+		  			 }
+		  			 , 
+		  			 { "code" : "Oita",
+		  			   "displayName" : "Oita"
+		  			 }
+		  			 , 
+		  			 { "code" : "Okayama",
+		  			   "displayName" : "Okayama"
+		  			 }
+		  			 , 
+		  			 { "code" : "Okinawa",
+		  			   "displayName" : "Okinawa"
+		  			 }
+		  			 , 
+		  			 { "code" : "Osaka",
+		  			   "displayName" : "Osaka"
+		  			 }
+		  			 , 
+		  			 { "code" : "Saga",
+		  			   "displayName" : "Saga"
+		  			 }
+		  			 , 
+		  			 { "code" : "Saitama",
+		  			   "displayName" : "Saitama"
+		  			 }
+		  			 , 
+		  			 { "code" : "Shiga",
+		  			   "displayName" : "Shiga"
+		  			 }
+		  			 , 
+		  			 { "code" : "Shimane",
+		  			   "displayName" : "Shimane"
+		  			 }
+		  			 , 
+		  			 { "code" : "Shizuoka",
+		  			   "displayName" : "Shizuoka"
+		  			 }
+		  			 , 
+		  			 { "code" : "Tochigi",
+		  			   "displayName" : "Tochigi"
+		  			 }
+		  			 , 
+		  			 { "code" : "Tokushima",
+		  			   "displayName" : "Tokushima"
+		  			 }
+		  			 , 
+		  			 { "code" : "Tokyo",
+		  			   "displayName" : "Tokyo"
+		  			 }
+		  			 , 
+		  			 { "code" : "Tottori",
+		  			   "displayName" : "Tottori"
+		  			 }
+		  			 , 
+		  			 { "code" : "Toyama",
+		  			   "displayName" : "Toyama"
+		  			 }
+		  			 , 
+		  			 { "code" : "Wakayama",
+		  			   "displayName" : "Wakayama"
+		  			 }
+		  			 , 
+		  			 { "code" : "Yamagata",
+		  			   "displayName" : "Yamagata"
+		  			 }
+		  			 , 
+		  			 { "code" : "Yamaguchi",
+		  			   "displayName" : "Yamaguchi"
+		  			 }
+		  			 , 
+		  			 { "code" : "Yamanashi",
+		  			   "displayName" : "Yamanashi"
+		  			 }
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "JO",
+		"displayName" : "Jordan",
+		"callingCode" : "+962",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "KZ",
+		"displayName" : "Kazakhstan",
+		"callingCode" : "+7-6",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "KE",
+		"displayName" : "Kenya",
+		"callingCode" : "+254",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "KI",
+		"displayName" : "Kiribati",
+		"callingCode" : "+686",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "KP",
+		"displayName" : "Korea, North",
+		"callingCode" : "+850",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "KR",
+		"displayName" : "Korea, South",
+		"callingCode" : "+82",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "KW",
+		"displayName" : "Kuwait",
+		"callingCode" : "+965",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "KG",
+		"displayName" : "Kyrgyzstan",
+		"callingCode" : "+996",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "LA",
+		"displayName" : "Laos",
+		"callingCode" : "+856",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "LV",
+		"displayName" : "Latvia",
+		"callingCode" : "+371",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "LB",
+		"displayName" : "Lebanon",
+		"callingCode" : "+961",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "LS",
+		"displayName" : "Lesotho",
+		"callingCode" : "+266",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "LR",
+		"displayName" : "Liberia",
+		"callingCode" : "+231",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "LY",
+		"displayName" : "Libya",
+		"callingCode" : "+218",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "LI",
+		"displayName" : "Liechtenstein",
+		"callingCode" : "+423",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "LT",
+		"displayName" : "Lithuania",
+		"callingCode" : "+370",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "LU",
+		"displayName" : "Luxembourg",
+		"callingCode" : "+352",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "MO",
+		"displayName" : "Macau S.A.R. of China",
+		"callingCode" : "+853",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "MK",
+		"displayName" : "Macedonia",
+		"callingCode" : "+389",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "MG",
+		"displayName" : "Madagascar",
+		"callingCode" : "+261",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "MW",
+		"displayName" : "Malawi",
+		"callingCode" : "+265",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "MY",
+		"displayName" : "Malaysia",
+		"callingCode" : "+60",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "MV",
+		"displayName" : "Maldives",
+		"callingCode" : "+960",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "ML",
+		"displayName" : "Mali",
+		"callingCode" : "+223",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "MT",
+		"displayName" : "Malta",
+		"callingCode" : "+356",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "MH",
+		"displayName" : "Marshall Islands",
+		"callingCode" : "+692",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "MQ",
+		"displayName" : "Martinique",
+		"callingCode" : "+596",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "MR",
+		"displayName" : "Mauritania",
+		"callingCode" : "+222",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "MU",
+		"displayName" : "Mauritius",
+		"callingCode" : "+230",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "YT",
+		"displayName" : "Mayotte",
+		"callingCode" : "+262",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "MX",
+		"displayName" : "Mexico",
+		"callingCode" : "+52",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "FM",
+		"displayName" : "Micronesia",
+		"callingCode" : "+691",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "MD",
+		"displayName" : "Moldova",
+		"callingCode" : "+373",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "MC",
+		"displayName" : "Monaco",
+		"callingCode" : "+377",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "MN",
+		"displayName" : "Mongolia",
+		"callingCode" : "+976",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "MS",
+		"displayName" : "Montserrat",
+		"callingCode" : "+1-664",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "MA",
+		"displayName" : "Morocco",
+		"callingCode" : "+212",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "MZ",
+		"displayName" : "Mozambique",
+		"callingCode" : "+258",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "MM",
+		"displayName" : "Myanmar",
+		"callingCode" : "+95",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "NA",
+		"displayName" : "Namibia",
+		"callingCode" : "+264",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "NR",
+		"displayName" : "Nauru",
+		"callingCode" : "+674",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "NP",
+		"displayName" : "Nepal",
+		"callingCode" : "+977",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "NL",
+		"displayName" : "Netherlands",
+		"callingCode" : "+31",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "AN",
+		"displayName" : "Netherlands Antilles",
+		"callingCode" : "+599",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "NC",
+		"displayName" : "New Caledonia",
+		"callingCode" : "+687",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "NZ",
+		"displayName" : "New Zealand",
+		"callingCode" : "+64",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "NI",
+		"displayName" : "Nicaragua",
+		"callingCode" : "+505",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "NE",
+		"displayName" : "Niger",
+		"callingCode" : "+227",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "NG",
+		"displayName" : "Nigeria",
+		"callingCode" : "+234",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "NU",
+		"displayName" : "Niue",
+		"callingCode" : "+683",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "NF",
+		"displayName" : "Norfolk Island",
+		"callingCode" : "+672",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "MP",
+		"displayName" : "Northern Mariana Islands",
+		"callingCode" : "+1-670",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "NO",
+		"displayName" : "Norway",
+		"callingCode" : "+47",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "OM",
+		"displayName" : "Oman",
+		"callingCode" : "+968",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "PK",
+		"displayName" : "Pakistan",
+		"callingCode" : "+92",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "PW",
+		"displayName" : "Palau",
+		"callingCode" : "+680",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "PS",
+		"displayName" : "Palestinian Territory",
+		"callingCode" : "+970",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "PA",
+		"displayName" : "Panama",
+		"callingCode" : "+507",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "PG",
+		"displayName" : "Papua New Guinea",
+		"callingCode" : "+675",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "PY",
+		"displayName" : "Paraguay",
+		"callingCode" : "+595",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "PE",
+		"displayName" : "Peru",
+		"callingCode" : "+51",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "PH",
+		"displayName" : "Philippines",
+		"callingCode" : "+63",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "PN",
+		"displayName" : "Pitcairn",
+		"callingCode" : "+872",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "PL",
+		"displayName" : "Poland",
+		"callingCode" : "+48",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "PT",
+		"displayName" : "Portugal",
+		"callingCode" : "+351",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "PR",
+		"displayName" : "Puerto Rico",
+		"callingCode" : "+1-778",
+		"states" : [
+		  			 { "code" : "PR",
+		  			   "displayName" : "Puerto Rico"
+		  			 }
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "QA",
+		"displayName" : "Qatar",
+		"callingCode" : "+974",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "RE",
+		"displayName" : "Reunion",
+		"callingCode" : "+262",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "RO",
+		"displayName" : "Romania",
+		"callingCode" : "+40",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "RU",
+		"displayName" : "Russian Federation",
+		"callingCode" : "+7",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "RW",
+		"displayName" : "Rwanda",
+		"callingCode" : "+250",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "SH",
+		"displayName" : "Saint Helena",
+		"callingCode" : "+290",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "KN",
+		"displayName" : "Saint Kitts and Nevis",
+		"callingCode" : "+1-869",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "LC",
+		"displayName" : "Saint Lucia",
+		"callingCode" : "+1-758",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "PM",
+		"displayName" : "Saint Pierre and Miquelon",
+		"callingCode" : "+508",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "VC",
+		"displayName" : "Saint Vincent and the Grenadines",
+		"callingCode" : "+1-784",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "WS",
+		"displayName" : "Samoa",
+		"callingCode" : "+685",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "SM",
+		"displayName" : "San Marino",
+		"callingCode" : "+378",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "ST",
+		"displayName" : "Sao Tome and Principe",
+		"callingCode" : "+239",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "SA",
+		"displayName" : "Saudi Arabia",
+		"callingCode" : "+966",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "SN",
+		"displayName" : "Senegal",
+		"callingCode" : "+221",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "SC",
+		"displayName" : "Seychelles",
+		"callingCode" : "+248",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "SL",
+		"displayName" : "Sierra Leone",
+		"callingCode" : "+232",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "SG",
+		"displayName" : "Singapore",
+		"callingCode" : "+65",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "SK",
+		"displayName" : "Slovakia",
+		"callingCode" : "+421",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "SI",
+		"displayName" : "Slovenia",
+		"callingCode" : "+386",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "SB",
+		"displayName" : "Solomon Islands",
+		"callingCode" : "+677",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "SO",
+		"displayName" : "Somalia",
+		"callingCode" : "+252",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "ZA",
+		"displayName" : "South Africa",
+		"callingCode" : "+27",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "GS",
+		"displayName" : "South Georgia and the South Sandwich Islands",
+		"callingCode" : "",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "ES",
+		"displayName" : "Spain",
+		"callingCode" : "+34",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "LK",
+		"displayName" : "Sri Lanka",
+		"callingCode" : "+94",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "SD",
+		"displayName" : "Sudan",
+		"callingCode" : "+249",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "SR",
+		"displayName" : "Suriname",
+		"callingCode" : "+597",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "SJ",
+		"displayName" : "Svalbard and Jan Mayen",
+		"callingCode" : "+79",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "SZ",
+		"displayName" : "Swaziland",
+		"callingCode" : "+268",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "SE",
+		"displayName" : "Sweden",
+		"callingCode" : "+46",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "CH",
+		"displayName" : "Switzerland",
+		"callingCode" : "+41",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "SY",
+		"displayName" : "Syria",
+		"callingCode" : "+963",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "TW",
+		"displayName" : "Taiwan",
+		"callingCode" : "+886",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "TJ",
+		"displayName" : "Tajikistan",
+		"callingCode" : "+992",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "TZ",
+		"displayName" : "Tanzania",
+		"callingCode" : "+255",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "TH",
+		"displayName" : "Thailand",
+		"callingCode" : "+66",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "TG",
+		"displayName" : "Togo",
+		"callingCode" : "+228",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "TK",
+		"displayName" : "Tokelau",
+		"callingCode" : "+690",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "TO",
+		"displayName" : "Tonga",
+		"callingCode" : "+676",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "TT",
+		"displayName" : "Trinidad and Tobago",
+		"callingCode" : "+1-868",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "TN",
+		"displayName" : "Tunisia",
+		"callingCode" : "+216",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "TR",
+		"displayName" : "Turkey",
+		"callingCode" : "+90",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "TM",
+		"displayName" : "Turkmenistan",
+		"callingCode" : "+993",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "TC",
+		"displayName" : "Turks and Caicos Islands",
+		"callingCode" : "+1-649",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "TV",
+		"displayName" : "Tuvalu",
+		"callingCode" : "+688",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "UG",
+		"displayName" : "Uganda",
+		"callingCode" : "+256",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "UA",
+		"displayName" : "Ukraine",
+		"callingCode" : "+380",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "AE",
+		"displayName" : "United Arab Emirates",
+		"callingCode" : "+971",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "GB",
+		"displayName" : "United Kingdom",
+		"callingCode" : "+44",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "US",
+		"displayName" : "United States",
+		"callingCode" : "+1",
+		"states" : [
+		  			 { "code" : "AL",
+		  			   "displayName" : "Alabama"
+		  			 }
+		  			 , 
+		  			 { "code" : "AK",
+		  			   "displayName" : "Alaska"
+		  			 }
+		  			 , 
+		  			 { "code" : "AS",
+		  			   "displayName" : "American Samoa"
+		  			 }
+		  			 , 
+		  			 { "code" : "AZ",
+		  			   "displayName" : "Arizona"
+		  			 }
+		  			 , 
+		  			 { "code" : "AR",
+		  			   "displayName" : "Arkansas"
+		  			 }
+		  			 , 
+		  			 { "code" : "AA",
+		  			   "displayName" : "Armed Forces Americas"
+		  			 }
+		  			 , 
+		  			 { "code" : "AE",
+		  			   "displayName" : "Armed Forces Europe"
+		  			 }
+		  			 , 
+		  			 { "code" : "AP",
+		  			   "displayName" : "Armed Forces Pacific"
+		  			 }
+		  			 , 
+		  			 { "code" : "CA",
+		  			   "displayName" : "California"
+		  			 }
+		  			 , 
+		  			 { "code" : "CO",
+		  			   "displayName" : "Colorado"
+		  			 }
+		  			 , 
+		  			 { "code" : "CT",
+		  			   "displayName" : "Connecticut"
+		  			 }
+		  			 , 
+		  			 { "code" : "DE",
+		  			   "displayName" : "Delaware"
+		  			 }
+		  			 , 
+		  			 { "code" : "DC",
+		  			   "displayName" : "District of Columbia"
+		  			 }
+		  			 , 
+		  			 { "code" : "FL",
+		  			   "displayName" : "Florida"
+		  			 }
+		  			 , 
+		  			 { "code" : "GA",
+		  			   "displayName" : "Georgia"
+		  			 }
+		  			 , 
+		  			 { "code" : "GU",
+		  			   "displayName" : "Guam"
+		  			 }
+		  			 , 
+		  			 { "code" : "HI",
+		  			   "displayName" : "Hawaii"
+		  			 }
+		  			 , 
+		  			 { "code" : "ID",
+		  			   "displayName" : "Idaho"
+		  			 }
+		  			 , 
+		  			 { "code" : "IL",
+		  			   "displayName" : "Illinois"
+		  			 }
+		  			 , 
+		  			 { "code" : "IN",
+		  			   "displayName" : "Indiana"
+		  			 }
+		  			 , 
+		  			 { "code" : "IA",
+		  			   "displayName" : "Iowa"
+		  			 }
+		  			 , 
+		  			 { "code" : "KS",
+		  			   "displayName" : "Kansas"
+		  			 }
+		  			 , 
+		  			 { "code" : "KY",
+		  			   "displayName" : "Kentucky"
+		  			 }
+		  			 , 
+		  			 { "code" : "LA",
+		  			   "displayName" : "Louisiana"
+		  			 }
+		  			 , 
+		  			 { "code" : "ME",
+		  			   "displayName" : "Maine"
+		  			 }
+		  			 , 
+		  			 { "code" : "MD",
+		  			   "displayName" : "Maryland"
+		  			 }
+		  			 , 
+		  			 { "code" : "MA",
+		  			   "displayName" : "Massachusetts"
+		  			 }
+		  			 , 
+		  			 { "code" : "MI",
+		  			   "displayName" : "Michigan"
+		  			 }
+		  			 , 
+		  			 { "code" : "MN",
+		  			   "displayName" : "Minnesota"
+		  			 }
+		  			 , 
+		  			 { "code" : "MS",
+		  			   "displayName" : "Mississippi"
+		  			 }
+		  			 , 
+		  			 { "code" : "MO",
+		  			   "displayName" : "Missouri"
+		  			 }
+		  			 , 
+		  			 { "code" : "MT",
+		  			   "displayName" : "Montana"
+		  			 }
+		  			 , 
+		  			 { "code" : "NE",
+		  			   "displayName" : "Nebraska"
+		  			 }
+		  			 , 
+		  			 { "code" : "NV",
+		  			   "displayName" : "Nevada"
+		  			 }
+		  			 , 
+		  			 { "code" : "NH",
+		  			   "displayName" : "New Hampshire"
+		  			 }
+		  			 , 
+		  			 { "code" : "NJ",
+		  			   "displayName" : "New Jersey"
+		  			 }
+		  			 , 
+		  			 { "code" : "NM",
+		  			   "displayName" : "New Mexico"
+		  			 }
+		  			 , 
+		  			 { "code" : "NY",
+		  			   "displayName" : "New York"
+		  			 }
+		  			 , 
+		  			 { "code" : "NC",
+		  			   "displayName" : "North Carolina"
+		  			 }
+		  			 , 
+		  			 { "code" : "ND",
+		  			   "displayName" : "North Dakota"
+		  			 }
+		  			 , 
+		  			 { "code" : "MP",
+		  			   "displayName" : "Northern Mariana Islands"
+		  			 }
+		  			 , 
+		  			 { "code" : "OH",
+		  			   "displayName" : "Ohio"
+		  			 }
+		  			 , 
+		  			 { "code" : "OK",
+		  			   "displayName" : "Oklahoma"
+		  			 }
+		  			 , 
+		  			 { "code" : "OR",
+		  			   "displayName" : "Oregon"
+		  			 }
+		  			 , 
+		  			 { "code" : "PW",
+		  			   "displayName" : "Palau"
+		  			 }
+		  			 , 
+		  			 { "code" : "PA",
+		  			   "displayName" : "Pennsylvania"
+		  			 }
+		  			 , 
+		  			 { "code" : "RI",
+		  			   "displayName" : "Rhode Island"
+		  			 }
+		  			 , 
+		  			 { "code" : "SC",
+		  			   "displayName" : "South Carolina"
+		  			 }
+		  			 , 
+		  			 { "code" : "SD",
+		  			   "displayName" : "South Dakota"
+		  			 }
+		  			 , 
+		  			 { "code" : "TN",
+		  			   "displayName" : "Tennessee"
+		  			 }
+		  			 , 
+		  			 { "code" : "TX",
+		  			   "displayName" : "Texas"
+		  			 }
+		  			 , 
+		  			 { "code" : "VI",
+		  			   "displayName" : "U.S. Virgin Islands"
+		  			 }
+		  			 , 
+		  			 { "code" : "UT",
+		  			   "displayName" : "Utah"
+		  			 }
+		  			 , 
+		  			 { "code" : "VT",
+		  			   "displayName" : "Vermont"
+		  			 }
+		  			 , 
+		  			 { "code" : "VA",
+		  			   "displayName" : "Virginia"
+		  			 }
+		  			 , 
+		  			 { "code" : "WA",
+		  			   "displayName" : "Washington"
+		  			 }
+		  			 , 
+		  			 { "code" : "WV",
+		  			   "displayName" : "West Virginia"
+		  			 }
+		  			 , 
+		  			 { "code" : "WI",
+		  			   "displayName" : "Wisconsin"
+		  			 }
+		  			 , 
+		  			 { "code" : "WY",
+		  			   "displayName" : "Wyoming"
+		  			 }
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "UM",
+		"displayName" : "United States Minor Outlying Islands",
+		"callingCode" : "+808",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "UY",
+		"displayName" : "Uruguay",
+		"callingCode" : "+598",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "UZ",
+		"displayName" : "Uzbekistan",
+		"callingCode" : "+998",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "VU",
+		"displayName" : "Vanuatu",
+		"callingCode" : "+678",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "VE",
+		"displayName" : "Venezuela",
+		"callingCode" : "+58",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "VN",
+		"displayName" : "Viet Nam",
+		"callingCode" : "+84",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "VG",
+		"displayName" : "Virgin Islands, British",
+		"callingCode" : "+1-284",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "VI",
+		"displayName" : "Virgin Islands, US",
+		"callingCode" : "+1-340",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "WF",
+		"displayName" : "Wallis and Futuna",
+		"callingCode" : "+681",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "EH",
+		"displayName" : "Western Saraha",
+		"callingCode" : "+212",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "YE",
+		"displayName" : "Yemen",
+		"callingCode" : "+967",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "YU",
+		"displayName" : "Yugoslavia",
+		"callingCode" : "+381",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "ZM",
+		"displayName" : "Zambia",
+		"callingCode" : "+260",
+		"states" : [
+		  		   ] 			 
+	}
+	, 
+	{ 
+		"code" : "ZW",
+		"displayName" : "Zimbabwe",
+		"callingCode" : "+263",
+		"states" : [
+		  		   ] 			 
+	}
+]}
+</div>
+<!-- END AddressHelperCountrySelection.jspf -->
+
+<div class="column" id="WC_AddressBookAddressEntryFormf_div_1">
+	<div id="WC_AddressBookAddressEntryFormf_div_2">
+	<span class="spanacce">
+	<label for="firstName"><span>
+	First Name:<span title="FIRST_NAME" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FIRST_NAME"></span>
+	</span></label>
+	</span><span>
+	First Name:<span title="FIRST_NAME" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FIRST_NAME"></span></span></div>
+	<input maxlength="40" size="35" id="firstName" name="firstName" value="John" type="text">
+</div>
+<div class="column" id="WC_AddressBookAddressEntryFormf_div_3">
+	 <div id="WC_AddressBookAddressEntryFormf_div_4">
+		<span class="spanacce">
+		<label for="lastName"><span>
+		Last Name:<span title="LAST_NAME" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="LAST_NAME"></span>
+		</span></label>
+		</span>
+		<span class="required-field" id="WC_AddressBookAddressEntryFormf_div_5"> *</span><span>
+		Last Name:<span title="LAST_NAME" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="LAST_NAME"></span></span></div>
+		 <input maxlength="40" size="35" aria-required="true" id="lastName" name="lastName" value="Clark" type="text">
+</div>
+<br clear="all">
+<div class="column" id="WC_AddressBookAddressEntryFormf_div_6">
+	<div id="WC_AddressBookAddressEntryFormf_div_7">
+	<span class="spanacce">
+	<label for="address1"><span>
+	Street address line 1:<span title="STREET_ADDRESS_LINE_1" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="STREET_ADDRESS_LINE_1"></span>
+	</span></label>
+	</span>
+	<span class="required-field" id="WC_AddressBookAddressEntryFormf_div_8"> *</span><span>
+	Street address:<span title="STREET_ADDRESS" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="STREET_ADDRESS"></span></span></div>
+	<input maxlength="99" size="35" aria-required="true" id="address1" name="address1" value="123 Fake St" type="text">
+	<input maxlength="49" size="35" id="address2" name="address2" value="" type="text">
+	<span class="spanacce">
+	<label for="address2"><span>Street address line 2:<span title="STREET_ADDRESS_LINE_2" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="STREET_ADDRESS_LINE_2"></span></span></label>
+	</span>
+</div>
+<div class="column" id="WC_AddressBookAddressEntryFormf_div_9">
+	 <div id="WC_AddressBookAddressEntryFormf_div_10">
+	 <span class="spanacce">
+	 <label for="city"><span>
+	 City:<span title="CITY2" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="CITY2"></span>
+	 </span></label>
+	 </span>
+	 <span class="required-field" id="WC_AddressBookAddressEntryFormf_div_11"> *</span><span>
+	 City:<span title="CITY2" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="CITY2"></span></span></div>
+	 <input maxlength="40" size="35" aria-required="true" id="city" name="city" value="Toronto" type="text">
+ </div>
+<br clear="all">
+<div class="column" id="WC_AddressBookAddressEntryFormf_div_12">
+	<div id="WC_AddressBookAddressEntryFormf_div_13">
+		<span class="spanacce">
+		<label for="country"><span>
+		Country/Region field. The State/Province field will be updated to match your selection. <span title="COUNTRY2_ACCE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="COUNTRY2_ACCE"></span>
+		</span></label>
+		</span>
+		<span class="required-field" id="WC_AddressBookAddressEntryFormf_div_14"> *</span><span>
+		Country/Region:<span title="COUNTRY2" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="COUNTRY2"></span></span></div>
+		<select class="drop_down_country" aria-required="true" id="country" name="country" onkeydown="saveTabPress(event)" onblur="setFocus('state')" onchange="javascript:AddressHelper.loadStatesUI('AddressForm','','stateDiv','state')">
+				<option value="AF">Afghanistan
+				</option>
+				<option value="AL">Albania
+				</option>
+				<option value="DZ">Algeria
+				</option>
+				<option value="AS">American Samoa
+				</option>
+				<option value="AD">Andorra
+				</option>
+				<option value="AO">Angola
+				</option>
+				<option value="AI">Anguilla
+				</option>
+				<option value="AQ">Antarctica
+				</option>
+				<option value="AG">Antigua and Barbuda
+				</option>
+				<option value="AR">Argentina
+				</option>
+				<option value="AM">Armenia
+				</option>
+				<option value="AW">Aruba
+				</option>
+				<option value="AU">Australia
+				</option>
+				<option value="AT">Austria
+				</option>
+				<option value="AZ">Azerbaijan
+				</option>
+				<option value="BS">Bahamas
+				</option>
+				<option value="BH">Bahrain
+				</option>
+				<option value="BD">Bangladesh
+				</option>
+				<option value="BB">Barbados
+				</option>
+				<option value="BY">Belarus
+				</option>
+				<option value="BE">Belgium
+				</option>
+				<option value="BZ">Belize
+				</option>
+				<option value="BJ">Benin
+				</option>
+				<option value="BM">Bermuda
+				</option>
+				<option value="BT">Bhutan
+				</option>
+				<option value="BO">Bolivia
+				</option>
+				<option value="BA">Bosnia and Herzegovina
+				</option>
+				<option value="BW">Botswana
+				</option>
+				<option value="BV">Bouvet Island
+				</option>
+				<option value="BR">Brazil
+				</option>
+				<option value="IO">British Indian Ocean Territory
+				</option>
+				<option value="BN">Brunei
+				</option>
+				<option value="BG">Bulgaria
+				</option>
+				<option value="BF">Burkina Faso
+				</option>
+				<option value="BI">Burundi
+				</option>
+				<option value="KH">Cambodia
+				</option>
+				<option value="CM">Cameroon
+				</option>
+				<option value="CA" statediv="" selected="selected">Canada
+				</option>
+				<option value="CV">Cape Verde
+				</option>
+				<option value="KY">Cayman Islands
+				</option>
+				<option value="CF">Central African Republic
+				</option>
+				<option value="TD">Chad
+				</option>
+				<option value="CL">Chile
+				</option>
+				<option value="CN">China
+				</option>
+				<option value="CX">Christmas Island
+				</option>
+				<option value="CC">Cocos Islands
+				</option>
+				<option value="CO">Colombia
+				</option>
+				<option value="KM">Comoros
+				</option>
+				<option value="CG">Congo
+				</option>
+				<option value="CD">Congo, Democratic Republic of the
+				</option>
+				<option value="CK">Cook Islands
+				</option>
+				<option value="CR">Costa Rica
+				</option>
+				<option value="CI">Cote d'Ivoire
+				</option>
+				<option value="HR">Croatia
+				</option>
+				<option value="CU">Cuba
+				</option>
+				<option value="CY">Cyprus
+				</option>
+				<option value="CZ">Czech Republic
+				</option>
+				<option value="DK">Denmark
+				</option>
+				<option value="DJ">Djibouti
+				</option>
+				<option value="DM">Dominica
+				</option>
+				<option value="DO">Dominican Republic
+				</option>
+				<option value="TP">East Timor
+				</option>
+				<option value="EC">Ecuador
+				</option>
+				<option value="EG">Egypt
+				</option>
+				<option value="SV">El Salvador
+				</option>
+				<option value="GQ">Equatorial Guinea
+				</option>
+				<option value="ER">Eritrea
+				</option>
+				<option value="EE">Estonia
+				</option>
+				<option value="ET">Ethiopia
+				</option>
+				<option value="FK">Falkland Islands
+				</option>
+				<option value="FO">Faroe Islands
+				</option>
+				<option value="FJ">Fiji
+				</option>
+				<option value="FI">Finland
+				</option>
+				<option value="FR">France
+				</option>
+				<option value="GF">French Guiana
+				</option>
+				<option value="PF">French Polynesia
+				</option>
+				<option value="TF">French Southern Territories
+				</option>
+				<option value="GA">Gabon
+				</option>
+				<option value="GM">Gambia
+				</option>
+				<option value="GE">Georgia
+				</option>
+				<option value="DE">Germany
+				</option>
+				<option value="GH">Ghana
+				</option>
+				<option value="GI">Gibraltar
+				</option>
+				<option value="GR">Greece
+				</option>
+				<option value="GL">Greenland
+				</option>
+				<option value="GD">Grenada
+				</option>
+				<option value="GP">Guadeloupe
+				</option>
+				<option value="GU">Guam
+				</option>
+				<option value="GT">Guatemala
+				</option>
+				<option value="GN">Guinea
+				</option>
+				<option value="GW">Guinea-Bissau
+				</option>
+				<option value="GY">Guyana
+				</option>
+				<option value="HT">Haiti
+				</option>
+				<option value="HM">Heard Island and Mcdonald Islands
+				</option>
+				<option value="VA">Holy See
+				</option>
+				<option value="HN">Honduras
+				</option>
+				<option value="HK">Hong Kong S.A.R. of China
+				</option>
+				<option value="HU">Hungary
+				</option>
+				<option value="IS">Iceland
+				</option>
+				<option value="IN">India
+				</option>
+				<option value="ID">Indonesia
+				</option>
+				<option value="IR">Iran
+				</option>
+				<option value="IQ">Iraq
+				</option>
+				<option value="IE">Ireland
+				</option>
+				<option value="IL">Israel
+				</option>
+				<option value="IT">Italy
+				</option>
+				<option value="JM">Jamaica
+				</option>
+				<option value="JP">Japan
+				</option>
+				<option value="JO">Jordan
+				</option>
+				<option value="KZ">Kazakhstan
+				</option>
+				<option value="KE">Kenya
+				</option>
+				<option value="KI">Kiribati
+				</option>
+				<option value="KP">Korea, North
+				</option>
+				<option value="KR">Korea, South
+				</option>
+				<option value="KW">Kuwait
+				</option>
+				<option value="KG">Kyrgyzstan
+				</option>
+				<option value="LA">Laos
+				</option>
+				<option value="LV">Latvia
+				</option>
+				<option value="LB">Lebanon
+				</option>
+				<option value="LS">Lesotho
+				</option>
+				<option value="LR">Liberia
+				</option>
+				<option value="LY">Libya
+				</option>
+				<option value="LI">Liechtenstein
+				</option>
+				<option value="LT">Lithuania
+				</option>
+				<option value="LU">Luxembourg
+				</option>
+				<option value="MO">Macau S.A.R. of China
+				</option>
+				<option value="MK">Macedonia
+				</option>
+				<option value="MG">Madagascar
+				</option>
+				<option value="MW">Malawi
+				</option>
+				<option value="MY">Malaysia
+				</option>
+				<option value="MV">Maldives
+				</option>
+				<option value="ML">Mali
+				</option>
+				<option value="MT">Malta
+				</option>
+				<option value="MH">Marshall Islands
+				</option>
+				<option value="MQ">Martinique
+				</option>
+				<option value="MR">Mauritania
+				</option>
+				<option value="MU">Mauritius
+				</option>
+				<option value="YT">Mayotte
+				</option>
+				<option value="MX">Mexico
+				</option>
+				<option value="FM">Micronesia
+				</option>
+				<option value="MD">Moldova
+				</option>
+				<option value="MC">Monaco
+				</option>
+				<option value="MN">Mongolia
+				</option>
+				<option value="MS">Montserrat
+				</option>
+				<option value="MA">Morocco
+				</option>
+				<option value="MZ">Mozambique
+				</option>
+				<option value="MM">Myanmar
+				</option>
+				<option value="NA">Namibia
+				</option>
+				<option value="NR">Nauru
+				</option>
+				<option value="NP">Nepal
+				</option>
+				<option value="NL">Netherlands
+				</option>
+				<option value="AN">Netherlands Antilles
+				</option>
+				<option value="NC">New Caledonia
+				</option>
+				<option value="NZ">New Zealand
+				</option>
+				<option value="NI">Nicaragua
+				</option>
+				<option value="NE">Niger
+				</option>
+				<option value="NG">Nigeria
+				</option>
+				<option value="NU">Niue
+				</option>
+				<option value="NF">Norfolk Island
+				</option>
+				<option value="MP">Northern Mariana Islands
+				</option>
+				<option value="NO">Norway
+				</option>
+				<option value="OM">Oman
+				</option>
+				<option value="PK">Pakistan
+				</option>
+				<option value="PW">Palau
+				</option>
+				<option value="PS">Palestinian Territory
+				</option>
+				<option value="PA">Panama
+				</option>
+				<option value="PG">Papua New Guinea
+				</option>
+				<option value="PY">Paraguay
+				</option>
+				<option value="PE">Peru
+				</option>
+				<option value="PH">Philippines
+				</option>
+				<option value="PN">Pitcairn
+				</option>
+				<option value="PL">Poland
+				</option>
+				<option value="PT">Portugal
+				</option>
+				<option value="PR">Puerto Rico
+				</option>
+				<option value="QA">Qatar
+				</option>
+				<option value="RE">Reunion
+				</option>
+				<option value="RO">Romania
+				</option>
+				<option value="RU">Russian Federation
+				</option>
+				<option value="RW">Rwanda
+				</option>
+				<option value="SH">Saint Helena
+				</option>
+				<option value="KN">Saint Kitts and Nevis
+				</option>
+				<option value="LC">Saint Lucia
+				</option>
+				<option value="PM">Saint Pierre and Miquelon
+				</option>
+				<option value="VC">Saint Vincent and the Grenadines
+				</option>
+				<option value="WS">Samoa
+				</option>
+				<option value="SM">San Marino
+				</option>
+				<option value="ST">Sao Tome and Principe
+				</option>
+				<option value="SA">Saudi Arabia
+				</option>
+				<option value="SN">Senegal
+				</option>
+				<option value="SC">Seychelles
+				</option>
+				<option value="SL">Sierra Leone
+				</option>
+				<option value="SG">Singapore
+				</option>
+				<option value="SK">Slovakia
+				</option>
+				<option value="SI">Slovenia
+				</option>
+				<option value="SB">Solomon Islands
+				</option>
+				<option value="SO">Somalia
+				</option>
+				<option value="ZA">South Africa
+				</option>
+				<option value="GS">South Georgia and the South Sandwich Islands
+				</option>
+				<option value="ES">Spain
+				</option>
+				<option value="LK">Sri Lanka
+				</option>
+				<option value="SD">Sudan
+				</option>
+				<option value="SR">Suriname
+				</option>
+				<option value="SJ">Svalbard and Jan Mayen
+				</option>
+				<option value="SZ">Swaziland
+				</option>
+				<option value="SE">Sweden
+				</option>
+				<option value="CH">Switzerland
+				</option>
+				<option value="SY">Syria
+				</option>
+				<option value="TW">Taiwan
+				</option>
+				<option value="TJ">Tajikistan
+				</option>
+				<option value="TZ">Tanzania
+				</option>
+				<option value="TH">Thailand
+				</option>
+				<option value="TG">Togo
+				</option>
+				<option value="TK">Tokelau
+				</option>
+				<option value="TO">Tonga
+				</option>
+				<option value="TT">Trinidad and Tobago
+				</option>
+				<option value="TN">Tunisia
+				</option>
+				<option value="TR">Turkey
+				</option>
+				<option value="TM">Turkmenistan
+				</option>
+				<option value="TC">Turks and Caicos Islands
+				</option>
+				<option value="TV">Tuvalu
+				</option>
+				<option value="UG">Uganda
+				</option>
+				<option value="UA">Ukraine
+				</option>
+				<option value="AE">United Arab Emirates
+				</option>
+				<option value="GB">United Kingdom
+				</option>
+				<option value="US">United States
+				</option>
+				<option value="UM">United States Minor Outlying Islands
+				</option>
+				<option value="UY">Uruguay
+				</option>
+				<option value="UZ">Uzbekistan
+				</option>
+				<option value="VU">Vanuatu
+				</option>
+				<option value="VE">Venezuela
+				</option>
+				<option value="VN">Viet Nam
+				</option>
+				<option value="VG">Virgin Islands, British
+				</option>
+				<option value="VI">Virgin Islands, US
+				</option>
+				<option value="WF">Wallis and Futuna
+				</option>
+				<option value="EH">Western Saraha
+				</option>
+				<option value="YE">Yemen
+				</option>
+				<option value="YU">Yugoslavia
+				</option>
+				<option value="ZM">Zambia
+				</option>
+				<option value="ZW">Zimbabwe
+				</option>
+		</select>
+</div>
+<div class="column" id="WC_AddressBookAddressEntryFormf_div_15">
+	<div id="WC_AddressBookAddressEntryFormf_div_16">
+		<span class="spanacce">
+		<label for="state"><span>
+		State/Province:<span title="REG_STATE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="REG_STATE"></span>
+		</span></label>
+		</span>
+		<span class="required-field" id="WC_AddressBookAddressEntryFormf_div_17"> *</span><span>
+		State/Province:<span title="REG_STATE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="REG_STATE"></span></span></div>
+				<div id="stateDiv">
+					<select aria-required="true" id="state" name="state" class="drop_down_country">
+					<option value="AB">
+						Alberta
+					</option>
+					<option value="BC">
+						British Columbia
+					</option>
+					<option value="MB">
+						Manitoba
+					</option>
+					<option value="NB">
+						New Brunswick
+					</option>
+					<option value="NL">
+						Newfoundland
+					</option>
+					<option value="NT">
+						Northwest Territory
+					</option>
+					<option value="NS">
+						Nova Scotia
+					</option>
+					<option value="NU">
+						Nunavut
+					</option>
+					<option value="ON" selected="selected">
+						Ontario
+					</option>
+					<option value="PE">
+						Prince Edward Island
+					</option>
+					<option value="QC">
+						Quebec
+					</option>
+					<option value="SK">
+						Saskatchewan
+					</option>
+					<option value="YT">
+						Yukon
+					</option>
+					</select>
+				</div>
+	</div>
+<br clear="all">
+<div class="column" id="WC_AddressBookAddressEntryFormf_div_18">
+	<div id="WC_AddressBookAddressEntryFormf_div_19">
+		<span class="spanacce">
+		<label for="zipCode"><span>
+		ZIP code/Postal code:<span title="ZIP_CODE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="ZIP_CODE"></span>
+		</span></label>
+		</span>
+		<span class="required-field" id="WC_AddressBookAddressEntryFormf_div_20"> *</span>
+		   <!-- Madisons zipcode -->
+<span>
+			ZIP code/Postal code:<span title="ZIP_CODE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="ZIP_CODE"></span>
+	</span></div>
+	<input maxlength="30" size="35" aria-required="true" id="zipCode" name="zipCode" value="H0H 0H0" type="text">
+</div>
+<div class="column" id="WC_AddressBookAddressEntryFormf_div_21">
+	<div id="WC_AddressBookAddressEntryFormf_div_22">
+	<span class="spanacce">
+	<label for="phone1"><span>
+	Phone number:<span title="PHONE_NUMBER2" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="PHONE_NUMBER2"></span>
+	</span></label>
+	</span><span>
+	Phone number:<span title="PHONE_NUMBER2" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="PHONE_NUMBER2"></span></span></div>
+	<input maxlength="32" size="35" id="phone1" name="phone1" value="905-555-2000" type="text">
+</div>
+<br clear="all">
+<div class="column" id="WC_AddressBookAddressEntryFormf_div_23">
+	<div id="WC_AddressBookAddressEntryFormf_div_24">
+	<span class="spanacce">
+	<label for="email1"><span>
+	E-mail:<span title="EMAIL" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="EMAIL"></span>
+	</span></label>
+	</span>
+	<span class="required-field" id="WC_AddressBookAddressEntryFormf_div_25"> *</span><span> 
+	E-mail:<span title="EMAIL" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="EMAIL"></span></span></div>
+	<input maxlength="32" size="35" aria-required="true" id="email1" name="email1" value="johnTav@test.test" type="text">
+</div>
+<!-- END AddressBookAddressEntryForm.jspf-->
+
+		<input id="AddressForm_FieldsOrderByLocale" value="NICK_NAME,first_name,LAST_NAME,ADDRESS,CITY,COUNTRY/REGION,STATE/PROVINCE,ZIP,phone1,EMAIL1" type="hidden">
+<!-- END AddressBookAddressEntryFormDisplay.jspf -->
+
+				</div>
+			</div>
+		</div>
+		<br clear="all">
+	</form>
+	<br>
+</span>
+<!-- END AccountForm.jsp -->
+
+		</div>
+		<script type="text/javascript">dojo.addOnLoad(function() { parseWidget("addressIdRefreshArea"); } );</script>
+	<span class="elementKeyIcon" title="ACCE_Status_Address_Book_Updated=Address Book Content Display Updated"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+	<div id="content_footer">
+		<div class="button_footer_line" id="WC_AjaxAddressBookForm_div_16">
+			<a  role="button" class="button_primary" id="WC_AjaxAddressBookForm_links_4" onclick="javascript:setCurrentId('WC_AjaxAddressBookForm_links_4'); var messageArea = dojo.byId('MessageArea'); var successIcon = dojo.byId('success_icon'); var messageText = dojo.byId('ErrorMessageText'); dojo.attr(messageArea, 'style', 'display: block; opacity: 1'); successIcon.style.display='inline'; messageText.innerHTML = 'The address has been updated successfully'; AddressBookFormJS.updateAddress('AddressForm', '');">
+				<div class="left_border"></div>
+				<div class="button_text">Update</div>												
+				<div class="right_border"></div>
+			</a>
+		</div>			
+	</div>		
+	<div id="addnew_content_footer" style="display:none">
+		<div class="button_footer_line" id="WC_AjaxAddressBookForm_div_16a">
+			<div class="left" id="WC_AjaxAddressBookForm_div_16b">
+				<a  role="button" class="button_primary" id="WC_AjaxAddressBookForm_links_4a" onclick="javascript:setCurrentId('WC_AjaxAddressBookForm_links_4a'); var messageArea = dojo.byId('MessageArea'); var successIcon = dojo.byId('success_icon'); var messageText = dojo.byId('ErrorMessageText'); dojo.attr(messageArea, 'style', 'display: block; opacity: 1'); successIcon.style.display='inline'; messageText.innerHTML = 'The new address has been successfully added to the address book.'; AddressBookFormJS.showFooter(); AddressBookFormJS.newUpdateAddressBook('AddressForm', '');">
+					<div class="left_border"></div>
+					<div class="button_text">Submit</div>												
+					<div class="right_border"></div>
+				</a>
+			</div>
+			<a  role="button" class="button_secondary button_left_padding" id="WC_AjaxAddressBookForm_links_2c" onclick="javascript: setCurrentId('WC_AjaxAddressBookForm_links_2c'); AddressBookFormJS.showFooter(); dojo.query('#WC_AccountForm_div_9 input').forEach(function(node, index, array) { node.value = addrData[0]; addrData.splice(0, 1); });" waistate:controls="addressId">
+				<div class="left_border"></div>
+				<div class="button_text">Cancel</div>												
+				<div class="right_border"></div>
+			</a>
+		</div>			
+	</div>	
+</div>
+</span>
+<!-- END AjaxAddressBookForm.jsp -->
+
+								</div>
+								<script type="text/javascript">dojo.addOnLoad(function() { parseWidget("addressBookMainDiv"); } );</script>
+								<!-- Main Content End -->
+
+							<span class="elementKeyIcon" title="ACCE_Status_Address_List_Updated=Address Book List Updated"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Footer Start -->
+
+	<div class="footer_wrapper_position">
+<!-- BEGIN Footer.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">Footer.jsp</div>
+<div class="footer_wrapper" role="contentinfo">
+	<!--For border customization -->
+
+	<div class="footer_top">
+		<div class="left_border"></div>
+		<div class="middle"></div>
+		<div class="right_border"></div>
+	</div>
+	<!--Main footer Area -->
+
+	<div class="footer_left_shadow">
+		<div class="footer_right_shadow">				
+			<div class="footer_content" id="footer_content">
+				<!--Start Footer Content -->
+
+				<div id="footer">
+					<div class="footer_element_container right_border large">
+						<h2><span>Customer Service<span title="FOOTER_CUSTOMER_SERVICE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_CUSTOMER_SERVICE"></span></span></h2>
+						<ul>
+								<li><a id="FooterQuickOrder" href="QuickOrderView.html"><span>Quick Order<span title="FOOTER_QUICK_ORDER" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_QUICK_ORDER"></span></span></a></li>
+							<li><a id="FooterHelpLink" href="HelpandContactUsatAuroraESite.html"><span>Help<span title="FOOTER_HELP" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_HELP"></span></span></a></li>
+							<li><a id="FooterContactUsLink" href="HelpandContactUsatAuroraESite_6.html"><span>Contact Us<span title="FOOTER_CONTACT_US" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_CONTACT_US"></span></span></a></li>
+							<li><a id="FooterReturnPolicyLink" href="ReturnPolicyforAuroraESite.html"><span>Return Policy<span title="FOOTER_RETURN_POLICY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_RETURN_POLICY"></span></span></a></li>
+							<li><a id="FooterPrivacyPolicyLink" href="WebsitePrivacyPolicyforAuroraESite.html"><span>Privacy Policy<span title="FOOTER_PRIVACY_POLICY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_PRIVACY_POLICY"></span></span></a></li>
+						</ul>
+					</div>
+					<div class="footer_element_container right_border large">
+						<h2><span>Corporate Info<span title="FOOTER_CORPORATE_INFO" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_CORPORATE_INFO"></span></span></h2>
+						<ul>
+							<li><a id="FooterAboutUsLink" href="AboutUsforAuroraESite.html"><span>About Us<span title="FOOTER_ABOUT_US" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_ABOUT_US"></span></span></a></li>
+							<li><a id="FooterCorporateContactUsLink" href="ContactUsforAuroraESite.html"><span>Contact Us<span title="FOOTER_CONTACT_US" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_CONTACT_US"></span></span></a></li>
+								<li><a id="FooterStoreLocatorLink" href="StoreLocator.html"><span>Store Locator<span title="FOOTER_STORE_LOCATOR" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_STORE_LOCATOR"></span></span></a></li>
+						</ul>							
+					</div>
+					<div class="footer_element_container right_border large" id="WC_Footer_UI_Links_3">
+						<h2><span>Explore<span title="FOOTER_EXPLORE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_EXPLORE"></span></span></h2>
+						<ul>
+							<li><a id="FooterSiteMapLink" href="SiteMapforAuroraESite.html"><span>Site Map<span title="FOOTER_SITE_MAP" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_SITE_MAP"></span></span></a></li><li><a href="AdvancedSearch.html" id="AdvancedSearchDisplayLink">[PROPERTIES;FOOTER_ADVANCED_SEARCH;Advanced Search]</a></li>
+						</ul>
+					</div>
+						<div class="footer_element_container large" id="FooterSocialLinks">
+							<h2><span>Follow Us<span title="FOOTER_FOLLOW_US" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_FOLLOW_US"></span></span></h2>
+							<ul>
+								<li><a id="FacebookLink" ><span>Facebook<span title="FOOTER_FACEBOOK" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="FOOTER_FACEBOOK"></span></span></a></li>
+							</ul>
+						</div>
+					<div class="footer_element_container large" id="FooterRightContentESpot">					
+<!-- BEGIN ContentRecommendation.jsp -->
+<span class="highlight">
+<div class="jspcaption" style="display:none">ContentRecommendation.jsp</div>
+</span>
+<!-- END ContentRecommendation.jsp -->
+					</div>					
+				</div>
+				<!--End Footer Content -->
+
+			</div>
+		</div>				
+	</div>
+	<!--For border customization -->
+
+	<div class="footer_bottom">
+		<div class="left_border"></div>
+		<div class="middle">
+		</div>
+		<div class="right_border"></div>
+	</div>
+	<!--
+ =================================================================
+  Licensed Materials - Property of IBM
+  WebSphere Commerce
+  (C) Copyright IBM Corp. 2011 All Rights Reserved.
+  US Government Users Restricted Rights - Use, duplication or
+  disclosure restricted by GSA ADP Schedule Contract with
+  IBM Corp.
+ =================================================================
+-->
+<script type="text/javascript">
+	dojo.addOnLoad(function() { 
+		//Make sure page is loaded at this point
+		//Set requestedSubmitted to false
+		requestSubmitted = false;
+		// All div's whose id attribute contains dojoWidget subString -- dojo.query('div[id*="dojoWidget"]')
+		// All div's which contains dojoType attribute -- dojo.query(div[dojoType])
+		dojo.query('div[dojoType]').forEach(function(node, index, arr){
+			console.debug("Parse "+node.id);
+			addToWidgetsList(node.id);
+		});
+		parseAllWidgets();
+	}); 	
+</script>
+</div>
+		
+</span>
+<!-- END Footer.jsp -->
+
+	</div>
+	<!-- Footer End -->
+ 
+</div>
+
+<div title="" widgetid="progress_bar_dialog" style="display: none; position: absolute;" id="progress_bar_dialog" aria-labelledby="progress_bar_dialog_title" role="dialog" class="dijitDialog" tabindex="-1" wairole="dialog" waistate="labelledby-progress_bar_dialog_title">
+	<div dojoattachpoint="titleBar" class="dijitDialogTitleBar">
+	<span dojoattachpoint="titleNode" class="dijitDialogTitle" id="progress_bar_dialog_title"></span>
+	<span dojoattachpoint="closeButtonNode" class="dijitDialogCloseIcon" dojoattachevent="onclick: onCancel" title="Cancel">
+		<span dojoattachpoint="closeText" class="closeText" title="Cancel">x</span>
+	</span>
+	</div>
+		<div dojoattachpoint="containerNode" class="dijitDialogPaneContent">
+	<div id="progress_bar">
+		<div id="loading_popup">
+			<div class="top_left" id="WC_StoreCommonUtilities_div_1"><img src="../StoreAssets/images/colors/color1/transparent.gif" alt="No image available"><span class="elementKeyIcon" title="No_Image=No image available"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+		        <div class="top_right" id="WC_StoreCommonUtilities_div_2"><img src="../StoreAssets/images/colors/color1/transparent.gif" alt="No image available"><span class="elementKeyIcon" title="No_Image=No image available"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+		        <div class="header" id="WC_StoreCommonUtilities_div_3"></div>
+		        <div class="bodyarea" id="WC_StoreCommonUtilities_div_4">
+				<div class="bodycontent" id="WC_StoreCommonUtilities_div_5">
+					<img src="../StoreAssets/images/colors/color1/loading.gif" alt="Your request is being processed." border="0" height="44" width="44">
+			        <span class="elementKeyIcon" title="PROGRESS_BAR_REQUEST_PROCESSED=Your request is being processed."><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+			</div>
+			<div class="footer" id="WC_StoreCommonUtilities_div_6">
+				 <div class="bot_left" id="WC_StoreCommonUtilities_div_7"></div>
+				 <div class="bot_right" id="WC_StoreCommonUtilities_div_8"></div>
+			</div>
+		</div>
+	</div>
+</div>
+</div><div title="" style="display: none; position: absolute;" widgetid="widget_product_comparison_popup" id="widget_product_comparison_popup" aria-labelledby="widget_product_comparison_popup_title" role="dialog" class="dijitDialog" tabindex="-1" wairole="dialog" waistate="labelledby-widget_product_comparison_popup_title">
+	<div dojoattachpoint="titleBar" class="dijitDialogTitleBar">
+	<span dojoattachpoint="titleNode" class="dijitDialogTitle" id="widget_product_comparison_popup_title"></span>
+	<span dojoattachpoint="closeButtonNode" class="dijitDialogCloseIcon" dojoattachevent="onclick: onCancel" title="Cancel">
+		<span dojoattachpoint="closeText" class="closeText" title="Cancel">x</span>
+	</span>
+	</div>
+		<div dojoattachpoint="containerNode" class="dijitDialogPaneContent">
+		<div class="widget_product_comparison_popup widget_site_popup">													
+			<!-- Top Border Styling -->
+
+			<div class="top">
+				<div class="left_border"></div>
+				<div class="middle"></div>
+				<div class="right_border"></div>
+			</div>
+			<div class="clear_float"></div>
+			<!-- Main Content Area -->
+
+			<div class="middle">
+				<div class="content_left_border">
+					<div class="content_right_border">
+						<div class="content">
+							<div class="header">
+								<span><span>Product Comparison<span title="CP_HEADING" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="CP_HEADING"></span></span></span>
+								<a id="ComparePopupClose" class="close" href="javascript:dijit.byId('widget_product_comparison_popup').hide();" title="CLOSE"></a>
+								<div class="clear_float"></div>
+							<span class="elementKeyIcon" title="CP_CLOSE=CLOSE"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+							<div class="body"><span>
+								The maximum number of products that can be compared is 4. Please refine your selection.<span title="CP_MESSAGE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="CP_MESSAGE"></span>
+							</span></div>
+							<div class="footer">
+								<div class="button_container ">
+									<a id="ComparePopupOK" class="button_primary" tabindex="0" href="javascript: dijit.byId('widget_product_comparison_popup').hide();" title="OK">
+										<div class="left_border"></div>
+										<div class="button_text"><span>OK<span title="CP_OK" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="CP_OK"></span></span></div>
+										<div class="right_border"></div>
+									</a>
+									<div class="clear_float"></div>
+								<span class="elementKeyIcon" title="CP_OK=OK"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+							</div>
+							<div class="clear_float"></div>
+						<!-- End content Section -->
+
+						</div>
+					<!-- End content_right_border -->
+
+					</div>
+				<!-- End content_left_border -->
+
+				</div>
+			</div>
+			<div class="clear_float"></div>
+			<!-- Bottom Border Styling -->
+
+			<div class="bottom">
+				<div class="left_border"></div>
+				<div class="middle"></div>
+				<div class="right_border"></div>
+			</div>
+			<div class="clear_float"></div>
+		</div>
+	</div>
+</div><div title="" style="display: none; position: absolute;" widgetid="widget_language_and_currency_popup" dojoType="wc.widget.WCDialog" dojoType="wc.widget.WCDialog" id="widget_language_and_currency_popup" dojoType="wc.widget.WCDialog" dojoType="wc.widget.WCDialog" aria-labelledby="widget_language_and_currency_popup_title" role="dialog" class="dijitDialog" tabindex="-1" wairole="dialog" waistate="labelledby-widget_language_and_currency_popup_title">
+	<div title="Language and Currency Dialog" dojoattachpoint="titleBar" class="dijitDialogTitleBar">
+	<span dojoattachpoint="titleNode" class="dijitDialogTitle" id="widget_language_and_currency_popup_title"><span>Language and Currency Dialog<span title="DIALOG_TITLE_LANGUAGE_AND_CURRENCY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="DIALOG_TITLE_LANGUAGE_AND_CURRENCY"></span></span></span>
+	<span dojoattachpoint="closeButtonNode" class="dijitDialogCloseIcon" dojoattachevent="onclick: onCancel" title="Cancel">
+		<span dojoattachpoint="closeText" class="closeText" title="Cancel">x</span>
+	</span>
+	</div>
+		<div dojoattachpoint="containerNode" class="dijitDialogPaneContent">
+		<div class="widget_language_and_currency_popup widget_site_popup">										
+			<!-- Top Border Styling -->
+
+			<div class="top">
+				<div class="left_border"></div>
+				<div class="middle"></div>
+				<div class="right_border"></div>
+			</div>
+			<div class="clear_float"></div>
+			<!-- Main Content Area -->
+
+			<div class="middle">
+				<div class="content_left_border">
+					<div class="content_right_border">
+						<div class="content">
+							<div class="header">
+								<span><span>Please select a language and currency<span title="LC_LANGUAGE_CURRENCY_SELECTION" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="LC_LANGUAGE_CURRENCY_SELECTION"></span></span></span>
+								<a id="close" class="close_acce" title="CLOSE" href="javascript:dijit.byId('widget_language_and_currency_popup').hide();"><img role="button" onmouseover="this.src='../StoreAssets/images/colors/color1/close_hover.png'" onmouseout="this.src='../StoreAssets/images/colors/color1/close_normal.png'" src="../StoreAssets/images/colors/color1/close_normal.png" class="closeImg" alt="CLOSE"><span class="elementKeyIcon" title="LC_CLOSE=CLOSE"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></a>
+								<div class="clear_float"></div>
+							<span class="elementKeyIcon" title="LC_CLOSE=CLOSE"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div>
+							<div class="selectors">
+								<div class="selector">
+									<span class="option_name"><span>Language:<span title="LC_LANGUAGE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="LC_LANGUAGE"></span>&nbsp;</span></span>
+									<label for="languageSelection" class="nodisplay"><span>Language:<span title="LC_LANGUAGE" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="LC_LANGUAGE"></span></span></label>
+									<select class="left" id="languageSelection" name="langId" onchange="javascript:document.getElementById('languageSelectionHidden').value=this.value">
+													<option value="-1" selected="selected">United States English</option>
+													<option value="-7">简体中文</option>
+													<option value="-2">Français</option>
+									</select>
+									<div class="clear_float"></div>
+								</div>
+								<div class="selector">
+									<span class="option_name"><span>Currency:<span title="LC_CURRENCY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="LC_CURRENCY"></span>&nbsp;</span></span>
+									<label for="currencySelection" class="nodisplay"><span>Currency:<span title="LC_CURRENCY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="LC_CURRENCY"></span></span></label>
+									<select class="left" id="currencySelection" name="currency" onchange="javascript:document.getElementById('currencySelectionHidden').value=this.value">
+													<option value="USD" selected="selected">US Dollar</option>
+													<option value="BRL">Brazilian Real</option>
+													<option value="CAD">Canadian Dollar</option>
+													<option value="CNY">Chinese Yuan</option>
+													<option value="EUR">Euro</option>
+													<option value="GBP">British Pound</option>
+													<option value="JPY">Japanese Yen</option>
+													<option value="KRW">South Korean Won</option>
+													<option value="PLN">Polish Zloty</option>
+													<option value="RON">Romanian Leu</option>
+													<option value="RUB">Russian Ruble</option>
+													<option value="TWD">Taiwan Dollar</option>
+									</select>
+									<div class="clear_float"></div>
+								</div>
+								<form id="SetLanguageCurrencyPreferenceForm" action="/webapp/wcs/stores/servlet/SetCurrencyPreference" method="post">
+									<input name="storeId" value="10152" type="hidden">
+									<input name="catalogId" value="10001" type="hidden">
+									<input id="languageSelectionHidden" name="langId" value="-1" type="hidden">
+									<input id="currencySelectionHidden" name="currency" value="USD" type="hidden">									
+											<input name="URL" value="/webapp/wcs/stores/servlet/AddressBookForm?currency*=" id="WC_SidebarDisplay_FormInput_URL_2" type="hidden">
+												<input name="addressBookStyle" value="strong" id="WC_SidebarDisplay_FormInput_parm_2_1" type="hidden">
+								</form>
+							</div>
+							<div class="footer">
+								<div class="button_container ">
+									<a id="LangCurrencyApplyBtn" class="button_primary" tabindex="0" href="javascript:dijit.byId('widget_language_and_currency_popup').hide();">
+										<div class="left_border"></div>
+										<div id="LangCurrencyApplyBtnText" class="button_text"><span>Apply<span title="LC_APPLY" class="keyIcon"><img src="../StoreAssets/images/pencil_blue.png" alt="LC_APPLY"></span></span></div>
+										<div class="right_border"></div>
+									</a>
+									<div class="clear_float"></div>
+								</div>
+							</div>
+							<div class="clear_float"></div>
+						<!-- End content Section -->
+
+						</div>
+					<!-- End content_right_border -->
+
+					</div>
+				<!-- End content_left_border -->
+
+				</div>
+			</div>
+			<div class="clear_float"></div>
+			<!-- Bottom Border Styling -->
+
+			<div class="bottom">
+				<div class="left_border"></div>
+				<div class="middle"></div>
+				<div class="right_border"></div>
+			</div>
+			<div class="clear_float"></div>
+		</div>
+	</div>
+<span class="elementKeyIcon" title="DIALOG_TITLE_LANGUAGE_AND_CURRENCY=Language and Currency Dialog"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span></div><span class="elementKeyIcon" title="DIALOG_TITLE_PRODUCT_COMPARE=Product Compare Dialog"><img src="../StoreAssets/images/pencil_orange.png" class="elementKeyIcon"></span><style>.keyIcon {padding:2px;z-index:998;display:none !important;}.elementKeyIcon {position:absolute;top:0px;z-index:999;display:none;}#text_highlight {width:100%;font-family:Verdana, Arial, Helvetica, sans-serif;font-size:11px;color:#2c2c2c;}#text_highlight .bold{font-weight:bold;color:#2c2c2c;}#text_highlight .header {height:1px;width:100%;padding-top:3px;}.details {padding:0px 0px 2px 0px;}.details_container {background-color:#dfe8fb;border:solid 1px #bcd0fb;padding:5px;}.details_container .content {padding-left:3px;}a.light_button {color: #27629C;cursor: pointer;display: -moz-inline-box;display: inline-block;font-size: 11px;height: 17px;padding: 2px;text-decoration: none;line-height: 16px;}a.light_button div.button_text {background: transparent url('../images/preview/b_main_bg.png') top left repeat-x;float: left;height: 17px;padding: 1px 2px 2px 9px;}a.light_button div.button_right {background: transparent url('../images/preview/b_right.png') no-repeat;float: left;height: 20px;width: 6px;}</style>
+<script type="text/javascript"> function displayHighlightFeatureInHTML(){var all = document.getElementsByTagName('*'); for (var i = 0; i < all.length; i++) { if (all[i].className == 'jspcaption') {all[i].style.display='block';} if (all[i].className == 'highlight') {all[i].style.border='2px dashed red';all[i].style.display='block';} if (all[i].className == 'product') {all[i].style.border='2px dashed red';} if (all[i].className == 'product_price') {all[i].style.border='2px dashed red';} if (all[i].className == 'widget_quick_info_popup') {all[i].style.border='2px dashed red';} if (all[i].className == 'item' && (all[i].id.indexOf('compare') == -1) && (all[i].id.indexOf('sub') == -1) ) {all[i].style.border='2px dashed red';} if (all[i].className == 'item_price') {all[i].style.border='2px dashed red';}} } function activateHighlight (event){ if(event.ctrlKey){ if(event.altKey){ if(event.keyCode == '72'){ displayHighlightFeatureInHTML(); } } } } </script>
+</body></html>
+
+
